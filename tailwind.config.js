@@ -7,11 +7,27 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sansita: ['var(--font-sansita)'],
+      },
+      fontSize: {
+        md: {
+          fontSize: '16px',
+          lineHeight: '24px'
+        }
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors:{
+        myblack:"#231f20",
+        mygreen:"#026711",
+        myblue:"#A1B1FD",
+        mypink:"#ED9CCC",
+        primary:"#2f3d95"
+      }
     },
   },
   plugins: [],
