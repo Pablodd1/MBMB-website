@@ -333,7 +333,7 @@ export default function Home() {
           </h2>
 
           <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-myblack lg:bg-opacity-90 px-2 py-2 w-full shadow-xl shadow-myblack">
-            {paragraphContent.map((paragraph, index) => <li className="my-4" >{paragraph}</li>)}
+            {paragraphContent.map((paragraph, index) => <li key={index} className="my-4" >{paragraph}</li>)}
           </ul>
 
           <footer className="lg:text-xl max-w-2xl  lg:bg-myblack lg:bg-opacity-45 px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
