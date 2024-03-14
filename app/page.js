@@ -447,7 +447,7 @@ export default function Home() {
         }}
       />
       <footer className="bg-pink2 text-white w-full mt-8 pt-8  " >
-        <section className="flex items-center my-12 w-full " >
+        <section className="flex flex-col lg:flex-row items-center  my-12 w-full " >
           <figure className="w-1/5 min-w-44  max-w-96 h-full " >
             <Image
               className="mx-auto w-56"
@@ -461,11 +461,11 @@ export default function Home() {
             <h3 className="text-xl lg:text-3xl underline mb-4" >
               Forms
             </h3>
-            <nav className="font-serif text-gray-200 grid grid-cols-2 w-max" >
+            <nav className="font-serif text-gray-200 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 w-max" >
               {
                 links.map((x, i) => {
                   return (
-                    <ul key={i} className=" grid grid-rows-3 max-w-fit my-2 mx-auto text-lg" >
+                    <ul key={i} className=" grid grid-rows-3  max-w-fit my-2 mx-auto text-lg" >
                       {
                         x.map((y, j) => {
                           return (
@@ -595,7 +595,7 @@ export const ImageAndText = (props) => {
 function Sign() {
 
   return (
-    <aside className=' px-2 py-2 self-start bg-white bg-opacity-85 rounded-r-full text-black flex items-center w-max font-sans font-semibold text-xs sm:text-sm ' >
+    <aside className=' px-2 py-1 lg:py-2 mt-8  lg:my-1 self-center lg:self-start bg-white bg-opacity-85 lg:rounded-r-full text-black flex items-center w-full lg:w-max font-sans font-semibold text-xs sm:text-sm ' >
       <Image src={'/svg/info.svg'} loading='lazy' width={16} height={20} alt='icon info' className='  mr-1 inline-flex' />
       Designed & Developed By
       <Link className='mx-1 font-sans tracking-wide font-semibold uppercase' href={'https://www.myababeel.com'} >
