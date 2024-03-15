@@ -186,6 +186,7 @@ export default function Home() {
           width={4024}
           height={2024}
           alt="Medical Billing, Coding and Credentialling Services | Miami, Florida | Specialist"
+          priority
         />
         <figure className="w-full  py-16" >
           <Image

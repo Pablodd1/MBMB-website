@@ -163,7 +163,7 @@ path.two {
 
 /* parrallax */
 .background2 {
-  background-image: url('/raster/coding-1.2.webp');
+  background-image: url('/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist-1.2.webp');
   background-size:  100% auto; 
   background-position: center center;
 }
@@ -172,28 +172,28 @@ path.two {
 @media (min-aspect-ratio: 1/2) {
   /* 1:2 ratio */
   .background2 {
-      background-image: url('/raster/coding-1.2.webp');
+      background-image: url('/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist-1.2.webp');
   }
 }
 
 @media (min-aspect-ratio: 2/1) {
   /* 2:1 ratio */
   .background2 {
-      background-image: url('/raster/coding-2.1.webp');
+      background-image: url('/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist-2.1.webp');
   }
 }
 
 @media (min-aspect-ratio: 5/7) {
   /* 5:7 ratio */
   .background2 {
-      background-image: url('/raster/coding-5.7.webp');
+      background-image: url('/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist-5.7.webp');
   }
 }
 
 @media (min-aspect-ratio: 7/5) {
   /* 7:5 ratio */
   .background2 {
-      background-image: url('/raster/coding-7.5.webp');
+      background-image: url('/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist-7.5.webp');
   }
 }
 
