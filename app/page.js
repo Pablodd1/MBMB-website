@@ -185,7 +185,7 @@ export default function Home() {
           src={'/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist.webp'}
           width={4024}
           height={2024}
-          alt="d"
+          alt="Medical Billing, Coding and Credentialling Services | Miami, Florida | Specialist"
         />
         <figure className="w-full  py-16" >
           <Image
@@ -193,7 +193,7 @@ export default function Home() {
             src={'/mbmb-white.png'}
             width={180}
             height={180}
-            alt="d"
+            alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
           />
         </figure>
         <article className="w-5/6  md:max-w-7xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-white bg-opacity-75 brightness-125 backdrop-blur-lg" >
@@ -261,7 +261,7 @@ export default function Home() {
             src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
             width={4024}
             height={2024}
-            alt="d"
+            alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding | Medical-Billing-and-Coding-Specialists"
           />
         </figure>
         <article className="flex flex-col py-12 lg:py-0 px-2 w-11/12 max-w-md mx-auto" >
@@ -315,13 +315,13 @@ export default function Home() {
       />
 
       <section className="background1 overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit  md:py-16 my-8 mx-auto "
-        >
+      >
         <Image
           className="lg:hidden w-full h-fit max-h-screen "
           src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management.webp'}
           width={4024}
           height={2024}
-          alt="d"
+          alt="medical billing and medical coding services healthcare revenue management"
         />
         <article className=" bg-myblack lg:bg-transparent py-4 md:py-8 lg:py-12 md:px-4 lg:px-8 h-1/4  items-center justify-center flex flex-col " >
           <h2 className="text-center md:text-left uppercase lg:leading-snug font-orbitron md:font-bold text-2xl md:text-3xl lg:text-4xl tracking-widest font-semibold max-w-2xl lg:bg-pink2 lg:bg-opacity-95   px-2 py-2 rounded-t-xl w-full shadow-xl shadow-myblack" >
@@ -374,7 +374,7 @@ export default function Home() {
             <li key={`${j}`} className={"py-2 px-2 my-1 border-b text-xs md:text-sm  "} >
               <Image
                 src={`/svg/arrow.svg`}
-                alt={'arrow'}
+                alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
                 width={20}
                 height={14}
                 className={'inline-block -rotate-45 mr-1 w-4 md:w-5'}
@@ -411,7 +411,7 @@ export default function Home() {
             <li key={`${j}`} className={"py-2 px-2 my-1"} >
               <Image
                 src={`/raster/${x.icon}.webp`}
-                alt={'arrow'}
+                alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
                 width={60}
                 height={14}
                 className={'inline-block mr-3 w-8 md:w-12'}
@@ -449,7 +449,7 @@ export default function Home() {
               src={'/mbmb-white.png'}
               width={250}
               height={180}
-              alt="d"
+              alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
             />
           </figure>
           <article className="px-2 my-8 mx-auto w-fit" >
@@ -471,7 +471,7 @@ export default function Home() {
                                   src={`/svg/${i === 0 ? 'form' : 'protected-form'}.svg`}
                                   width={20}
                                   height={180}
-                                  alt={`list bullet, Medical Billing Miami Beach`}
+                                  alt={`list bullet ${i === 0 ? 'form' : 'protected-form'} of Medical Billing Miami Beach`}
                                 />
                                 {y.label}
                               </Link>
@@ -499,7 +499,7 @@ export default function Home() {
                           src={`/svg/${x.icon}.svg`}
                           width={40}
                           height={180}
-                          alt={`${x.icon} of MBMB, Medical Billing Miami Beach`}
+                          alt={`${x.icon} of Medical Billing Miami Beach | MBMB | Medical Coding | healthcare insurance | Revenue Management`}
                         />
                         {x.label}
                       </Link>
@@ -523,7 +523,7 @@ export default function Home() {
                         src={`/svg/${x.icon}.svg`}
                         width={40}
                         height={180}
-                        alt={`${x.icon} of MBMB, Medical Billing Miami Beach`}
+                        alt={`${x.icon} of MBMB, Medical Billing Miami Beach | MBMB | Medical Coding | healthcare insurance | Revenue Management`}
                       />
                     </Link>
                   </li>
@@ -566,7 +566,7 @@ export const ImageAndText = (props) => {
           content.ul
             ? <ul className={className.ul} >{content.ul.map((y, j) => <li key={`${j}`} className={className.li} ><Image
               src={'/svg/arrow.svg'}
-              alt={'arrow'}
+              alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
               width={20}
               height={14}
               className={'inline-block -rotate-45 mr-1'}
@@ -591,10 +591,10 @@ function Sign() {
 
   return (
     <aside className=' px-2 py-1 lg:py-2 mt-8  lg:my-1 self-center lg:self-start bg-white bg-opacity-85 lg:rounded-r-full text-black flex items-center w-full lg:w-max font-sans font-semibold text-xs sm:text-sm ' >
-      <Image src={'/svg/info.svg'} loading='lazy' width={16} height={20} alt='icon info' className='  mr-1 inline-flex' />
+      <Image src={'/svg/info.svg'} loading='lazy' width={16} height={20} alt='icon info MyAbabeel info about this website developer and designer' className='  mr-1 inline-flex' />
       Designed & Developed By
       <Link className='mx-1 font-sans tracking-wide font-semibold uppercase' href={'https://www.myababeel.com'} >
-        <Image src={'https://www.myababeel.com/logo.svg'} loading='lazy' width={37} height={20} alt='logo MyAbabeel' className=' inline-flex' />
+        <Image src={'https://www.myababeel.com/logo.svg'} loading='lazy' width={37} height={20} alt='logo MyAbabeel | React.js Next.js express.js js Developer  | designer | on-page SEO consultant company' className=' inline-flex' />
         My<strong className=' text-myababeel' >Ababeel</strong>
       </Link>
     </aside>
