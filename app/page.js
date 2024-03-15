@@ -6,28 +6,28 @@ import Subscribe from "./utils/subscribe";
 const solutions = [
   {
     label: "Medical Billing",
-    description: "Our team works tirelessly to ensure you receive the maximum reimbursement for your services.",
+    description: "Get optimal reimbursement with our comprehensive medical billing and credentialing services. Our team specializes in maximizing revenue through precise coding and efficient billing practices, ensuring seamless financial management for your practice.",
     href: ""
   },
   {
     label: "Medical Coding",
-    description: "Identifying opportunities for process improvement to maintain a current, comprehensive, and compliant Charge Description Master (CDM).",
+    description: "Our medical billing and coding specialists meticulously decode complex procedures and diagnoses to optimize your revenue cycle. By identifying and implementing strategic improvements, we maintain a compliant Charge Description Master (CDM) while maximizing your earning potential.",
     href: ""
   },
   {
     label: "Consultaion",
-    description: "Access top-tier consulting services to keep your practice at the forefront of industry best practices.",
+    description: "As leaders in healthcare revenue cycle management, we provide tailored solutions to meet the unique needs of your practice. Let us guide you through the ever-evolving landscape of medical billing and coding, ensuring efficiency, compliance, and financial success.",
     href: ""
   }
 ]
 const benefits = [
   {
-    label: "Error-Free Claims:",
-    description: " Our thorough audit and scrubbing process ensures clean, error-free, and compliant claims, following coding guidelines."
+    label: "Accurate Coding Guarantee:",
+    description: "Our expert team ensures precise coding for maximum reimbursement, minimizing errors and denials."
   },
   {
-    label: "Recover What's Due:",
-    description: "Our specialists follow up on outstanding claims to recover reimbursements owed by insurers."
+    label: "Efficient Revenue Management:",
+    description: "Streamline your revenue cycle with our comprehensive services, optimizing cash flow and financial performance."
   },
   {
     label: "Timely Reminders: ",
@@ -35,22 +35,19 @@ const benefits = [
   }
 ]
 const pair1 = {
-  src: "/raster/time-save.jpg",
-  alt: "save time",
-  h2: "Time-Saving Solutions",
-  // h2: "Accounts Receivables",
-  p: "Experience unparalleled efficiency with our precised medical billing solutions. Designed for specially for you, our services are crafted to reclaim valuable time otherwise spent on administrative tasks. By entrusting us with billing, coding, and revenue management, you'll unlock more hours to prioritize what truly matters – providing exceptional care to your patients. Say goodbye to paperwork headaches and hello to a streamlined process that empowers you to focus on what you do best: delivering quality healthcare.",
-  // p: "Our expert team of Billing Consultants and Coding Assistants can help! We specialize in healthcare revenue management and will work tirelessly to resolve your outstanding accounts receivables. With our proven approach, we only get paid when you do, and our objective is to maintain account receivable according to MGMA standards. Let us take care of your revenue management, so you can focus on providing top-quality patient care.",
+  src: "/raster/Time-Saving-Medical-Billing-Solutions.webp",
+  alt: "Time-Saving Medical Billing Solutions",
+  h2: "Time-Saving Medical Billing Solutions",
+  p: "Experience unparalleled efficiency with our time-saving medical billing solutions. Our advanced technology and streamlined processes minimize administrative burdens, allowing you to reclaim valuable time for patient care and practice growth. From automated coding to seamless claim submission and follow-up, our services are designed to optimize workflow and maximize productivity.",
   actions: {
     label: "Try Now",
     href: '#expertise'
   }
 }
 const pair2 = {
-  src: "/raster/saving.jpg",
-  alt: "save time",
+  src: "/raster/healthcare-revenue-cycle-management-companies.webp",
+  alt: "healthcare-revenue-cycle-management-companies",
   h2: "Credentialing",
-  // p: "Leave your credentialing worries to us! Our team of Doctor Credential Services and Billing Consultants will handle the complex credentialing process for you. We have experience across all specialties and payers, including governmental and private insurers. Our credentialing specialists will file your application with complete detail and pursue it until it's approved and you're enrolled on the first attempt. In addition to our credentialing services, we also provide support for hospital billing, medical billing, and insurance billing consultancy. Trust us to optimize your revenue cycle management and ensure that you receive the reimbursement you deserve.",
   ul: [
     "Attestation due for private insurers",
     "Demographic changes including address",
@@ -65,7 +62,7 @@ const pair2 = {
   }
 }
 const joinUs = {
-  src: "/raster/join-medical-billing-coding-miami-beach-today.png",
+  src: "/raster/join-medical-billing-coding-miami-beach-today.webp",
   alt: "join-medical-billing-coding-miami-beach-today",
   h2: "Free Consultation",
   p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at maximizing your reimbursement potential and ensuring the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are second to none.",
@@ -185,7 +182,7 @@ export default function Home() {
       <section className="" >
         <Image
           className="absolute w-full h-fit max-h-screen -z-10"
-          src={'/raster/mbmb-bg3.jpg'}
+          src={'/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist.webp'}
           width={4024}
           height={2024}
           alt="d"
@@ -210,12 +207,12 @@ export default function Home() {
               {/* Miami Beach */}
             </h1>
             <p className="font-semibold text-xs md:text-md lg:text-lg text-center my-2" >
-              To provide maximum reimburesement for our clients.
+              Maximize Revenue with Specialized Medical Billing Solutions in Miami
             </p>
           </header>
           <p className=" font-serif text-gray-900 mt-8 mb-3 text-sm md:text-lg lg:text-xl max-w-5xl mx-auto">
             <strong className="text-pink2" > At Medical Billing Miami Beach, </strong>
-            our mission is clear: to provide maximum reimbursement for our clients. We understand the complexities of medical billing, coding, and revenue management, and our team of experts is here to help you navigate these challenges. With a focus on precision, compliance, and efficiency, we offer a comprehensive suite of services tailored to meet your specific needs.
+            Our dedicated team specializes in medical billing, coding, and revenue management, ensuring precise and compliant solutions tailored to your needs. Trust us to navigate the complexities and optimize your financial performance.
           </p>
           <div className="wrapper max-w-5xl mx-auto">
             <Link className="cta bg-pink2 text-white hover:bg-myblack text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary" href="#">
@@ -258,10 +255,10 @@ export default function Home() {
         </ul>
       </section>
       <section className="grid lg:grid-cols-2 gap-2 md:max-w-7xl mx-auto md:px-6  lg:my-12" >
-        <figure className=" overflow-hidden  mx-4 " >
+        <figure className=" overflow-hidden lg:rounded-xl  mx-4 " >
           <Image
-            className="object-cover h-fit md:max-h-96 w-auto xl:h-full xl:w-auto xl:max-h-full mx-auto max-w-full rounded-xl self-center"
-            src={'/raster/concentrate.jpg'}
+            className="object-cover hover:scale-105 hover:-rotate-2 transition-all ease-linear duration-500 h-fit md:max-h-96 w-auto xl:h-full xl:w-auto xl:max-h-full mx-auto max-w-full self-center"
+            src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
             width={4024}
             height={2024}
             alt="d"
@@ -269,14 +266,14 @@ export default function Home() {
         </figure>
         <article className="flex flex-col py-12 lg:py-0 px-2 w-11/12 max-w-md mx-auto" >
           <h2 className="text-2xl lg:text-3xl text-myblack my-4 xl:my-6 font-semibold leading-4 sm:leading-5 xl:leading-6 underline" >
-            Expert Professionals
+            Experienced Staff
             <br />
             <span className="text-xs sm:text-lg xl:text-xl px-0 font-normal" >
-              Confident Billing Solutions by MBMB
+              Medical Billing and Coding Specialists
             </span>
           </h2>
           <p className="text-sm xl:text-lg text-gray-700 max-w-3xl w-fit text-justify" >
-            Ensure accurate coding for your practice with our team of certified Medical Billing and Coding Specialists, Billing Consultants, and Coding Specialists. Our team has expertise in all specialties and adheres to industry guidelines and standards to meet your medical coding needs. We offer medical coding outsourcing services and provide support for doctor credential services, hospital billing, dispute medical resolution services, and insurance billing consultancy. Trust us to optimize your revenue cycle management and ensure that you receive the reimbursement you deserve.
+            At our firm, we pride ourselves on being expert medical billing and coding specialists, dedicated to ensuring the financial success of your practice. With years of experience and a deep understanding of healthcare revenue cycle management, we offer unparalleled professionalism and expertise. Trust us to handle your medical billing and coding needs with precision and efficiency, allowing you to focus on providing excellent patient care.
           </p>
           <div className=" bg-white text-pink2 relative text-sm lg:text-md h-8 lg:h-9 w-max py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2 border-pink2 border-opacity-50 hover:bg-pink2 hover:text-white btn-1 rounded-md hover:rounded-sm">
             <Link href={'#expertise'} className=" text-sm font-semibold tracking-wider ">
@@ -306,9 +303,9 @@ export default function Home() {
       <ImageAndText
         content={pair1}
         className={{
-          section: "text-white font-orbitron shadow-2xl shadow-myblack w-11/12 xl:max-w-7xl rounded-md mt-16 mb-32 mx-auto flex flex-col lg:flex-row-reverse ",
+          section: "text-white font-orbitron shadow-2xl shadow-myblack w-11/12 max-w-2xl lg:max-w-6xl rounded-md mt-16 mb-32 mx-auto flex flex-col lg:flex-row-reverse ",
           figure: "overflow-hidden flex ",
-          image: " object-cover transition-all duration-1000 ease hover:scale-105  h-full w-auto xl:max-h-full mx-auto max-w-full self-center ",
+          image: " object-cover transition-all duration-1000 ease hover:scale-105  h-auto w-full lg:h-full lg:w-auto xl:max-h-full mx-auto max-w-full self-center ",
           article: "bg-black  lg:max-w-lg items-center md:items-start justify-center flex flex-col py-4 px-2 md:px-16 ",
           h2: "my-4 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-mypink ",
           p: "   text-gray-100 text-sm md:text-lg lg:leading-6 px-3  ",
@@ -317,26 +314,25 @@ export default function Home() {
         }}
       />
 
-      <section className=" overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit  md:py-16 my-8 mx-auto "
-        style={{ backgroundImage: `url('/raster/office2.jpg')`, backgroundPosition: 'center center', backgroundSize: '  100% auto' }}
-      >
+      <section className="background1 overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit  md:py-16 my-8 mx-auto "
+        >
         <Image
           className="lg:hidden w-full h-fit max-h-screen "
-          src={'/raster/office2.jpg'}
+          src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management.webp'}
           width={4024}
           height={2024}
           alt="d"
         />
-        <article className=" bg-myblack lg:bg-transparent py-4 md:py-8 lg:py-12 md:px-4 lg:px-8 h-1/4  items-center md:items-start justify-center flex flex-col " >
-          <h2 className="text-center md:text-left uppercase lg:leading-snug font-orbitron md:font-bold text-2xl md:text-3xl lg:text-4xl tracking-widest font-semibold max-w-md lg:max-w-2xl lg:bg-pink2 lg:bg-opacity-95   px-2 py-2 rounded-t-xl w-full shadow-xl shadow-myblack" >
+        <article className=" bg-myblack lg:bg-transparent py-4 md:py-8 lg:py-12 md:px-4 lg:px-8 h-1/4  items-center justify-center flex flex-col " >
+          <h2 className="text-center md:text-left uppercase lg:leading-snug font-orbitron md:font-bold text-2xl md:text-3xl lg:text-4xl tracking-widest font-semibold max-w-2xl lg:bg-pink2 lg:bg-opacity-95   px-2 py-2 rounded-t-xl w-full shadow-xl shadow-myblack" >
             {"Reduce Administrative Burden"}
           </h2>
 
-          <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-myblack lg:bg-opacity-90 px-2 py-2 w-full shadow-xl shadow-myblack">
+          <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-myblack lg:bg-opacity-40 px-2 py-2 w-full lg:shadow-xl shadow-mypink">
             {paragraphContent.map((paragraph, index) => <li key={index} className="my-4" >{paragraph}</li>)}
           </ul>
 
-          <footer className="lg:text-xl max-w-2xl  lg:bg-myblack lg:bg-opacity-45 px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
+          <footer className="lg:text-xl max-w-2xl  lg:bg-mypink lg:bg-opacity-45 px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
             <div className=" text-white relative uppercase h-9 w-36 text-center  px-4 mx-4 my-4 transition-all ease-in-out duration-500 border-2 border-white hover:border-transparent hover:bg-white hover:text-pink2 btn-1 rounded-md hover:rounded-sm">
               <Link href={'#expertise'} className=" text-sm font-semibold tracking-wider ">
                 Get it Today
@@ -425,8 +421,7 @@ export default function Home() {
           )}
         </ul>
       </section>
-      <section className=" overflow-hidden bg-fixed bg-no-repeat w-full h-fit min-h-96   mx-auto "
-        style={{ backgroundImage: `url('/raster/coding.jpg')`, backgroundPosition: 'center center', backgroundSize: '  100% auto' }}
+      <section className=" overflow-hidden bg-fixed bg-no-repeat w-full h-fit min-h-96   mx-auto background2"
       >
       </section>
 
@@ -459,7 +454,7 @@ export default function Home() {
           </figure>
           <article className="px-2 my-8 mx-auto w-fit" >
             <h3 className="text-xl lg:text-3xl underline mb-4" >
-              Forms
+              Useful Links
             </h3>
             <nav className="font-serif text-gray-200 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 w-max" >
               {
@@ -536,7 +531,7 @@ export default function Home() {
               })
             }
           </ul>
-      <Sign />
+          <Sign />
         </article>
       </footer>
     </main>

@@ -159,3 +159,75 @@ path.two {
     scale: 1;
   }
 }
+
+
+/* parrallax */
+.background2 {
+  background-image: url('/raster/coding-1.2.webp');
+  background-size:  100% auto; 
+  background-position: center center;
+}
+
+/* Media queries for different aspect ratios */
+@media (min-aspect-ratio: 1/2) {
+  /* 1:2 ratio */
+  .background2 {
+      background-image: url('/raster/coding-1.2.webp');
+  }
+}
+
+@media (min-aspect-ratio: 2/1) {
+  /* 2:1 ratio */
+  .background2 {
+      background-image: url('/raster/coding-2.1.webp');
+  }
+}
+
+@media (min-aspect-ratio: 5/7) {
+  /* 5:7 ratio */
+  .background2 {
+      background-image: url('/raster/coding-5.7.webp');
+  }
+}
+
+@media (min-aspect-ratio: 7/5) {
+  /* 7:5 ratio */
+  .background2 {
+      background-image: url('/raster/coding-7.5.webp');
+  }
+}
+
+/* parrallax 1 */
+.background1 {
+  background-position: center center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+/* Set background image for 1:2 ratio */
+@media (min-width: 1024px) and (min-aspect-ratio: 1/2) {
+  .background1 {
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.webp');
+  }
+}
+
+/* Set background image for 2:1 ratio */
+@media (min-width: 1024px) and (min-aspect-ratio: 2/1) {
+  .background1 {
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-2.1.webp');
+  }
+}
+
+/* Set background image for 5:7 ratio */
+@media (min-width: 1024px) and (min-aspect-ratio: 5/7) {
+  .background1 {
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-5.7.webp');
+  }
+}
+
+/* Set background image for 7:5 ratio */
+@media (min-width: 1024px) and (min-aspect-ratio: 7/5) {
+  .background1 {
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-7.5.webp');
+  }
+}
