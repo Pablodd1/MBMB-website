@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+#stepLabel * {
+  transform: none;
+}
+
+
+#consultation>div>input {
+  color: black;
+}
 
 .cta {
   display: flex;
@@ -84,7 +92,11 @@ path.two {
 
 /* button animation 2 */
 
-
+.btn-1 {
+  
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
 .btn-1>svg {
   height: 100%;
   left: 0;
@@ -102,8 +114,6 @@ path.two {
 
 .btn-1:hover {
   background: rgba(225, 51, 45, 0);
-  font-weight: 900;
-  letter-spacing: 1px;
 }
 .btn-1:hover>svg {
   opacity: 1;
@@ -207,27 +217,27 @@ path.two {
 /* Set background image for 1:2 ratio */
 @media (min-width: 1024px) and (min-aspect-ratio: 1/2) {
   .background1 {
-      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.webp');
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif');
   }
 }
 
 /* Set background image for 2:1 ratio */
 @media (min-width: 1024px) and (min-aspect-ratio: 2/1) {
   .background1 {
-      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-2.1.webp');
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-2.1.avif');
   }
 }
 
 /* Set background image for 5:7 ratio */
 @media (min-width: 1024px) and (min-aspect-ratio: 5/7) {
   .background1 {
-      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-5.7.webp');
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-5.7.avif');
   }
 }
 
 /* Set background image for 7:5 ratio */
 @media (min-width: 1024px) and (min-aspect-ratio: 7/5) {
   .background1 {
-      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-7.5.webp');
+      background-image: url('/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-7.5.avif');
   }
 }

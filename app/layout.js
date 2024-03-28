@@ -10,7 +10,7 @@ const sansita = Sansita({
 });
 
 export const metadata = {
-  // metadataBase: new URL('https://www.medicalbilling.com'),
+  // metadataBase: new URL('https://medicalbillingmb.com'),
   title: 'Medical Billing, Coding and Credentialling Services | Miami, Florida | Specialist',
   keywords: 'Medical Billing, Medical Coding, Medical Credentialling, Healthcare, Miami Florida, USA, Specialist, Services',
   description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Trust our specialists for accurate healthcare administration.',
@@ -18,7 +18,7 @@ export const metadata = {
   applicationName: 'MBMB',
   creator: 'Design and Developed By M Talha | Founder of MyAbabeel',
   alternates: {
-    canonical: 'https://www.medicalbilling.com'
+    canonical: 'https://medicalbillingmb.com'
   },
   verification: {
     // google: '5mY7Mp4Wz4jdKB94tgnuTNF1g1I5MV447Cm--rsF3SI',

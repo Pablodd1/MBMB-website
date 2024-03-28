@@ -15,7 +15,7 @@ const solutions = [
     href: ""
   },
   {
-    label: "Consultaion",
+    label: "Consultation",
     description: "As leaders in healthcare revenue cycle management, we provide tailored solutions to meet the unique needs of your practice. Let us guide you through the ever-evolving landscape of medical billing and coding, ensuring efficiency, compliance, and financial success.",
     href: ""
   }
@@ -41,7 +41,7 @@ const pair1 = {
   p: "Experience unparalleled efficiency with our time-saving medical billing solutions. Our advanced technology and streamlined processes minimize administrative burdens, allowing you to reclaim valuable time for patient care and practice growth. From automated coding to seamless claim submission and follow-up, our services are designed to optimize workflow and maximize productivity.",
   actions: {
     label: "Try Now",
-    href: '#expertise'
+    href: '/consultation'
   }
 }
 const pair2 = {
@@ -57,8 +57,8 @@ const pair2 = {
     "Electronic Funds Transfer (EFT)"
   ],
   actions: {
-    label: "Get Detail",
-    href: '#expertise'
+    label: "Consult Now",
+    href: '/consultation'
   }
 }
 const joinUs = {
@@ -68,7 +68,7 @@ const joinUs = {
   p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at maximizing your reimbursement potential and ensuring the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are second to none.",
   actions: {
     label: "Consult Now",
-    href: '#expertise'
+    href: '/consultation'
   }
 }
 const paragraphContent = [
@@ -104,11 +104,11 @@ const links = [
     label: "Get Consultation"
   },
   {
-    href: "/medical-coding",
+    href: "/consultation",
     label: "Medical Coding"
   },
   {
-    href: "/medical-billing",
+    href: "/consultation",
     label: "Medical Billing"
   }],
   [
@@ -216,7 +216,7 @@ export default function Home() {
             Our dedicated team specializes in medical billing, coding, and revenue management, ensuring precise and compliant solutions tailored to your needs. Trust us to navigate the complexities and optimize your financial performance.
           </p>
           <div className="wrapper max-w-5xl mx-auto">
-            <Link className="cta bg-pink2 text-white hover:bg-myblack text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary" href="#">
+            <Link className="cta bg-pink2 text-white hover:bg-myblack text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary" href="mailto:Jasmel@miamibeachmb.com">
               <span>Send Email</span>
               <span>
                 <svg width="auto" height="23px" className="h-4 lg:h-6" viewBox="0 0 66 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -241,14 +241,14 @@ export default function Home() {
                   <p className="mt-2 mb-4 px-6 text-sm lg:text-md tracking-wider " >
                     {x.description}
                   </p>
-                  <div className=" lg:justify-self-end bg-white text-primary relative text-xs lg:text-md h-7 lg:h-8 w-max py-1 px-4 mx-6 lg:mx-4 mt-auto transition-all ease-in-out duration-500 hover:bg-pink2 hover:text-white btn-1 rounded-md hover:rounded-sm">
-                    <Link href={x.href} className="uppercase text-sm font-semibold tracking-wider">
+                  <Link href='/consultation' className="relative min-w-fit min-h-fit">
+                    <div className=" flex items-center uppercase tracking-widest lg:justify-self-end bg-white text-primary relative text-xs lg:text-md h-7 lg:h-8 w-max py-1 px-4 mx-6 lg:mx-4 mt-auto transition-all ease-in-out duration-500 hover:bg-pink2 hover:text-white btn-1 rounded-md ">
                       Request Now
-                    </Link>
-                    <svg>
-                      <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
-                    </svg>
-                  </div>
+                      <svg>
+                        <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
+                      </svg>
+                    </div>
+                  </Link>
                 </li>
               )
             })
@@ -276,14 +276,14 @@ export default function Home() {
           <p className="text-sm xl:text-lg text-gray-700 max-w-3xl w-fit text-justify" >
             At our firm, we pride ourselves on being expert medical billing and coding specialists, dedicated to ensuring the financial success of your practice. With years of experience and a deep understanding of healthcare revenue cycle management, we offer unparalleled professionalism and expertise. Trust us to handle your medical billing and coding needs with precision and efficiency, allowing you to focus on providing excellent patient care.
           </p>
-          <div className=" bg-white text-pink2 relative text-sm lg:text-md h-8 lg:h-9 w-max py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2 border-pink2 border-opacity-50 hover:bg-pink2 hover:text-white btn-1 rounded-md hover:rounded-sm">
-            <Link href={'#expertise'} className=" text-sm font-semibold tracking-wider ">
+          <Link href={'#practices'} className=" text-sm font-semibold tracking-wider ">
+            <div className=" bg-white text-pink2 relative text-sm lg:text-md h-8 lg:h-9 w-max py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2 border-pink2 border-opacity-50 hover:bg-pink2 hover:text-white btn-1 rounded-md hover:rounded-sm">
               Explore Expertise
-            </Link>
-            <svg id="rect" >
-              <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
-            </svg>
-          </div>
+              <svg id="rect" >
+                <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
+              </svg>
+            </div>
+          </Link>
         </article>
       </section>
       <ul className="grid lg:grid-cols-3 w-full h-full bg-myblack py-12 lg:py-52  px-12" >
@@ -318,10 +318,10 @@ export default function Home() {
       <section className="background1 overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit  md:py-16 my-8 mx-auto "
       >
         <Image
-          className="lg:hidden w-full h-fit max-h-screen "
+          className="lg:hidden w-full h-fit max-h-screen"
           src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management.webp'}
-          width={4024}
-          height={2024}
+          width={1280}
+          height={640}
           alt="medical billing and medical coding services healthcare revenue management"
         />
         <article className=" bg-myblack lg:bg-transparent py-4 md:py-8 lg:py-12 md:px-4 lg:px-8 h-1/4  items-center justify-center flex flex-col " >
@@ -334,15 +334,15 @@ export default function Home() {
           </ul>
 
           <footer className="lg:text-xl max-w-2xl  lg:bg-mypink lg:bg-opacity-45 px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
-            <div className=" text-white relative uppercase h-9 w-36 text-center  px-4 mx-4 my-4 transition-all ease-in-out duration-500 border-2 border-white hover:border-transparent hover:bg-white hover:text-pink2 btn-1 rounded-md hover:rounded-sm">
-              <Link href={'#expertise'} className=" text-sm font-semibold tracking-wider ">
+              <Link href={'/consultation'} className="  text-sm">
+            <div className=" text-white relative flex items-center  uppercase h-9 w-36 text-center  px-4 mx-4 my-4 transition-all ease-in-out duration-500 border-2 border-white hover:border-transparent hover:bg-white hover:text-pink2 btn-1 rounded-md hover:rounded-sm">
                 Get it Today
-              </Link>
-              <svg id="rect" >
+               <svg id="rect" >
                 <rect x="0" y="0" className=" stroke-pink2" fill="none" width="100%" height="100%" />
               </svg>
             </div>
-          </footer>
+           </Link>
+            </footer>
         </article>
       </section>
 
@@ -362,7 +362,7 @@ export default function Home() {
           rect: "stroke-white"
         }}
       />
-      <section className="max-w-7xl w-11/12 mx-auto my-8 md:my-32 py-24 " >
+      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-8 md:my-32 py-24 " >
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-800  font-bold  underline  " >
           {practices.label}
         </h1>
@@ -385,7 +385,7 @@ export default function Home() {
           )}
         </ul>
         <div className="wrapper max-w-5xl ">
-          <Link className=" font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max -skew-x-12 shadow-md shadow-pink2" href="#">
+          <Link className=" font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max -skew-x-12 shadow-md shadow-pink2" href="/consultation">
             <span>Consult Now</span>
             <span>
               <svg width="auto" height="23px" className="h-4 lg:h-6" viewBox="0 0 66 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -547,7 +547,7 @@ export const ImageAndText = (props) => {
         <Image
           src={content.src}
           alt={content.alt}
-          width={1024}
+          width={4024}
           height={1024}
           className={className.image}
         />
@@ -574,14 +574,14 @@ export const ImageAndText = (props) => {
             />{y}</li>)}</ul>
             : null
         }
-        <div className={`cursor-pointer relative text-center uppercase h-9 w-36 py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2  btn-1 rounded-md hover:rounded-sm ${className.icon}`}>
-          <Link href={content.actions.label} className=" text-sm font-semibold tracking-wider ">
+        <Link href={content.actions.href} className=" text-sm ">
+          <div className={`cursor-pointer relative text-center uppercase h-9 w-36 min-w-fit  py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2  btn-1 rounded-md hover:rounded-sm ${className.icon}`}>
             {content.actions.label}
-          </Link>
-          <svg id="rect" >
-            <rect x="0" y="0" className={className.rect} fill="none" width="100%" height="100%" />
-          </svg>
-        </div>
+            <svg id="rect" >
+              <rect x="0" y="0" className={className.rect} fill="none" width="100%" height="100%" />
+            </svg>
+          </div>
+        </Link>
       </article>
     </section>
   )
