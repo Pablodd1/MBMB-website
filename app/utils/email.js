@@ -1,25 +1,27 @@
 import nodemailer from 'nodemailer';
 
-export async function sendEmailNotification(receipts, subject, html) {
+export async function sendEmailNotification( subject, html) {
+    const {EMAIL_HOST,EMAIL_PORT,EMAIL_TITLE,EMAIL_PASS,ADMIN} = process.env;
     const transporter = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        host: EMAIL_HOST,
+        port: EMAIL_PORT,
+        secure: true,
         auth: {
-            user: process.env.EMAIL_TITLE,
-            pass: process.env.EMAIL_PASS,
+            user: EMAIL_TITLE,
+            pass: EMAIL_PASS,
         },
     });
     const mailOptions = {
-        from: process.env.EMAIL_TITLE,
-        to: receipts,
+        from: EMAIL_TITLE,
+        to:ADMIN,
         subject: subject,
-        html: `
-        <h2>New Consultation Form Submission</h2>
-        <p><strong>Name:</strong> ${html.name}</p>
-        <p><strong>Email:</strong> ${html.email}</p>
-        <p><strong>Practice Name:</strong> ${html.practiceName}</p>
-        <p><strong>Message:</strong> ${html.message}</p>
-      `,
+        html:html,
     };
-    await transporter.sendMail(mailOptions);
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+    } catch (error) {
+        console.error('Error sending email');
+        throw error;
+    }
 }

@@ -31,7 +31,7 @@ export default function Subscribe() {
         e.preventDefault(); 
         setSubmitting('Submitting');
         try {
-            const response = await fetch('/api/clients/subscribe/', {
+            const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default function Subscribe() {
                 submitting !== ''
                     ? (
                         submitting === 'Submitting'
-                            ? <b className="loader2 mx-3 " ></b>
+                            ? <footer className="flex items-center" > <div className="loader-1 mx-3 " /></footer>
                             : <Image src={`${status[submitting].image}`} width={25} height={20} alt={`${submitting} icon | New Form MyAbabeel`} className="inline-flex mx-2 " />
                     )
                     : <button
