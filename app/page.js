@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Subscribe from "./utils/subscribe";
+import LinkToAIMS from "./utils/linkToAAMS";
 
 const solutions = [
   {
@@ -445,6 +446,7 @@ export default function Home() {
           rect: "stroke-white"
         }}
       />
+        <LinkToAIMS />
       <footer className="bg-pink2 text-white w-full mt-8 pt-8  " >
         <section className="flex flex-col md:flex-auto lg:flex-row items-start lg:items-center my-12 w-full max-w-7xl mx-auto " >
           <figure className="w-full flex-grow lg:w-1/5 min-w-44  max-w-96 h-full " >
