@@ -49,7 +49,7 @@ export default function Subscribe() {
     }, [email])
     return (
         <form
-            className="flex overflow-hidden max-w-lg min-w-96 mx-auto lg:mx-2 h-10 my-6 px-1 border-teal_dark border-x-4"
+            className="flex overflow-hidden max-w-full md:max-w-lg md:min-w-96 mx-auto lg:mx-2 h-10 my-6 px-1 border-teal_dark border-x-4"
         >
             <input
                 name="email"

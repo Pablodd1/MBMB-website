@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const LinkToAIMS = () => {
     return (
-        <article className="shine text-center relative mb-20 mt-12 py-12 md:py-0 max-w-3xl mx-auto overflow-hidden flex flex-col md:flex-row items-center justify-end bg-gradient-to-br from-blue-400 via-teal-400 to-indigo-500 rounded-xl shadow-2xl shadow-gray-800 ">
+        <article className="shine text-center relative w-11/12 mb-20 mt-12 py-12 md:py-0 max-w-3xl mx-auto overflow-hidden flex flex-col md:flex-row items-center justify-end bg-gradient-to-br from-blue-400 via-teal-400 to-indigo-500 rounded-xl shadow-2xl shadow-gray-800 ">
             <Image
                 src={`/svg/AI-docs.svg`}
                 alt={'AI Medical Scriber'}
@@ -14,8 +14,8 @@ const LinkToAIMS = () => {
                 className={'inline-block -rotate-45 mr-1 w-20 md:w-24'}
             />
             <footer className="text-gray-50 text-md font-semibold uppercase tracking-wide text-left font-sans  px-12  ">
-Explore Our
-                <Link href="https://www.aimedicalscriber.com/" target='_blank' className='flex font-bold' >
+                Explore Our
+                <Link href="https://www.aimedicalscriber.com/" target='_blank' className='flex items-center font-bold' >
                     <h2 className="mr-3 text-xl sm:text-2xl tracking-wide"><span className=' text-blue-900'>AI Medical Scriber</span> </h2>
                     <Image
                         src={`/svg/arrow-white.svg`}

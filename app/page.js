@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Subscribe from "./utils/subscribe";
 import LinkToAIMS from "./utils/linkToAAMS";
+import VideoShowcase from "./utils/videos";
 
 const solutions = [
   {
@@ -366,7 +367,8 @@ export default function Home() {
           rect: "stroke-white"
         }}
       />
-      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-8 md:my-32 py-24 " >
+      <VideoShowcase />
+      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-8 md:my-20 py-14 " >
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-800  font-bold  underline  " >
           {practices.label}
         </h1>
@@ -462,7 +464,7 @@ export default function Home() {
             <h3 className="text-xl lg:text-3xl underline mb-4" >
               Useful Links
             </h3>
-            <nav className="font-serif text-gray-200 grid grid-flow-col grid-cols-2 lg:grid-rows-1 lg:grid-cols-2 w-max" >
+            <nav className="font-serif text-gray-200 grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 lg:grid-rows-1 lg:grid-cols-2 w-max" >
               {
                 links.map((x, i) => {
                   return (
