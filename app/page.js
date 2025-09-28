@@ -4,6 +4,7 @@ import Link from "next/link";
 import Subscribe from "@UTILS/subscribe";
 import LinkToAIMS from "@UTILS/linkToAAMS";
 import VideoShowcase from "@UTILS/videos";
+import Button from "@UTILS/button";
 
 const solutions = [
   {
@@ -186,10 +187,10 @@ export default function Home() {
           alt="Medical Billing, Coding and Credentialling Services | Miami, Florida | Specialist"
           priority
         />
-        <figure className="w-full  py-16" >
+        <figure className="h-fit w-fit mx-auto py-16" >
           <Image
-            className="mx-auto"
-            src={'/mbmb-white.png'}
+            className="mx-auto rounded-lg aspect-[7.5/4] object-contain bg-white/75 border-4 border-white/75"
+            src={'/mbmb-black.png'}
             width={180}
             height={180}
             alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
@@ -197,7 +198,7 @@ export default function Home() {
         </figure>
         <article className="w-5/6  md:max-w-7xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-white/75 brightness-125 backdrop-blur-lg" >
           <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-800 text-center  font-bold  underline  " >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center  font-bold  underline  " >
               <strong className="mx-2 font-semibold" >
                 Medical Billing
               </strong>
@@ -213,40 +214,20 @@ export default function Home() {
             <strong className="text-pink2" > At Medical Billing Miami Beach, </strong>
             Our dedicated team specializes in medical billing, coding, and revenue management, ensuring precise and compliant solutions tailored to your needs. Trust us to navigate the complexities and optimize your financial performance.
           </p>
-          <div className="wrapper max-w-5xl mx-auto">
-            <Link className="cta bg-pink2 text-white hover:bg-myblack text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary" href="mailto:Jasmel@miamibeachmb.com">
-              <span>Send Email</span>
-              <span>
-                <svg width="auto" height="23px" className="h-4 lg:h-6" viewBox="0 0 66 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <g id="arrow" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                    <path className="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
-                    <path className="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
-                    <path className="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
-                  </g>
-                </svg>
-              </span>
-            </Link>
-          </div>
+          <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='Send Email' />
         </article>
         <ul className="lg:w-11/12 max-w-xs md:max-w-2xl lg:max-w-7xl grid md:grid-cols-3 gap-4 mx-auto my-12 lg:my-44" >
           {
             solutions.map((x, i) => {
               return (
-                <li key={i} className=" min-h-fit pb-4 flex flex-col rounded-xl bg-myblack text-white overflow-hidden " >
-                  <h2 className="text-lg lg:text-xl font-semibold py-2 lg:py-4 px-6 bg-pink2" >
+                <li key={i} className=" min-h-fit grid grid-rows-[3.5rem_1fr_3.5rem] items-center rounded-2xl shadow-lg shadow-myblack  backdrop-blur-sm text-white p-1 overflow-hidden bg-white/75 " >
+                  <h2 className="text-lg lg:text-xl font-semibold py-2 min-h-fit mb-2 lg:mb-3 px-3 bg-black shadow-md shadow-myblue text-center rounded-t-xl rounded-b-md  " >
                     {x.label}
                   </h2>
-                  <p className="mt-2 mb-4 px-6 text-sm lg:text-md tracking-wider " >
+                  <p className="mt-2 mb-4 px-4 text-sm lg:text-md tracking-wider text-myblack " >
                     {x.description}
                   </p>
-                  <Link href='/consultation' className="relative min-w-fit min-h-fit">
-                    <div className=" flex items-center uppercase tracking-widest lg:justify-self-end bg-white text-primary relative text-xs lg:text-md h-7 lg:h-8 w-max py-1 px-4 mx-6 lg:mx-4 mt-auto transition-all ease-in-out duration-500 hover:bg-pink2 hover:text-white btn-1 rounded-md ">
-                      Request Now
-                      <svg>
-                        <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
-                      </svg>
-                    </div>
-                  </Link>
+                  <Button href="/consultation" text="Get Free Consultation" colors=" bg-pink2 text-white hover:bg-black  " />
                 </li>
               )
             })
@@ -264,27 +245,19 @@ export default function Home() {
           />
         </figure>
         <article className="flex flex-col py-12 lg:py-0 px-2 w-11/12 max-w-md mx-auto" >
-          <h2 className="text-2xl lg:text-3xl text-myblack my-4 xl:my-6 font-semibold leading-4 sm:leading-5 xl:leading-6 underline" >
+          <h2 className="text-2xl lg:text-3xl text-myblack mt-4 xl:mt-6 mb-1.5 font-semibold leading-4 sm:leading-5 xl:leading-6 underline" >
             Experienced Staff
-            <br />
-            <span className="text-xs sm:text-lg xl:text-xl px-0 font-normal" >
-              Medical Billing and Coding Specialists
-            </span>
           </h2>
+          <h3 className="text-xs sm:text-lg xl:text-xl  px-0 font-normal text-pink2 mb-2" >
+            Medical Billing and Coding Specialists
+          </h3>
           <p className="text-sm xl:text-lg text-gray-700 max-w-3xl w-fit text-justify" >
             At our firm, we pride ourselves on being expert medical billing and coding specialists, dedicated to ensuring the financial success of your practice. With years of experience and a deep understanding of healthcare revenue cycle management, we offer unparalleled professionalism and expertise. Trust us to handle your medical billing and coding needs with precision and efficiency, allowing you to focus on providing excellent patient care.
           </p>
-          <Link href={'#practices'} className=" text-sm font-semibold tracking-wider ">
-            <div className=" bg-white text-pink2 relative text-sm lg:text-md h-8 lg:h-9 w-max py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2 border-pink2/50 hover:bg-pink2 hover:text-white btn-1 rounded-md hover:rounded-sm">
-              Explore Expertise
-              <svg id="rect" >
-                <rect x="0" y="0" fill="none" className=" stroke-white" width="100%" height="100%" />
-              </svg>
-            </div>
-          </Link>
+          <Button href="#practices" text="Explore Expertise" colors=" bg-myblack text-white hover:bg-black  " className="mx-0 my-5" />
         </article>
       </section>
-      <ul className="grid lg:grid-cols-3 w-full h-full bg-myblack py-12 lg:py-52  px-12" >
+      <ul className="grid lg:grid-cols-3 w-full h-full bg-black py-12 lg:py-52 my-10 px-12" >
         {benefits.map((x, i) => {
           return (
             <li key={i} className={` lg:px-2 lg:py-2 w-full max-w-xs 2xl:max-w-md mx-auto `}  >
@@ -302,14 +275,14 @@ export default function Home() {
       <ImageAndText
         content={pair1}
         className={{
-          section: "text-white font-orbitron shadow-2xl shadow-myblack w-11/12 max-w-2xl lg:max-w-6xl rounded-md mt-16 mb-32 mx-auto flex flex-col lg:flex-row-reverse ",
+          section: "text-white rounded-2xl  shadow-2xl  shadow-myblack w-11/12 max-w-2xl lg:max-w-6xl  mt-16 mb-32 mx-auto flex flex-col lg:flex-row-reverse ",
           figure: "overflow-hidden flex ",
-          image: " object-cover transition-all duration-1000 ease hover:scale-105  h-auto w-full lg:h-full lg:w-auto xl:max-h-full mx-auto max-w-full self-center ",
+          image: " object-cover transition-all duration-1000 ease  hover:scale-105  h-auto w-full lg:h-full lg:w-auto xl:max-h-full mx-auto max-w-full self-center ",
           article: "bg-black  lg:max-w-lg items-center md:items-start justify-center flex flex-col py-4 px-2 md:px-16 ",
           h2: "my-4 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-mypink ",
-          p: "   text-gray-100 text-sm md:text-lg lg:leading-6 px-3  ",
-          icon: "text-mypink border-mypink hover:border-transparent hover:bg-white hover:text-pink2",
-          rect: "stroke-pink2"
+          p: "   text-gray-100 text-sm md:text-lg lg:leading-6 ",
+          icon: "text-pink2 bg-white hover:bg-pink2 hover:text-white",
+          rect: "stroke-pink2 "
         }}
       />
 
@@ -334,11 +307,11 @@ export default function Home() {
             {"Reduce Administrative Burden"}
           </h2>
 
-          <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-myblack/40 px-2 py-2 w-full lg:shadow-xl shadow-mypink">
+          <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-black/75 px-5 py-2 w-full lg:shadow-xl shadow-myblack">
             {paragraphContent.map((paragraph, index) => <li key={index} className="my-4" >{paragraph}</li>)}
           </ul>
 
-          <footer className="lg:text-xl max-w-2xl  lg:bg-mypink/45 px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
+          <footer className="lg:text-xl max-w-2xl  lg:bg-myblack px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
             <Link href={'/consultation'} className="  text-sm">
               <div className=" text-white relative flex items-center  uppercase h-9 w-36 text-center  px-4 mx-4 my-4 transition-all ease-in-out duration-500 border-2 border-white hover:border-transparent hover:bg-white hover:text-pink2 btn-1 rounded-md hover:rounded-sm">
                 Get it Today
@@ -449,7 +422,7 @@ export default function Home() {
         }}
       />
       <LinkToAIMS />
-      <footer className="bg-pink2 text-white w-full mt-8 pt-8  " >
+      <footer className="bg-black text-white w-full mt-8 pt-8  " >
         <section className="flex flex-col md:flex-auto lg:flex-row items-start lg:items-center my-12 w-full max-w-7xl mx-auto " >
           <figure className="w-full flex-grow lg:w-1/5 min-w-44  max-w-96 h-full " >
             <Image
@@ -518,7 +491,7 @@ export default function Home() {
             </ul>
           </nav>
         </section>
-        <article className="w-full bg-black pb-2 flex flex-col items-center" >
+        <article className="w-full  pb-2 flex flex-col items-center" >
           <Subscribe />
           <ul className=" flex justify-evenly  h-full max-w-fit my-1 mx-auto" >
             {
@@ -581,14 +554,16 @@ export const ImageAndText = (props) => {
             />{y}</li>)}</ul>
             : null
         }
-        <Link href={content.actions.href} className=" text-sm ">
+        <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0 my-5" />
+
+        {/* <Link href={content.actions.href} className=" text-sm ">
           <div className={`cursor-pointer relative text-center uppercase h-9 w-36 min-w-fit  py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2  btn-1 rounded-md hover:rounded-sm ${className.icon}`}>
             {content.actions.label}
             <svg id="rect" >
               <rect x="0" y="0" className={className.rect} fill="none" width="100%" height="100%" />
             </svg>
           </div>
-        </Link>
+        </Link> */}
       </article>
     </section>
   )

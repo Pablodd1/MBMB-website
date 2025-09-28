@@ -14,8 +14,9 @@
   --color-myblue: #A1B1FD;
   --color-mypink: #ED9CCC;
   --color-pink2: #9D0D64;
-  --color-primary: #2f3d95;
-  --text-md: 1rem;
+  --color-primary: #1D4ED8;
+  /* --color-primary: #2f3d95; */
+  --text-md: 1.05rem;
 
 }
 
@@ -159,12 +160,12 @@ path.two {
 .circle {
   position: relative;
   border-radius: 50%;
-  animation: ping 5s ease-in-out infinite;
+  animation: myping 5s ease-in-out infinite;
 }
 
-@keyframes ping {
+@keyframes myping {
   0% {
-    transform: scale(0.75);
+    transform: scale(0.5);
   }
 
   50% {
@@ -172,7 +173,7 @@ path.two {
   }
 
   100% {
-    transform: scale(0.2);
+    transform: scale(0.5);
   }
 }
 
