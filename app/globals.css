@@ -164,17 +164,18 @@ path.two {
 
 @keyframes ping {
   0% {
-    scale: 0.75;
+    transform: scale(0.75);
   }
 
   50% {
-    scale: 1;
+    transform: scale(1);
   }
 
   100% {
-    scale: 0.2;
+    transform: scale(0.2);
   }
 }
+
 .circle::before {
   content: "";
   position: absolute;
