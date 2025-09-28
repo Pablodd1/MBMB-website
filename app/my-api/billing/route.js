@@ -5,43 +5,43 @@ import { encryptData } from "@UTILS/encrypt";
 const unprotectedFields = ['Date of Birth', 'Practice Name', 'Joining Date / Start Date of Group', 'CAQH Login', 'Office Manager/Primary Contact Person', 'PECOS Login'];
 
 export async function POST(req) {
-    const client = await connect();
-    const formData = await req.json();
-    const billing = {};
-    for (const [category, fields] of Object.entries(formData)) {
-        billing[category] = {};
-        for (const [field, value] of Object.entries(fields)) {
-            if (unprotectedFields.includes(field)) {
-                billing[category][field] = value;
-            } else {
-                billing[category][field] = encryptData(value);
-            }
-        }
+  const client = await connect();
+  const formData = await req.json();
+  const billing = {};
+  for (const [category, fields] of Object.entries(formData)) {
+    billing[category] = {};
+    for (const [field, value] of Object.entries(fields)) {
+      if (unprotectedFields.includes(field)) {
+        billing[category][field] = value;
+      } else {
+        billing[category][field] = encryptData(value);
+      }
     }
-    const encryptedObj = {
-        ...billing,
-        createdAt: new Date(),
-    }
-    const html = createHTML(formData);
-    const subject = `New Billing Form.`;
-    try {
-        const col = client.db(process.env.MBMB).collection(process.env.BILLING);
-        const result = await col.insertOne(encryptedObj);
+  }
+  const encryptedObj = {
+    ...billing,
+    createdAt: new Date(),
+  }
+  const html = createHTML(formData);
+  const subject = `New Billing Form.`;
+  try {
+    await sendEmailNotification(subject, html);
+    const col = client.db(process.env.MBMB).collection(process.env.BILLING);
+    const result = await col.insertOne(encryptedObj);
 
-        if (result.acknowledged) {
-            await sendEmailNotification(subject, html);
-            return NextResponse.json({ message: 'Success' }, { status: 200 });
-        } else {
-            return NextResponse.error({ message: 'Failed to Save in Database' }, { status: 500 });
-        }
-    } catch (error) {
-        return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
+    if (result.acknowledged) {
+      return NextResponse.json({ message: 'Success' }, { status: 200 });
+    } else {
+      return NextResponse.error({ message: 'Failed to Save in Database' }, { status: 500 });
     }
+  } catch (error) {
+    return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
+  }
 }
 
 function createHTML(formData) {
 
-    let html = `
+  let html = `
 <style>
   section {
     margin-bottom: 20px;
@@ -88,8 +88,8 @@ function createHTML(formData) {
 </style>
 `;
 
-    for (const section in formData) {
-        html += `
+  for (const section in formData) {
+    html += `
   <section>
     <h3>${section}</h3>
     <table>
@@ -102,31 +102,31 @@ function createHTML(formData) {
       <tbody>
 `;
 
-        const fields = formData[section];
+    const fields = formData[section];
 
-        if (Object.keys(fields).length > 0) {
-            for (const field in fields) {
-                const value = fields[field];
-                const displayValue = unprotectedFields.includes(field) ? value : '*******';
-                html += `
+    if (Object.keys(fields).length > 0) {
+      for (const field in fields) {
+        const value = fields[field];
+        const displayValue = unprotectedFields.includes(field) ? value : '*******';
+        html += `
         <tr>
           <td>${field}</td>
           <td>${displayValue}</td>
         </tr>
     `;
-            }
-        } else {
-            html += `<p class="no-data">No data available.</p>`;
-        }
+      }
+    } else {
+      html += `<p class="no-data">No data available.</p>`;
+    }
 
-        html += `
+    html += `
       </tbody>
     </table>
   </section>
   
 `;
-    }
-    html += ` <p style="margin-top: 25px;"><hr/>Date: ${new Date()}</p>`
+  }
+  html += ` <p style="margin-top: 25px;"><hr/>Date: ${new Date()}</p>`
 
-    return html
+  return html
 }

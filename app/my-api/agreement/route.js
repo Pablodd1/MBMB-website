@@ -22,11 +22,11 @@ export async function POST(req) {
     createdAt: new Date(),
   }
   try {
+    await sendEmailNotification(subject, html);
     const col = client.db(process.env.MBMB).collection(process.env.AGREEMENTS);
     const result = await col.insertOne(encryptedObj);
 
     if (result.acknowledged) {
-      await sendEmailNotification(subject, html);
       return NextResponse.json({ message: 'Success' }, { status: 200 });
     } else {
       return NextResponse.error({ message: 'Failed to Save in Database' }, { status: 500 });
