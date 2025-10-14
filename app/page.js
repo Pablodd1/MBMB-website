@@ -5,6 +5,7 @@ import Subscribe from "@UTILS/subscribe";
 import LinkToAIMS from "@UTILS/linkToAAMS";
 import VideoShowcase from "@UTILS/videos";
 import Button from "@UTILS/button";
+import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
 
 const solutions = [
   {
@@ -421,7 +422,13 @@ export default function Home() {
           rect: "stroke-white"
         }}
       />
-      <LinkToAIMS />
+      <section className=" grid grid-rows-[auto_auto] lg:grid-rows-1 lg:grid-cols-2 gap-5 max-w-11/12 lg:max-w-4/5 mb-20 mx-auto" >
+        <h2 className=" col-span-full border-double border-b-4 border-black text-xl" >
+          More From Us
+        </h2>
+        <LinkToAIMS />
+        <LinkToAIDynamic />
+      </section>
       <footer className="bg-black text-white w-full mt-8 pt-8  " >
         <section className="flex flex-col md:flex-auto lg:flex-row items-start lg:items-center my-12 w-full max-w-7xl mx-auto " >
           <figure className="w-full flex-grow lg:w-1/5 min-w-44  max-w-96 h-full " >

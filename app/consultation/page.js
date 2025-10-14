@@ -81,7 +81,7 @@ const Consultation = () => {
 
 
     return (
-        <main className="bg-primary text-white px-4 py-8 flex flex-col items-center justify-center min-h-screen w-screen max-w-full ">
+        <main className="bg-primary text-white px-4 py-8 flex flex-col items-center justify-center min-h-max w-screen max-w-full ">
             <Link href='/' className="md:absolute top-5 left-5" >
                 <Image
                     className="mx-auto h-fit w-36"
