@@ -93,15 +93,16 @@ const Consultation = () => {
             </Link>
             <h1 className=" text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
+                <div className='h-full relative'>
                     <Image
                         src="/raster/join-medical-billing-coding-miami-beach-today.webp"
                         alt="Medical Billing and Coding"
+                        className=' object-cover h-full rounded-2xl mx-auto '
                         width={700}
                         height={400}
                     />
                 </div>
-                <div className="my-8 ">
+                <div className="my-8 py-10 ">
                     <h2 className="text-xl font-semibold mb-4">Consultation Form</h2>
                     <form id='consultation' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4  font-sans ${submitting && 'opacity-45 cursor-wait grayscale'} `}>
                         <div>

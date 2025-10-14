@@ -411,7 +411,7 @@ export default function Home() {
         className={{
           section: "text-myblack w-11/12 xl:max-w-7xl rounded-md mt-16 mb-32 mx-auto flex flex-col md:flex-row ",
           figure: "overflow-hidden",
-          image: " object-cover transition-all duration-1000 ease h-full w-auto xl:max-h-full mx-auto max-w-full ",
+          image: " object-cover transition-all duration-1000 ease h-full w-4/5 xl:max-h-full mx-auto max-w-full rounded-2xl  ",
           article: "md:max-w-sm lg:max-w-md items-center md:items-start justify-center flex flex-col py-4 ",
           h2: "my-4 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-pink2 ",
           p: "text-myblack text-sm md:text-lg lg:leading-6 px-3  ",
