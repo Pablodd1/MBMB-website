@@ -4,6 +4,8 @@ import connect from "@UTILS/connect";
 import { encryptData } from "@UTILS/encrypt";
 const unprotectedFields = ['Date of Birth', 'Practice Name', 'Joining Date / Start Date of Group', 'CAQH Login', 'Office Manager/Primary Contact Person', 'PECOS Login'];
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
   const client = await connect();
   const formData = await req.json();

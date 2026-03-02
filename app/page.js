@@ -6,6 +6,39 @@ import LinkToAIMS from "@UTILS/linkToAAMS";
 import VideoShowcase from "@UTILS/videos";
 import Button from "@UTILS/button";
 import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
+import Head from "next/head";
+
+const faqs = [
+  {
+    question: "What medical billing services do you offer in Miami?",
+    answer: "We provide comprehensive medical billing, medical coding, revenue cycle management, and credentialing services tailored for healthcare practices in Miami and across Florida."
+  },
+  {
+    question: "Why should I outsource my medical billing to MBMB?",
+    answer: "Outsourcing medical billing reduces administrative burden, minimizes claim denials, ensures compliance with the latest coding standards, and ultimately maximizes your practice's revenue. We specialize in Miami's healthcare market."
+  },
+  {
+    question: "How long does the provider credentialing process take?",
+    answer: "The credentialing process typically takes 60 to 120 days depending on the insurance network. Our team expedites this process by ensuring all applications are accurate and complete from day one."
+  },
+  {
+    question: "Do you offer free medical billing consultations?",
+    answer: "Yes, we offer a free initial consultation and medical billing audit to identify revenue leaks and propose strategies to improve your collections."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 
 const solutions = [
   {
@@ -176,351 +209,389 @@ const coding = {
 
   ]
 }
+
 export default function Home() {
   return (
     <main className=" ">
-      <section className="" >
-        <Image
-          className="absolute w-full h-fit max-h-screen -z-10"
-          src={'/raster/Medical-Billing,Coding-and-Credentialling-Services-Miami,Florida-Specialist.webp'}
-          width={4024}
-          height={2024}
-          alt="Medical Billing, Coding and Credentialling Services | Miami, Florida | Specialist"
-          priority
-        />
-        <figure className="h-fit w-fit mx-auto py-16" >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <section className="relative min-h-screen flex flex-col justify-start items-center" >
+        {/* Background Video */}
+        <div className="absolute inset-0 w-full h-full -z-10 bg-black overflow-hidden">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-60"
+          >
+            {/* Fallback video showing healthcare professionals, replacing the static image */}
+            <source src="https://cdn.pixabay.com/video/2020/08/17/47414-450917637_large.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <figure className="h-fit w-fit mx-auto py-12 mt-10" >
           <Image
-            className="mx-auto rounded-lg aspect-[7.5/4] object-contain bg-white/75 border-4 border-white/75"
+            className="mx-auto rounded-lg aspect-[7.5/4] object-contain bg-white/80 border-4 border-white/80 shadow-2xl"
             src={'/mbmb-black.png'}
             width={180}
             height={180}
             alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
+            priority
           />
         </figure>
-        <article className="w-5/6  md:max-w-7xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-white/75 brightness-125 backdrop-blur-lg" >
+        <article className="w-11/12  md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-white/85 backdrop-blur-md shadow-2xl" >
           <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center  font-bold  underline  " >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold underline" >
               <strong className="mx-2 font-semibold" >
                 Medical Billing
               </strong>
-              {/* <br /> */}
               MB
-              {/* Miami Beach */}
             </h1>
-            <p className="font-semibold text-xs md:text-md lg:text-lg text-center my-2" >
+            <p className="font-semibold text-xs md:text-md lg:text-lg text-center my-3" >
               Maximize Revenue with Specialized Medical Billing Solutions in Miami
             </p>
           </header>
-          <p className=" font-serif text-gray-900 mt-8 mb-3 text-sm md:text-lg lg:text-xl max-w-5xl mx-auto">
+          <p className=" font-serif text-gray-900 mt-6 mb-4 text-sm md:text-lg lg:text-xl max-w-3xl mx-auto text-center">
             <strong className="text-pink2" > At Medical Billing Miami Beach, </strong>
             Our dedicated team specializes in medical billing, coding, and revenue management, ensuring precise and compliant solutions tailored to your needs. Trust us to navigate the complexities and optimize your financial performance.
           </p>
-          <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='Send Email' />
+          <div className="flex justify-center mt-6">
+            <Button href={`tel://+1-786-643-2099`} text='Call Us Now' colors="bg-pink2 text-white hover:bg-black mr-4" />
+            <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='Send Email' />
+          </div>
         </article>
-        <ul className="lg:w-11/12 max-w-xs md:max-w-2xl lg:max-w-7xl grid md:grid-cols-3 gap-4 mx-auto my-12 lg:my-44" >
+        
+        <ul className="lg:w-11/12 max-w-xs md:max-w-3xl lg:max-w-6xl grid md:grid-cols-3 gap-6 mx-auto my-16 lg:my-32 z-10" >
           {
             solutions.map((x, i) => {
               return (
-                <li key={i} className=" min-h-fit grid grid-rows-[3.5rem_1fr_3.5rem] items-center rounded-2xl shadow-lg shadow-myblack  backdrop-blur-sm text-white p-1 overflow-hidden bg-white/75 " >
-                  <h2 className="text-lg lg:text-xl font-semibold py-2 min-h-fit mb-2 lg:mb-3 px-3 bg-black shadow-md shadow-myblue text-center rounded-t-xl rounded-b-md  " >
+                <li key={i} className="min-h-fit flex flex-col items-center rounded-2xl shadow-xl shadow-black/50 backdrop-blur-md text-myblack p-0 overflow-hidden bg-white/90 transform transition duration-500 hover:scale-105" >
+                  <h2 className="w-full text-lg lg:text-xl font-bold py-3 px-3 bg-black text-white text-center rounded-t-xl" >
                     {x.label}
                   </h2>
-                  <p className="mt-2 mb-4 px-4 text-sm lg:text-md tracking-wider text-myblack " >
+                  <p className="mt-4 mb-6 px-6 text-sm lg:text-md tracking-wider text-center flex-grow" >
                     {x.description}
                   </p>
-                  <Button href="/consultation" text="Get Free Consultation" colors=" bg-pink2 text-white hover:bg-black  " />
+                  <div className="pb-6">
+                    <Button href="/consultation" text="Free Consultation" colors="bg-pink2 text-white hover:bg-black" />
+                  </div>
                 </li>
               )
             })
           }
         </ul>
       </section>
-      <section className="grid lg:grid-cols-2 gap-2 md:max-w-7xl mx-auto md:px-6  lg:my-12" >
-        <figure className=" overflow-hidden lg:rounded-xl  mx-4 " >
+
+      {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
+      <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
+        <figure className="overflow-hidden lg:rounded-2xl mx-4 shadow-2xl" >
           <Image
-            className="object-cover hover:scale-105 hover:-rotate-2 transition-all ease-linear duration-500 h-fit md:max-h-96 w-auto xl:h-full xl:w-auto xl:max-h-full mx-auto max-w-full self-center"
+            className="object-cover hover:scale-105 transition-all ease-linear duration-500 h-fit md:max-h-[500px] w-full mx-auto self-center"
             src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
-            width={4024}
-            height={2024}
-            alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding | Medical-Billing-and-Coding-Specialists"
+            width={1200}
+            height={800}
+            alt="Medical Billing and Coding Specialists in Miami Florida"
+            loading="lazy"
           />
         </figure>
-        <article className="flex flex-col py-12 lg:py-0 px-2 w-11/12 max-w-md mx-auto" >
-          <h2 className="text-2xl lg:text-3xl text-myblack mt-4 xl:mt-6 mb-1.5 font-semibold leading-4 sm:leading-5 xl:leading-6 underline" >
+        <article className="flex flex-col justify-center py-8 lg:py-0 px-6 w-full max-w-xl mx-auto" >
+          <h2 className="text-3xl lg:text-4xl text-myblack mb-2 font-bold leading-tight underline decoration-pink2" >
             Experienced Staff
           </h2>
-          <h3 className="text-xs sm:text-lg xl:text-xl  px-0 font-normal text-pink2 mb-2" >
+          <h3 className="text-lg xl:text-xl font-semibold text-pink2 mb-6" >
             Medical Billing and Coding Specialists
           </h3>
-          <p className="text-sm xl:text-lg text-gray-700 max-w-3xl w-fit text-justify" >
+          <p className="text-base xl:text-lg text-gray-700 leading-relaxed text-justify mb-8" >
             At our firm, we pride ourselves on being expert medical billing and coding specialists, dedicated to ensuring the financial success of your practice. With years of experience and a deep understanding of healthcare revenue cycle management, we offer unparalleled professionalism and expertise. Trust us to handle your medical billing and coding needs with precision and efficiency, allowing you to focus on providing excellent patient care.
           </p>
-          <Button href="#practices" text="Explore Expertise" colors=" bg-myblack text-white hover:bg-black  " className="mx-0 my-5" />
+          <Button href="#practices" text="Explore Expertise" colors="bg-myblack text-white hover:bg-pink2" className="mx-0" />
         </article>
       </section>
-      <ul className="grid lg:grid-cols-3 w-full h-full bg-black py-12 lg:py-52 my-10 px-12" >
+
+      <ul className="grid md:grid-cols-3 w-full h-full bg-black py-16 lg:py-40 my-10 px-6 lg:px-12 gap-10" >
         {benefits.map((x, i) => {
           return (
-            <li key={i} className={` lg:px-2 lg:py-2 w-full max-w-xs 2xl:max-w-md mx-auto `}  >
-              <div className="circle w-8 h-8 xl:w-24 xl:h-24 before:animate-pulse after:animate-pulse " />
-              <h3 className="text-mypink font-semibold text-2xl lg:text-3xl" >
+            <li key={i} className="flex flex-col items-center text-center w-full max-w-sm mx-auto p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"  >
+              <div className="circle w-12 h-12 xl:w-20 xl:h-20 mb-6 before:animate-pulse after:animate-pulse" />
+              <h3 className="text-mypink font-bold text-xl lg:text-2xl mb-4" >
                 {x.label}
               </h3>
-              <p className={"text-white sm:text-left text-xs sm:text-sm xl:text-lg 2xl:text-xl font-serif my-3"} >
+              <p className="text-gray-300 text-sm xl:text-base font-serif leading-relaxed" >
                 {x.description}
               </p>
             </li>
           )
         })}
       </ul>
+
       <ImageAndText
         content={pair1}
         className={{
-          section: "text-white rounded-2xl  shadow-2xl  shadow-myblack w-11/12 max-w-2xl lg:max-w-6xl  mt-16 mb-32 mx-auto flex flex-col lg:flex-row-reverse ",
-          figure: "overflow-hidden flex ",
-          image: " object-cover transition-all duration-1000 ease  hover:scale-105  h-auto w-full lg:h-full lg:w-auto xl:max-h-full mx-auto max-w-full self-center ",
-          article: "bg-black  lg:max-w-lg items-center md:items-start justify-center flex flex-col py-4 px-2 md:px-16 ",
-          h2: "my-4 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-mypink ",
-          p: "   text-gray-100 text-sm md:text-lg lg:leading-6 ",
-          icon: "text-pink2 bg-white hover:bg-pink2 hover:text-white",
-          rect: "stroke-pink2 "
+          section: "text-white rounded-2xl shadow-2xl shadow-myblack/50 w-11/12 max-w-2xl lg:max-w-6xl mt-16 mb-24 mx-auto flex flex-col lg:flex-row-reverse overflow-hidden",
+          figure: "overflow-hidden flex lg:w-1/2",
+          image: "object-cover transition-transform duration-700 ease hover:scale-105 h-auto w-full lg:h-full lg:min-h-[400px]",
+          article: "bg-black lg:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
+          h2: "mb-6 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-bold text-mypink",
+          p: "text-gray-200 text-base md:text-lg leading-relaxed mb-8",
+          icon: "bg-white text-pink2 hover:bg-pink2 hover:text-white",
+          rect: "stroke-pink2"
         }}
       />
 
-      <section className="background1 overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit  md:py-16 my-8 mx-auto "
-      >
+      <section className="background1 relative overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit md:py-24 my-16 mx-auto" >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60 lg:bg-black/40 -z-10"></div>
         <Image
-          className="sm:hidden w-full h-fit max-h-screen"
+          className="sm:hidden absolute inset-0 w-full h-full object-cover -z-20"
           src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif'}
           width={1280}
           height={640}
           alt="medical billing and medical coding services healthcare revenue management"
         />
         <Image
-          className="hidden sm:block lg:hidden w-full h-fit max-h-screen"
+          className="hidden sm:block lg:hidden absolute inset-0 w-full h-full object-cover -z-20"
           src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-2.1.avif'}
           width={1280}
           height={640}
           alt="medical billing and medical coding services healthcare revenue management"
         />
-        <article className=" bg-myblack lg:bg-transparent py-4 md:py-8 lg:py-12 md:px-4 lg:px-8 h-1/4  items-center justify-center flex flex-col " >
-          <h2 className="text-center md:text-left uppercase lg:leading-snug font-orbitron md:font-bold text-2xl md:text-3xl lg:text-4xl tracking-widest font-semibold max-w-2xl lg:bg-pink2/95   px-2 py-2 rounded-t-xl w-full shadow-xl shadow-myblack" >
-            {"Reduce Administrative Burden"}
+        <article className="relative py-12 md:px-8 flex flex-col items-center lg:items-start max-w-7xl mx-auto" >
+          <h2 className="text-center lg:text-left uppercase font-orbitron font-bold text-3xl md:text-4xl lg:text-5xl tracking-wide max-w-2xl bg-pink2/90 px-6 py-4 rounded-t-xl shadow-2xl" >
+            Reduce Administrative Burden
           </h2>
-
-          <ul className="my-3 md:my-0 font-serif text-center md:text-left text-sm lg:text-lg max-w-2xl text-gray-100 lg:bg-black/75 px-5 py-2 w-full lg:shadow-xl shadow-myblack">
-            {paragraphContent.map((paragraph, index) => <li key={index} className="my-4" >{paragraph}</li>)}
+          <ul className="font-serif text-center lg:text-left text-base lg:text-lg max-w-2xl text-gray-100 bg-black/80 px-8 py-6 shadow-2xl backdrop-blur-sm">
+            {paragraphContent.map((paragraph, index) => <li key={index} className="mb-4 last:mb-0 leading-relaxed" >{paragraph}</li>)}
           </ul>
-
-          <footer className="lg:text-xl max-w-2xl  lg:bg-myblack px-2 py-2 rounded-b-xl w-fit mx-auto md:mx-0 md:w-full shadow-xl" >
-            <Link href={'/consultation'} className="  text-sm">
-              <div className=" text-white relative flex items-center  uppercase h-9 w-36 text-center  px-4 mx-4 my-4 transition-all ease-in-out duration-500 border-2 border-white hover:border-transparent hover:bg-white hover:text-pink2 btn-1 rounded-md hover:rounded-sm">
+          <footer className="max-w-2xl bg-myblack px-6 py-6 rounded-b-xl w-full flex justify-center lg:justify-start shadow-2xl" >
+            <Link href={'/consultation'} className="text-sm block">
+              <div className="text-white relative flex justify-center items-center uppercase h-12 w-48 font-bold tracking-wider transition-all ease-in-out duration-300 border-2 border-white hover:border-pink2 hover:bg-pink2 rounded-md">
                 Get it Today
-                <svg id="rect" >
-                  <rect x="0" y="0" className=" stroke-pink2" fill="none" width="100%" height="100%" />
-                </svg>
               </div>
             </Link>
           </footer>
         </article>
       </section>
 
-
       <ImageAndText
         content={pair2}
         className={{
-          section: "text-myblack shadow-lg shadow-mypink w-11/12 xl:max-w-7xl rounded-md mt-16 mb-32 mx-auto flex flex-col lg:flex-row ",
-          figure: "overflow-hidden",
-          image: " object-cover transition-all duration-1000 ease hover:scale-105   h-full w-auto xl:max-h-full mx-auto max-w-full ",
-          article: "lg:max-w-md items-center md:items-start justify-center flex flex-col py-4 md:px-16 ",
-          h2: "text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-pink2 ",
-          p: "font-serif text-sm tracking-wider ",
-          ul: "my-4 min-w-max ",
-          li: "py-2 px-2 my-1 last:border-b border-t ",
-          icon: "text-pink2 border-pink2 hover:border-transparent hover:bg-myblack hover:text-white",
+          section: "text-myblack bg-white shadow-2xl shadow-pink2/20 w-11/12 xl:max-w-7xl rounded-2xl mt-16 mb-24 mx-auto flex flex-col lg:flex-row overflow-hidden border border-gray-100",
+          figure: "overflow-hidden lg:w-1/2",
+          image: "object-cover transition-transform duration-700 ease hover:scale-105 h-full w-full min-h-[300px]",
+          article: "lg:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
+          h2: "text-center lg:text-left uppercase text-2xl sm:text-3xl lg:text-4xl font-bold text-pink2 mb-6",
+          p: "font-serif text-base tracking-wider",
+          ul: "my-4 w-full",
+          li: "py-3 px-2 border-b border-gray-200 last:border-b-0 flex items-center text-gray-700",
+          icon: "bg-myblack text-white hover:bg-pink2",
           rect: "stroke-white"
         }}
       />
-      <VideoShowcase />
-      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-8 md:my-20 py-14 " >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-800  font-bold  underline  " >
+      
+      <div className="mb-24">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 underline decoration-pink2">Our Video Showcase</h2>
+        <VideoShowcase />
+      </div>
+
+      {/* SEO/GEO FAQ Section */}
+      <section className="max-w-4xl mx-auto w-11/12 my-20 py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-lg" >
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 underline decoration-pink2">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div key={index} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink2">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{faq.question}</h3>
+              <p className="text-gray-700">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-16 py-14" >
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
           {practices.label}
         </h1>
-        <p className=" font-serif text-gray-900 mt-8 mb-3 text-sm md:text-lg lg:text-xl max-w-5xl">
-          <strong className="text-pink2" >Medical Billing Miami Beach </strong>
+        <p className="font-serif text-gray-700 mb-10 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
+          <strong className="text-pink2">Medical Billing Miami Beach </strong>
           {practices.description}
         </p>
-        <ul className={"my-4 min-w-max w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 "} >
+        <ul className="mb-12 w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" >
           {practices.ul.map((x, j) =>
-            <li key={`${j}`} className={"py-2 px-2 my-1 border-b text-xs md:text-sm  "} >
+            <li key={`${j}`} className="py-3 px-4 bg-gray-50 rounded-lg border border-gray-100 text-sm md:text-base font-medium flex items-center shadow-sm hover:shadow-md transition-shadow" >
               <Image
                 src={`/svg/arrow.svg`}
-                alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
+                alt={'list bullet arrow'}
                 width={20}
                 height={14}
-                className={'inline-block -rotate-45 mr-1 w-4 md:w-5'}
+                className="inline-block -rotate-45 mr-2 w-4 md:w-5"
               />
               {x}
             </li>
           )}
         </ul>
-        <div className="wrapper max-w-5xl ">
-          <Link className=" font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max -skew-x-12 shadow-md shadow-pink2" href="/consultation">
-            <span>Consult Now</span>
-            <span>
-              <svg width="auto" height="23px" className="h-4 lg:h-6" viewBox="0 0 66 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                <g id="arrow" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                  <path className="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
-                  <path className="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
-                  <path className="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
-                </g>
+        <div className="max-w-5xl">
+          <Link className="font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max shadow-lg shadow-pink2/40 px-6 py-3 rounded-md flex items-center transition-all duration-300 transform hover:-translate-y-1" href="/consultation">
+            <span className="font-bold">Consult Now</span>
+            <span className="ml-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </span>
           </Link>
         </div>
       </section>
-      <section className="px-4 py-24 mt-4 md:mt-16 bg-myblack text-white " >
-        <h1 className="max-w-7xl w-max mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-myblue font-bold  underline  " >
-          {coding.label}
-        </h1>
-        <p className=" mx-auto  font-serif text-gray-200 mt-8 mb-3 text-sm md:text-lg lg:text-xl max-w-5xl">
-          {/* <strong className="text-pink2" >Medical Billing Miami Beach </strong> */}
-          {coding.description}
-        </p>
-        <ul className={"mx-auto my-12 min-w-max w-full max-w-5xl grid sm:grid-flow-col items-center justify-evenly gap-x-4 "} >
-          {coding.ul.map((x, j) =>
-            <li key={`${j}`} className={"py-2 px-2 my-1"} >
-              <Image
-                src={`/raster/${x.icon}.webp`}
-                alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
-                width={60}
-                height={14}
-                className={'inline-block mr-3 w-8 md:w-12'}
-              />
-              {x.label}
-            </li>
-          )}
-        </ul>
-      </section>
-      <section className=" overflow-hidden bg-fixed bg-no-repeat w-full h-fit min-h-96   mx-auto background2"
-      >
+
+      <section className="px-6 py-24 mt-16 bg-myblack text-white" >
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-myblue font-bold underline decoration-white mb-8" >
+            {coding.label}
+          </h1>
+          <p className="font-serif text-gray-300 mb-12 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
+            {coding.description}
+          </p>
+          <ul className="w-full max-w-5xl grid sm:grid-cols-3 gap-8" >
+            {coding.ul.map((x, j) =>
+              <li key={`${j}`} className="flex flex-col items-center bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-colors" >
+                <div className="bg-white p-4 rounded-full mb-4 shadow-lg">
+                  <Image
+                    src={`/raster/${x.icon}.webp`}
+                    alt={x.label}
+                    width={60}
+                    height={60}
+                    className="w-10 h-10 md:w-14 md:h-14 object-contain"
+                  />
+                </div>
+                <span className="font-bold text-lg text-center">{x.label}</span>
+              </li>
+            )}
+          </ul>
+        </div>
       </section>
 
+      <section className="overflow-hidden bg-fixed bg-no-repeat bg-cover bg-center w-full h-fit min-h-[400px] mx-auto background2 border-y-8 border-pink2" />
 
       <ImageAndText
         content={joinUs}
         className={{
-          section: "text-myblack w-11/12 xl:max-w-7xl rounded-md mt-16 mb-32 mx-auto flex flex-col md:flex-row ",
-          figure: "overflow-hidden",
-          image: " object-cover transition-all duration-1000 ease h-full w-4/5 xl:max-h-full mx-auto max-w-full rounded-2xl  ",
-          article: "md:max-w-sm lg:max-w-md items-center md:items-start justify-center flex flex-col py-4 ",
-          h2: "my-4 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-semibold text-pink2 ",
-          p: "text-myblack text-sm md:text-lg lg:leading-6 px-3  ",
-          ul: "my-4 min-w-max ",
-          li: "py-2 px-2 my-1 last:border-b border-t ",
-          icon: "text-white bg-black border-transparent hover:bg-black hover:text-white rounded-none",
-          rect: "stroke-white"
+          section: "text-myblack bg-gray-50 shadow-xl w-11/12 xl:max-w-7xl rounded-2xl mt-24 mb-32 mx-auto flex flex-col md:flex-row overflow-hidden",
+          figure: "overflow-hidden md:w-1/2",
+          image: "object-cover transition-transform duration-700 ease h-full w-full hover:scale-105 min-h-[300px]",
+          article: "md:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
+          h2: "mb-6 text-center lg:text-left uppercase text-2xl sm:text-3xl lg:text-4xl font-bold text-pink2",
+          p: "text-gray-700 text-base md:text-lg leading-relaxed mb-8",
+          icon: "bg-black text-white hover:bg-pink2",
+          rect: "stroke-transparent"
         }}
       />
-      <section className=" grid grid-rows-[auto_auto] lg:grid-rows-1 lg:grid-cols-2 gap-5 max-w-11/12 lg:max-w-4/5 mb-20 mx-auto" >
-        <h2 className=" col-span-full border-double border-b-4 border-black text-xl" >
+      
+      <section className="grid md:grid-cols-2 gap-8 w-11/12 max-w-5xl mx-auto mb-24" >
+        <h2 className="col-span-full border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-4" >
           More From Us
         </h2>
         <LinkToAIMS />
         <LinkToAIDynamic />
       </section>
-      <footer className="bg-black text-white w-full mt-8 pt-8  " >
-        <section className="flex flex-col md:flex-auto lg:flex-row items-start lg:items-center my-12 w-full max-w-7xl mx-auto " >
-          <figure className="w-full flex-grow lg:w-1/5 min-w-44  max-w-96 h-full " >
+
+      {/* Floating WhatsApp CTA */}
+      <a 
+        href="https://api.whatsapp.com/send?phone=17866432099" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors z-50 flex items-center justify-center animate-bounce"
+        aria-label="Contact us on WhatsApp"
+      >
+        <Image src="/svg/whatsapp-white.svg" alt="WhatsApp" width={32} height={32} />
+      </a>
+
+      <footer className="bg-black text-white w-full pt-16 pb-8" >
+        <section className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-11/12 max-w-7xl mx-auto gap-12" >
+          <figure className="w-full lg:w-1/3 flex justify-center lg:justify-start" >
             <Image
-              className="mx-auto w-56"
+              className="w-48 md:w-64 object-contain"
               src={'/mbmb-white.png'}
               width={250}
               height={180}
-              alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
+              alt="Medical Billing Miami Beach Logo"
             />
           </figure>
-          <article className="px-4 my-8 lg:mx-auto w-fit " >
-            <h3 className="text-xl lg:text-3xl underline mb-4" >
+          
+          <article className="w-full lg:w-1/3 text-center lg:text-left" >
+            <h3 className="text-xl md:text-2xl font-bold text-pink2 mb-6" >
               Useful Links
             </h3>
-            <nav className="font-serif text-gray-200 grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 lg:grid-rows-1 lg:grid-cols-2 w-max" >
-              {
-                links.map((x, i) => {
-                  return (
-                    <ul key={i} className="flex flex-col  max-w-fit my-2 lg:mx-auto text-lg" >
-                      {
-                        x.map((y, j) => {
-                          return (
-                            <li key={j} className=" my-1 px-2 rounded-sm hover:bg-myblack transition-all ease-linear duration-200 " >
-                              <Link href={y.href} >
-                                <Image
-                                  className="inline-block mr-2 w-4 "
-                                  src={`/svg/${i === 0 ? 'form' : 'protected-form'}.svg`}
-                                  width={20}
-                                  height={180}
-                                  alt={`list bullet ${i === 0 ? 'form' : 'protected-form'} of Medical Billing Miami Beach`}
-                                />
-                                {y.label}
-                              </Link>
-                            </li>
-                          )
-                        })
-                      }
-                    </ul>
-                  )
-                })}
-            </nav>
-          </article>
-          <nav className="px-4 lg:mx-auto w-max " >
-            <h3 className="text-xl lg:text-3xl underline mb-4" >
-              Contact Us
-            </h3>
-            <ul className="grid grid-rows-3 max-w-fit my-2 px-4 mx-auto text-lg" >
-              {
-                contact.map((x, i) => {
-                  return (
-                    <li key={i} className="py-1 px-2 rounded-sm hover:bg-myblack transition-all ease-linear duration-200 " >
-                      <Link href={x.href} >
+            <nav className="font-serif text-gray-300 grid grid-cols-2 gap-4" >
+              {links.map((x, i) => (
+                <ul key={i} className="flex flex-col space-y-3" >
+                  {x.map((y, j) => (
+                    <li key={j} className="hover:text-white hover:translate-x-1 transition-transform" >
+                      <Link href={y.href} className="flex items-center justify-center lg:justify-start">
                         <Image
-                          className=" inline-flex mr-2 w-6 max-h-5"
-                          src={`/svg/${x.icon}.svg`}
-                          width={40}
-                          height={180}
-                          alt={`${x.icon} of Medical Billing Miami Beach | MBMB | Medical Coding | healthcare insurance | Revenue Management`}
+                          className="w-4 h-4 mr-2"
+                          src={`/svg/${i === 0 ? 'form' : 'protected-form'}.svg`}
+                          width={16}
+                          height={16}
+                          alt="bullet"
                         />
-                        {x.label}
+                        {y.label}
                       </Link>
                     </li>
-                  )
-                })
-              }
+                  ))}
+                </ul>
+              ))}
+            </nav>
+          </article>
+
+          <nav className="w-full lg:w-1/3 text-center lg:text-left" >
+            <h3 className="text-xl md:text-2xl font-bold text-pink2 mb-6" >
+              Contact Us
+            </h3>
+            <ul className="flex flex-col space-y-4 items-center lg:items-start text-gray-300" >
+              {contact.map((x, i) => (
+                <li key={i} className="hover:text-white transition-colors" >
+                  <Link href={x.href} className="flex items-center">
+                    <Image
+                      className="w-6 h-6 mr-3"
+                      src={`/svg/${x.icon}.svg`}
+                      width={24}
+                      height={24}
+                      alt={x.label}
+                    />
+                    <span className="text-lg">{x.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </section>
-        <article className="w-full  pb-2 flex flex-col items-center" >
-          <Subscribe />
-          <ul className=" flex justify-evenly  h-full max-w-fit my-1 mx-auto" >
-            {
-              social.map((x, i) => {
-                return (
-                  <li key={i} className="w-10  mx-4 p-1 last:p-0 border-b-4 border-pink2 " >
-                    <Link href={x.href} >
-                      <Image
-                        className="w-full "
-                        src={`/svg/${x.icon}.svg`}
-                        width={40}
-                        height={180}
-                        alt={`${x.icon} of MBMB, Medical Billing Miami Beach | MBMB | Medical Coding | healthcare insurance | Revenue Management`}
-                      />
-                    </Link>
-                  </li>
-                )
-              })
-            }
+        
+        <div className="w-11/12 max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col items-center" >
+          <div className="mb-8 w-full max-w-md">
+            <h4 className="text-center text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Stay Updated</h4>
+            <Subscribe />
+          </div>
+          
+          <ul className="flex space-x-6 mb-8" >
+            {social.map((x, i) => (
+              <li key={i} className="hover:-translate-y-1 transition-transform" >
+                <Link href={x.href} aria-label={x.icon} >
+                  <div className="bg-gray-800 p-3 rounded-full hover:bg-pink2 transition-colors">
+                    <Image
+                      className="w-6 h-6 object-contain"
+                      src={`/svg/${x.icon}.svg`}
+                      width={24}
+                      height={24}
+                      alt={x.icon}
+                    />
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ul>
           <Sign />
-        </article>
+        </div>
       </footer>
     </main>
   );
@@ -534,8 +605,8 @@ export const ImageAndText = (props) => {
         <Image
           src={content.src}
           alt={content.alt}
-          width={4024}
-          height={1024}
+          width={800}
+          height={600}
           className={className.image}
         />
       </figure>
@@ -543,49 +614,38 @@ export const ImageAndText = (props) => {
         <h2 className={className.h2}>
           {content.h2}
         </h2>
-        {
-          content.p
-          && <p className={className.p} >
-            {content.p}
-          </p>
-        }
-
-        {
-          content.ul
-            ? <ul className={className.ul} >{content.ul.map((y, j) => <li key={`${j}`} className={className.li} ><Image
-              src={'/svg/arrow.svg'}
-              alt={'3 quarter rounded arrow list bullet of medical billing miami beach practices'}
-              width={20}
-              height={14}
-              className={'inline-block -rotate-45 mr-1'}
-            />{y}</li>)}</ul>
-            : null
-        }
-        <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0 my-5" />
-
-        {/* <Link href={content.actions.href} className=" text-sm ">
-          <div className={`cursor-pointer relative text-center uppercase h-9 w-36 min-w-fit  py-1 px-4 mx-4 my-6 transition-all ease-in-out duration-500 border-2  btn-1 rounded-md hover:rounded-sm ${className.icon}`}>
-            {content.actions.label}
-            <svg id="rect" >
-              <rect x="0" y="0" className={className.rect} fill="none" width="100%" height="100%" />
-            </svg>
-          </div>
-        </Link> */}
+        {content.p && <p className={className.p}>{content.p}</p>}
+        {content.ul && (
+          <ul className={className.ul}>
+            {content.ul.map((y, j) => (
+              <li key={`${j}`} className={className.li}>
+                <Image
+                  src={'/svg/arrow.svg'}
+                  alt={'bullet arrow'}
+                  width={20}
+                  height={14}
+                  className={'inline-block -rotate-45 mr-3 w-4'}
+                />
+                {y}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="mt-8">
+          <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0" />
+        </div>
       </article>
     </section>
   )
 }
 
-
 function Sign() {
-
   return (
-    <aside className=' px-2 py-1 mt-8  lg:my-1 self-center lg:self-start lg:rounded-r-full text-white flex items-center w-full lg:w-max font-sans text-xs sm:text-sm ' >
-      {/* <Image src={'/svg/info.svg'} loading='lazy' width={16} height={20} alt='icon MyAbabeel info about this website developer and designer' className='  mr-1 inline-flex' /> */}
-      <Image src={'https://www.myababeel.com/logo.svg'} loading='lazy' width={37} height={20} alt='logo MyAbabeel | React.js Next.js express.js js Developer  | designer | on-page SEO consultant company' className=' inline-flex' />
+    <aside className='text-gray-400 flex items-center justify-center w-full font-sans text-xs sm:text-sm mt-4' >
+      <Image src={'https://www.myababeel.com/logo.svg'} loading='lazy' width={24} height={20} alt='MyAbabeel Logo' className='inline-flex mr-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all' />
       Designed & Developed By
-      <Link className='mx-1 font-sans tracking-wide uppercase' href={'https://www.myababeel.com'} >
-        My<strong className=' text-myababeel' >Ababeel</strong>
+      <Link className='ml-1 font-bold tracking-wide uppercase hover:text-white transition-colors' href={'https://www.myababeel.com'} >
+        My<strong className='text-myababeel' >Ababeel</strong>
       </Link>
     </aside>
   )

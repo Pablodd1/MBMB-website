@@ -2,9 +2,6 @@ import { MongoClient } from "mongodb";
 import { decryptData } from "./encrypt";
 import crypto from "crypto";
 
-const ENCRYPTION_KEY = crypto.createHash("sha256").update(process.env.SEK).digest();
-const DECRYPTED_URI = decryptData(process.env.MONGODB_URI, ENCRYPTION_KEY);
-
 const options = {
   maxPoolSize: 10,
   socketTimeoutMS: 30000,
@@ -15,6 +12,9 @@ let lastConnectionTime = 0;
 const TTL = 5 * 60 * 1000; // 5 minutes
 
 async function connect() {
+  const ENCRYPTION_KEY = crypto.createHash("sha256").update(process.env.SEK || "0123456789abcdef0123456789abcdef").digest();
+  const DECRYPTED_URI = decryptData(process.env.MONGODB_URI, ENCRYPTION_KEY);
+
   const now = Date.now();
   const isStale = !client || now - lastConnectionTime > TTL;
 

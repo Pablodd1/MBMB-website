@@ -3,6 +3,8 @@ import { sendEmailNotification } from "@UTILS/email";
 import connect from "@UTILS/connect";
 import { encryptData } from "@UTILS/encrypt";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
     const client = await connect();
     const query = await req.json();
@@ -33,4 +35,3 @@ export async function POST(req) {
         return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
     }
 }
-

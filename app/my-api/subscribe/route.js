@@ -2,6 +2,8 @@ import connect from "@UTILS/connect";
 import { encryptData } from "@UTILS/encrypt";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
     const client = await connect();
     const email = await req.json(); 
@@ -21,4 +23,3 @@ export async function POST(req) {
         return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
     }
 }
-
