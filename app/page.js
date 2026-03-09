@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Subscribe from "@UTILS/subscribe";
 import LinkToAIMS from "@UTILS/linkToAAMS";
 import VideoShowcase from "@UTILS/videos";
@@ -437,10 +438,7 @@ export default function Home() {
         <p className="text-center text-gray-600 mb-10">Everything you need to know about our medical billing services in Miami</p>
         <div className="grid md:grid-cols-2 gap-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-shadow">
-              <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">{faq.question}</h3>
-              <p className="text-gray-700 text-sm leading-relaxed">{faq.answer}</p>
-            </div>
+            <FAQItem key={index} faq={faq} index={index} />
           ))}
         </div>
       </section>
@@ -684,5 +682,32 @@ function Sign() {
         My<strong className='text-myababeel' >Ababeel</strong>
       </Link>
     </aside>
+  )
+}
+
+function FAQItem({ faq, index }) {
+  const [isOpen, setIsOpen] = useState(index < 2); // First 2 FAQs open by default
+  
+  return (
+    <div className="bg-white p-4 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-all">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left flex items-center justify-between gap-4"
+      >
+        <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+          {faq.question}
+        </h3>
+        <span className={`text-pink2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </button>
+      <div 
+        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
+      >
+        <p className="text-gray-700 text-sm leading-relaxed pb-2">{faq.answer}</p>
+      </div>
+    </div>
   )
 }
