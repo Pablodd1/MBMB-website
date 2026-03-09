@@ -159,17 +159,17 @@ const links = [
     }
   ]
 ]
-const social = [
+  const social = [
   {
     href: "https://api.whatsapp.com/send?phone=17866432099",
     icon: "whatsapp"
   },
   {
-    href: "",
+    href: "https://www.linkedin.com/company/medical-billing-miami-beach",
     icon: "linkedin"
   },
   {
-    href: "https://www.instagram.com/Miamitesting123",
+    href: "https://www.instagram.com/medicalbillingmiamibeach",
     icon: "instagram"
   }
 ]
@@ -228,7 +228,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-60"
           >
             {/* Fallback video showing healthcare professionals, replacing the static image */}
-            <source src="https://cdn.pixabay.com/video/2020/08/17/47414-450917637_large.mp4" type="video/mp4" />
+            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
           </video>
         </div>
 

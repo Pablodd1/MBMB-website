@@ -3,7 +3,8 @@ import crypto from 'crypto';
 export function encryptData(data, key) {
     if (data === undefined || data === null) return data;
     const strData = typeof data === 'string' ? data : JSON.stringify(data);
-    const sek = process.env.SEK || "0123456789abcdef0123456789abcdef";
+    const sek = process.env.SEK;
+    if (!sek) throw new Error("SEK environment variable is required");
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv('aes-256-cbc', sek, iv);
     let encrypted = cipher.update(strData, 'utf8', 'hex');
@@ -14,7 +15,8 @@ export function encryptData(data, key) {
 export function decryptData(encryptedData, key) {
     if (encryptedData === undefined || encryptedData === null) return encryptedData;
     const strData = typeof encryptedData === 'string' ? encryptedData : JSON.stringify(encryptedData);
-    const sek = process.env.SEK || "0123456789abcdef0123456789abcdef";
+    const sek = process.env.SEK;
+    if (!sek) throw new Error("SEK environment variable is required");
     const [ivHex, encrypted] = strData.split(':');
     if (!ivHex || !encrypted) return strData;
     const iv = Buffer.from(ivHex, 'hex');

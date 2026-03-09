@@ -12,7 +12,7 @@ let lastConnectionTime = 0;
 const TTL = 5 * 60 * 1000; // 5 minutes
 
 async function connect() {
-  const ENCRYPTION_KEY = crypto.createHash("sha256").update(process.env.SEK || "0123456789abcdef0123456789abcdef").digest();
+  const ENCRYPTION_KEY = crypto.createHash("sha256").update(process.env.SEK).digest();
   const DECRYPTED_URI = decryptData(process.env.MONGODB_URI, ENCRYPTION_KEY);
 
   const now = Date.now();
