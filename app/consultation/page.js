@@ -91,7 +91,7 @@ const Consultation = () => {
                     alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
                 />
             </Link>
-            <h1 className=" text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach</h1>
+            <h1 className=" text-4xl font-semibold text-center my-14 lg:my-20">Get Your <span className="text-pink2">Free Consultation</span></h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className='h-full relative'>
                     <Image
@@ -103,7 +103,8 @@ const Consultation = () => {
                     />
                 </div>
                 <div className="my-8 py-10 ">
-                    <h2 className="text-xl font-semibold mb-4">Consultation Form</h2>
+                    <h2 className="text-xl font-semibold mb-4">Schedule Your Free Consultation Today</h2>
+                    <p className="text-gray-300 mb-6">We'll analyze your practice's revenue cycle and provide a custom plan to maximize your reimbursements.</p>
                     <form id='consultation' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4  font-sans ${submitting && 'opacity-45 cursor-wait grayscale'} `}>
                         <div>
                             <label htmlFor="fullName" className="block mb-1">Full Name</label>
