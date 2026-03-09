@@ -15,7 +15,7 @@ const LinkToAIMS = () => {
             />
             <footer className="text-gray-50 text-md font-semibold uppercase tracking-wide text-left font-sans  px-12 z-10 ">
                 Explore Our
-                <Link href="https://www.aimedicalscriber.com/" target='_blank' className='flex items-center font-bold' >
+                    <Link href="https://aimedicalscriber.com/" target='_blank' className='flex items-center font-bold' >
                     <h2 className="mr-3 text-xl sm:text-2xl tracking-wide"><span className=' text-black'>AI Medical Scriber</span> </h2>
                     <Image
                         src={`/svg/arrow-white.svg`}

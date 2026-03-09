@@ -43,18 +43,21 @@ const faqSchema = {
 const solutions = [
   {
     label: "Medical Billing",
-    description: "Get optimal reimbursement with our comprehensive medical billing and credentialing services. Our team specializes in maximizing revenue through precise coding and efficient billing practices, ensuring seamless financial management for your practice.",
-    href: ""
+    description: "Expert medical billing services tailored for Miami healthcare providers. Our AAPC-certified specialists handle everything from claim submission to denial management, ensuring maximum reimbursements and faster payments for your practice.",
+    href: "/consultation",
+    icon: "billing"
   },
   {
     label: "Medical Coding",
-    description: "Our medical billing and coding specialists meticulously decode complex procedures and diagnoses to optimize your revenue cycle. By identifying and implementing strategic improvements, we maintain a compliant Charge Description Master (CDM) while maximizing your earning potential.",
-    href: ""
+    description: "Precision medical coding with ICD-10, CPT, and HCPCS expertise. We reduce claim denials by 95%+ and ensure compliance with Florida payer requirements and Medicare/Medicaid guidelines.",
+    href: "/consultation",
+    icon: "coding"
   },
   {
-    label: "Consultation",
-    description: "As leaders in healthcare revenue cycle management, we provide tailored solutions to meet the unique needs of your practice. Let us guide you through the ever-evolving landscape of medical billing and coding, ensuring efficiency, compliance, and financial success.",
-    href: ""
+    label: "Credentialing",
+    description: "Fast provider credentialing (60-120 days) for insurance networks. We handle CAQH, EDI, ERA, and EFT setup so you can start billing faster.",
+    href: "/consultation",
+    icon: "credentialing"
   }
 ]
 const benefits = [
@@ -242,7 +245,7 @@ export default function Home() {
             priority
           />
         </figure>
-        <article className="w-11/12  md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-white/85 backdrop-blur-md shadow-2xl" >
+        <article className="w-11/12 md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md shadow-2xl border border-pink2/20" >
           <header className="" >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold underline" >
               <strong className="mx-2 font-semibold" >
@@ -255,12 +258,12 @@ export default function Home() {
             </p>
           </header>
           <p className=" font-serif text-gray-900 mt-6 mb-4 text-sm md:text-lg lg:text-xl max-w-3xl mx-auto text-center">
-            <strong className="text-pink2" > At Medical Billing Miami Beach, </strong>
-            Our dedicated team specializes in medical billing, coding, and revenue management, ensuring precise and compliant solutions tailored to your needs. Trust us to navigate the complexities and optimize your financial performance.
+            <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by 200+ healthcare providers across Florida. We maximize your revenue while you focus on patient care.
           </p>
-          <div className="flex justify-center mt-6">
-            <Button href={`tel://+1-786-643-2099`} text='Call Us Now' colors="bg-pink2 text-white hover:bg-black mr-4" />
-            <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='Send Email' />
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <Button href={`tel://+1-786-643-2099`} text='📞 Call Now' colors="bg-pink2 text-white hover:bg-black" />
+            <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='✉️ Email Us' />
+            <Button href={`/consultation`} text='📅 Free Consultation' colors="bg-myblack text-white hover:bg-pink2" />
           </div>
         </article>
         
