@@ -10,7 +10,7 @@ const sansita = Sansita({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://medicalbillingmb.com'),
+  metadataBase: new URL('https://pablodd1-mbmb-website.vercel.app'),
   title: 'Medical Billing & Coding Services | Miami, Florida | MBMB',
   description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Trust our certified specialists for accurate healthcare revenue management and consulting.',
   keywords: 'Medical Billing Miami, Medical Coding Florida, Healthcare Revenue Cycle Management, Credentialing Services Miami, Medical Billing Services, Medical Billing MBMB',
@@ -18,12 +18,12 @@ export const metadata = {
   applicationName: 'MBMB',
   creator: 'Design and Developed By M Talha | Founder of MyAbabeel',
   alternates: {
-    canonical: 'https://medicalbillingmb.com'
+    canonical: 'https://pablodd1-mbmb-website.vercel.app'
   },
   openGraph: {
     title: 'Medical Billing & Coding Services | Miami, Florida',
     description: 'Maximize your healthcare revenue with expert medical billing, coding, and credentialing services in Miami, Florida.',
-    url: 'https://medicalbillingmb.com',
+    url: 'https://pablodd1-mbmb-website.vercel.app',
     siteName: 'Medical Billing Miami Beach',
     images: [
       {
@@ -58,9 +58,9 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': ['MedicalBusiness', 'LocalBusiness', 'Organization'],
     name: 'Medical Billing Miami Beach (MBMB)',
-    image: 'https://medicalbillingmb.com/logo.png',
+    image: 'https://pablodd1-mbmb-website.vercel.app/logo.png',
     description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Maximize revenue and minimize denials with our certified specialists.',
-    url: 'https://medicalbillingmb.com',
+    url: 'https://pablodd1-mbmb-website.vercel.app',
     telephone: '+1-786-643-2099',
     email: 'Jasmel@medicalbillingmb.com',
     address: {
@@ -108,7 +108,8 @@ export default function RootLayout({ children }) {
       ]
     },
     sameAs: [
-      "https://www.instagram.com/Miamitesting123"
+      "https://www.instagram.com/medicalbillingmiamibeach",
+      "https://www.linkedin.com/company/medical-billing-miami-beach"
     ]
   };
 
