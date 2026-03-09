@@ -268,7 +268,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-60"
           >
             {/* Fallback video showing healthcare professionals, replacing the static image */}
-            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
+            <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd272c1c3221b4f6a27f2c5f0f2ff3&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
           </video>
         </div>
 
