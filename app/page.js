@@ -11,19 +11,51 @@ import Head from "next/head";
 const faqs = [
   {
     question: "What medical billing services do you offer in Miami?",
-    answer: "We provide comprehensive medical billing, medical coding, revenue cycle management, and credentialing services tailored for healthcare practices in Miami and across Florida."
+    answer: "We provide comprehensive medical billing, medical coding, revenue cycle management, and credentialing services tailored for healthcare practices in Miami and across Florida. Our services include claim submission, denial management, patient billing, and insurance verification."
   },
   {
     question: "Why should I outsource my medical billing to MBMB?",
-    answer: "Outsourcing medical billing reduces administrative burden, minimizes claim denials, ensures compliance with the latest coding standards, and ultimately maximizes your practice's revenue. We specialize in Miami's healthcare market."
+    answer: "Outsourcing medical billing reduces administrative burden by up to 70%, minimizes claim denials, ensures compliance with the latest coding standards, and ultimately maximizes your practice's revenue. We specialize in Miami's healthcare market and Florida payer requirements."
   },
   {
     question: "How long does the provider credentialing process take?",
-    answer: "The credentialing process typically takes 60 to 120 days depending on the insurance network. Our team expedites this process by ensuring all applications are accurate and complete from day one."
+    answer: "The credentialing process typically takes 60 to 120 days depending on the insurance network. Our team expedites this process by ensuring all applications are accurate and complete from day one, handling CAQH, EDI, ERA, and EFT setup."
   },
   {
     question: "Do you offer free medical billing consultations?",
-    answer: "Yes, we offer a free initial consultation and medical billing audit to identify revenue leaks and propose strategies to improve your collections."
+    answer: "Yes, we offer a free initial consultation and medical billing audit to identify revenue leaks, analyze denial patterns, and propose strategies to improve your collections. Schedule yours today via phone, email, or our online form."
+  },
+  {
+    question: "What is your medical billing pricing structure?",
+    answer: "We offer competitive pricing typically ranging from 4-8% of collections, depending on your practice size and specialty. We also offer flat-rate options for larger practices. No hidden fees, and you only pay when we collect for you."
+  },
+  {
+    question: "How do you handle claim denials and rejections?",
+    answer: "Our team proactively manages denials with a dedicated follow-up process. We analyze denial patterns, appeal when necessary, and implement corrective measures to reduce future denials. Our denial rate is typically under 5%, significantly below industry average."
+  },
+  {
+    question: "Do you work with my existing EHR/EMR system?",
+    answer: "Yes, we integrate with most major EHR systems including Epic, Cerner, Athenahealth, eClinicalWorks, and many others. Our team ensures seamless data flow and minimal disruption to your existing workflows."
+  },
+  {
+    question: "How quickly will I receive payments after claims are submitted?",
+    answer: "With our optimized billing process, most claims are paid within 14-30 days of submission. We track every claim and follow up promptly to ensure timely payments. Florida Medicaid and Medicare claims typically process within 30-45 days."
+  },
+  {
+    question: "Are you HIPAA compliant?",
+    answer: "Absolutely. We are fully HIPAA and HITECH compliant with encrypted data transmission, secure servers, and strict access controls. Your patient data is never shared or resold, and we sign Business Associate Agreements (BAAs) with all clients."
+  },
+  {
+    question: "What specialties do you serve?",
+    answer: "We serve a wide range of specialties including primary care, family medicine, internal medicine, pediatrics, OB/GYN, general surgery, orthopedics, dermatology, psychiatry, cardiology, oncology, ophthalmology, radiology, urology, endocrinology, and urgent care."
+  },
+  {
+    question: "Can you help with Florida Medicaid billing?",
+    answer: "Yes, we are experts in Florida Medicaid billing requirements and regulations. We handle all aspects of Medicaid claims including eligibility verification, prior authorizations, claim submission, and follow-up to maximize reimbursements."
+  },
+  {
+    question: "How do I get started with MBMB?",
+    answer: "Getting started is easy! Schedule a free consultation via phone, email, or our online form. We'll analyze your current billing process, identify opportunities, and create a custom plan. Onboarding typically takes 1-2 weeks with minimal disruption to your practice."
   }
 ];
 
@@ -400,13 +432,14 @@ export default function Home() {
       </div>
 
       {/* SEO/GEO FAQ Section */}
-      <section className="max-w-4xl mx-auto w-11/12 my-20 py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-lg" >
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 underline decoration-pink2">Frequently Asked Questions</h2>
-        <div className="space-y-6">
+      <section className="max-w-5xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-white to-gray-50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-xl" >
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <p className="text-center text-gray-600 mb-10">Everything you need to know about our medical billing services in Miami</p>
+        <div className="grid md:grid-cols-2 gap-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink2">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{faq.question}</h3>
-              <p className="text-gray-700">{faq.answer}</p>
+            <div key={index} className="bg-white p-6 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-shadow">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">{faq.question}</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">{faq.answer}</p>
             </div>
           ))}
         </div>
