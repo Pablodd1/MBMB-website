@@ -57,6 +57,10 @@ const faqs = [
   {
     question: "How do I get started with MBMB?",
     answer: "Getting started is easy! Schedule a free consultation via phone, email, or our online form. We'll analyze your current billing process, identify opportunities, and create a custom plan. Onboarding typically takes 1-2 weeks with minimal disruption to your practice."
+  },
+  {
+    question: "What makes MBMB different from other Miami medical billing companies?",
+    answer: "Unlike larger national companies, we're locally focused on Miami and Florida healthcare. Our team has deep knowledge of Florida Medicaid, Medicare, and commercial payer requirements. We offer personalized service, faster response times, and competitive pricing without the bureaucracy of large corporations."
   }
 ];
 
