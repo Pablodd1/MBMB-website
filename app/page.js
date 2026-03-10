@@ -234,22 +234,9 @@ const coding = {
   label: "Medical Coding",
   description: "Ensure accurate coding for your practice with our team of certified Medical Billing and Coding Specialists, Billing Consultants, and Coding Specialists. Our team has expertise in all specialties and adheres to industry guidelines and standards to meet your medical coding needs. We offer medical coding outsourcing services and provide support for doctor credential services, hospital billing, dispute medical resolution services, and insurance billing consultancy. Trust us to optimize your revenue cycle management and ensure that you receive the reimbursement you deserve.",
   ul: [
-    {
-      label: "ICD-10 Coding",
-      sublabel: "Diagnosis Codes",
-      icon: "medical-coding-icd"
-    },
-    {
-      label: "CPT/HCPCS",
-      sublabel: "Procedure Codes",
-      icon: "medical-coding-cpt-hcpcs"
-    },
-    {
-      label: "Modifiers",
-      sublabel: "Code Enhancements",
-      icon: "medical-coding-modifiers"
-    }
-
+    { label: "ICD-10 Coding", sublabel: "Diagnosis Codes", icon: "medical-coding-icd" },
+    { label: "CPT/HCPCS Coding", sublabel: "Procedure Codes", icon: "medical-coding-cpt-hcpcs" },
+    { label: "Modifiers", sublabel: "Code Enhancements", icon: "medical-coding-modifiers" }
   ]
 }
 
