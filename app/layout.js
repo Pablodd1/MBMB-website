@@ -10,27 +10,38 @@ const sansita = Sansita({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://pablodd1-mbmb-website.vercel.app'),
-  title: 'Medical Billing & Coding Services | Miami, Florida | MBMB',
-  description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Trust our certified specialists for accurate healthcare revenue management and consulting.',
-  keywords: 'Medical Billing Miami, Medical Coding Florida, Healthcare Revenue Cycle Management, Credentialing Services Miami, Medical Billing Services, Medical Billing MBMB',
+  metadataBase: new URL('https://medicalbillingmb.com'),
+  title: 'Medical Billing Miami Beach | MBMB - Expert Medical Coding & Billing Services',
+  description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. MBMB helps healthcare providers maximize reimbursements with AAPC-certified specialists. Call (786) 643-2099.',
+  keywords: 'Medical Billing Miami, Medical Coding Florida, Healthcare Revenue Cycle Management, Credentialing Services Miami, Medical Billing Services, MBMB, AAPC Certified Coders, Miami Beach Medical Billing',
   generator: 'Next.js',
   applicationName: 'MBMB',
-  creator: 'Design and Developed By M Talha | Founder of MyAbabeel',
+  creator: 'Medical Billing Miami Beach',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   alternates: {
-    canonical: 'https://pablodd1-mbmb-website.vercel.app'
+    canonical: 'https://medicalbillingmb.com'
   },
   openGraph: {
-    title: 'Medical Billing & Coding Services | Miami, Florida',
-    description: 'Maximize your healthcare revenue with expert medical billing, coding, and credentialing services in Miami, Florida.',
-    url: 'https://pablodd1-mbmb-website.vercel.app',
-    siteName: 'Medical Billing Miami Beach',
+    title: 'Medical Billing Miami Beach | MBMB - Expert Medical Coding Services',
+    description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Maximize your revenue with our AAPC-certified specialists.',
+    url: 'https://medicalbillingmb.com',
+    siteName: 'Medical Billing Miami Beach (MBMB)',
     images: [
       {
-        url: '/logo.png',
-        width: 800,
-        height: 600,
-        alt: 'MBMB Logo'
+        url: 'https://medicalbillingmb.com/mbmb-white.png',
+        width: 1200,
+        height: 630,
+        alt: 'Medical Billing Miami Beach - MBMB Logo'
       },
     ],
     locale: 'en_US',
@@ -38,18 +49,18 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Medical Billing & Coding Services | Miami, Florida',
-    description: 'Maximize your healthcare revenue with expert medical billing, coding, and credentialing services in Miami, Florida.',
-    images: ['/logo.png'],
+    title: 'Medical Billing Miami Beach | MBMB',
+    description: 'Expert medical billing, coding, and credentialing services in Miami, Florida.',
+    images: ['https://medicalbillingmb.com/mbmb-white.png'],
   },
   verification: {
-    // google: '5mY7Mp4Wz4jdKB94tgnuTNF1g1I5MV447Cm--rsF3SI',
+    // google: 'your-google-verification-code',
   },
   manifest: '/manifest.json',
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/apple-icon.png'
+    icon: '/mbmb-white.png',
+    shortcut: '/mbmb-white.png',
+    apple: '/mbmb-white.png'
   },
 };
 
@@ -58,9 +69,9 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': ['MedicalBusiness', 'LocalBusiness', 'Organization'],
     name: 'Medical Billing Miami Beach (MBMB)',
-    image: 'https://pablodd1-mbmb-website.vercel.app/logo.png',
+    image: 'https://medicalbillingmb.com/mbmb-white.png',
     description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Maximize revenue and minimize denials with our certified specialists.',
-    url: 'https://pablodd1-mbmb-website.vercel.app',
+    url: 'https://medicalbillingmb.com',
     telephone: '+1-786-643-2099',
     email: 'Jasmel@medicalbillingmb.com',
     address: {
@@ -103,6 +114,13 @@ export default function RootLayout({ children }) {
           itemOffered: {
             '@type': 'Service',
             name: 'Credentialing'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Revenue Cycle Management'
           }
         }
       ]
