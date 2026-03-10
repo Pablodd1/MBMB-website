@@ -272,12 +272,9 @@ export default function Home() {
             <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-700 mt-2 font-medium">
               Expert Medical Billing & Coding Services in Miami, Florida
             </p>
-            <p className="font-semibold text-xs md:text-md lg:text-lg text-center my-3" >
-              Maximize Revenue with Specialized Medical Billing Solutions in Miami
-            </p>
           </header>
-          <p className=" font-serif text-gray-900 mt-6 mb-4 text-sm md:text-lg lg:text-xl max-w-3xl mx-auto text-center">
-            <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by 200+ healthcare providers across Florida. We maximize your revenue while you focus on patient care.
+          <p className="font-serif text-gray-900 mt-6 mb-4 text-sm md:text-lg lg:text-xl max-w-3xl mx-auto text-center">
+            <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by healthcare providers across Florida. We maximize your revenue while you focus on patient care.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <Button href={`tel:+1-786-643-2099`} text='📞 (786) 643-2099' colors="bg-pink2 text-white hover:bg-black" />
