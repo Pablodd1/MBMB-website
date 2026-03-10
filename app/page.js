@@ -485,33 +485,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24 mt-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white" >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Medical Coding</span> Services
-            </h1>
-            <p className="font-serif text-gray-300 text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+      <section className="px-6 py-16 mt-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white" >
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" >
+              <span className="text-white">Medical Coding</span> Services
+            </h2>
+            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
               Expert medical coding with ICD-10, CPT, and HCPCS expertise. Our AAPC-certified coders ensure accurate documentation and maximum reimbursements.
             </p>
           </div>
-          <ul className="w-full max-w-4xl mx-auto grid sm:grid-cols-3 gap-6" >
-            {coding.ul.map((x, j) =>
-              <li key={`${j}`} className="flex flex-col items-center text-center bg-white/5 p-8 rounded-2xl border border-white/10 hover:bg-gradient-to-br hover:from-pink-500/20 hover:to-purple-500/20 hover:border-pink-500/30 transition-all duration-300 group cursor-pointer" >
-                <div className="bg-gray-700 p-4 rounded-full mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src={`/raster/${x.icon}.webp`}
-                    alt={x.label}
-                    width={60}
-                    height={60}
-                    className="w-10 h-10 md:w-14 md:h-14 object-contain"
-                  />
-                </div>
-                <span className="font-bold text-lg">{x.label}</span>
-                <span className="text-gray-400 text-sm mt-1">{x.sublabel}</span>
-              </li>
-            )}
-          </ul>
+          
+          {/* Simple clean cards without icons - just text */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
+              <div className="text-3xl mb-3">📋</div>
+              <h3 className="font-bold text-lg text-white mb-1">ICD-10 Coding</h3>
+              <p className="text-gray-400 text-sm">Diagnosis Codes</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
+              <div className="text-3xl mb-3">💳</div>
+              <h3 className="font-bold text-lg text-white mb-1">CPT/HCPCS</h3>
+              <p className="text-gray-400 text-sm">Procedure Codes</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
+              <div className="text-3xl mb-3">✏️</div>
+              <h3 className="font-bold text-lg text-white mb-1">Modifiers</h3>
+              <p className="text-gray-400 text-sm">Code Enhancements</p>
+            </div>
+          </div>
         </div>
       </section>
 
