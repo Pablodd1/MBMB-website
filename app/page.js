@@ -429,16 +429,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Instagram Feed Section - Replace YOUR_WIDGET_ID with your Lightwidget ID */}
+      {/* Instagram Feed Section */}
       <section className="w-full bg-gradient-to-b from-gray-50 to-white py-16 mb-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Follow MBMB on Instagram</h2>
           <p className="text-gray-600 mb-8">@medicalbillingmiamibeach</p>
           
-          {/* IG Widget Placeholder - Replace YOUR_WIDGET_ID with your actual Lightwidget ID */}
+          {/* IG Widget */}
           <div className="embed-instagram mx-auto" style={{position:'relative', width:'100%', paddingTop:'56.25%', minHeight:'400px', background:'#f9f9f9', borderRadius:'12px'}}>
             <iframe 
-              src="https://cdn.lightwidget.com/widgets/YOUR_WIDGET_ID.html" 
+              src="https://cdn.lightwidget.com/widgets/5cb66bc129675da3ae442beb22d03575.html" 
               title="MBMB Instagram Feed"
               style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0}}
               scrolling="no" 
