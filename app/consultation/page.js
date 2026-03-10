@@ -91,7 +91,7 @@ const Consultation = () => {
                     alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
                 />
             </Link>
-            <h1 className=" text-4xl font-semibold text-center my-14 lg:my-20">Get Your <span className="text-pink2">Free Consultation</span></h1>
+            <h1 className=" text-3xl md:text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach <span className="text-pink2 block mt-2">Get Your Free Consultation</span></h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className='h-full relative'>
                     <Image

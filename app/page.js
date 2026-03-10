@@ -273,23 +273,27 @@ export default function Home() {
         </div>
 
         <figure className="h-fit w-fit mx-auto py-12 mt-10" >
-          <Image
-            className="mx-auto rounded-lg aspect-[7.5/4] object-contain bg-white/80 border-4 border-white/80 shadow-2xl"
-            src={'/mbmb-black.png'}
-            width={180}
-            height={180}
-            alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
-            priority
-          />
+          <div className="bg-black rounded-lg p-4 shadow-2xl">
+            <Image
+              className="mx-auto"
+              src={'/mbmb-white.png'}
+              width={180}
+              height={180}
+              alt="Medical Billing Miami Beach | Company | Medical Revenue Management | Healthcare Coding"
+              priority
+            />
+          </div>
         </figure>
         <article className="w-11/12 md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md shadow-2xl border border-pink2/20" >
           <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold underline" >
-              <strong className="mx-2 font-semibold" >
-                Medical Billing
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold" >
+              <strong className="mx-2 font-semibold text-pink2" >
+                Medical Billing Miami Beach
               </strong>
-              MB
             </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-700 mt-2 font-medium">
+              Expert Medical Billing & Coding Services in Miami, Florida
+            </p>
             <p className="font-semibold text-xs md:text-md lg:text-lg text-center my-3" >
               Maximize Revenue with Specialized Medical Billing Solutions in Miami
             </p>
@@ -298,7 +302,7 @@ export default function Home() {
             <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by 200+ healthcare providers across Florida. We maximize your revenue while you focus on patient care.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
-            <Button href={`tel://+1-786-643-2099`} text='📞 Call Now' colors="bg-pink2 text-white hover:bg-black" />
+            <Button href={`tel:+1-786-643-2099`} text='📞 (786) 643-2099' colors="bg-pink2 text-white hover:bg-black" />
             <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='✉️ Email Us' />
             <Button href={`/consultation`} text='📅 Free Consultation' colors="bg-myblack text-white hover:bg-pink2" />
           </div>
@@ -447,6 +451,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Instagram Feed Section */}
+      <section className="w-full bg-gradient-to-b from-gray-50 to-white py-16 mb-10">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-2">Follow Us on Instagram</h2>
+          <p className="text-center text-gray-600 mb-10">@medicalbillingmiamibeach</p>
+          
+          {/* Instagram Grid - 6 posts */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+            {[
+              { color: 'from-pink-500 to-rose-500', icon: '📊' },
+              { color: 'from-blue-500 to-cyan-500', icon: '💰' },
+              { color: 'from-purple-500 to-violet-500', icon: '🏥' },
+              { color: 'from-green-500 to-emerald-500', icon: '✅' },
+              { color: 'from-orange-500 to-amber-500', icon: '📈' },
+              { color: 'from-indigo-500 to-blue-500', icon: '🎯' },
+            ].map((post, i) => (
+              <Link 
+                key={i} 
+                href="https://www.instagram.com/medicalbillingmiamibeach" 
+                target="_blank"
+                className="group relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${post.color} flex items-center justify-center`}>
+                  <span className="text-4xl">{post.icon}</span>
+                </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-2xl">❤️</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link 
+              href="https://www.instagram.com/medicalbillingmiamibeach" 
+              target="_blank"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Follow @medicalbillingmiamibeach
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section id="practices" className="max-w-7xl w-11/12 mx-auto my-16 py-14" >
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
           {practices.label}
@@ -482,18 +533,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24 mt-16 bg-myblack text-white" >
+      <section className="px-6 py-24 mt-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white" >
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-myblue font-bold underline decoration-white mb-8" >
-            {coding.label}
-          </h1>
-          <p className="font-serif text-gray-300 mb-12 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
-            {coding.description}
-          </p>
-          <ul className="w-full max-w-5xl grid sm:grid-cols-3 gap-8" >
+          <div className="text-center mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Medical Coding</span> Services
+            </h1>
+            <p className="font-serif text-gray-300 text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+              Expert medical coding with ICD-10, CPT, and HCPCS expertise. Our AAPC-certified coders ensure accurate documentation and maximum reimbursements.
+            </p>
+          </div>
+          <ul className="w-full max-w-5xl grid sm:grid-cols-3 gap-6" >
             {coding.ul.map((x, j) =>
-              <li key={`${j}`} className="flex flex-col items-center bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-colors" >
-                <div className="bg-white p-4 rounded-full mb-4 shadow-lg">
+              <li key={`${j}`} className="flex flex-col items-center bg-white/5 p-8 rounded-2xl border border-white/10 hover:bg-gradient-to-br hover:from-pink-500/20 hover:to-purple-500/20 hover:border-pink-500/30 transition-all duration-300 group cursor-pointer" >
+                <div className="bg-gradient-to-br from-pink-500 to-purple-600 p-4 rounded-full mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <Image
                     src={`/raster/${x.icon}.webp`}
                     alt={x.label}
@@ -525,12 +578,62 @@ export default function Home() {
         }}
       />
       
-      <section className="grid md:grid-cols-2 gap-8 w-11/12 max-w-5xl mx-auto mb-24" >
-        <h2 className="col-span-full border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-4" >
-          More From Us
+      {/* Services & Partners Section */}
+      <section className="w-11/12 max-w-6xl mx-auto mb-24">
+        <h2 className="border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-8 text-center">
+          Our Services & Partners
         </h2>
-        <LinkToAIMS />
-        <LinkToAIDynamic />
+        
+        {/* Partner Links */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <Link href="https://aimedicalscriber.com/" target="_blank" className="group">
+            <div className="bg-gradient-to-br from-blue-500 to-teal-500 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-white text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-lg mb-2">AI Medical Scriber</h3>
+                <p className="text-sm text-white/80">Voice-to-SOAM notes powered by AI</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="https://aidynamics.art/" target="_blank" className="group">
+            <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-white text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-lg mb-2">AI Dynamics</h3>
+                <p className="text-sm text-white/80">EHR & Medical Billing Software</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/consultation" className="group">
+            <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-white text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-lg mb-2">Free Consultation</h3>
+                <p className="text-sm text-white/80">Get a personalized billing audit</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* More From Us - Original Links */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <LinkToAIMS />
+          <LinkToAIDynamic />
+        </div>
       </section>
 
       {/* Floating WhatsApp CTA */}
