@@ -242,6 +242,7 @@ const coding = {
 }
 
 export default function Home() {
+  const [videoFailed, setVideoFailed] = useState(false);
   return (
     <main className=" ">
       <script
@@ -249,12 +250,18 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <section className="relative min-h-screen flex flex-col justify-start items-center" >
-        {/* Hero video background (medical billing) - replace placeholder with actual video in public/videos/hero-medical-billing.mp4 */}
-        <div className="absolute inset-0 w-full h-full -z-10">
-          <video autoPlay muted loop playsInline className="w-full h-full object-cover" poster="/hero-medical-billing-poster.jpg">
-            <source src="/videos/hero-medical-billing.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        {/* Hero video background with fallback poster */ }
+        <div className="absolute inset-0 w-full h-full -z-10" aria-label="Hero video background">
+          {!videoFailed ? (
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover" onError={() => setVideoFailed(true)} poster="/hero-medical-billing-poster.jpg">
+              <source src="/videos/hero-medical-billing.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+              <span className="text-white text-2xl md:text-3xl font-bold">Medical Billing Miami Beach</span>
+            </div>
+          )}
         </div>
 
         <figure className="h-fit w-fit mx-auto py-12 mt-10" >
