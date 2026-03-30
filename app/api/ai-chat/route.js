@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import fetch from 'node-fetch';
+// Use global fetch (no extra dependency needed)
 
 export async function POST(request) {
   const { messages } = await request.json();
