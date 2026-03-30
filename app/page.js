@@ -8,6 +8,7 @@ import VideoShowcase from "@UTILS/videos";
 import Button from "@UTILS/button";
 import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
 import Head from "next/head";
+import AIChat from "./ai-chat/ai-chat.jsx";
 
 const faqs = [
   {
