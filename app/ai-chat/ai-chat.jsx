@@ -57,12 +57,14 @@ export default function AIChat() {
         ))}
         {loading && <div className="text-xs text-gray-500 mt-2">Typing...</div>}
       </div>
-      <div className="p-3 border-t border-gray-200 flex items-center">
+      <div className="p-3 border-t border-gray-200 flex flex-col">
+        <p className="text-xs text-gray-600 mb-2">This assistant is for general information only. It is not medical or legal advice. For official guidance, consult a licensed professional. Data handling complies with applicable privacy laws.</p>
+        <div className="flex items-center mb-2">
         <input
           className="flex-1 border rounded px-3 py-2 mr-2" placeholder="Ask MBMB..." value={input} onChange={e=>setInput(e.target.value)} onKeyDown={handleKey}
         />
         <button className="bg-pink-500 text-white px-4 py-2 rounded" onClick={send} aria-label="Send">Send</button>
+        </div>
       </div>
-    </div>
   );
 }

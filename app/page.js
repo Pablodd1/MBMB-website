@@ -305,6 +305,8 @@ export default function Home() {
         </ul>
       </section>
 
+      {/* Real-time AI assistant widget */}
+      <AIChat />
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
       <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
         <figure className="overflow-hidden lg:rounded-2xl mx-4 shadow-2xl" >
