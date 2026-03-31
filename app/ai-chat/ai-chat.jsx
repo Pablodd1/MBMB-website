@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'bot', content: 'Hello! I am MBMB AI Assistant. How can I help you with medical billing today?' }
+    { role: 'assistant', content: 'Hello! I am MBMB AI Assistant. How can I help you with medical billing today?' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,10 +28,10 @@ export default function AIChat() {
         body: JSON.stringify({ messages: next })
       });
       const data = await res.json();
-      const botMsg = { role: 'bot', content: data?.text || 'I am currently unavailable. Please try again later.' };
+      const botMsg = { role: 'assistant', content: data?.text || 'I am currently unavailable. Please try again later.' };
       setMessages(prev => [...prev, botMsg]);
     } catch (e) {
-      setMessages(prev => [...prev, { role: 'bot', content: 'Connection error. Please try again.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Please try again.' }]);
     } finally {
       setLoading(false);
     }
@@ -91,7 +91,7 @@ export default function AIChat() {
             {messages.map((m, idx) => (
               <div key={idx} className={`mb-3 flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed ${
-                  m.role === 'bot' 
+                  m.role === 'assistant' 
                     ? 'bg-gray-800/80 text-gray-100 rounded-bl-none border border-gray-700/50' 
                     : 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-br-none'
                 }`}>
