@@ -197,6 +197,14 @@ const links = [
     {
       href: "/agreement-sign-up",
       label: "Agreement Sign-up"
+    },
+    {
+      href: "/privacy-policy",
+      label: "Privacy Policy"
+    },
+    {
+      href: "/terms-of-use",
+      label: "Terms of Use"
     }
   ]
 ]
@@ -253,8 +261,8 @@ export default function Home() {
         {/* Hero video background with fallback poster */ }
         <div className="absolute inset-0 w-full h-full -z-10" aria-label="Hero video background">
           {!videoFailed ? (
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover" onError={() => setVideoFailed(true)} poster="/hero-medical-billing-poster.jpg">
-              <source src="/videos/hero-medical-billing.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover" onError={() => setVideoFailed(true)}>
+              <source src="/assets/medical-presentation (3).mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : (
@@ -647,6 +655,23 @@ export default function Home() {
       </a>
 
       <footer className="bg-black text-white w-full pt-16 pb-8" >
+        {/* HIPAA/PHI Compliance Disclaimer */}
+        <div className="w-11/12 max-w-7xl mx-auto mb-8 px-4">
+          <div className="bg-yellow-900/30 border border-yellow-600/50 rounded-xl p-4 md:p-6">
+            <div className="flex items-start gap-3">
+              <svg className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <div>
+                <p className="text-yellow-200 font-semibold text-sm md:text-base mb-2">NOTICE: HIPAA Compliance</p>
+                <p className="text-yellow-100/80 text-xs md:text-sm leading-relaxed">
+                  This website uses HIPAA-compliant communication methods only. Please do not send protected health information (PHI) through WhatsApp, social media, or unsecured email. For secure communication, please call our office directly at <a href="tel:+1-786-643-2099" className="text-yellow-300 hover:text-yellow-200 underline font-semibold">(786) 643-2099</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <section className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-11/12 max-w-7xl mx-auto gap-12" >
           <figure className="w-full lg:w-1/3 flex justify-center lg:justify-start" >
             <Image
