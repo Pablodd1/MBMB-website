@@ -9,6 +9,7 @@ import Button from "@UTILS/button";
 import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
 import Head from "next/head";
 import AIChat from "./ai-chat/ai-chat.jsx";
+import VoiceCallButton from "./voice-call/voice-call.jsx";
 
 const faqs = [
   {
@@ -328,6 +329,10 @@ export default function Home() {
 
       {/* Real-time AI assistant widget */}
       <AIChat />
+      
+      {/* Voice call button - AI receptionist */}
+      <VoiceCallButton />
+      
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
       <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
         <figure className="overflow-hidden lg:rounded-2xl mx-4 shadow-2xl" >
