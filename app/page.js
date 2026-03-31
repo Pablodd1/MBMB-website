@@ -257,7 +257,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-screen flex flex-col justify-start items-center" >
+      <section className="relative min-h-[60vh] flex flex-col justify-start items-center" >
         {/* Hero video background with fallback poster */ }
         <div className="absolute inset-0 w-full h-full -z-10" aria-label="Hero video background">
           {!videoFailed ? (
@@ -456,10 +456,10 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Follow MBMB on Instagram</h2>
           <p className="text-gray-600 mb-8">@medicalbillingmiamibeach</p>
           
-          {/* IG Widget */}
+          {/* Instagram Link Instead of Broken Widget */}
           <div className="embed-instagram mx-auto" style={{position:'relative', width:'100%', paddingTop:'56.25%', minHeight:'400px', background:'#f9f9f9', borderRadius:'12px'}}>
             <iframe 
-              src="https://cdn.lightwidget.com/widgets/5cb66bc129675da3ae442beb22d03575.html" 
+              src="https://www.instagram.com/medicalbillingmiamibeach/embed"
               title="MBMB Instagram Feed"
               style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0}}
               scrolling="no" 
