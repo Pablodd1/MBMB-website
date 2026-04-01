@@ -258,7 +258,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[60vh] flex flex-col justify-start items-center" >
+      <section className="relative min-h-[70vh] flex flex-col justify-center items-center" >
         {/* Hero video background with fallback poster */ }
         <div className="absolute inset-0 w-full h-full -z-10" aria-label="Hero video background">
           {!videoFailed ? (
@@ -272,8 +272,11 @@ export default function Home() {
             </div>
           )}
         </div>
+        
+        {/* Semi-transparent overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 -z-10"></div>
 
-        <figure className="h-fit w-fit mx-auto py-12 mt-10" >
+        <figure className="h-fit w-fit mx-auto py-12" >
           <div className="bg-black rounded-lg p-4 shadow-2xl">
             <Image
               className="mx-auto"

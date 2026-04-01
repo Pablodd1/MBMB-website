@@ -5,11 +5,11 @@ const Button = ({ href = '', text = 'Send Email', className = ' max-w-5xl mx-aut
     return (
         <div className={` ${className}`}>
             <Link
-                className={` cta  text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary/75 ${colors}`}
+                className={` cta text-sm lg:text-lg h-fit w-fit -skew-x-12 shadow-md shadow-primary/75 ${colors}`}
                 href={href || ''}
             >
-                <span>{text}</span>
-                <span>
+                <span className="flex items-center justify-center">{text}</span>
+                <span className="flex items-center justify-center">
                     <svg
                         width="auto"
                         height="23px"

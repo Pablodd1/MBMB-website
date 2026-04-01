@@ -4,19 +4,19 @@ import Image from "next/image";
 const videos = [
     {
       id: 1,
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - update with actual medical billing video
+      url: "https://www.youtube.com/embed/VIDEO_ID_1", 
       title: "How Medical Billing Services Transform Your Practice",
       description: "Discover how professional medical billing can streamline your revenue cycle, reduce denials, and maximize reimbursements for your practice."
     },
     {
       id: 2,
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - update with actual medical billing video
-      title: "💰⏰ Get a Free Medical Billing Audit",
+      url: "https://www.youtube.com/embed/VIDEO_ID_2",
+      title: "Get a Free Medical Billing Audit",
       description: "Start Collecting More from Insurance (Limited Time Only!). Includes: Analysis of billing workflows, Evaluation of denial management, and Sample coding review"
     },
     {
       id: 3,
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - update with actual medical billing video
+      url: "https://www.youtube.com/embed/VIDEO_ID_3",
       title: "Why Outsource Medical Billing for Your Practice?",
       description: "Let us help! Our team of experts can handle all of your medical billing needs, from benefit and eligibility verification to claims submission and payment posting."
     }
@@ -45,8 +45,8 @@ const VideoShowcase = () => {
             ></iframe>
           </div>
           <div className="video-info mt-3 px-2">
-            <h3 className='text-lg text-gray-900 font-semibold'>{video.title}</h3>
-            <p className='text-gray-600 font-sans text-sm'>{video.description}</p>
+            <h3 className='text-lg text-gray-900 font-semibold bg-white/80 px-2 py-1 rounded'>{video.title}</h3>
+            <p className='text-gray-600 font-sans text-sm mt-1'>{video.description}</p>
           </div>
         </div>
       ))}

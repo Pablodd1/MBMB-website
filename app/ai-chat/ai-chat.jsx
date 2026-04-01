@@ -86,7 +86,7 @@ export default function AIChat() {
       {/* Floating AI Button - next to WhatsApp */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-20 z-50 bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-20 md:bottom-6 right-20 z-50 bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
         aria-label="Open AI Assistant"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +108,7 @@ export default function AIChat() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-sm">MBMB AI Desk</h3>
+                  <h3 className="text-white font-bold text-sm">Ask anything.</h3>
                   <div className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                     <span className="text-green-400 text-xs">Online</span>
