@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hello! I am MBMB AI Assistant. How can I help you with medical billing today? Feel free to ask any questions - if we cant respond properly, we will call you at (786) 643-2099!' }
+    { role: 'assistant', content: "Hello! I am MBMB AI Assistant. How can I help you with medical billing today? Feel free to ask any questions - if we can't respond properly, we will call you at (786) 643-2099!" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
