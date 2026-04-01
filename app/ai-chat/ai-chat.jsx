@@ -4,15 +4,46 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hello! I am MBMB AI Assistant. How can I help you with medical billing today?' }
+    { role: 'assistant', content: 'Hello! I am MBMB AI Assistant. How can I help you with medical billing today? Feel free to ask any questions - if we cant respond properly, we will call you at (786) 643-2099!' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const [sessionId, setSessionId] = useState('');
 
   useEffect(() => {
+    // Generate or retrieve session ID
+    let storedSession = localStorage.getItem('mbmb_chat_session');
+    if (!storedSession) {
+      storedSession = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('mbmb_chat_session', storedSession);
+    }
+    setSessionId(storedSession);
+    
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  const saveConversation = async (msgs) => {
+    try {
+      await fetch('/my-api/chatbot-conversations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          sessionId, 
+          messages: msgs,
+          userInfo: {
+            firstVisit: localStorage.getItem('mbmb_chat_first_visit') || new Date().toISOString()
+          }
+        })
+      });
+      // Set first visit if not already set
+      if (!localStorage.getItem('mbmb_chat_first_visit')) {
+        localStorage.setItem('mbmb_chat_first_visit', new Date().toISOString());
+      }
+    } catch (e) {
+      console.error('Error saving conversation:', e);
+    }
+  };
 
   const send = async () => {
     if (!input.trim()) return;
@@ -28,8 +59,14 @@ export default function AIChat() {
         body: JSON.stringify({ messages: next })
       });
       const data = await res.json();
-      const botMsg = { role: 'assistant', content: data?.text || 'I am currently unavailable. Please try again later.' };
-      setMessages(prev => [...prev, botMsg]);
+      // Remove asterisks from response
+      let botResponse = data?.text || 'I am currently unavailable. Please try again later.';
+      botResponse = botResponse.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
+      const botMsg = { role: 'assistant', content: botResponse };
+      const updatedMessages = [...next, botMsg];
+      setMessages(updatedMessages);
+      // Save conversation after bot responds
+      saveConversation(updatedMessages);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Please try again.' }]);
     } finally {
