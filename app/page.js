@@ -493,12 +493,6 @@ export default function Home() {
           rect: "stroke-white"
         }}
       />
-      
-      {/* Video Showcase - Moved Higher */}
-      <div className="mb-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 underline decoration-pink2">Our Video Showcase</h2>
-        <VideoShowcase />
-      </div>
 
       {/* Case Studies Section */}
       <section className="max-w-6xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 shadow-xl">
