@@ -8,7 +8,7 @@ export default function VoiceCallButton() {
   return (
     <a
       href={`tel:${officeNumber.replace(/-/g, '')}`}
-      className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center animate-pulse"
+      className="fixed bottom-20 md:bottom-6 left-6 z-50 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
       aria-label="Call Now"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
