@@ -288,43 +288,7 @@ export default function Home() {
             />
           </div>
         </figure>
-        
-        {/* Social Proof - Above the Fold */}
-        <div className="flex flex-wrap justify-center items-center gap-6 mb-6">
-          <div className="flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full shadow-lg">
-            <span className="text-green-500 text-xl">✓</span>
-            <span className="text-gray-800 font-semibold text-sm">Trusted by 50+ Miami practices</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full shadow-lg">
-            <span className="text-green-500 text-xl">✓</span>
-            <span className="text-gray-800 font-semibold text-sm">98% clean claim rate</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full shadow-lg">
-            <span className="text-green-500 text-xl">✓</span>
-            <span className="text-gray-800 font-semibold text-sm">Average 23% revenue increase</span>
-          </div>
-        </div>
 
-        {/* Trust Badges */}
-        <div className="flex flex-wrap justify-center items-center gap-4 mb-6">
-          <div className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            AAPC Certified
-          </div>
-          <div className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            HIPAA Compliant
-          </div>
-          <div className="bg-purple-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
-            MGMA Member
-          </div>
-          <div className="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
-            Florida Medical Association
-          </div>
-        </div>
-        
         <article className="w-11/12 md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md shadow-2xl border border-pink2/20" >
           <header className="" >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold" >
@@ -340,8 +304,44 @@ export default function Home() {
             <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by healthcare providers across Florida. We provide comprehensive medical billing services in Miami, medical coding, and revenue cycle management. We maximize your revenue while you focus on patient care.
           </p>
           
+          {/* Social Proof - Inside Hero Card */}
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
+            <div className="flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full">
+              <span className="text-green-600 font-bold">✓</span>
+              <span className="text-green-800 font-semibold text-xs">50+ Miami practices</span>
+            </div>
+            <div className="flex items-center gap-2 bg-blue-100 px-3 py-1 rounded-full">
+              <span className="text-blue-600 font-bold">✓</span>
+              <span className="text-blue-800 font-semibold text-xs">98% clean claim rate</span>
+            </div>
+            <div className="flex items-center gap-2 bg-purple-100 px-3 py-1 rounded-full">
+              <span className="text-purple-600 font-bold">✓</span>
+              <span className="text-purple-800 font-semibold text-xs">23% revenue increase</span>
+            </div>
+          </div>
+
+          {/* Trust Badges - Inside Hero Card */}
+          <div className="flex flex-wrap justify-center items-center gap-2 mb-6">
+            <div className="bg-blue-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              AAPC
+            </div>
+            <div className="bg-green-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              HIPAA
+            </div>
+            <div className="bg-purple-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
+              MGMA
+            </div>
+            <div className="bg-orange-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11"/></svg>
+              FMA
+            </div>
+          </div>
+          
           {/* PRIMARY CTA - Free Billing Audit */}
-          <div className="mt-6 mb-6">
+          <div className="mt-4 mb-4">
             <Button href="/consultation" text='🎯 Free Billing Audit — See How Much You Are Losing' colors="bg-red-600 text-white hover:bg-red-700 text-lg px-8 py-4" className="w-full md:w-auto" />
           </div>
           
