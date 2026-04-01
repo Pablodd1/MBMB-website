@@ -4,19 +4,19 @@ import Image from "next/image";
 const videos = [
     {
       id: 1,
-      url: "https://www.youtube.com/embed/VIDEO_ID_1", 
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
       title: "How Medical Billing Services Transform Your Practice",
       description: "Discover how professional medical billing can streamline your revenue cycle, reduce denials, and maximize reimbursements for your practice."
     },
     {
       id: 2,
-      url: "https://www.youtube.com/embed/VIDEO_ID_2",
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       title: "Get a Free Medical Billing Audit",
       description: "Start Collecting More from Insurance (Limited Time Only!). Includes: Analysis of billing workflows, Evaluation of denial management, and Sample coding review"
     },
     {
       id: 3,
-      url: "https://www.youtube.com/embed/VIDEO_ID_3",
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       title: "Why Outsource Medical Billing for Your Practice?",
       description: "Let us help! Our team of experts can handle all of your medical billing needs, from benefit and eligibility verification to claims submission and payment posting."
     }
