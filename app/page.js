@@ -258,109 +258,55 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[70vh] flex flex-col justify-center items-center" >
-        {/* Hero video background with fallback poster */ }
-        <div className="absolute inset-0 w-full h-full -z-10" aria-label="Hero video background">
-          {!videoFailed ? (
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover" onError={() => setVideoFailed(true)}>
-              <source src="/assets/medical-presentation (3).mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-              <span className="text-white text-2xl md:text-3xl font-bold">Medical Billing Miami Beach</span>
-            </div>
-          )}
-        </div>
-        
-        {/* Semi-transparent overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40 -z-10"></div>
+      <section className="relative min-h-[80vh] flex flex-col justify-center items-center bg-white" >
+        {/* Clean white background - no video */}
 
-        <figure className="h-fit w-fit mx-auto py-12" >
-          <div className="bg-black rounded-lg p-4 shadow-2xl">
-            <Image
-              className="mx-auto"
-              src={'/mbmb-white.png'}
-              width={180}
-              height={180}
-              alt="Medical Billing Miami Beach | Company | Medical Revenue Management | Healthcare Coding"
-              priority
-            />
-          </div>
+        <figure className="h-fit w-fit mx-auto py-8" >
+          <Image
+            className="mx-auto"
+            src={'/mbmb-black.png'}
+            width={160}
+            height={160}
+            alt="Medical Billing Miami Beach Logo"
+            priority
+          />
         </figure>
 
-        <article className="w-11/12 md:max-w-4xl mx-auto px-6 md:px-14 py-12 rounded-2xl text-black bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md shadow-2xl border border-pink2/20" >
+        <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center" >
           <header className="" >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold" >
-              <strong className="mx-2 font-semibold text-pink2" >
-                Medical Billing Miami Beach
-              </strong>
+              Medical Billing Miami Beach
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-700 mt-2 font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mt-3 font-medium">
               Expert Medical Billing, Coding & Revenue Cycle Management in Miami, Florida
             </p>
           </header>
-          <p className="font-serif text-gray-900 mt-6 mb-4 text-sm md:text-lg lg:text-xl max-w-3xl mx-auto text-center">
-            <strong className="text-pink2" > Miami's Premier Medical Billing Partner Since 2015</strong> — Trusted by healthcare providers across Florida. We provide comprehensive medical billing services in Miami, medical coding, and revenue cycle management. We maximize your revenue while you focus on patient care.
+          <p className="text-gray-800 mt-6 text-sm md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
+            Miami's Premier Medical Billing Partner Since 2015 — Trusted by healthcare providers across Florida. We provide comprehensive medical billing services in Miami, medical coding, and revenue cycle management. We maximize your revenue while you focus on patient care.
           </p>
           
-          {/* Social Proof - Inside Hero Card */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
-            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
-              <span className="text-[#9D0D64] font-bold text-base">✓</span>
-              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">50+ Miami practices</span>
-            </div>
-            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
-              <span className="text-[#9D0D64] font-bold text-base">✓</span>
-              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">98% clean claim rate</span>
-            </div>
-            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
-              <span className="text-[#9D0D64] font-bold text-base">✓</span>
-              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">23% revenue increase</span>
-            </div>
+          {/* Centered Feature List - Vertical Stack, No Boxes, Just Bold Text */}
+          <div className="flex flex-col items-center justify-center gap-2 my-8">
+            <p className="text-gray-900 font-bold text-xl">✓ 50+ Miami practices</p>
+            <p className="text-gray-900 font-bold text-xl">✓ 98% clean claim rate</p>
+            <p className="text-gray-900 font-bold text-xl">✓ 23% revenue increase</p>
           </div>
 
-          {/* Trust Badges - Inside Hero Card */}
-          <div className="flex flex-wrap justify-center items-center gap-2 mb-6">
-            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              AAPC
-            </div>
-            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              HIPAA
-            </div>
-            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
-              MGMA
-            </div>
-            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11"/></svg>
-              FMA
-            </div>
+          {/* Centered Trust Badges - Monochromatic/Text Only */}
+          <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
+            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">AAPC</span>
+            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">HIPAA</span>
+            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">MGMA</span>
+            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">FMA</span>
           </div>
           
-          {/* PRIMARY CTA - Free Billing Audit */}
-          <div className="mt-4 mb-6">
-            <Button href="/consultation" text='🎯 Free Billing Audit — See How Much You Are Losing' colors="bg-[#9D0D64] text-white hover:bg-black text-lg px-8 py-4" className="w-full md:w-auto" />
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-4 mt-4">
-            <Button href={`tel:+1-786-643-2099`} text='📞 Schedule a Call' colors="bg-pink2 text-white hover:bg-black" />
-            <Button href={`mailto:Jasmel@medicalbillingmb.com`} text='✉️ Email Us' />
-            <Button href={`/consultation`} text='📅 Free Consultation' colors="bg-myblack text-white hover:bg-pink2" />
-          </div>
-          
-          {/* TERTIARY CTA - Lead Magnet */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-2 border-yellow-400">
-            <p className="text-center text-gray-800 font-semibold mb-2">📥 Download Free Guide</p>
-            <p className="text-center text-gray-600 text-sm mb-3">"5 Billing Mistakes Costing Miami Doctors Thousands"</p>
-            <div className="flex justify-center">
-              <Button href="/consultation" text='Download Free Guide' colors="bg-yellow-500 text-black hover:bg-yellow-600" />
-            </div>
+          {/* PRIMARY CTA - Single Dark Theme Button */}
+          <div className="mb-6">
+            <Button href="/consultation" text='Free Billing Audit — See How Much You Are Losing' colors="bg-gray-900 text-white hover:bg-black text-lg px-10 py-4" className="w-full md:w-auto" />
           </div>
         </article>
         
+        {/* Rest of page... */}
         <ul className="lg:w-11/12 max-w-xs md:max-w-3xl lg:max-w-6xl grid md:grid-cols-3 gap-6 mx-auto my-16 lg:my-32 z-10" >
           {
             solutions.map((x, i) => {
