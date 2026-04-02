@@ -306,43 +306,43 @@ export default function Home() {
           
           {/* Social Proof - Inside Hero Card */}
           <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
-            <div className="flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full">
-              <span className="text-green-600 font-bold">✓</span>
-              <span className="text-green-800 font-semibold text-xs">50+ Miami practices</span>
+            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
+              <span className="text-[#9D0D64] font-bold text-base">✓</span>
+              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">50+ Miami practices</span>
             </div>
-            <div className="flex items-center gap-2 bg-blue-100 px-3 py-1 rounded-full">
-              <span className="text-blue-600 font-bold">✓</span>
-              <span className="text-blue-800 font-semibold text-xs">98% clean claim rate</span>
+            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
+              <span className="text-[#9D0D64] font-bold text-base">✓</span>
+              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">98% clean claim rate</span>
             </div>
-            <div className="flex items-center gap-2 bg-purple-100 px-3 py-1 rounded-full">
-              <span className="text-purple-600 font-bold">✓</span>
-              <span className="text-purple-800 font-semibold text-xs">23% revenue increase</span>
+            <div className="flex items-center gap-2 bg-pink-100 px-4 py-2 rounded-lg">
+              <span className="text-[#9D0D64] font-bold text-base">✓</span>
+              <span className="text-gray-800 font-semibold text-sm whitespace-nowrap">23% revenue increase</span>
             </div>
           </div>
 
           {/* Trust Badges - Inside Hero Card */}
           <div className="flex flex-wrap justify-center items-center gap-2 mb-6">
-            <div className="bg-blue-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
               AAPC
             </div>
-            <div className="bg-green-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               HIPAA
             </div>
-            <div className="bg-purple-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
               MGMA
             </div>
-            <div className="bg-orange-600 text-white px-3 py-1 rounded-md font-bold text-xs flex items-center gap-1">
+            <div className="bg-[#9D0D64] text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11"/></svg>
               FMA
             </div>
           </div>
           
           {/* PRIMARY CTA - Free Billing Audit */}
-          <div className="mt-4 mb-4">
-            <Button href="/consultation" text='🎯 Free Billing Audit — See How Much You Are Losing' colors="bg-red-600 text-white hover:bg-red-700 text-lg px-8 py-4" className="w-full md:w-auto" />
+          <div className="mt-4 mb-6">
+            <Button href="/consultation" text='🎯 Free Billing Audit — See How Much You Are Losing' colors="bg-[#9D0D64] text-white hover:bg-black text-lg px-8 py-4" className="w-full md:w-auto" />
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mt-4">
