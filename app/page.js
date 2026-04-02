@@ -258,8 +258,15 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[80vh] flex flex-col justify-center items-center bg-white" >
-        {/* Clean white background - no video */}
+      <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-white" >
+        {/* Hero video background - small and compact */}
+        <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
+          <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20" onError={() => {}}>
+            <source src="/assets/medical-presentation (3).mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-white/80"></div>
+        </div>
 
         <figure className="h-fit w-fit mx-auto py-8" >
           <Image
