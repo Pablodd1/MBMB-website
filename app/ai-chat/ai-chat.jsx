@@ -10,9 +10,11 @@ export default function AIChat() {
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
   const [sessionId, setSessionId] = useState('');
+  const [isSpeaking, setIsSpeaking] = useState(true);
+  const [hasGreeted, setHasGreeted] = useState(false);
+  const speechRef = useRef(null);
 
   useEffect(() => {
-    // Generate or retrieve session ID
     let storedSession = localStorage.getItem('mbmb_chat_session');
     if (!storedSession) {
       storedSession = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -22,6 +24,66 @@ export default function AIChat() {
     
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Auto voice greeting after 3 seconds
+  useEffect(() => {
+    const greetTimer = setTimeout(() => {
+      if (!hasGreeted && typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const greeting = "Hey there! How may I assist you today? I'm the AI virtual desk assistant for Medical Billing Miami Beach. I can answer all your questions about our services. If I can't help you, don't worry - the owner himself will give you a call back!";
+        speakText(greeting);
+        setHasGreeted(true);
+      }
+    }, 3000);
+
+    return () => clearTimeout(greetTimer);
+  }, [hasGreeted]);
+
+  const speakText = (text) => {
+    if (!isSpeaking || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    
+    // Try to get a good English voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v => v.name.includes('Google') && v.lang.startsWith('en')) ||
+                           voices.find(v => v.lang.startsWith('en-US')) ||
+                           voices.find(v => v.lang.startsWith('en'));
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+    
+    utterance.onend = () => setIsSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Load voices
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+    return () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  const toggleVoice = () => {
+    const newState = !isSpeaking;
+    setIsSpeaking(newState);
+    if (!newState) {
+      window.speechSynthesis?.cancel();
+    }
+  };
 
   const saveConversation = async (msgs) => {
     try {
@@ -36,7 +98,6 @@ export default function AIChat() {
           }
         })
       });
-      // Set first visit if not already set
       if (!localStorage.getItem('mbmb_chat_first_visit')) {
         localStorage.setItem('mbmb_chat_first_visit', new Date().toISOString());
       }
@@ -59,14 +120,14 @@ export default function AIChat() {
         body: JSON.stringify({ messages: next })
       });
       const data = await res.json();
-      // Remove asterisks from response
       let botResponse = data?.text || 'I am currently unavailable. Please try again later.';
       botResponse = botResponse.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
       const botMsg = { role: 'assistant', content: botResponse };
       const updatedMessages = [...next, botMsg];
       setMessages(updatedMessages);
-      // Save conversation after bot responds
       saveConversation(updatedMessages);
+      // Speak the bot response
+      speakText(botResponse);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Please try again.' }]);
     } finally {
@@ -83,7 +144,7 @@ export default function AIChat() {
 
   return (
     <>
-      {/* Floating AI Button - next to WhatsApp */}
+      {/* Floating AI Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-20 md:bottom-6 right-20 z-50 bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
@@ -115,11 +176,26 @@ export default function AIChat() {
                   </div>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Voice Toggle */}
+                <button onClick={toggleVoice} className="text-gray-400 hover:text-white transition-colors" title={isSpeaking ? 'Mute voice' : 'Enable voice'}>
+                  {isSpeaking ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                    </svg>
+                  )}
+                </button>
+                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 

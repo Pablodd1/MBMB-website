@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /form
+Allow: /
+
+# Sitemap
+Sitemap: https://medicalbillingmb.com/sitemap.xml
+
+# Block API routes
+Disallow: /api/
+Disallow: /my-api/
+Disallow: /_next/
