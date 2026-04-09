@@ -4,15 +4,17 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hello! I am MBMB AI Assistant. How can I help you with medical billing today? Feel free to ask any questions - if we can't respond properly, we will call you at (786) 643-2099!" }
+    { role: 'assistant', content: "Hello! I'm your MBMB virtual receptionist. You can type or speak your questions. How can I help you today?" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
   const [sessionId, setSessionId] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(true);
+  const [isListening, setIsListening] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
-  const speechRef = useRef(null);
+  const [language, setLanguage] = useState('en'); // en, es, ht
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
     let storedSession = localStorage.getItem('mbmb_chat_session');
@@ -21,44 +23,52 @@ export default function AIChat() {
       localStorage.setItem('mbmb_chat_session', storedSession);
     }
     setSessionId(storedSession);
-    
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Auto voice greeting after 3 seconds
+  // Initialize speech recognition
   useEffect(() => {
-    const greetTimer = setTimeout(() => {
-      if (!hasGreeted && typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        const greeting = "Hey there! How may I assist you today? I'm the AI virtual desk assistant for Medical Billing Miami Beach. I can answer all your questions about our services. If I can't help you, don't worry - the owner himself will give you a call back!";
-        speakText(greeting);
-        setHasGreeted(true);
-      }
-    }, 3000);
+    if (typeof window !== 'undefined' && ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = language === 'ht' ? 'ht-HT' : language === 'es' ? 'es-ES' : 'en-US';
 
-    return () => clearTimeout(greetTimer);
-  }, [hasGreeted]);
+      recognitionRef.current.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setInput(transcript);
+        setIsListening(false);
+      };
 
+      recognitionRef.current.onerror = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+    return () => {
+      recognitionRef.current?.abort();
+    };
+  }, []);
+
+  // Speak text
   const speakText = (text) => {
     if (!isSpeaking || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-    
-    // Cancel any ongoing speech
     window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1.0;
+    const cleanText = text.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
     utterance.volume = 1.0;
-    
-    // Try to get a good English voice
     const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(v => v.name.includes('Google') && v.lang.startsWith('en')) ||
-                           voices.find(v => v.lang.startsWith('en-US')) ||
+    let langCode = language === 'ht' ? 'ht' : language === 'es' ? 'es' : 'en';
+    const preferredVoice = voices.find(v => v.lang.startsWith(langCode)) ||
+                           voices.find(v => v.name.includes('Google') && v.lang.startsWith(langCode)) ||
                            voices.find(v => v.lang.startsWith('en'));
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
-    
-    utterance.onend = () => setIsSpeaking(true);
+    if (preferredVoice) utterance.voice = preferredVoice;
     window.speechSynthesis.speak(utterance);
   };
 
@@ -66,9 +76,7 @@ export default function AIChat() {
   useEffect(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-      };
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
     return () => {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -77,11 +85,42 @@ export default function AIChat() {
     };
   }, []);
 
+  // Toggle chat
+  const toggleChat = () => {
+    const newOpen = !isOpen;
+    setIsOpen(newOpen);
+    if (newOpen && !hasGreeted && typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      setTimeout(() => {
+        const greetings = {
+          en: "Hey there! How may I assist you today? I'm the AI virtual receptionist for Medical Billing Miami Beach. I can answer all your questions about our services, pricing, and more. If I can't help you, the owner himself will give you a call back!",
+          es: "¡Hola! ¿En qué puedo ayudarte hoy? Soy la receptionist virtual de Medical Billing Miami Beach. Puedo responder todas tus preguntas sobre nuestros servicios, precios y más. ¡Si no puedo ayudarte, el dueño mismo te devolverá la llamada!",
+          ht: "Bonjou! Kijan mwen ka ede ou jodi a? Mwen se resepsyonis virtual pou Medical Billing Miami Beach. Mwen ka reponn tout kesyon ou sou sèvis nou yo, pri, ak plis. Si mwen pa ka ede ou, pwopriyetè a menm pral rele ou_BACK!"
+        };
+        speakText(greetings[language] || greetings.en);
+        setHasGreeted(true);
+      }, 500);
+    }
+  };
+
+  // Toggle voice output
   const toggleVoice = () => {
     const newState = !isSpeaking;
     setIsSpeaking(newState);
-    if (!newState) {
-      window.speechSynthesis?.cancel();
+    if (!newState) window.speechSynthesis?.cancel();
+  };
+
+  // Toggle microphone input
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert('Speech recognition is not supported in your browser. Please try Chrome or Edge.');
+      return;
+    }
+    if (isListening) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    } else {
+      recognitionRef.current.start();
+      setIsListening(true);
     }
   };
 
@@ -117,7 +156,7 @@ export default function AIChat() {
       const res = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: next })
+        body: JSON.stringify({ messages: next, language })
       });
       const data = await res.json();
       let botResponse = data?.text || 'I am currently unavailable. Please try again later.';
@@ -126,7 +165,6 @@ export default function AIChat() {
       const updatedMessages = [...next, botMsg];
       setMessages(updatedMessages);
       saveConversation(updatedMessages);
-      // Speak the bot response
       speakText(botResponse);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Please try again.' }]);
@@ -146,7 +184,7 @@ export default function AIChat() {
     <>
       {/* Floating AI Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         className="fixed bottom-20 md:bottom-6 right-20 z-50 bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
         aria-label="Open AI Assistant"
       >
@@ -169,15 +207,21 @@ export default function AIChat() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-sm">Ask anything.</h3>
+                  <h3 className="text-white font-bold text-sm">Virtual Receptionist</h3>
                   <div className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                    <span className="text-green-400 text-xs">Online</span>
+                    <span className="text-green-400 text-xs">Text or Voice</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                {/* Voice Toggle */}
+                {/* Language Toggle */}
+                <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                  <button onClick={() => setLanguage('en')} className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>EN</button>
+                  <button onClick={() => setLanguage('es')} className={`text-xs px-2 py-1 rounded ${language === 'es' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>ES</button>
+                  <button onClick={() => setLanguage('ht')} className={`text-xs px-2 py-1 rounded ${language === 'ht' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>HT</button>
+                </div>
+                {/* Voice Output Toggle */}
                 <button onClick={toggleVoice} className="text-gray-400 hover:text-white transition-colors" title={isSpeaking ? 'Mute voice' : 'Enable voice'}>
                   {isSpeaking ? (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,7 +234,7 @@ export default function AIChat() {
                     </svg>
                   )}
                 </button>
-                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={toggleChat} className="text-gray-400 hover:text-white transition-colors">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -231,11 +275,35 @@ export default function AIChat() {
             <div className="flex gap-2">
               <input
                 className="flex-1 bg-gray-800/60 border border-gray-700/50 text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 placeholder-gray-500 transition-all"
-                placeholder="Type your message..."
+                placeholder={isListening ? "Listening..." : "Type or speak your message..."}
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKey}
               />
+              {/* Microphone Button */}
+              <button 
+                onClick={toggleListening}
+                className={`px-4 py-3 rounded-xl transition-all duration-300 ${
+                  isListening 
+                    ? 'bg-red-500 text-white animate-pulse shadow-lg shadow-red-500/50' 
+                    : 'bg-gray-700/60 text-gray-400 hover:text-white hover:bg-gray-600/60'
+                }`}
+                title={isListening ? "Stop listening" : "Speak your message"}
+              >
+                {isListening ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
+                  </svg>
+                )}
+              </button>
+              {/* Send Button */}
               <button 
                 onClick={send} 
                 disabled={loading || !input.trim()}

@@ -10,6 +10,8 @@ import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
 import Head from "next/head";
 import AIChat from "./ai-chat/ai-chat.jsx";
 import VoiceCallButton from "./voice-call/voice-call.jsx";
+import RevenueCalculator from "./components/revenue-calculator.jsx";
+import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 
 const faqs = [
   {
@@ -337,6 +339,12 @@ export default function Home() {
 
       {/* Real-time AI assistant widget */}
       <AIChat />
+      
+      {/* Revenue Calculator */}
+      <RevenueCalculator />
+      
+      {/* Lead Magnet Popup */}
+      <LeadMagnetPopup />
       
       {/* Voice call button - AI receptionist */}
       <VoiceCallButton />
