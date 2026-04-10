@@ -12,6 +12,7 @@ import AIChat from "./ai-chat/ai-chat.jsx";
 import VoiceCallButton from "./voice-call/voice-call.jsx";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
+import SmartImage from "./components/SmartImage.jsx";
 
 const faqs = [
   {
@@ -271,7 +272,7 @@ export default function Home() {
         </div>
 
         <figure className="h-fit w-fit mx-auto py-8" >
-          <Image
+          <SmartImage
             className="mx-auto"
             src={'/mbmb-black.png'}
             width={160}
@@ -350,16 +351,16 @@ export default function Home() {
       <VoiceCallButton />
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
-      <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
+        <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
         <figure className="overflow-hidden lg:rounded-2xl mx-4 shadow-2xl" >
-          <Image
-            className="object-cover hover:scale-105 transition-all ease-linear duration-500 h-fit md:max-h-[500px] w-full mx-auto self-center"
-            src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
-            width={1200}
-            height={800}
-            alt="Medical Billing and Coding Specialists in Miami Florida"
-            loading="lazy"
-          />
+        <SmartImage
+          className="object-cover hover:scale-105 transition-all ease-linear duration-500 h-fit md:max-h-[500px] w-full mx-auto self-center"
+          src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
+          width={1200}
+          height={800}
+          alt="Medical Billing and Coding Specialists in Miami Florida"
+          loading="lazy"
+        />
         </figure>
         <article className="flex flex-col justify-center py-8 lg:py-0 px-6 w-full max-w-xl mx-auto" >
           <h2 className="text-3xl lg:text-4xl text-myblack mb-2 font-bold leading-tight underline decoration-pink2" >
@@ -769,13 +770,13 @@ export default function Home() {
 
         <section className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-11/12 max-w-7xl mx-auto gap-12" >
           <figure className="w-full lg:w-1/3 flex justify-center lg:justify-start" >
-            <Image
-              className="w-48 md:w-64 object-contain"
-              src={'/mbmb-white.png'}
-              width={250}
-              height={180}
-              alt="Medical Billing Miami Beach Logo"
-            />
+        <SmartImage
+          className="w-48 md:w-64 object-contain"
+          src={'/mbmb-white.png'}
+          width={250}
+          height={180}
+          alt="Medical Billing Miami Beach Logo"
+        />
           </figure>
           
           <article className="w-full lg:w-1/3 text-center lg:text-left" >
@@ -862,7 +863,7 @@ export const ImageAndText = (props) => {
   return (
     <section className={className.section} >
       <figure className={className.figure} >
-        <Image
+        <SmartImage
           src={content.src}
           alt={content.alt}
           width={800}
@@ -879,13 +880,13 @@ export const ImageAndText = (props) => {
           <ul className={className.ul}>
             {content.ul.map((y, j) => (
               <li key={`${j}`} className={className.li}>
-                <Image
-                  src={'/svg/arrow.svg'}
-                  alt={'bullet arrow'}
-                  width={20}
-                  height={14}
-                  className={'inline-block -rotate-45 mr-3 w-4'}
-                />
+              <SmartImage
+                src={'/svg/arrow.svg'}
+                alt={'bullet arrow'}
+                width={20}
+                height={14}
+                className={'inline-block -rotate-45 mr-3 w-4'}
+              />
                 {y}
               </li>
             ))}
