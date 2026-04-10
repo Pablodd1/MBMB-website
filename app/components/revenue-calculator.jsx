@@ -36,7 +36,8 @@ export default function RevenueCalculator() {
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-36 right-20 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
-        aria-label="Revenue Calculator"
+        aria-label="Open Revenue Calculator"
+        title="Open Revenue Calculator"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -48,20 +49,21 @@ export default function RevenueCalculator() {
   return (
     <div className="fixed bottom-36 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)]">
       <div className="bg-white rounded-2xl shadow-2xl border border-green-500/30 overflow-hidden">
-        <div className="p-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-          <div className="flex items-center justify-between">
+        <div className="p-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white" aria-label="Revenue Calculator header" role="region" aria-labelledby="revcalc-header-title revcalc-header-sub">
+          <div id="revcalc-header-title" className="flex items-center justify-between" >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center" aria-hidden>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Chart icon">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3v18h18"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l3-3 3 3 4-4"/>
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-sm">Revenue Calculator</h3>
-                <p className="text-xs text-white/80">See your potential gains</p>
+                <h3 id="revcalc-header-title" className="font-bold text-sm">Revenue Calculator</h3>
+                <p id="revcalc-header-sub" className="text-xs text-white/80">Estimate potential gains from MBMB improvements</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">
+            <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white" aria-label="Close Revenue Calculator" title="Close">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -111,11 +113,12 @@ export default function RevenueCalculator() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                MBMB Clean Claim Rate: {100 - ((billingVolume * (100 - 98)) / billingVolume * 100)}%
+              <label className="block text-sm font-medium text-gray-700 mb-1" aria-label="MBMB Clean Claim Rate label">
+                MBMB Clean Claim Rate: 98%
               </label>
-              <div className="text-xs text-gray-500">98% clean claims (adjustable 6-8%)</div>
+              <div className="text-xs text-gray-500">MBMB Fee Rate: 6-8% (adjustable)</div>
               <select 
+                aria-describedby="mbmb-help"
                 value={mbmbRate}
                 onChange={(e) => setMbmbRate(Number(e.target.value))}
                 className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -125,6 +128,7 @@ export default function RevenueCalculator() {
                 <option value={7}>7% (Premium)</option>
                 <option value={8}>8% (Enterprise)</option>
               </select>
+              <div id="mbmb-help" className="text-xs text-gray-500 mt-1">Adjust MBMB fee rate; affects your calculated gains and savings display.</div>
             </div>
           </div>
 

@@ -12,7 +12,7 @@ import AIChat from "./ai-chat/ai-chat.jsx";
 import VoiceCallButton from "./voice-call/voice-call.jsx";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
-import SmartImage from "./components/SmartImage.jsx";
+import SmartImage from "./components/SmartImage";
 
 const faqs = [
   {
