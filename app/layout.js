@@ -1,5 +1,23 @@
 import { Sansita } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Link from "next/link";
+import Subscribe from "@UTILS/subscribe";
+
+const social = [
+  {
+    href: "https://api.whatsapp.com/send?phone=17866432099",
+    icon: "whatsapp"
+  },
+  {
+    href: "https://www.linkedin.com/company/medical-billing-miami-beach",
+    icon: "linkedin"
+  },
+  {
+    href: "https://www.instagram.com/medicalbillingmiamibeach",
+    icon: "instagram"
+  }
+];
 
 const sansita = Sansita({
   weight: ['400', '700', '800', '900'],
@@ -320,14 +338,34 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         
-        {/* Footer - Enhanced for SEO */}
-        <footer className="bg-slate-800 text-white py-8 mt-16" itemScope itemType="https://schema.org/WPFooter">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-blue-400 font-bold mb-4" itemProp="name">Medical Billing Miami Beach</h3>
-                <p className="text-slate-300 text-sm" itemProp="description">Expert medical billing and coding services in Miami, Florida. AAPC-certified specialists maximizing your revenue.</p>
+        {/* Footer - Enhanced with HIPAA Notice, Social, Newsletter */}
+        <footer className="bg-black text-white w-full pt-16 pb-8" itemScope itemType="https://schema.org/WPFooter">
+          {/* HIPAA/PHI Compliance Disclaimer */}
+          <div className="w-11/12 max-w-7xl mx-auto mb-8 px-4">
+            <div className="bg-yellow-900/30 border border-yellow-600/50 rounded-xl p-4 md:p-6">
+              <div className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <div>
+                  <p className="text-yellow-200 font-semibold text-sm md:text-base mb-2">NOTICE: HIPAA Compliance</p>
+                  <p className="text-yellow-100/80 text-xs md:text-sm leading-relaxed">
+                    This website uses HIPAA-compliant communication methods only. Please do not send protected health information (PHI) through WhatsApp, social media, or unsecured email. For secure communication, please call our office directly at <a href="tel:+1-786-643-2099" className="text-yellow-300 hover:text-yellow-200 underline font-semibold">(786) 643-2099</a>.
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="w-11/12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {/* Logo and Description */}
+              <div className="flex flex-col items-center md:items-start">
+                <Image src="/mbmb-white.png" alt="Medical Billing Miami Beach Logo" width={180} height={130} className="mb-4" />
+                <p className="text-slate-300 text-sm text-center md:text-left">Expert medical billing and coding services in Miami, Florida. AAPC-certified specialists maximizing your revenue.</p>
+              </div>
+
+              {/* Quick Links */}
               <div>
                 <h3 className="text-blue-400 font-bold mb-4">Quick Links</h3>
                 <div className="space-y-2 text-sm">
@@ -335,22 +373,46 @@ export default function RootLayout({ children }) {
                   <div><a href="/about" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
                   <div><a href="/services" className="text-slate-300 hover:text-blue-400">Our Services</a></div>
                   <div><a href="/contact" className="text-slate-300 hover:text-blue-400">Contact Us</a></div>
+                  <div><a href="/privacy-policy" className="text-slate-300 hover:text-blue-400">Privacy Policy</a></div>
+                  <div><a href="/terms-of-use" className="text-slate-300 hover:text-blue-400">Terms of Use</a></div>
                 </div>
               </div>
+
+              {/* Contact Info */}
               <div itemScope itemType="https://schema.org/ContactPoint">
                 <h3 className="text-blue-400 font-bold mb-4">Contact Info</h3>
                 <div className="text-slate-300 text-sm space-y-2">
                   <div>📧 <a href="mailto:Jasmel@medicalbillingmb.com" className="hover:text-blue-400" itemProp="email">Jasmel@medicalbillingmb.com</a></div>
-                  <div>📞 <a href="tel:+17866432099" className="hover:text-blue-400 font-bold" itemProp="telephone" content="+1-786-643-2099">(786) 643-2099</a></div>
+                  <div>📞 <a href="tel:+178****2099" className="hover:text-blue-400 font-bold" itemProp="telephone" content="+1-786-643-2099">(786) 643-2099</a></div>
                   <div>📍 <span itemProp="areaServed">Miami, Florida</span></div>
                   <div>🕐 <span itemProp="hoursAvailable">Mon-Fri: 9AM-6PM EST</span></div>
                   <div>🌐 <span className="inline-block mt-2 px-2 py-1 bg-blue-900 rounded text-xs">AI Assistant Available 24/7</span></div>
                 </div>
               </div>
+
+              {/* Newsletter Signup */}
+              <div>
+                <h3 className="text-blue-400 font-bold mb-4">Stay Updated</h3>
+                <Subscribe />
+                {/* Social Icons */}
+                <div className="mt-6">
+                  <div className="flex space-x-4">
+                    {social.map((x, i) => (
+                      <a key={i} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.icon} className="hover:-translate-y-1 transition-transform">
+                        <div className="bg-gray-800 p-3 rounded-full hover:bg-pink2 transition-colors">
+                          <Image src={`/svg/${x.icon}.svg`} width={24} height={24} alt={x.icon} />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="border-t border-slate-700 mt-8 pt-6 text-center text-slate-400 text-sm">
+
+            {/* Bottom Bar */}
+            <div className="border-t border-gray-800 pt-8 text-center text-slate-400 text-sm">
               <p>© 2025 Medical Billing Miami Beach (MBMB). All rights reserved.</p>
-              <p>AAPC-certified medical billing specialists serving healthcare providers across Miami-Dade County, Broward, and South Florida.</p>
+              <p className="mt-2">AAPC-certified medical billing specialists serving healthcare providers across Miami-Dade County, Broward, and South Florida.</p>
               <div className="mt-4 flex justify-center items-center space-x-4">
                 <span className="inline-block px-3 py-1 bg-green-800 rounded-full text-xs">HIPAA Compliant</span>
                 <span className="inline-block px-3 py-1 bg-blue-800 rounded-full text-xs">AAPC Certified</span>
