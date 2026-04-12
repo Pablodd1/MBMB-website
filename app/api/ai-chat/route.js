@@ -12,7 +12,7 @@ COMPANY INFORMATION:
 
 SERVICES OFFERED:
 1. Medical Billing - Expert medical billing services for healthcare providers
-2. Medical Coding - ICD-10, CPT, HCPCS coding with 95%+ accuracy
+2. Medical Coding - ICD-10, CPT, HCPCS coding services
 3. Credentialing - Provider credentialing for insurance networks (60-120 days)
 4. Revenue Cycle Management - Complete RCM services
 
@@ -25,8 +25,7 @@ WHY CHOOSE MBMB:
 - AAPC-certified specialists
 - HIPAA and HITECH compliant
 - Specialized in Miami and Florida healthcare
-- Personalized service with faster response times
-- Denial rate typically under 5%
+- Personalized service with responsive communication
 - Free initial consultation and billing audit
 
 SPECIALTIES SERVED:
@@ -60,21 +59,20 @@ INFORMACIÓN DE LA EMPRESA:
 
 SERVICIOS OFRECIDOS:
 1. Facturación Médica - Servicios expertos de facturación médica para proveedores de salud
-2. Codificación Médica - Codificación ICD-10, CPT, HCPCS con precisión del 95%+
+2. Codificación Médica - Servicios de codificación ICD-10, CPT, HCPCS
 3. Credencialización - Credencialización de proveedores para redes de seguros (60-120 días)
 4. Gestión del Ciclo de Ingresos - Servicios completos de RCM
 
 PRECIOS:
 - Tarifa típica: 4-8% de las cobranzas
 - Opciones de tarifa fija disponibles para prácticas más grandes
-- Sin tarifas ocultas - solo pagas cuando мы cobramos por ti
+- Sin tarifas ocultas - solo pagas cuando cobramos por ti
 
 POR QUÉ ELEGIR MBMB:
 - Especialistas certificados por AAPC
 - Cumplimiento con HIPAA y HITECH
 - Especializado en atención médica de Miami y Florida
-- Servicio personalizado con tiempos de respuesta más rápidos
-- Tasa de rechazos típicamente bajo 5%
+- Servicio personalizado con comunicación receptiva
 - Consulta inicial gratuita y auditoría de facturación
 
 ESPECIALIDADES SERVIDAS:
@@ -108,7 +106,7 @@ ENFÒMASYON KÌMPRI:
 
 SÈVIS YO OFRI:
 1. Faktirasyon Medikal - Sèvis ekspè pou fowisè swen sante
-2. Kodaj Medikal - Kodaj ICD-10, CPT, HCPCS ak presizyon 95%+
+2. Kodaj Medikal - Sèvis kodaj ICD-10, CPT, HCPCS
 3. Kredansyasyon - Kredansyasyon pou founisè rezo asirans (60-120 jou)
 4. Jesyon Sik Revni - Sèvis konplè RCM
 
@@ -121,8 +119,7 @@ POUKI CHWIZI MBMB:
 - Espesyalist ki soti AAPC
 - Conforme ak HIPAA ak HITECH
 - Espesyalize nan swen sante Miami ak Florida
-- Sèvis pèsonalize ak pi rapid tan repons
-- To rejte tipikal anba 5%
+- Sèvis pèsonalize ak kominikasyon reseptif
 - Konsiltasyon inisyal gratis ak auditan faktirasyon
 
 ESPESYALITE SÈVI:
