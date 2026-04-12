@@ -158,13 +158,7 @@ export default function RootLayout({ children }) {
           "https://www.instagram.com/medicalbillingmiamibeach",
           "https://www.linkedin.com/company/medical-billing-miami-beach"
         ],
-        'aggregateRating': {
-          '@type': 'AggregateRating',
-          'ratingValue': '4.9',
-          'reviewCount': '50',
-          'bestRating': '5',
-          'worstRating': '1'
-        },
+        // Note: aggregateRating removed until real reviews are collected
         'priceRange': '4-8% of collections',
         'currenciesAccepted': 'USD',
         'paymentAccepted': 'Cash, Check, Credit Card, ACH Transfer',

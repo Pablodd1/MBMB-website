@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "Why should I outsource my medical billing to MBMB?",
-    answer: "Outsourcing medical billing reduces administrative burden by up to 70%, minimizes claim denials, ensures compliance with the latest coding standards, and ultimately maximizes your practice's revenue. We specialize in Miami's healthcare market and Florida payer requirements."
+    answer: "Outsourcing medical billing can significantly reduce administrative burden, minimize claim denials, ensure compliance with the latest coding standards, and help maximize your practice's revenue. We specialize in Miami's healthcare market and Florida payer requirements."
   },
   {
     question: "How long does the provider credentialing process take?",
@@ -33,11 +33,11 @@ const faqs = [
   },
   {
     question: "What is your medical billing pricing structure?",
-    answer: "Most practices pay 5-6% of collected revenue. No setup fees. No hidden costs. Only pay when we collect. Example: A practice with $500K annual billing typically pays $25K-30K/year. We also offer flat-rate options for larger practices."
+    answer: "Most practices pay 5-6% of collected revenue. No setup fees. No hidden costs. Only pay when we collect. Pricing varies based on practice size and volume. Contact us for a customized quote."
   },
   {
     question: "How do you handle claim denials and rejections?",
-    answer: "Our team proactively manages denials with a dedicated follow-up process. We analyze denial patterns, appeal when necessary, and implement corrective measures to reduce future denials. Our denial rate is typically under 5%, significantly below industry average."
+    answer: "Our team proactively manages denials with a dedicated follow-up process. We analyze denial patterns, appeal when necessary, and implement corrective measures to reduce future denials."
   },
   {
     question: "Do you work with my existing EHR/EMR system?",
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     question: "Can you help with Florida Medicaid billing?",
-    answer: "Yes, we are experts in Florida Medicaid billing requirements and regulations. We handle all aspects of Medicaid claims including eligibility verification, prior authorizations, claim submission, and follow-up to maximize reimbursements."
+    answer: "Yes, we have extensive experience with Florida Medicaid billing requirements and regulations. We handle all aspects of Medicaid claims including eligibility verification, prior authorizations, claim submission, and follow-up to help maximize reimbursements."
   },
   {
     question: "How do I get started with MBMB?",
@@ -65,7 +65,7 @@ const faqs = [
   },
   {
     question: "What makes MBMB different from other Miami medical billing companies?",
-    answer: "Unlike larger national companies, we're locally focused on Miami and Florida healthcare. Our team has deep knowledge of Florida Medicaid, Medicare, and commercial payer requirements. We offer personalized service, faster response times, and competitive pricing without the bureaucracy of large corporations."
+    answer: "Unlike larger national companies, we're locally focused on Miami and Florida healthcare. Our team has deep knowledge of Florida Medicaid, Medicare, and commercial payer requirements. We offer personalized service, responsive communication, and competitive pricing without the bureaucracy of large corporations."
   }
 ];
 
@@ -104,7 +104,7 @@ const solutions = [
 ]
 const benefits = [
   {
-    label: "Accurate Coding Guarantee:",
+    label: "Accurate Medical Coding:",
     description: "Our expert team ensures precise coding for maximum reimbursement, minimizing errors and denials."
   },
   {
@@ -147,7 +147,7 @@ const joinUs = {
   src: "/raster/join-medical-billing-coding-miami-beach-today.webp",
   alt: "join-medical-billing-coding-miami-beach-today",
   h2: "Free Consultation",
-  p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at maximizing your reimbursement potential and ensuring the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are second to none.",
+  p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at helping maximize your reimbursement potential and supporting the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are designed to meet your needs.",
   actions: {
     label: "Consult Now",
     href: '/consultation'
@@ -297,9 +297,9 @@ export default function Home() {
           
           {/* Centered Feature List - Vertical Stack, No Boxes, Just Bold Text */}
           <div className="flex flex-col items-center justify-center gap-2 my-8">
-            <p className="text-gray-900 font-bold text-xl">✓ 50+ Miami practices</p>
-            <p className="text-gray-900 font-bold text-xl">✓ 98% clean claim rate</p>
-            <p className="text-gray-900 font-bold text-xl">✓ 23% revenue increase</p>
+            <p className="text-gray-900 font-bold text-xl">✓ Serving Miami Healthcare Providers</p>
+            <p className="text-gray-900 font-bold text-xl">✓ High Clean Claim Rate</p>
+            <p className="text-gray-900 font-bold text-xl">✓ Revenue Optimization Focus</p>
           </div>
 
           {/* Centered Trust Badges - Monochromatic/Text Only */}
