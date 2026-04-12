@@ -15,6 +15,8 @@ export default function AIChat() {
   const [hasGreeted, setHasGreeted] = useState(false);
   const [language, setLanguage] = useState('en'); // en, es, ht
   const recognitionRef = useRef(null);
+  const audioRef = useRef(null);
+  const currentAudioRef = useRef(null);
 
   useEffect(() => {
     let storedSession = localStorage.getItem('mbmb_chat_session');
@@ -54,42 +56,67 @@ export default function AIChat() {
     };
   }, []);
 
-  // Speak text
-  const speakText = (text) => {
-    if (!isSpeaking || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const cleanText = text.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.rate = 0.95;
-    utterance.pitch = 1.05;
-    utterance.volume = 1.0;
-    const voices = window.speechSynthesis.getVoices();
-    let langCode = language === 'ht' ? 'ht' : language === 'es' ? 'es' : 'en';
-    const preferredVoice = voices.find(v => v.lang.startsWith(langCode)) ||
-                           voices.find(v => v.name.includes('Google') && v.lang.startsWith(langCode)) ||
-                           voices.find(v => v.lang.startsWith('en'));
-    if (preferredVoice) utterance.voice = preferredVoice;
-    window.speechSynthesis.speak(utterance);
+  // Speak text using Google Cloud TTS
+  const speakText = async (text) => {
+    if (!isSpeaking) return;
+    
+    // Stop any currently playing audio
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current = null;
+    }
+    
+    try {
+      const cleanText = text.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
+      if (!cleanText) return;
+      
+      const res = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: cleanText, language })
+      });
+      
+      if (!res.ok) {
+        console.error('TTS API error:', await res.json());
+        return;
+      }
+      
+      const data = await res.json();
+      const audioContent = data.audioContent;
+      
+      // Decode base64 and play audio
+      const audioBlob = base64ToBlob(audioContent, 'audio/mpeg');
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      currentAudioRef.current = audio;
+      
+      audio.onended = () => {
+        URL.revokeObjectURL(audioUrl);
+        currentAudioRef.current = null;
+      };
+      
+      await audio.play();
+    } catch (err) {
+      console.error('TTS playback error:', err);
+    }
   };
 
-  // Load voices
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+  // Convert base64 to Blob
+  const base64ToBlob = (base64, mimeType) => {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
-    return () => {
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: mimeType });
+  };
 
   // Toggle chat
   const toggleChat = () => {
     const newOpen = !isOpen;
     setIsOpen(newOpen);
-    if (newOpen && !hasGreeted && typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    if (newOpen && !hasGreeted) {
       setTimeout(() => {
         const greetings = {
           en: "Hey there! How may I assist you today? I'm the AI virtual receptionist for Medical Billing Miami Beach. I can answer all your questions about our services, pricing, and more. If I can't help you, the owner himself will give you a call back!",
@@ -106,7 +133,10 @@ export default function AIChat() {
   const toggleVoice = () => {
     const newState = !isSpeaking;
     setIsSpeaking(newState);
-    if (!newState) window.speechSynthesis?.cancel();
+    if (!newState && currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current = null;
+    }
   };
 
   // Toggle microphone input

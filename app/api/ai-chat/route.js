@@ -145,42 +145,51 @@ ENPÌTAN: PA mande moun yo share enfòmasyon sansib (PHI, nimewo asirans, SSN) n
 
 export async function POST(request) {
   const { messages, language = 'en' } = await request.json();
-  const KIMI_API_KEY = process.env.KIMI_API_KEY;
-  
-  if (!KIMI_API_KEY) {
-    return NextResponse.json({ text: 'Server not configured. Please add KIMI_API_KEY to Vercel environment variables.' }, { status: 500 });
+  const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
+
+  if (!MINIMAX_API_KEY) {
+    return NextResponse.json(
+      { text: 'MiniMax API not configured. Please add MINIMAX_API_KEY to Vercel environment variables.' },
+      { status: 500 }
+    );
   }
-  
+
   try {
     const systemPrompt = SYSTEM_PROMPTS[language] || SYSTEM_PROMPTS.en;
     const messagesWithSystem = [
       { role: 'system', content: systemPrompt },
       ...messages
     ];
-    
-    const res = await fetch('https://api.moonshot.ai/v1/chat/completions', {
+
+    const res = await fetch('https://api.minimaxi.com/v1/text/chatcompletion_v2', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${KIMI_API_KEY}`
+        'Authorization': `Bearer ${MINIMAX_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'kimi-k2.5',
+        model: 'MiniMax-M2.7',
         messages: messagesWithSystem
       })
     });
-    
+
     const data = await res.json();
-    
+
     if (!res.ok) {
-      console.error('Kimi API error:', data);
-      return NextResponse.json({ text: data?.error?.message || 'API error: ' + res.status }, { res: res.status });
+      console.error('MiniMax API error:', data);
+      return NextResponse.json(
+        { text: data?.error?.message || 'API error: ' + res.status },
+        { status: res.status }
+      );
     }
-    
+
     const text = data?.choices?.[0]?.message?.content?.trim();
     return NextResponse.json({ text });
   } catch (err) {
     console.error('Chat error:', err);
-    return NextResponse.json({ text: 'Error generating response: ' + err.message }, { status: 500 });
+    return NextResponse.json(
+      { text: 'Error generating response: ' + err.message },
+      { status: 500 }
+    );
   }
 }
