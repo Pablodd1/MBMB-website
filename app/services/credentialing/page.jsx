@@ -80,7 +80,7 @@ const processTimeline = [
   {
     step: 4,
     title: 'Network Approval',
-    description: 'Once approved, we ensure you're loaded correctly in payer systems and ready to start billing for patients.',
+    description: "Once approved, we ensure you're loaded correctly in payer systems and ready to start billing for patients.",
     days: 'Days 61-120'
   }
 ]
