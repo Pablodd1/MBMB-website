@@ -6,7 +6,7 @@ import Button from '@UTILS/button'
 const credentialingServices = [
   {
     title: 'CAQH Enrollment',
-    description: 'Complete CAQH provider enrollment and maintenance. We handle every aspect of your CAQH profile to ensure you're ready to contract with insurance networks.',
+    description: "Complete CAQH provider enrollment and maintenance. We handle every aspect of your CAQH profile to ensure you're ready to contract with insurance networks.",
     icon: '/svg/credentialing.svg',
     features: [
       'CAQH profile creation',
