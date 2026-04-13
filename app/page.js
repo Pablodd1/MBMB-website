@@ -218,10 +218,6 @@ const links = [
     icon: "whatsapp"
   },
   {
-    href: "https://www.linkedin.com/company/medical-billing-miami-beach",
-    icon: "linkedin"
-  },
-  {
     href: "https://www.instagram.com/medicalbillingmiamibeach",
     icon: "instagram"
   }

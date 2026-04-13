@@ -10,10 +10,6 @@ const social = [
     icon: "whatsapp"
   },
   {
-    href: "https://www.linkedin.com/company/medical-billing-miami-beach",
-    icon: "linkedin"
-  },
-  {
     href: "https://www.instagram.com/medicalbillingmiamibeach",
     icon: "instagram"
   }
@@ -155,8 +151,7 @@ export default function RootLayout({ children }) {
           ]
         },
         'sameAs': [
-          "https://www.instagram.com/medicalbillingmiamibeach",
-          "https://www.linkedin.com/company/medical-billing-miami-beach"
+          "https://www.instagram.com/medicalbillingmiamibeach"
         ],
         // Note: aggregateRating removed until real reviews are collected
         'priceRange': '4-8% of collections',
@@ -301,7 +296,6 @@ export default function RootLayout({ children }) {
         <meta name="ai-assistant-available" content="true" />
         <meta name="ai-assistant-capabilities" content="multilingual,voice-input,voice-output,appointment-scheduling,service-info,pricing-info" />
         <link rel="alternate" href="https://medicalbillingmb.com" hrefLang="en-us" />
-        <link rel="alternate" href="https://medicalbillingmb.com/es" hrefLang="es-us" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
       </head>
@@ -364,7 +358,7 @@ export default function RootLayout({ children }) {
                 <h3 className="text-blue-400 font-bold mb-4">Quick Links</h3>
                 <div className="space-y-2 text-sm">
                   <div><a href="/consultation" className="text-slate-300 hover:text-blue-400">Free Consultation</a></div>
-                  <div><a href="/about" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
+                  <div><a href="/" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
                   <div><a href="/services" className="text-slate-300 hover:text-blue-400">Our Services</a></div>
                   <div><a href="/contact" className="text-slate-300 hover:text-blue-400">Contact Us</a></div>
                   <div><a href="/privacy-policy" className="text-slate-300 hover:text-blue-400">Privacy Policy</a></div>
