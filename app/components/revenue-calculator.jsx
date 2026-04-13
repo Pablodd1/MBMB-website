@@ -35,19 +35,20 @@ export default function RevenueCalculator() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-36 right-20 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-105 flex items-center gap-3"
         aria-label="Open Revenue Calculator"
         title="Open Revenue Calculator"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
+        <span className="font-semibold text-base">Revenue Calculator</span>
       </button>
     );
   }
 
   return (
-    <div className="fixed bottom-36 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)]">
+    <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 w-[420px] max-w-[calc(100vw-32px)]">
       <div className="bg-white rounded-2xl shadow-2xl border border-green-500/30 overflow-hidden">
         <div className="p-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white" aria-label="Revenue Calculator header" role="region" aria-labelledby="revcalc-header-title revcalc-header-sub">
           <div id="revcalc-header-title" className="flex items-center justify-between" >
