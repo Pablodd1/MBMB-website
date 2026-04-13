@@ -1,31 +1,31 @@
 export default function sitemap() {
   return [
     {
-      url: 'https://pablodd1-mbmb-website.vercel.app',
+      url: 'https://medicalbillingmb.com',
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: 'https://pablodd1-mbmb-website.vercel.app/consultation',
+      url: 'https://medicalbillingmb.com/consultation',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://pablodd1-mbmb-website.vercel.app/billing-details',
+      url: 'https://medicalbillingmb.com/billing-details',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://pablodd1-mbmb-website.vercel.app/agreement-sign-up',
+      url: 'https://medicalbillingmb.com/agreement-sign-up',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://pablodd1-mbmb-website.vercel.app/business-details',
+      url: 'https://medicalbillingmb.com/business-details',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
