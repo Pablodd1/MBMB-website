@@ -153,72 +153,66 @@ export default function ServicesPage() {
       {/* Why Choose MBMB Section */}
       <section className="py-16 lg:py-24 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Why Choose <span className="text-pink2">MBMB</span> for Your Medical Billing?
-              </h2>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                Since 2015, we've been Miami's trusted partner in healthcare revenue management. Our team of AAPC-certified specialists combines deep industry knowledge with cutting-edge technology to deliver exceptional results.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-pink2/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">95%+ Clean Claim Rate</h4>
-                    <p className="text-gray-400 text-sm">Our rigorous coding and documentation standards ensure minimal claim denials</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-pink2/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">No Upfront Costs</h4>
-                    <p className="text-gray-400 text-sm">We work on contingency - you only pay when we collect for you</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-pink2/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">24/7 AI Assistant</h4>
-                    <p className="text-gray-400 text-sm">Multilingual AI chatbot available around the clock to answer patient questions</p>
-                  </div>
-                </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose <span className="text-pink2">MBMB</span> for Your Medical Billing?
+            </h2>
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+              Since 2015, we've been Miami's trusted partner in healthcare revenue management. Our team of AAPC-certified specialists combines deep industry knowledge with cutting-edge technology to deliver exceptional results.
+            </p>
+          </div>
+
+          {/* 3-Column Benefits Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
+              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">✓</span>
               </div>
+              <h4 className="font-semibold text-xl mb-2">95%+ Clean Claim Rate</h4>
+              <p className="text-gray-400 text-sm">Our rigorous coding and documentation standards ensure minimal claim denials</p>
             </div>
-            
-            <div className="relative">
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
-                <h3 className="text-2xl font-bold mb-6 text-center">Ready to Maximize Your Revenue?</h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                    <span className="text-gray-300">Service Area</span>
-                    <span className="text-white font-semibold">Miami & South Florida</span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                    <span className="text-gray-300">Response Time</span>
-                    <span className="text-white font-semibold">&lt; 24 Hours</span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                    <span className="text-gray-300">Initial Consultation</span>
-                    <span className="text-green-400 font-semibold">FREE</span>
-                  </div>
-                  <div className="flex justify-between items-center py-3">
-                    <span className="text-gray-300">Pricing</span>
-                    <span className="text-white font-semibold">4-8% of Collections</span>
-                  </div>
-                </div>
-                <Button href="/consultation" text="Schedule Free Consultation" colors="w-full bg-pink2 text-white hover:bg-pink2/80 py-4" />
-                <p className="text-center text-gray-500 text-sm mt-4">No commitment required</p>
+
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
+              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">$</span>
               </div>
+              <h4 className="font-semibold text-xl mb-2">No Upfront Costs</h4>
+              <p className="text-gray-400 text-sm">We work on contingency - you only pay when we collect for you</p>
+            </div>
+
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
+              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">🤖</span>
+              </div>
+              <h4 className="font-semibold text-xl mb-2">24/7 AI Assistant</h4>
+              <p className="text-gray-400 text-sm">Multilingual AI chatbot available around the clock to answer patient questions</p>
+            </div>
+          </div>
+
+          {/* Centered CTA Card */}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
+              <h3 className="text-2xl font-bold mb-6 text-center">Ready to Maximize Your Revenue?</h3>
+              <div className="space-y-0 mb-8">
+                <div className="flex justify-between items-center py-3 border-b border-gray-700">
+                  <span className="text-gray-300">Service Area</span>
+                  <span className="text-white font-semibold">Miami &amp; South Florida</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-700">
+                  <span className="text-gray-300">Response Time</span>
+                  <span className="text-white font-semibold">&lt; 24 Hours</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-700">
+                  <span className="text-gray-300">Initial Consultation</span>
+                  <span className="text-green-400 font-semibold">FREE</span>
+                </div>
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-gray-300">Pricing</span>
+                  <span className="text-white font-semibold">4-8% of Collections</span>
+                </div>
+              </div>
+              <Button href="/consultation" text="Schedule Free Consultation" colors="w-full bg-pink2 text-white hover:bg-pink2/80 py-4" />
+              <p className="text-center text-gray-500 text-sm mt-4">No commitment required</p>
             </div>
           </div>
         </div>

@@ -525,6 +525,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section className="bg-gray-900 text-white py-16 my-10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing Insights</h2>
+            <p className="text-gray-400">Expert tips, compliance updates, and revenue cycle insights for Miami healthcare practices</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
+              <div className="relative h-40">
+                <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101" fill className="object-cover" />
+              </div>
+              <div className="p-5">
+                <p className="text-gray-400 text-xs mb-2">April 12, 2026</p>
+                <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2">The complete guide to medical billing for Miami doctors.</p>
+                <Button href="/blog/medical-billing-101" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
+              </div>
+            </div>
+            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
+              <div className="relative h-40">
+                <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide" fill className="object-cover" />
+              </div>
+              <div className="p-5">
+                <p className="text-gray-400 text-xs mb-2">April 14, 2026</p>
+                <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide</h3>
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a system to fight back.</p>
+                <Button href="/blog/denial-management-guide" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
+              </div>
+            </div>
+            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
+              <div className="relative h-40">
+                <Image src="/raster/medical-coding-icd.webp" alt="Miami Medicaid Billing" fill className="object-cover" />
+              </div>
+              <div className="p-5">
+                <p className="text-gray-400 text-xs mb-2">April 15, 2026</p>
+                <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2">Navigate Florida Medicaid billing complexities with confidence.</p>
+                <Button href="/blog/miami-medicaid-billing" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <Button href="/blog" text="View All Blog Posts" colors="bg-white text-gray-900 hover:bg-pink2 hover:text-white" />
+          </div>
+        </div>
+      </section>
+
       {/* SEO/GEO FAQ Section */}
       <section className="max-w-5xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-white to-gray-50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-xl" >
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Medical Billing Services for Miami Healthcare Practices</h2>
