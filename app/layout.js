@@ -397,6 +397,13 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
+            {/* HIPAA Disclaimer */}
+            <div className="border-t border-gray-800 pt-6 pb-4 text-center">
+              <p className="text-slate-500 text-xs max-w-4xl mx-auto">
+                <strong className="text-slate-400">HIPAA Compliance Notice:</strong> Medical Billing Miami Beach (MBMB) is fully committed to protecting your protected health information (PHI) in accordance with the Health Insurance Portability and Accountability Act (HIPAA). We implement strict administrative, physical, and technical safeguards to ensure the confidentiality, integrity, and security of all patient data. Our team undergoes regular HIPAA training, and we maintain Business Associate Agreements (BAAs) with all relevant partners. For questions about our privacy practices or to request a copy of our Notice of Privacy Practices, please contact us at Jasmel@medicalbillingmb.com.
+              </p>
+            </div>
+
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 pt-8 text-center text-slate-400 text-sm">
               <p>© 2025 Medical Billing Miami Beach (MBMB). All rights reserved.</p>
