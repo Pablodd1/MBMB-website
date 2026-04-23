@@ -15,6 +15,7 @@ import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 import SmartImage from "./components/SmartImage";
 import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
+import DarkHeroBackground from "./components/DarkHeroBackground";
 
 const faqs = [
   {
@@ -265,22 +266,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-white" >
-        {/* Hero video background - full bleed cinematic */}
+      <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-black" >
+        {/* Dark animated canvas background */}
         <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="w-full h-full object-cover" 
-            poster="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif"
-            onError={() => setVideoFailed(true)}
-          >
-            <source src="/assets/medical-presentation (3).mp4" type="video/mp4" />
-          </video>
-          {/* Dark overlay with gradient for text readability */}
-          <div className="absolute inset-0 bg-black/60" />
+          <DarkHeroBackground />
           {/* Bottom gradient fade */}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
         </div>
