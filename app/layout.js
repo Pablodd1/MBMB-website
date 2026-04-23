@@ -357,6 +357,7 @@ export default function RootLayout({ children }) {
               <div>
                 <h3 className="text-blue-400 font-bold mb-4">Quick Links</h3>
                 <div className="space-y-2 text-sm">
+                  <div><a href="/blog" className="text-slate-300 hover:text-blue-400">Blog</a></div>
                   <div><a href="/consultation" className="text-slate-300 hover:text-blue-400">Free Consultation</a></div>
                   <div><a href="/" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
                   <div><a href="/services" className="text-slate-300 hover:text-blue-400">Our Services</a></div>

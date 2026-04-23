@@ -14,6 +14,20 @@ const posts = [
     image: '/raster/Medical-Billing-and-Coding-Specialists.webp',
     date: '2026-04-12',
   },
+  {
+    slug: 'denial-management-guide',
+    title: 'Denial Management: A Complete Guide for Miami Practices',
+    description: 'Every denied claim is lost revenue—unless you have a system to fight back. Learn how top Miami practices are recovering thousands in denied claims.',
+    image: '/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif',
+    date: '2026-04-14',
+  },
+  {
+    slug: 'miami-medicaid-billing',
+    title: 'Florida Medicaid Billing for Miami Healthcare Providers',
+    description: 'Everything Miami doctors need to know about Florida Medicaid billing. Coverage requirements, common denials, AHCA compliance, and how to maximize reimbursements.',
+    image: '/raster/medical-coding-icd.webp',
+    date: '2026-04-15',
+  },
 ];
 
 export default function BlogIndex() {
