@@ -13,6 +13,8 @@ import VoiceCallButton from "./voice-call/voice-call.jsx";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 import SmartImage from "./components/SmartImage";
+import SplashScreen from "./components/SplashScreen";
+import RotatingLogo3D from "./components/RotatingLogo3D";
 
 const faqs = [
   {
@@ -251,64 +253,74 @@ const coding = {
 
 export default function Home() {
   const [videoFailed, setVideoFailed] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   return (
     <main className=" ">
+      {/* Splash Screen - Logo intro on first load */}
+      {showSplash && (
+        <SplashScreen onComplete={() => setShowSplash(false)} />
+      )}
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-white" >
-        {/* Hero video background - small and compact */}
+        {/* Hero video background - full bleed cinematic */}
         <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-          <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20" onError={() => {}}>
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="w-full h-full object-cover" 
+            poster="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif"
+            onError={() => setVideoFailed(true)}
+          >
             <source src="/assets/medical-presentation (3).mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 bg-white/80"></div>
+          {/* Dark overlay with gradient for text readability */}
+          <div className="absolute inset-0 bg-black/60" />
+          {/* Bottom gradient fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
         </div>
 
-        <figure className="h-fit w-fit mx-auto py-8" >
-          <SmartImage
-            className="mx-auto"
-            src={'/mbmb-black.png'}
-            width={160}
-            height={160}
-            alt="Medical Billing Miami Beach Logo"
-            priority
-          />
-        </figure>
+        {/* 3D Rotating Logo - Floating above content */}
+        <div className="relative z-10 mb-6">
+          <RotatingLogo3D size={140} />
+        </div>
 
-        <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center" >
+        <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
           <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 text-center font-bold" >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg" >
               Medical Billing Miami Beach
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mt-3 font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mt-3 font-medium drop-shadow-md">
               Expert Medical Billing, Coding & Revenue Cycle Management in Miami, Florida
             </p>
           </header>
-          <p className="text-gray-800 mt-6 text-sm md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
+          <p className="text-gray-100 mt-6 text-sm md:text-lg max-w-2xl mx-auto text-center leading-relaxed drop-shadow-md">
             Miami's Premier Medical Billing Partner Since 2015 — Trusted by healthcare providers across Florida. We provide comprehensive medical billing services in Miami, medical coding, and revenue cycle management. We maximize your revenue while you focus on patient care.
           </p>
           
-          {/* Centered Feature List - Vertical Stack, No Boxes, Just Bold Text */}
+          {/* Centered Feature List - White text for video background */}
           <div className="flex flex-col items-center justify-center gap-2 my-8">
-            <p className="text-gray-900 font-bold text-xl">✓ Serving Miami Healthcare Providers</p>
-            <p className="text-gray-900 font-bold text-xl">✓ High Clean Claim Rate</p>
-            <p className="text-gray-900 font-bold text-xl">✓ Revenue Optimization Focus</p>
+            <p className="text-white font-bold text-xl drop-shadow-md">✓ Serving Miami Healthcare Providers</p>
+            <p className="text-white font-bold text-xl drop-shadow-md">✓ High Clean Claim Rate</p>
+            <p className="text-white font-bold text-xl drop-shadow-md">✓ Revenue Optimization Focus</p>
           </div>
 
-          {/* Centered Trust Badges - Monochromatic/Text Only */}
+          {/* Trust Badges - Light style for dark bg */}
           <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
-            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">AAPC</span>
-            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">HIPAA</span>
-            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">MGMA</span>
-            <span className="text-gray-500 font-medium border border-gray-300 px-4 py-1.5 rounded">FMA</span>
+            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">AAPC</span>
+            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">HIPAA</span>
+            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">MGMA</span>
+            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">FMA</span>
           </div>
           
-          {/* PRIMARY CTA - Single Dark Theme Button */}
+          {/* PRIMARY CTA */}
           <div className="mb-6">
-            <Button href="/consultation" text='Free Billing Audit — See How Much You Are Losing' colors="bg-gray-900 text-white hover:bg-black text-lg px-10 py-4" className="w-full md:w-auto" />
+            <Button href="/consultation" text='Free Billing Audit — See How Much You Are Losing' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30" className="w-full md:w-auto" />
           </div>
         </article>
         
