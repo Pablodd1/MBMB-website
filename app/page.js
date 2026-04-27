@@ -309,7 +309,7 @@ export default function Home() {
           
           {/* PRIMARY CTA */}
           <div className="mb-6">
-            <Button href="/consultation" text='Free Billing Audit — See How Much You Are Losing' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30" className="w-full md:w-auto" />
+            <Button href="/consultation" text='🚀 Free Billing Audit — See How Much You Are Losing' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30 animate-pulse" className="w-full md:w-auto" />
           </div>
         </article>
         
@@ -784,10 +784,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sticky Bottom CTA Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-pink2 to-myblack text-white py-3 px-4 z-50 shadow-2xl transform transition-transform duration-300">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="text-center sm:text-left">
+            <p className="font-bold text-sm sm:text-base">📢 Free Medical Billing Audit — Limited Spots This Month</p>
+          </div>
+          <div className="flex gap-2">
+            <Button href="/consultation" text="Get Free Audit" colors="bg-white text-pink2 hover:bg-gray-100 text-sm px-4 py-2" />
+            <a href="tel:+1-786-643-2099" className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-md font-bold transition-colors">
+              📞 Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Floating WhatsApp CTA */}
-      <a 
-        href="https://api.whatsapp.com/send?phone=17866432099" 
-        target="_blank" 
+      <a
+        href="https://api.whatsapp.com/send?phone=17866432099"
+        target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-20 md:bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors z-50 flex items-center justify-center"
         aria-label="Contact us on WhatsApp"

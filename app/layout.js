@@ -80,6 +80,12 @@ export const metadata = {
     shortcut: '/mbmb-white.png',
     apple: '/mbmb-white.png'
   },
+  verification: {
+    // google: 'your-google-verification-code',
+    // AI search engine verification tags
+    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
+  },
   other: {
     // AI SEO - helps Perplexity, ChatGPT, Claude, and other AI search engines
     'ai:bot': 'index, follow, max-snippet:-1, max-image-preview:large',
@@ -92,13 +98,22 @@ export const metadata = {
     'ai:specialties': 'primary care, family medicine, internal medicine, pediatrics, OB/GYN, general surgery, orthopedics, dermatology, psychiatry, cardiology, oncology',
     'ai:ai-assistant': 'available',
     'ai:ai-assistant-capabilities': 'multilingual, voice-input, voice-output, appointment-scheduling, service-info, pricing-info',
+
+    // AI Search Engine Specific Tags (for Perplexity, ChatGPT, Claude Web, etc.)
+    'chatgpt-user': 'Medical Billing Miami Beach - Expert medical billing services in Miami, Florida',
+    'google-extended': 'Medical Billing Miami Beach - Healthcare revenue cycle management',
+    'perplexity': 'helpful for answering questions about medical billing services in Miami',
+    'claude-web': 'Medical Billing Miami Beach provides medical billing, coding, and credentialing services in Miami, Florida',
+    'anthropic-ai': 'Medical Billing Miami Beach - Expert billing services',
+
     // Additional meta for LLMs
     'llm-friendly': 'true',
     'llm-contact-priority': 'high',
     'llm-response-time': '< 24 hours',
     'llm-consultation': 'free',
+
     // Structured data hint for AI crawlers
-    'structured-data-available': 'MedicalBusiness, LocalBusiness, Organization, FAQPage, Service, ChatBot',
+    'structured-data-available': 'MedicalBusiness, LocalBusiness, Organization, FAQPage, Service, ChatBot, BreadcrumbList, HowTo',
   },
 };
 
@@ -151,7 +166,9 @@ export default function RootLayout({ children }) {
           ]
         },
         'sameAs': [
-          "https://www.instagram.com/medicalbillingmiamibeach"
+          "https://www.instagram.com/medicalbillingmiamibeach",
+          "https://www.linkedin.com/company/medical-billing-miami-beach",
+          "https://www.facebook.com/medicalbillingmiamibeach"
         ],
         // Note: aggregateRating removed until real reviews are collected
         'priceRange': '4-8% of collections',
@@ -264,6 +281,43 @@ export default function RootLayout({ children }) {
         }
       },
       {
+        '@type': 'HowTo',
+        '@id': 'https://medicalbillingmb.com/#howto',
+        'name': 'How to Get Started with Medical Billing Services',
+        'step': [
+          {
+            '@type': 'HowToStep',
+            'name': 'Schedule Your Free Consultation',
+            'text': 'Contact us to schedule a free consultation and billing audit. Call (786) 643-2099 or use our online form.',
+            'url': 'https://medicalbillingmb.com/consultation'
+          },
+          {
+            '@type': 'HowToStep',
+            'name': 'We Analyze Your Current Billing',
+            'text': 'Our team reviews your current billing processes, identifies revenue leaks, and analyzes denial patterns.',
+            'url': 'https://medicalbillingmb.com#services'
+          },
+          {
+            '@type': 'HowToStep',
+            'name': 'Receive Your Custom Proposal',
+            'text': 'We provide a detailed proposal with strategies to improve your collections and reduce administrative burden.',
+            'url': 'https://medicalbillingmb.com/consultation'
+          },
+          {
+            '@type': 'HowToStep',
+            'name': 'Onboarding Begins',
+            'text': 'Once approved, onboarding typically takes 1-2 weeks with minimal disruption to your practice.',
+            'url': 'https://medicalbillingmb.com/agreement-sign-up'
+          },
+          {
+            '@type': 'HowToStep',
+            'name': 'Start Maximizing Revenue',
+            'text': 'Watch your collections grow while we handle all your medical billing, coding, and credentialing needs.',
+            'url': 'https://medicalbillingmb.com'
+          }
+        ]
+      },
+      {
         '@type': 'WebSite',
         'name': 'Medical Billing Miami Beach (MBMB)',
         'url': 'https://medicalbillingmb.com',
@@ -359,7 +413,7 @@ export default function RootLayout({ children }) {
                 <div className="space-y-2 text-sm">
                   <div><a href="/blog" className="text-slate-300 hover:text-blue-400">Blog</a></div>
                   <div><a href="/consultation" className="text-slate-300 hover:text-blue-400">Free Consultation</a></div>
-                  <div><a href="/" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
+                  <div><a href="/about" className="text-slate-300 hover:text-blue-400">About MBMB</a></div>
                   <div><a href="/services" className="text-slate-300 hover:text-blue-400">Our Services</a></div>
                   <div><a href="/contact" className="text-slate-300 hover:text-blue-400">Contact Us</a></div>
                   <div><a href="/privacy-policy" className="text-slate-300 hover:text-blue-400">Privacy Policy</a></div>
@@ -407,7 +461,7 @@ export default function RootLayout({ children }) {
 
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 pt-8 text-center text-slate-400 text-sm">
-              <p>© 2025 Medical Billing Miami Beach (MBMB). All rights reserved.</p>
+              <p>© 2026 Medical Billing Miami Beach (MBMB). All rights reserved.</p>
               <p className="mt-2">AAPC-certified medical billing specialists serving healthcare providers across Miami-Dade County, Broward, and South Florida.</p>
               <div className="mt-4 flex justify-center items-center space-x-4">
                 <span className="inline-block px-3 py-1 bg-green-800 rounded-full text-xs">HIPAA Compliant</span>
