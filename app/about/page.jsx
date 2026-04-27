@@ -1,4 +1,3 @@
-'use client'
 import Button from "@UTILS/button";
 import Image from "next/image";
 
