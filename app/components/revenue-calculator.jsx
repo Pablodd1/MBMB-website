@@ -5,7 +5,7 @@ export default function RevenueCalculator() {
   const [isOpen, setIsOpen] = useState(false);
   const [billingVolume, setBillingVolume] = useState(50000);
   const [currentDenialRate, setCurrentDenialRate] = useState(15);
-  const [mbmbRate, setMbmbRate] = useState(5);
+  const [mbmbRate, setMbmbRate] = useState(5.6);
 
   const [results, setResults] = useState({
     currentLost: 0,
@@ -160,7 +160,7 @@ export default function RevenueCalculator() {
                 MBMB Service Tier
               </label>
               <div className="grid grid-cols-4 gap-2">
-                {[5, 5.5, 6, 7].map((rate) => (
+                {[5.6, 6.5, 8, 10].map((rate) => (
                   <button
                     key={rate}
                     onClick={() => setMbmbRate(rate)}
@@ -172,7 +172,7 @@ export default function RevenueCalculator() {
                   >
                     {rate}%
                     <div className="text-xs opacity-70 font-normal">
-                      {rate === 5 ? 'Base' : rate === 5.5 ? 'Std' : rate === 6 ? 'Prem' : 'Ent'}
+                      {rate === 5.6 ? 'Base' : rate === 6.5 ? 'Std' : rate === 8 ? 'Prem' : 'Ent'}
                     </div>
                   </button>
                 ))}
