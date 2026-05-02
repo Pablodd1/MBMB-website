@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: "What is your medical billing pricing structure?",
-    answer: "Most practices pay 5-6% of collected revenue. No setup fees. No hidden costs. Only pay when we collect. Pricing varies based on practice size and volume. Contact us for a customized quote."
+    answer: "Most practices pay 5.0% of collected revenue. No setup fees. No hidden costs. Only pay when we collect. Pricing varies based on practice size, volume, and revenue. Contact us for a customized quote."
   },
   {
     question: "How do you handle claim denials and rejections?",

@@ -31,7 +31,7 @@ async function connect() {
       client = new MongoClient(DECRYPTED_URI, options);
       await client.connect();
       lastConnectionTime = now;
-      console.log("🔗 Connected to MongoDB at", new Date(lastConnectionTime).toISOString());
+      // Connection successful
     } catch (err) {
       console.error("❌ Failed to connect to MongoDB:", err);
       throw err;
