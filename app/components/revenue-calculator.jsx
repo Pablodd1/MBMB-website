@@ -49,7 +49,7 @@ export default function RevenueCalculator() {
         </div>
         {/* Hover label */}
         <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs font-semibold text-[#026711] whitespace-nowrap bg-white/90 px-2 py-0.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          Revenue Calculator
+          Calculate Fees
         </span>
       </button>
     );
@@ -70,8 +70,8 @@ export default function RevenueCalculator() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-base leading-tight">Revenue Calculator</h3>
-                <p className="text-xs text-white/75">See how much MBMB can save your practice</p>
+                <h3 className="font-bold text-sm leading-tight">Calculate Fees</h3>
+                <p className="text-[10px] text-white/75">See how much MBMB can save</p>
               </div>
             </div>
             <button
@@ -182,8 +182,8 @@ export default function RevenueCalculator() {
 
           {/* Results Panel */}
           <div className="mt-5 p-4 bg-gradient-to-br from-[#026711]/5 to-[#026711]/10 rounded-2xl border-2 border-[#026711]/20">
-            <h4 className="font-bold text-gray-900 text-center text-sm mb-3 uppercase tracking-wide">
-              Your Potential Gains with MBMB
+            <h4 className="font-bold text-gray-900 text-center text-xs mb-3 uppercase tracking-wide">
+              Your Potential Savings with MBMB
             </h4>
             <div className="grid grid-cols-2 gap-3">
               <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-gray-100">

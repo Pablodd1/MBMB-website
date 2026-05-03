@@ -18,6 +18,7 @@ import RotatingLogo3D from "./components/RotatingLogo3D";
 import DarkHeroBackground from "./components/DarkHeroBackground";
 
 import FloatingVideo from "./components/FloatingVideo";
+import AIVoiceCallButton from "./components/AIVoiceCallButton";
 
 const faqs = [
   {
@@ -340,14 +341,17 @@ export default function Home() {
       {/* Real-time AI assistant widget */}
       <AIChat />
       
-      {/* Revenue Calculator */}
+      {/* Floating Video - scrolls with page */}
+      <FloatingVideo />
+      
+      {/* Calculate Fees Calculator */}
       <RevenueCalculator />
       
       {/* Lead Magnet Popup */}
       <LeadMagnetPopup />
       
-      {/* Voice call button - AI receptionist */}
-      <VoiceCallButton />
+      {/* AI Front Desk Voice Call */}
+      <AIVoiceCallButton />
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
         <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
@@ -785,9 +789,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* Floating Video - Lady talking about MBMB */}
-      <FloatingVideo />
 
       {/* Floating WhatsApp CTA */}
       <a 

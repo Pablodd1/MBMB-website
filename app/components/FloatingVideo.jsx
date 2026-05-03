@@ -1,27 +1,27 @@
 "use client";
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 export default function FloatingVideo() {
   const videoRef = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
-    // Ensure autoplay works
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Auto-play was prevented, show play button or ignore
-      });
+      videoRef.current.play().catch(() => {});
     }
   }, []);
 
   return (
-    <div className="fixed bottom-28 right-6 z-40 group">
-      {/* Pulsing attention ring */}
-      <span className="absolute -inset-2 rounded-full bg-pink-500/20 animate-ping" />
-      
-      <div className="relative w-48 h-36 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/80 bg-black">
+    <div className="w-full flex justify-center my-8 px-4">
+      <div 
+        className={`relative rounded-2xl overflow-hidden shadow-xl border-2 border-pink-500/30 bg-black transition-all duration-300 cursor-pointer ${
+          isExpanded ? 'w-full max-w-md h-64' : 'w-40 h-28'
+        }`}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
         <video
           ref={videoRef}
-          src="/assets/medical-presentation (3).mp4"
+          src="/assets/free-offer-mbmb.mp4"
           autoPlay
           muted
           loop
@@ -29,23 +29,28 @@ export default function FloatingVideo() {
           className="w-full h-full object-cover"
         />
         
-        {/* Play indicator overlay */}
-        <div className="absolute top-2 left-2 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
-          <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-          <span className="text-white text-[10px] font-bold uppercase tracking-wide">LIVE</span>
+        {/* Live indicator */}
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur-sm rounded-full px-2 py-0.5">
+          <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+          <span className="text-white text-[9px] font-bold uppercase">LIVE</span>
         </div>
         
         {/* Caption */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 pt-6">
-          <p className="text-white text-xs font-semibold text-center leading-tight">
-            Meet Your Billing Expert
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1.5 pt-4">
+          <p className="text-white text-[10px] font-semibold text-center leading-tight">
+            {isExpanded ? 'Tap to minimize' : 'Meet Your Billing Expert'}
           </p>
         </div>
         
-        {/* Hover expand hint */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          Click to expand
-        </div>
+        {/* Expand hint */}
+        {!isExpanded && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/40 rounded-full p-1">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        )}
       </div>
     </div>
   );
