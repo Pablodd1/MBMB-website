@@ -17,6 +17,8 @@ import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import DarkHeroBackground from "./components/DarkHeroBackground";
 
+import FloatingVideo from "./components/FloatingVideo";
+
 const faqs = [
   {
     question: "What medical billing services do you offer in Miami?",
@@ -783,6 +785,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Floating Video - Lady talking about MBMB */}
+      <FloatingVideo />
 
       {/* Floating WhatsApp CTA */}
       <a 
