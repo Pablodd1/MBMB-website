@@ -1,21 +1,20 @@
 import { NextResponse } from 'next/server';
 
-// Voice configurations for each language
+// Voice configurations for each language - FRIENDLIER voices
 const VOICE_CONFIG = {
   en: {
     languageCode: 'en-US',
-    name: 'en-US-Neural2-D', // Female, professional
+    name: 'en-US-Neural2-F', // Warm, friendly female voice
     ssmlGender: 'FEMALE'
   },
   es: {
     languageCode: 'es-US',
-    name: 'es-US-Neural2-A', // Female, Spanish
+    name: 'es-US-Neural2-A', // Warm Spanish female
     ssmlGender: 'FEMALE'
   },
   ht: {
-    // Haitian Creote not well supported - fall back to French-Creole or English
-    languageCode: 'ht-ht',
-    name: 'ht-ht-Standard-A',
+    languageCode: 'en-US', // Haitian Creole fallback to warm English
+    name: 'en-US-Neural2-F',
     ssmlGender: 'FEMALE'
   }
 };
@@ -55,8 +54,8 @@ export async function POST(request) {
           voice: voice,
           audioConfig: {
             audioEncoding: 'MP3',
-            speakingRate: 0.95, // Slightly slower for clarity
-            pitch: 0,
+            speakingRate: 0.92, // Slightly slower, more conversational
+            pitch: 1.5, // Slightly higher = warmer, friendlier
             sampleRateHertz: 24000
           }
         })

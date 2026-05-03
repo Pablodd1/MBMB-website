@@ -328,19 +328,24 @@ export default function RootLayout({ children }) {
         
         {/* Footer - Enhanced with HIPAA Notice, Social, Newsletter */}
         <footer className="bg-black text-white w-full pt-16 pb-8" itemScope itemType="https://schema.org/WPFooter">
-          {/* HIPAA/PHI Compliance Disclaimer */}
-          <div className="w-11/12 max-w-7xl mx-auto mb-8 px-4">
-            <div className="bg-yellow-900/30 border border-yellow-600/50 rounded-xl p-4 md:p-6">
-              <div className="flex items-start gap-3">
-                <svg className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                </svg>
-                <div>
-                  <p className="text-yellow-200 font-semibold text-sm md:text-base mb-2">NOTICE: HIPAA Compliance</p>
-                  <p className="text-yellow-100/80 text-xs md:text-sm leading-relaxed">
-                    This website uses HIPAA-compliant communication methods only. Please do not send protected health information (PHI) through WhatsApp, social media, or unsecured email. For secure communication, please call our office directly at <a href="tel:+1-786-643-2099" className="text-yellow-300 hover:text-yellow-200 underline font-semibold">(786) 643-2099</a>.
-                  </p>
-                </div>
+          {/* Trust Badges Bar */}
+          <div className="w-full border-b border-white/10 pb-8 mb-8">
+            <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-6 md:gap-10">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span>HIPAA Compliant</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                <span>AAPC Certified</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                <span>MGMA Member</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                <span>BAA Signed</span>
               </div>
             </div>
           </div>
@@ -350,7 +355,7 @@ export default function RootLayout({ children }) {
               {/* Logo and Description */}
               <div className="flex flex-col items-center md:items-start">
                 <Image src="/mbmb-white.png" alt="Medical Billing Miami Beach Logo" width={180} height={130} className="mb-4" />
-                <p className="text-slate-300 text-sm text-center md:text-left">Expert medical billing and coding services in Miami, Florida. AAPC-certified specialists maximizing your revenue.</p>
+                <p className="text-slate-300 text-sm text-center md:text-left">Expert medical billing and coding for Florida healthcare providers. AAPC-certified specialists maximizing your revenue.</p>
               </div>
 
               {/* Quick Links */}
@@ -375,7 +380,6 @@ export default function RootLayout({ children }) {
                   <div>📞 <a href="tel:+178****2099" className="hover:text-blue-400 font-bold" itemProp="telephone" content="+1-786-643-2099">(786) 643-2099</a></div>
                   <div>📍 <span itemProp="areaServed">Miami, Florida</span></div>
                   <div>🕐 <span itemProp="hoursAvailable">Mon-Fri: 9AM-6PM EST</span></div>
-                  <div>🌐 <span className="inline-block mt-2 px-2 py-1 bg-blue-900 rounded text-xs">AI Assistant Available 24/7</span></div>
                 </div>
               </div>
 
@@ -383,7 +387,6 @@ export default function RootLayout({ children }) {
               <div>
                 <h3 className="text-blue-400 font-bold mb-4">Stay Updated</h3>
                 <Subscribe />
-                {/* Social Icons */}
                 <div className="mt-6">
                   <div className="flex space-x-4">
                     {social.map((x, i) => (
@@ -398,22 +401,10 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* HIPAA Disclaimer */}
-            <div className="border-t border-gray-800 pt-6 pb-4 text-center">
-              <p className="text-slate-500 text-xs max-w-4xl mx-auto">
-                <strong className="text-slate-400">HIPAA Compliance Notice:</strong> Medical Billing Miami Beach (MBMB) is fully committed to protecting your protected health information (PHI) in accordance with the Health Insurance Portability and Accountability Act (HIPAA). We implement strict administrative, physical, and technical safeguards to ensure the confidentiality, integrity, and security of all patient data. Our team undergoes regular HIPAA training, and we maintain Business Associate Agreements (BAAs) with all relevant partners. For questions about our privacy practices or to request a copy of our Notice of Privacy Practices, please contact us at Jasmel@medicalbillingmb.com.
-              </p>
-            </div>
-
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 pt-8 text-center text-slate-400 text-sm">
               <p>© 2025 Medical Billing Miami Beach (MBMB). All rights reserved.</p>
-              <p className="mt-2">AAPC-certified medical billing specialists serving healthcare providers across Miami-Dade County, Broward, and South Florida.</p>
-              <div className="mt-4 flex justify-center items-center space-x-4">
-                <span className="inline-block px-3 py-1 bg-green-800 rounded-full text-xs">HIPAA Compliant</span>
-                <span className="inline-block px-3 py-1 bg-blue-800 rounded-full text-xs">AAPC Certified</span>
-                <span className="inline-block px-3 py-1 bg-purple-800 rounded-full text-xs">AI-Powered Assistant</span>
-              </div>
+              <p className="mt-2">Serving healthcare providers across Florida.</p>
             </div>
           </div>
         </footer>

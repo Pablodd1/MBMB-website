@@ -8,71 +8,56 @@ import VideoShowcase from "@UTILS/videos";
 import Button from "@UTILS/button";
 import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
 import Head from "next/head";
-import AIChat from "./ai-chat/ai-chat.jsx";
-import VoiceCallButton from "./voice-call/voice-call.jsx";
-import RevenueCalculator from "./components/revenue-calculator.jsx";
-import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 import SmartImage from "./components/SmartImage";
 import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import DarkHeroBackground from "./components/DarkHeroBackground";
-
-import FloatingVideo from "./components/FloatingVideo";
-import AIVoiceCallButton from "./components/AIVoiceCallButton";
-import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
+import UnifiedReceptionist from "./components/UnifiedReceptionist";
 
 const faqs = [
   {
-    question: "What medical billing services do you offer in Miami?",
-    answer: "We provide comprehensive medical billing, medical coding, revenue cycle management, and credentialing services tailored for healthcare practices in Miami and across Florida. Our services include claim submission, denial management, patient billing, and insurance verification."
+    question: "What medical billing services do you offer?",
+    answer: "We provide comprehensive medical billing, coding, revenue cycle management, and credentialing for healthcare practices across Florida. Services include claim submission, denial management, patient billing, and insurance verification."
   },
   {
     question: "Why should I outsource my medical billing to MBMB?",
-    answer: "Outsourcing medical billing can significantly reduce administrative burden, minimize claim denials, ensure compliance with the latest coding standards, and help maximize your practice's revenue. We specialize in Miami's healthcare market and Florida payer requirements."
+    answer: "Outsourcing reduces administrative burden, minimizes claim denials, ensures compliance with latest coding standards, and maximizes revenue. We specialize in Florida's healthcare market and local payer requirements."
   },
   {
-    question: "How long does the provider credentialing process take?",
-    answer: "The credentialing process typically takes 60 to 120 days depending on the insurance network. Our team expedites this process by ensuring all applications are accurate and complete from day one, handling CAQH, EDI, ERA, and EFT setup."
+    question: "How long does provider credentialing take?",
+    answer: "Typically 60-120 days depending on the insurance network. We expedite by ensuring all applications are accurate from day one, handling CAQH, EDI, ERA, and EFT setup."
   },
   {
-    question: "Do you offer free medical billing consultations?",
-    answer: "Yes, we offer a free initial consultation and medical billing audit to identify revenue leaks, analyze denial patterns, and propose strategies to improve your collections. Schedule yours today via phone, email, or our online form."
+    question: "Do you offer free consultations?",
+    answer: "Yes — we offer a free initial billing audit to identify revenue leaks, analyze denial patterns, and propose strategies to improve collections. Schedule via phone, email, or our online form."
   },
   {
-    question: "What is your medical billing pricing structure?",
-    answer: "Pricing ranges from 5.6% to 10% of collected revenue — meaning we only get paid when you get paid. No setup fees. No hidden costs. No monthly retainers. The exact percentage depends on your practice size, volume, and complexity. Book a free consultation at https://collapse-dee-tackle-forming.trycloudflare.com"
+    question: "What is your pricing structure?",
+    answer: "5.6% to 10% of collected revenue — we only get paid when you get paid. No setup fees, no hidden costs, no monthly retainers. The exact percentage depends on practice size, volume, and complexity."
   },
   {
-    question: "How do you handle claim denials and rejections?",
-    answer: "Our team proactively manages denials with a dedicated follow-up process. We analyze denial patterns, appeal when necessary, and implement corrective measures to reduce future denials."
+    question: "How do you handle claim denials?",
+    answer: "We proactively manage denials with dedicated follow-up. We analyze patterns, appeal when necessary, and implement corrective measures to reduce future denials."
   },
   {
-    question: "Do you work with my existing EHR/EMR system?",
-    answer: "Yes, we integrate with most major EHR systems including Epic, Cerner, Athenahealth, eClinicalWorks, and many others. Our team ensures seamless data flow and minimal disruption to your existing workflows."
+    question: "Do you work with my existing EHR system?",
+    answer: "Yes — we integrate with most major EHRs including Epic, Cerner, Athenahealth, eClinicalWorks, and many others. We ensure seamless data flow with minimal disruption."
   },
   {
-    question: "How quickly will I receive payments after claims are submitted?",
-    answer: "With our optimized billing process, most claims are paid within 14-30 days of submission. We track every claim and follow up promptly to ensure timely payments. Florida Medicaid and Medicare claims typically process within 30-45 days."
+    question: "How quickly will I receive payments?",
+    answer: "Most claims are paid within 14-30 days of submission. We track every claim and follow up promptly. Florida Medicaid and Medicare typically process within 30-45 days."
   },
   {
     question: "Are you HIPAA compliant?",
-    answer: "Absolutely. We are fully HIPAA and HITECH compliant with encrypted data transmission, secure servers, and strict access controls. Your patient data is never shared or resold, and we sign Business Associate Agreements (BAAs) with all clients."
+    answer: "Fully HIPAA and HITECH compliant with encrypted data transmission, secure servers, and strict access controls. We sign BAAs with all clients and never share or resell patient data."
   },
   {
-    question: "What specialties do you serve?",
-    answer: "We serve a wide range of specialties including primary care, family medicine, internal medicine, pediatrics, OB/GYN, general surgery, orthopedics, dermatology, psychiatry, cardiology, oncology, ophthalmology, radiology, urology, endocrinology, and urgent care."
+    question: "How do I get started?",
+    answer: "Schedule a free consultation via phone, email, or our form. We'll analyze your current billing process, identify opportunities, and create a custom plan. Onboarding takes 1-2 weeks with minimal disruption."
   },
   {
-    question: "Can you help with Florida Medicaid billing?",
-    answer: "Yes, we have extensive experience with Florida Medicaid billing requirements and regulations. We handle all aspects of Medicaid claims including eligibility verification, prior authorizations, claim submission, and follow-up to help maximize reimbursements."
-  },
-  {
-    question: "How do I get started with MBMB?",
-    answer: "Getting started is easy! Schedule a free consultation via phone, email, or our online form. We'll analyze your current billing process, identify opportunities, and create a custom plan. Onboarding typically takes 1-2 weeks with minimal disruption to your practice."
-  },
-  {
-    question: "What makes MBMB different from other Miami medical billing companies?",
-    answer: "Unlike larger national companies, we're locally focused on Miami and Florida healthcare. Our team has deep knowledge of Florida Medicaid, Medicare, and commercial payer requirements. We offer personalized service, responsive communication, and competitive pricing without the bureaucracy of large corporations."
+    question: "What makes MBMB different?",
+    answer: "Unlike large national companies, we're locally focused on Florida healthcare. Our team has deep knowledge of state Medicaid, Medicare, and commercial payer requirements. Personalized service without corporate bureaucracy."
   }
 ];
 
@@ -153,10 +138,10 @@ const pair2 = {
 const joinUs = {
   src: "/raster/mbmb-consultation-new.jpg",
   alt: "Medical Billing Consultation - Schedule Your Free Audit Today",
-  h2: "Free Consultation",
-  p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at helping maximize your reimbursement potential and supporting the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are designed to meet your needs.",
+  h2: "Schedule Your Free Audit",
+  p: "Our solutions streamline healthcare revenue management. We handle billing, coding, and collections so you can focus on patient care. No obligation — see how much revenue you're recovering.",
   actions: {
-    label: "Consult Now",
+    label: "Free Audit",
     href: '/consultation'
   }
 }
@@ -256,6 +241,75 @@ const coding = {
   ]
 }
 
+function FAQItem({ faq, index }) {
+  const [isOpen, setIsOpen] = useState(index < 2); // First 2 FAQs open by default
+  
+  return (
+    <div className="bg-white p-4 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-all">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left flex items-center justify-between gap-4"
+      >
+        <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+          {faq.question}
+        </h3>
+        <span className={`text-pink2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </button>
+      <div 
+        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
+      >
+        <p className="text-gray-700 text-sm leading-relaxed pb-2">{faq.answer}</p>
+      </div>
+    </div>
+  )
+}
+
+const ImageAndText = (props) => {
+  const { className, content } = props;
+  return (
+    <section className={className.section} >
+      <figure className={className.figure} >
+        <SmartImage
+          src={content.src}
+          alt={content.alt}
+          width={800}
+          height={600}
+          className={className.image}
+        />
+      </figure>
+      <article className={className.article} >
+        <h2 className={className.h2}>
+          {content.h2}
+        </h2>
+        {content.p && <p className={className.p}>{content.p}</p>}
+        {content.ul && (
+          <ul className={className.ul}>
+            {content.ul.map((y, j) => (
+              <li key={`${j}`} className={className.li}>
+              <SmartImage
+                src={'/svg/arrow.svg'}
+                alt={'bullet arrow'}
+                width={20}
+                height={14}
+                className={'inline-block -rotate-45 mr-3 w-4'}
+              />
+                {y}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="mt-8">
+          <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0" />
+        </div>
+      </article>
+    </section>
+  )
+}
+
 export default function Home() {
   const [videoFailed, setVideoFailed] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
@@ -286,14 +340,14 @@ export default function Home() {
         <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
           <header className="" >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg" >
-              Medical Billing Miami Beach
+              Miami's Highest Clean-Claim Rate
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mt-3 font-medium drop-shadow-md">
-              Expert Medical Billing, Coding & Revenue Cycle Management in Miami, Florida
+              Medical billing that maximizes revenue — period.
             </p>
           </header>
           <p className="text-gray-100 mt-6 text-sm md:text-lg max-w-2xl mx-auto text-center leading-relaxed drop-shadow-md">
-            Miami's Premier Medical Billing Partner Since 2015 — Trusted by healthcare providers across Florida. We provide comprehensive medical billing services in Miami, medical coding, and revenue cycle management. We maximize your revenue while you focus on patient care.
+            15+ years serving Florida healthcare providers. We handle the billing complexity so you can focus on patients. No setup fees. No hidden costs. We only win when you win.
           </p>
           
           {/* Centered Feature List - White text for video background */}
@@ -311,51 +365,51 @@ export default function Home() {
             <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">FMA</span>
           </div>
           
-          {/* PRIMARY CTA */}
+          {/* PRIMARY CTA — ONE clear action */}
           <div className="mb-6">
-            <Button href="/consultation" text='Free Billing Audit — See How Much You Are Losing' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30" className="w-full md:w-auto" />
+            <Button href="/consultation" text='Schedule Your Free Billing Audit' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30" className="w-full md:w-auto" />
           </div>
+          <p className="text-gray-400 text-sm mt-2">No obligation. See how much revenue you're losing.</p>
         </article>
         
         {/* Rest of page... */}
-        <ul className="lg:w-11/12 max-w-xs md:max-w-3xl lg:max-w-6xl grid md:grid-cols-3 gap-6 mx-auto my-16 lg:my-32 z-10" >
-          {
-            solutions.map((x, i) => {
-              return (
-                <li key={i} className="min-h-fit flex flex-col items-center rounded-2xl shadow-xl shadow-black/50 backdrop-blur-md text-myblack p-0 overflow-hidden bg-white/90 transform transition duration-500 hover:scale-105" >
-                  <h2 className="w-full text-lg lg:text-xl font-bold py-3 px-3 bg-black text-white text-center rounded-t-xl" >
-                    {x.label}
-                  </h2>
-                  <p className="mt-4 mb-6 px-6 text-sm lg:text-md tracking-wider text-center flex-grow" >
-                    {x.description}
-                  </p>
-                  <div className="pb-6">
-                    <Button href="/consultation" text="Free Consultation" colors="bg-pink2 text-white hover:bg-black" />
-                  </div>
-                </li>
-              )
-            })
-          }
-        </ul>
+      </section>
+      {/* Consolidated Services — 3 clean cards */}
+      <section className="w-full py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Core Services</h2>
+          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Three pillars of revenue cycle management. Every service is designed to do one thing: get you paid faster, with fewer headaches.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-pink2 hover:shadow-xl transition text-center">
+              <div className="w-14 h-14 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+                <svg className="w-7 h-7 text-pink2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Billing</h3>
+              <p className="text-gray-600 text-sm">Claim submission, denial management, and payment posting. We handle the full cycle so nothing falls through the cracks.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-500 hover:shadow-xl transition text-center">
+              <div className="w-14 h-14 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              </div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Coding</h3>
+              <p className="text-gray-600 text-sm">ICD-10, CPT, and HCPCS coding by AAPC-certified specialists. Accurate codes mean fewer denials and maximum reimbursement.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-green-500 hover:shadow-xl transition text-center">
+              <div className="w-14 h-14 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                <svg className="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Credentialing</h3>
+              <p className="text-gray-600 text-sm">Provider enrollment with insurance networks. We handle CAQH, EDI, ERA, and EFT setup — typically in 60-90 days.</p>
+            </div>
+          </div>
+          <div className="text-center mt-10">
+            <Button href="/consultation" text="Start Your Free Audit" colors="bg-pink2 text-white hover:bg-black text-lg px-8 py-3" />
+          </div>
+        </div>
       </section>
 
-      {/* Real-time AI assistant widget */}
-      <AIChat />
-      
-      {/* Floating Video - scrolls with page */}
-      <FloatingVideo />
-      
-      {/* Calculate Fees Calculator */}
-      <RevenueCalculator />
-      
-      {/* Lead Magnet Popup */}
-      <LeadMagnetPopup />
-      
-      {/* AI Front Desk Voice Call */}
-      <AIVoiceCallButton />
-      
-      {/* Google Calendar Booking */}
-      <GoogleCalendarBooking />
+      {/* Unified Receptionist Widget — LEFT side, text + voice */}
+      <UnifiedReceptionist />
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
         <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
@@ -440,7 +494,7 @@ export default function Home() {
           <footer className="max-w-2xl bg-myblack px-6 py-6 rounded-b-xl w-full flex justify-center lg:justify-start shadow-2xl" >
             <Link href={'/consultation'} className="text-sm block">
               <div className="text-white relative flex justify-center items-center uppercase h-12 w-48 font-bold tracking-wider transition-all ease-in-out duration-300 border-2 border-white hover:border-pink2 hover:bg-pink2 rounded-md">
-                Get it Today
+                Free Audit
               </div>
             </Link>
           </footer>
@@ -509,30 +563,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lead Magnets Section */}
+      {/* ONE strategic CTA section — after trust is established */}
       <section className="bg-black text-white py-16 my-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">Free Resources for Miami Doctors</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 rounded-xl p-6 text-center hover:bg-gray-700 transition">
-              <div className="text-4xl mb-4">📋</div>
-              <h3 className="font-bold text-lg mb-2">Florida Medical Billing Compliance Checklist</h3>
-              <p className="text-gray-400 text-sm mb-4">Ensure your practice meets all HIPAA and Florida requirements</p>
-              <Button href="/consultation" text="Download Free" colors="bg-pink2 text-white hover:bg-pink-600" />
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center hover:bg-gray-700 transition">
-              <div className="text-4xl mb-4">💰</div>
-              <h3 className="font-bold text-lg mb-2">2024 Medicare Reimbursement Rates by Specialty</h3>
-              <p className="text-gray-400 text-sm mb-4">Know exactly what you should be getting paid</p>
-              <Button href="/consultation" text="Download Free" colors="bg-pink2 text-white hover:bg-pink-600" />
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center hover:bg-gray-700 transition">
-              <div className="text-4xl mb-4">🤔</div>
-              <h3 className="font-bold text-lg mb-2">How to Choose a Medical Billing Company</h3>
-              <p className="text-gray-400 text-sm mb-4">5 key questions every doctor should ask</p>
-              <Button href="/consultation" text="Download Free" colors="bg-pink2 text-white hover:bg-pink-600" />
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Stop Losing Revenue?</h2>
+          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+            Most practices leak 15-20% of revenue to billing errors, slow claims, and denied appeals. 
+            Our free audit shows exactly where your money is going — and how to get it back.
+          </p>
+          <Button href="/consultation" text="Start Your Free Audit" colors="bg-pink2 text-white hover:bg-pink-600 text-lg px-10 py-4 shadow-lg shadow-pink2/30" />
+          <p className="text-gray-500 text-sm mt-4">No obligation. Takes 15 minutes. Results in 48 hours.</p>
         </div>
       </section>
 
@@ -623,30 +663,20 @@ export default function Home() {
       </section>
 
       <section id="practices" className="max-w-7xl w-11/12 mx-auto my-16 py-14" >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
           {practices.label}
         </h1>
-        <p className="font-serif text-gray-700 mb-10 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
+        <p className="font-serif text-gray-700 mb-6 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
           <strong className="text-pink2">Medical Billing Miami Beach </strong>
-          {practices.description}
+          serves 20+ specialties. From primary care to cardiology, dermatology, and mental health — our certified coders know your field's unique billing requirements.
         </p>
-        <ul className="mb-12 w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" >
-          {practices.ul.map((x, j) =>
-            <li key={`${j}`} className="py-3 px-4 bg-gray-50 rounded-lg border border-gray-100 text-sm md:text-base font-medium flex items-center shadow-sm hover:shadow-md transition-shadow" >
-              <Image
-                src={`/svg/arrow.svg`}
-                alt={'list bullet arrow'}
-                width={20}
-                height={14}
-                className="inline-block -rotate-45 mr-2 w-4 md:w-5"
-              />
-              {x}
-            </li>
-          )}
-        </ul>
+        <p className="text-gray-600 mb-8 text-lg">
+          Primary Care • Family Medicine • Cardiology • Dermatology • Mental Health • Pediatrics • OB/GYN • Orthopedics • Surgery • Urgent Care 
+          <a href="#specialties-full" className="text-pink2 hover:underline font-semibold ml-2">[+ 12 more]</a>
+        </p>
         <div className="max-w-5xl">
           <Link className="font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max shadow-lg shadow-pink2/40 px-6 py-3 rounded-md flex items-center transition-all duration-300 transform hover:-translate-y-1" href="/consultation">
-            <span className="font-bold">Consult Now</span>
+            <span className="font-bold">Free Billing Audit</span>
             <span className="ml-3">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -763,8 +793,8 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-base mb-1">Free Consultation</h3>
-                <p className="text-xs text-gray-400">Get a billing audit</p>
+                <h3 className="font-bold text-base mb-1">Free Billing Audit</h3>
+                <p className="text-xs text-gray-400">See what you're losing</p>
               </div>
             </div>
           </Link>
@@ -794,98 +824,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Floating WhatsApp CTA */}
-      <a 
-        href="https://api.whatsapp.com/send?phone=17866432099" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-colors z-50 flex items-center justify-center"
-        aria-label="Contact us on WhatsApp"
-      >
-        <Image src="/svg/whatsapp-white.svg" alt="WhatsApp" width={32} height={32} />
-      </a>
-
+      {/* Floating WhatsApp — REMOVED due to PHI conflict. Use phone/email only. */}
+      
     </main>
   );
-}
-
-export const ImageAndText = (props) => {
-  const { className, content } = props;
-  return (
-    <section className={className.section} >
-      <figure className={className.figure} >
-        <SmartImage
-          src={content.src}
-          alt={content.alt}
-          width={800}
-          height={600}
-          className={className.image}
-        />
-      </figure>
-      <article className={className.article} >
-        <h2 className={className.h2}>
-          {content.h2}
-        </h2>
-        {content.p && <p className={className.p}>{content.p}</p>}
-        {content.ul && (
-          <ul className={className.ul}>
-            {content.ul.map((y, j) => (
-              <li key={`${j}`} className={className.li}>
-              <SmartImage
-                src={'/svg/arrow.svg'}
-                alt={'bullet arrow'}
-                width={20}
-                height={14}
-                className={'inline-block -rotate-45 mr-3 w-4'}
-              />
-                {y}
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="mt-8">
-          <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0" />
-        </div>
-      </article>
-    </section>
-  )
-}
-
-function Sign() {
-  return (
-    <aside className='text-gray-400 flex items-center justify-center w-full font-sans text-xs sm:text-sm mt-4' >
-      <Image src={'https://www.myababeel.com/logo.svg'} loading='lazy' width={24} height={20} alt='MyAbabeel Logo' className='inline-flex mr-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all' />
-      Designed & Developed By
-      <Link className='ml-1 font-bold tracking-wide uppercase hover:text-white transition-colors' href={'https://www.myababeel.com'} >
-        My<strong className='text-myababeel' >Ababeel</strong>
-      </Link>
-    </aside>
-  )
-}
-
-function FAQItem({ faq, index }) {
-  const [isOpen, setIsOpen] = useState(index < 2); // First 2 FAQs open by default
-  
-  return (
-    <div className="bg-white p-4 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-all">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-left flex items-center justify-between gap-4"
-      >
-        <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
-          {faq.question}
-        </h3>
-        <span className={`text-pink2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </span>
-      </button>
-      <div 
-        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
-      >
-        <p className="text-gray-700 text-sm leading-relaxed pb-2">{faq.answer}</p>
-      </div>
-    </div>
-  )
 }
