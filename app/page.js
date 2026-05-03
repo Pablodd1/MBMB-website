@@ -19,6 +19,7 @@ import DarkHeroBackground from "./components/DarkHeroBackground";
 
 import FloatingVideo from "./components/FloatingVideo";
 import AIVoiceCallButton from "./components/AIVoiceCallButton";
+import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
 
 const faqs = [
   {
@@ -352,6 +353,9 @@ export default function Home() {
       
       {/* AI Front Desk Voice Call */}
       <AIVoiceCallButton />
+      
+      {/* Google Calendar Booking */}
+      <GoogleCalendarBooking />
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
         <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
