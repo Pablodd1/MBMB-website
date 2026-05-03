@@ -149,8 +149,8 @@ const pair2 = {
   }
 }
 const joinUs = {
-  src: "/raster/join-medical-billing-coding-miami-beach-today.webp",
-  alt: "join-medical-billing-coding-miami-beach-today",
+  src: "/raster/mbmb-consultation-new.jpg",
+  alt: "Medical Billing Consultation - Schedule Your Free Audit Today",
   h2: "Free Consultation",
   p: "Our solutions are designed to streamline and optimize the complex world of healthcare revenue management. We offer a comprehensive suite of services, all aimed at helping maximize your reimbursement potential and supporting the financial health of your practice. With a focus on precision, compliance, and efficiency, our Medical Billing services are designed to meet your needs.",
   actions: {
