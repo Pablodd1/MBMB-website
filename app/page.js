@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: "What is your medical billing pricing structure?",
-    answer: "Pricing ranges from 5.6% to 10% of collected revenue — meaning we only get paid when you get paid. No setup fees. No hidden costs. No monthly retainers. The exact percentage depends on your practice size, volume, and complexity. Contact us for a customized quote."
+    answer: "Pricing ranges from 5.6% to 10% of collected revenue — meaning we only get paid when you get paid. No setup fees. No hidden costs. No monthly retainers. The exact percentage depends on your practice size, volume, and complexity. Book a free consultation at https://collapse-dee-tackle-forming.trycloudflare.com"
   },
   {
     question: "How do you handle claim denials and rejections?",
