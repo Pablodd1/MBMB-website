@@ -13,6 +13,10 @@ import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import DarkHeroBackground from "./components/DarkHeroBackground";
 import UnifiedReceptionist from "./components/UnifiedReceptionist";
+import RevenueCalculator from "./components/revenue-calculator.jsx";
+import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
+import FloatingVideo from "./components/FloatingVideo";
+import AIVoiceCallButton from "./components/AIVoiceCallButton";
 
 const faqs = [
   {
@@ -410,6 +414,18 @@ export default function Home() {
 
       {/* Unified Receptionist Widget — LEFT side, text + voice */}
       <UnifiedReceptionist />
+
+      {/* Revenue Calculator — Fixed floating widget */}
+      <RevenueCalculator />
+
+      {/* Lead Magnet Popup — Free checklist offer */}
+      <LeadMagnetPopup />
+
+      {/* Floating Video — AI expert presentation */}
+      <FloatingVideo />
+
+      {/* AI Voice Call Button — Front desk voice assistant */}
+      <AIVoiceCallButton />
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
         <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
