@@ -31,7 +31,7 @@ export default function Subscribe() {
         e.preventDefault(); 
         setSubmitting('Submitting');
         try {
-            const response = await fetch('/my-api/subscribe', {
+            const response = await fetch('https://ownership-acute-show-slight.trycloudflare.com/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
