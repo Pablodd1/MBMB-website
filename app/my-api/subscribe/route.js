@@ -1,25 +1,43 @@
-import connect from "@UTILS/connect";
-import { encryptData } from "@UTILS/encrypt";
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
 
 export async function POST(req) {
-    const client = await connect();
-    const email = await req.json(); 
-    try {
-        const col = client.db(process.env.MBMB).collection(process.env.SUBSCRIBER);
-        const subscriber = {
-            email: encryptData(email),
-            createdAt: new Date(),
-        };
-        const result = await col.insertOne(subscriber);
-        if (result.acknowledged) {
-            return NextResponse.json({ message: 'Success' }, { status: 200 });
-        } else {
-            return NextResponse.error({ message: 'Failed to Subscriber' }, { status: 500 });
-        }
-    } catch (error) {
-        return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
+  try {
+    const body = await req.json();
+    const email = typeof body === 'string' ? body : body.email;
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ message: 'Invalid email address' }, { status: 400 });
     }
+
+    // Add to Brevo contact list if API key is set
+    if (BREVO_API_KEY) {
+      try {
+        await fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': BREVO_API_KEY
+          },
+          body: JSON.stringify({
+            email,
+            emailBlacklisted: false,
+            smsBlacklisted: false,
+            attributes: {
+              SOURCE: 'MBMB Website Subscribe'
+            },
+            listIds: []
+          })
+        });
+      } catch (brevoErr) {
+        console.warn('Brevo contact add warning:', brevoErr.message);
+      }
+    }
+
+    return NextResponse.json({ message: 'Success' }, { status: 200 });
+  } catch (error) {
+    console.error('Subscribe API error:', error);
+    return NextResponse.json({ message: 'Server error' }, { status: 500 });
+  }
 }

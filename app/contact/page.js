@@ -44,7 +44,7 @@ const Contact = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch('/my-api/consultations', {
+            const response = await fetch('/my-api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

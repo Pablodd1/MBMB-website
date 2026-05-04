@@ -75,6 +75,23 @@ export default function SplashScreen({ onComplete }) {
         </div>
       </div>
 
+      {/* FREE AUDIT OFFER */}
+      <div
+        className={`mt-6 text-center transition-all duration-1000 delay-1000 max-w-md px-6
+          ${phase === 'hold' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+        `}
+      >
+        <p className="text-white text-lg md:text-xl font-bold tracking-wide">
+          FREE BILLING AUDIT
+        </p>
+        <p className="text-pink-400 text-sm md:text-base mt-2">
+          Discover hidden revenue leaks in your practice
+        </p>
+        <p className="text-gray-400 text-xs mt-3">
+          No obligation · 30 minutes · $0
+        </p>
+      </div>
+
       {/* Subtle tagline below logo */}
       <div
         className={`mt-8 text-center transition-all duration-1000 delay-500

@@ -6,26 +6,27 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "jasmelacosta@gmail.com";
 export async function POST(req) {
   try {
     const query = await req.json();
-    
+
     // Validate required fields
-    if (!query.fullName || !query.email || !query.practiceName) {
-      return NextResponse.json({ 
-        message: 'Missing required fields: fullName, email, practiceName' 
+    if (!query.fullName || !query.email || !query.message) {
+      return NextResponse.json({
+        message: 'Missing required fields: fullName, email, message'
       }, { status: 400 });
     }
-    
+
     const html = `
-      <h2>New Consultation Form Submission - MBMB</h2>
+      <h2>New Contact Form Submission - MBMB Website</h2>
       <p><strong>Name:</strong> ${query.fullName}</p>
       <p><strong>Email:</strong> ${query.email}</p>
-      <p><strong>Practice Name:</strong> ${query.practiceName}</p>
-      <p><strong>Message:</strong> ${query.message || ''}</p>
+      <p><strong>Practice Name:</strong> ${query.practiceName || 'N/A'}</p>
+      <p><strong>Message:</strong></p>
+      <p>${query.message}</p>
       <hr>
       <p><em>Submitted at: ${new Date().toLocaleString()}</em></p>
     `;
-    const subject = `MBMB Consultation: ${query.fullName}`;
-    
-    // Send via Brevo if key available
+    const subject = `MBMB Contact: ${query.fullName}`;
+
+    // Send via Brevo if key available, else log
     let emailSent = false;
     if (BREVO_API_KEY) {
       try {
@@ -45,22 +46,22 @@ export async function POST(req) {
         });
         emailSent = true;
       } catch (e) {
-        console.warn('Brevo consultation email failed:', e.message);
+        console.warn('Brevo contact email failed:', e.message);
       }
     } else {
-      console.warn('BREVO_API_KEY not set, consultation email not sent');
+      console.warn('BREVO_API_KEY not set, contact email not sent');
     }
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       message: 'Success',
       emailSent
     }, { status: 200 });
-    
+
   } catch (error) {
-    console.error('Consultation API error:', error);
-    return NextResponse.json({ 
+    console.error('Contact API error:', error);
+    return NextResponse.json({
       message: 'Internal Server Error',
-      error: error.message 
+      error: error.message
     }, { status: 500 });
   }
 }

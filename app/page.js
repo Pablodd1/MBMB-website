@@ -521,6 +521,18 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="w-full bg-primary py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
+            Stay Updated
+          </h2>
+          <p className="text-center text-gray-300 mb-8">
+            Get Florida billing news, compliance updates, and revenue tips delivered to your inbox.
+          </p>
+          <Subscribe />
+        </div>
+      </section>
+
       <ImageAndText
         content={pair2}
         className={{
