@@ -51,31 +51,29 @@ const Contact = () => {
                 },
                 body: JSON.stringify(query)
             });
+            const data = await response.json();
             if (response.ok) {
-                setAlert({ message: 'Form submitted successfully!', type: 'success' });
-                setSubmitting(false)
+                setAlert({ message: '✅ Message sent! We will contact you within 24 hours.', type: 'success' });
             } else {
-                setAlert({ message: 'Internal Server Error', type: 'alert' });
-                setSubmitting(false)
+                setAlert({ message: data.error || 'Something went wrong. Please try again or call (786) 643-2099.', type: 'alert' });
             }
         } catch (error) {
-            setAlert({ message: 'Error submitting form.', type: 'alert' });
-            setSubmitting(false)
+            setAlert({ message: 'Connection error. Please call (786) 643-2099.', type: 'alert' });
         }
         finally {
+            setSubmitting(false);
             setFormData({
                 fullName: '',
                 email: '',
                 practiceName: '',
                 message: ''
-            })
+            });
             setFormErrors({
                 fullName: '',
                 email: '',
                 practiceName: ''
-            })
+            });
         }
-
     };
 
 

@@ -52,31 +52,29 @@ const Consultation = () => {
                 },
                 body: JSON.stringify(query)
             });
+            const data = await response.json();
             if (response.ok) {
-                setAlert({ message: 'Form submitted successfully!', type: 'success' });
-                setSubmitting(false)
+                setAlert({ message: '✅ Registration successful! We will contact you within 24 hours to schedule your free audit.', type: 'success' });
             } else {
-                setAlert({ message: 'Internal Server Error', type: 'alert' });
-                setSubmitting(false)
+                setAlert({ message: data.error || 'Something went wrong. Please try again or call (786) 643-2099.', type: 'alert' });
             }
         } catch (error) {
-            setAlert({ message: 'Error submitting form.', type: 'alert' });
-            setSubmitting(false)
+            setAlert({ message: 'Connection error. Please call (786) 643-2099 to register.', type: 'alert' });
         }
         finally {
+            setSubmitting(false);
             setFormData({
                 fullName: '',
                 email: '',
                 practiceName: '',
                 message: ''
-            })
+            });
             setFormErrors({
                 fullName: '',
                 email: '',
                 practiceName: ''
-            })
+            });
         }
-
     };
 
 
@@ -91,7 +89,7 @@ const Consultation = () => {
                     alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
                 />
             </Link>
-            <h1 className=" text-3xl md:text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach <span className="text-pink2 block mt-2">Get Your Free Consultation</span></h1>
+            <h1 className=" text-3xl md:text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach <span className="text-pink2 block mt-2">Free Billing Audit Registration</span></h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className='h-full relative'>
                     <Image
@@ -101,10 +99,36 @@ const Consultation = () => {
                         width={700}
                         height={400}
                     />
+                    <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm rounded-xl p-4 text-white">
+                        <p className="text-sm font-semibold">✅ No obligation · ✅ No setup fees · ✅ Results in 48 hours</p>
+                    </div>
                 </div>
                 <div className="my-8 py-10 ">
-                    <h2 className="text-xl font-semibold mb-4">Schedule Your Free Consultation Today</h2>
-                    <p className="text-gray-300 mb-6">We'll analyze your practice's revenue cycle and provide a custom plan to maximize your reimbursements.</p>
+                    <div className="mb-6 p-4 bg-gradient-to-r from-pink-600/20 to-pink-800/20 border border-pink-500/30 rounded-xl">
+                        <h2 className="text-2xl font-bold text-white mb-2">🎯 Free Revenue Cycle Audit</h2>
+                        <p className="text-gray-300">Register now and our team will analyze your practice's billing process to identify revenue leaks and maximize reimbursements.</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                        <div className="bg-white/10 rounded-lg p-3 text-center">
+                            <p className="text-2xl font-bold text-pink-400">95%</p>
+                            <p className="text-xs text-gray-300">Denial Reduction</p>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-3 text-center">
+                            <p className="text-2xl font-bold text-pink-400">30%</p>
+                            <p className="text-xs text-gray-300">Revenue Increase</p>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-3 text-center">
+                            <p className="text-2xl font-bold text-pink-400">48h</p>
+                            <p className="text-xs text-gray-300">Audit Turnaround</p>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-3 text-center">
+                            <p className="text-2xl font-bold text-pink-400">$0</p>
+                            <p className="text-xs text-gray-300">Setup Cost</p>
+                        </div>
+                    </div>
+                    
+                    <p className="text-gray-300 mb-6 text-sm">📞 Prefer to talk? Call us at <a href="tel:+17866432099" className="text-pink-400 font-bold hover:underline">(786) 643-2099</a></p>
                     <form id='consultation' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4  font-sans ${submitting && 'opacity-45 cursor-wait grayscale'} `}>
                         <div>
                             <label htmlFor="fullName" className="block mb-1">Full Name</label>
@@ -130,7 +154,7 @@ const Consultation = () => {
                                 {
                                     submitting
                                         ? <div className='loader-1 self-center text-primary ' />
-                                        : "Submit"
+                                        : "Register for Free Audit"
                                 }
                             </button>
                         </div>
