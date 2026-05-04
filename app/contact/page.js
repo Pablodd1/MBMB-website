@@ -44,7 +44,7 @@ const Contact = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch('https://ownership-acute-show-slight.trycloudflare.com/contact', {
+            const response = await fetch('/my-api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

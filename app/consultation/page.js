@@ -45,7 +45,7 @@ const Consultation = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch('https://ownership-acute-show-slight.trycloudflare.com/consultation', {
+            const response = await fetch('/my-api/consultations', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
