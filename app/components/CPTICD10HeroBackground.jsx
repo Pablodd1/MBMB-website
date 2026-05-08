@@ -61,19 +61,19 @@ export default function CPTICD10HeroBackground() {
 
       if (type < 0.45) {
         codePool = cptCodes;
-        color = 'rgba(255, 80, 80,'; // red for CPT
-        fontSize = Math.random() * 12 + 11;
-        speed = Math.random() * 1.2 + 0.6;
+        color = 'rgba(255, 100, 100,'; // red for CPT
+        fontSize = Math.random() * 12 + 12;
+        speed = Math.random() * 1.2 + 0.8;
       } else if (type < 0.85) {
         codePool = icd10Codes;
-        color = 'rgba(80, 180, 255,'; // blue for ICD-10
-        fontSize = Math.random() * 11 + 10;
-        speed = Math.random() * 1.0 + 0.5;
+        color = 'rgba(80, 200, 255,'; // blue for ICD-10
+        fontSize = Math.random() * 11 + 11;
+        speed = Math.random() * 1.0 + 0.7;
       } else {
         codePool = modifiers;
-        color = 'rgba(255, 200, 80,'; // gold for modifiers
-        fontSize = Math.random() * 10 + 9;
-        speed = Math.random() * 1.5 + 0.8;
+        color = 'rgba(255, 220, 100,'; // gold for modifiers
+        fontSize = Math.random() * 10 + 10;
+        speed = Math.random() * 1.5 + 1.0;
       }
 
       // Random starting positions
@@ -89,7 +89,7 @@ export default function CPTICD10HeroBackground() {
           speedX: speed, speedY: 0,
           fontSize, color, codePool,
           code: codePool[Math.floor(Math.random() * codePool.length)],
-          opacity: Math.random() * 0.5 + 0.15,
+          opacity: Math.random() * 0.4 + 0.35,
           direction: 'right'
         });
       } else if (direction < 0.25) {
@@ -99,7 +99,7 @@ export default function CPTICD10HeroBackground() {
           speedX: -speed, speedY: 0,
           fontSize, color, codePool,
           code: codePool[Math.floor(Math.random() * codePool.length)],
-          opacity: Math.random() * 0.5 + 0.15,
+          opacity: Math.random() * 0.4 + 0.35,
           direction: 'left'
         });
       } else {
@@ -109,7 +109,7 @@ export default function CPTICD10HeroBackground() {
           speedX: 0, speedY: speed,
           fontSize, color, codePool,
           code: codePool[Math.floor(Math.random() * codePool.length)],
-          opacity: Math.random() * 0.5 + 0.15,
+          opacity: Math.random() * 0.4 + 0.35, // brighter: 0.35 to 0.75
           direction: 'down'
         });
       }
@@ -128,7 +128,7 @@ export default function CPTICD10HeroBackground() {
         color,
         codePool,
         code: codePool[Math.floor(Math.random() * codePool.length)],
-        opacity: Math.random() * 0.6 + 0.2,
+        opacity: Math.random() * 0.4 + 0.4, // brighter diagonal: 0.4 to 0.8
         direction: 'diagonal',
         highlight: Math.random() < 0.3 // some are brighter
       });
@@ -145,7 +145,7 @@ export default function CPTICD10HeroBackground() {
       ctx.fillRect(0, 0, w, h);
 
       // Subtle grid lines
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
       ctx.lineWidth = 0.5;
       const gridSize = 80;
       for (let x = 0; x < w; x += gridSize) {
@@ -219,13 +219,13 @@ export default function CPTICD10HeroBackground() {
       const pulse2 = Math.cos(time * 0.3) * 0.5 + 0.5;
 
       const g1 = ctx.createRadialGradient(w * 0.2, h * 0.3, 0, w * 0.2, h * 0.3, 400);
-      g1.addColorStop(0, `rgba(255, 80, 80, ${0.04 * pulse1})`);
+      g1.addColorStop(0, `rgba(255, 100, 100, ${0.08 * pulse1})`);
       g1.addColorStop(1, 'transparent');
       ctx.fillStyle = g1;
       ctx.fillRect(0, 0, w, h);
 
       const g2 = ctx.createRadialGradient(w * 0.8, h * 0.6, 0, w * 0.8, h * 0.6, 350);
-      g2.addColorStop(0, `rgba(80, 180, 255, ${0.04 * pulse2})`);
+      g2.addColorStop(0, `rgba(80, 200, 255, ${0.08 * pulse2})`);
       g2.addColorStop(1, 'transparent');
       ctx.fillStyle = g2;
       ctx.fillRect(0, 0, w, h);
