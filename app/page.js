@@ -11,7 +11,7 @@ import Head from "next/head";
 import SmartImage from "./components/SmartImage";
 import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
-import DarkHeroBackground from "./components/DarkHeroBackground";
+import CPTICD10HeroBackground from "./components/CPTICD10HeroBackground";
 import UnifiedReceptionist from "./components/UnifiedReceptionist";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
@@ -330,9 +330,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-black" >
-        {/* Dark animated canvas background */}
+        {/* CPT/ICD-10 animated code rain background */}
         <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-          <DarkHeroBackground />
+          <CPTICD10HeroBackground />
           {/* Bottom gradient fade */}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
         </div>
