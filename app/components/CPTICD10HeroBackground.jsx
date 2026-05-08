@@ -1,8 +1,15 @@
 'use client';
+
 import { useEffect, useRef } from 'react';
+
+/**
+ * CPTICD10HeroBackground — Animated medical code rain canvas
+ * Now with parallax scroll support via CSS transform
+ */
 
 export default function CPTICD10HeroBackground() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -235,10 +242,15 @@ export default function CPTICD10HeroBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ zIndex: 0 }}
-    />
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden" style={{ zIndex: 0 }}>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{
+          // Parallax: the canvas moves at 0.5x scroll speed
+          transform: 'translateZ(-1px) scale(1.5)',
+        }}
+      />
+    </div>
   );
 }

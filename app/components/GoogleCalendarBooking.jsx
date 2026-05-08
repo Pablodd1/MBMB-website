@@ -235,7 +235,7 @@ export default function GoogleCalendarBooking() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                    placeholder="(305) 555-0123"
+                    placeholder="+1 786-643-2099"
                   />
                 </div>
                 <div>

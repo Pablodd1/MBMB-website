@@ -355,7 +355,19 @@ export default function RootLayout({ children }) {
               {/* Logo and Description */}
               <div className="flex flex-col items-center md:items-start">
                 <Image src="/mbmb-white.png" alt="Medical Billing Miami Beach Logo" width={180} height={130} className="mb-4" />
-                <p className="text-slate-300 text-sm text-center md:text-left">Expert medical billing and coding for Florida healthcare providers. AAPC-certified specialists maximizing your revenue.</p>
+                {/* AI Badge */}
+            <div className="flex items-center justify-center gap-2 mt-6 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00c8b1]/30 bg-[#00c8b1]/5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00c8b1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span className="text-[#00c8b1] text-xs font-medium tracking-wide">AI-Enhanced Operations</span>
+              </div>
+            </div>
+
+            <p className="text-slate-300 text-sm text-center md:text-left">Expert medical billing and coding for Florida healthcare providers. AAPC-certified specialists maximizing your revenue.</p>
               </div>
 
               {/* Quick Links */}

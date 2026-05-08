@@ -18,6 +18,10 @@ import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 import FloatingVideo from "./components/FloatingVideo";
 import AIVoiceCallButton from "./components/AIVoiceCallButton";
 import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
+import ScrollReveal from "./components/ScrollReveal";
+import AIFeatureCards from "./components/AIFeatureCards";
+import AIProcessFlow from "./components/AIProcessFlow";
+import FloatingMedicalIcons from "./components/FloatingMedicalIcons";
 
 const faqs = [
   {
@@ -329,13 +333,18 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center bg-black" >
-        {/* CPT/ICD-10 animated code rain background */}
-        <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
+
+      {/* ===== HERO SECTION ===== */}
+      <section className="relative min-h-[85vh] flex flex-col justify-center items-center bg-[#0a1628] overflow-hidden" style={{ perspective: '1px', transformStyle: 'preserve-3d' }}>
+        {/* CPT/ICD-10 animated code rain background with parallax */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ transform: 'translateZ(-1px) scale(2)', zIndex: 0 }}>
           <CPTICD10HeroBackground />
           {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a1628] to-transparent" />
         </div>
+
+        {/* Floating medical icons */}
+        <FloatingMedicalIcons />
 
         {/* 3D Rotating Logo - Floating above content */}
         <div className="relative z-10 mb-6">
@@ -343,8 +352,23 @@ export default function Home() {
         </div>
 
         <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
+          {/* AI-Powered Billing Hero Badge */}
+          <ScrollReveal direction="up" distance={20} duration={500}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00c8b1]/40 bg-[#00c8b1]/10 backdrop-blur-sm mb-6 animate-pulse-glow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8b1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+              <span className="text-[#00c8b1] text-sm font-semibold tracking-wide">AI-Enhanced Revenue Intelligence</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
+                <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z" />
+              </svg>
+            </div>
+          </ScrollReveal>
+
           <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg" >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg leading-tight" >
               Miami's Highest Clean-Claim Rate
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mt-3 font-medium drop-shadow-md">
@@ -372,43 +396,58 @@ export default function Home() {
           
           {/* PRIMARY CTA — ONE clear action */}
           <div className="mb-6">
-            <Button href="/consultation" text='Schedule Your Free Billing Audit' colors="bg-pink-600 text-white hover:bg-pink-700 text-lg px-10 py-4 shadow-lg shadow-pink-600/30" className="w-full md:w-auto" />
+            <Button href="/consultation" text='Schedule Your Free Billing Audit' colors="bg-[#ff6b35] text-white hover:bg-[#e55a2b] text-lg px-10 py-4 shadow-lg shadow-[#ff6b35]/30" className="w-full md:w-auto" />
           </div>
           <p className="text-gray-400 text-sm mt-2">No obligation. See how much revenue you're losing.</p>
         </article>
         
         {/* Rest of page... */}
       </section>
-      {/* Consolidated Services — 3 clean cards */}
+
+      {/* ===== AI FEATURE CARDS SECTION ===== */}
+      <AIFeatureCards />
+
+      {/* ===== AI PROCESS FLOW SECTION ===== */}
+      <AIProcessFlow />
+
+      {/* ===== CORE SERVICES (with 3D tilt) ===== */}
       <section className="w-full py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Core Services</h2>
-          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Three pillars of revenue cycle management. Every service is designed to do one thing: get you paid faster, with fewer headaches.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-pink2 hover:shadow-xl transition text-center">
-              <div className="w-14 h-14 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
-                <svg className="w-7 h-7 text-pink2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <ScrollReveal direction="up" distance={30}>
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Core Services</h2>
+            <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Three pillars of revenue cycle management. Every service is designed to do one thing: get you paid faster, with fewer headaches.</p>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-3 gap-6" style={{ perspective: '2000px' }}>
+            <ScrollReveal delay={0} direction="up" distance={40}>
+              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-[#9D0D64] hover:shadow-xl transition text-center">
+                <div className="w-14 h-14 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[#9D0D64]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Billing</h3>
+                <p className="text-gray-600 text-sm">Claim submission, denial management, and payment posting. We handle the full cycle so nothing falls through the cracks.</p>
               </div>
-              <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Billing</h3>
-              <p className="text-gray-600 text-sm">Claim submission, denial management, and payment posting. We handle the full cycle so nothing falls through the cracks.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-500 hover:shadow-xl transition text-center">
-              <div className="w-14 h-14 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </ScrollReveal>
+            <ScrollReveal delay={150} direction="up" distance={40}>
+              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-500 hover:shadow-xl transition text-center">
+                <div className="w-14 h-14 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                </div>
+                <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Coding</h3>
+                <p className="text-gray-600 text-sm">ICD-10, CPT, and HCPCS coding by AAPC-certified specialists. Accurate codes mean fewer denials and maximum reimbursement.</p>
               </div>
-              <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Coding</h3>
-              <p className="text-gray-600 text-sm">ICD-10, CPT, and HCPCS coding by AAPC-certified specialists. Accurate codes mean fewer denials and maximum reimbursement.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-green-500 hover:shadow-xl transition text-center">
-              <div className="w-14 h-14 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-                <svg className="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </ScrollReveal>
+            <ScrollReveal delay={300} direction="up" distance={40}>
+              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-green-500 hover:shadow-xl transition text-center">
+                <div className="w-14 h-14 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg className="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 className="font-bold text-xl text-gray-900 mb-2">Credentialing</h3>
+                <p className="text-gray-600 text-sm">Provider enrollment with insurance networks. We handle CAQH, EDI, ERA, and EFT setup — typically in 60-90 days.</p>
               </div>
-              <h3 className="font-bold text-xl text-gray-900 mb-2">Credentialing</h3>
-              <p className="text-gray-600 text-sm">Provider enrollment with insurance networks. We handle CAQH, EDI, ERA, and EFT setup — typically in 60-90 days.</p>
-            </div>
+            </ScrollReveal>
           </div>
           <div className="text-center mt-10">
-            <Button href="/consultation" text="Start Your Free Audit" colors="bg-pink2 text-white hover:bg-black text-lg px-8 py-3" />
+            <Button href="/consultation" text="Start Your Free Audit" colors="bg-[#9D0D64] text-white hover:bg-black text-lg px-8 py-3" />
           </div>
         </div>
       </section>
@@ -545,66 +584,81 @@ export default function Home() {
           ul: "my-4 w-full",
           li: "py-3 px-2 border-b border-gray-200 last:border-b-0 flex items-center text-gray-700",
           icon: "bg-myblack text-white hover:bg-pink2",
-          rect: "stroke-white"
+          rect: "stroke-transparent"
         }}
       />
 
       {/* Case Studies Section */}
       <section className="max-w-6xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 shadow-xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Success Stories</h2>
-        <p className="text-center text-gray-600 mb-10">Real results from Miami healthcare practices</p>
+        <ScrollReveal direction="up" distance={30}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Success Stories</h2>
+          <p className="text-center text-gray-600 mb-10">Real results from Miami healthcare practices</p>
+        </ScrollReveal>
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Case Study 1 */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-pink2">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                <span className="text-2xl">👨‍⚕️</span>
+          <ScrollReveal delay={0} direction="up" distance={30}>
+            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-[#9D0D64]">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-[#0a1628] rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-[#00c8b1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-gray-900">Dr. Martinez</h3>
+                  <p className="text-gray-600 text-sm">Family Practice, Miami Beach</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-lg text-gray-900">Dr. Martinez</h3>
-                <p className="text-gray-600 text-sm">Family Practice, Miami Beach</p>
+              <p className="text-gray-700 mb-4">"MBMB transformed our billing process. We were losing thousands every month to denials and slow payments."</p>
+              <div className="bg-[#00c8b1]/10 text-[#00c8b1] px-4 py-2 rounded-lg font-bold text-center border border-[#00c8b1]/20">
+                Increased collections 27% in 6 months
               </div>
             </div>
-            <p className="text-gray-700 mb-4">"MBMB transformed our billing process. We were losing thousands every month to denials and slow payments."</p>
-            <div className="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-bold text-center">
-              📈 Increased collections 27% in 6 months
-            </div>
-          </div>
+          </ScrollReveal>
           
           {/* Case Study 2 */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                <span className="text-2xl">👶</span>
+          <ScrollReveal delay={150} direction="up" distance={30}>
+            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-[#0a1628] rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-[#ff6b35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-gray-900">Sunrise Pediatrics</h3>
+                  <p className="text-gray-600 text-sm">Coral Gables, Florida</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-lg text-gray-900">Sunrise Pediatrics</h3>
-                <p className="text-gray-600 text-sm">Coral Gables, Florida</p>
+              <p className="text-gray-700 mb-4">"Our denial rate was killing us. MBMB's expert coding team turned things around completely."</p>
+              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-center border border-blue-200">
+                Reduced denial rate from 18% to 3%
               </div>
             </div>
-            <p className="text-gray-700 mb-4">"Our denial rate was killing us. MBMB's expert coding team turned things around completely."</p>
-            <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-bold text-center">
-              ✅ Reduced denial rate from 18% to 3%
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
         
         <div className="text-center mt-8">
-          <Button href="/consultation" text="Get Your Free Audit" colors="bg-pink2 text-white hover:bg-black" />
+          <Button href="/consultation" text="Get Your Free Audit" colors="bg-[#9D0D64] text-white hover:bg-black" />
         </div>
       </section>
 
       {/* ONE strategic CTA section — after trust is established */}
-      <section className="bg-black text-white py-16 my-10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Stop Losing Revenue?</h2>
-          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-            Most practices leak 15-20% of revenue to billing errors, slow claims, and denied appeals. 
-            Our free audit shows exactly where your money is going — and how to get it back.
-          </p>
-          <Button href="/consultation" text="Start Your Free Audit" colors="bg-pink2 text-white hover:bg-pink-600 text-lg px-10 py-4 shadow-lg shadow-pink2/30" />
-          <p className="text-gray-500 text-sm mt-4">No obligation. Takes 15 minutes. Results in 48 hours.</p>
+      <section className="bg-[#0a1628] text-white py-16 my-10 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <ScrollReveal direction="up" distance={30}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Stop Losing Revenue?</h2>
+            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+              Most practices leak 15-20% of revenue to billing errors, slow claims, and denied appeals. 
+              Our free audit shows exactly where your money is going — and how to get it back.
+            </p>
+            <Button href="/consultation" text="Start Your Free Audit" colors="bg-[#ff6b35] text-white hover:bg-[#e55a2b] text-lg px-10 py-4 shadow-lg shadow-[#ff6b35]/30" />
+            <p className="text-gray-500 text-sm mt-4">No obligation. Takes 15 minutes. Results in 48 hours.</p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -612,57 +666,69 @@ export default function Home() {
       <section className="bg-gray-900 text-white py-16 my-10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing Insights</h2>
-            <p className="text-gray-400">Expert tips, compliance updates, and revenue cycle insights for Miami healthcare practices</p>
+            <ScrollReveal direction="up" distance={20}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing Insights</h2>
+              <p className="text-gray-400">Expert tips, compliance updates, and revenue cycle insights for Miami healthcare practices</p>
+            </ScrollReveal>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
-              <div className="relative h-40">
-                <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101" fill className="object-cover" />
+            <ScrollReveal delay={0} direction="up" distance={30}>
+              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
+                <div className="relative h-40">
+                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101" fill className="object-cover" />
+                </div>
+                <div className="p-5">
+                  <p className="text-gray-400 text-xs mb-2">April 12, 2026</p>
+                  <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">The complete guide to medical billing for Miami doctors.</p>
+                  <Button href="/blog/medical-billing-101" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                </div>
               </div>
-              <div className="p-5">
-                <p className="text-gray-400 text-xs mb-2">April 12, 2026</p>
-                <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">The complete guide to medical billing for Miami doctors.</p>
-                <Button href="/blog/medical-billing-101" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
+            </ScrollReveal>
+            <ScrollReveal delay={150} direction="up" distance={30}>
+              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
+                <div className="relative h-40">
+                  <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide" fill className="object-cover" />
+                </div>
+                <div className="p-5">
+                  <p className="text-gray-400 text-xs mb-2">April 14, 2026</p>
+                  <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide</h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a system to fight back.</p>
+                  <Button href="/blog/denial-management-guide" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                </div>
               </div>
-            </div>
-            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
-              <div className="relative h-40">
-                <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide" fill className="object-cover" />
+            </ScrollReveal>
+            <ScrollReveal delay={300} direction="up" distance={30}>
+              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
+                <div className="relative h-40">
+                  <Image src="/raster/medical-coding-icd.webp" alt="Miami Medicaid Billing" fill className="object-cover" />
+                </div>
+                <div className="p-5">
+                  <p className="text-gray-400 text-xs mb-2">April 15, 2026</p>
+                  <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">Navigate Florida Medicaid billing complexities with confidence.</p>
+                  <Button href="/blog/miami-medicaid-billing" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                </div>
               </div>
-              <div className="p-5">
-                <p className="text-gray-400 text-xs mb-2">April 14, 2026</p>
-                <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a system to fight back.</p>
-                <Button href="/blog/denial-management-guide" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
-              </div>
-            </div>
-            <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition">
-              <div className="relative h-40">
-                <Image src="/raster/medical-coding-icd.webp" alt="Miami Medicaid Billing" fill className="object-cover" />
-              </div>
-              <div className="p-5">
-                <p className="text-gray-400 text-xs mb-2">April 15, 2026</p>
-                <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">Navigate Florida Medicaid billing complexities with confidence.</p>
-                <Button href="/blog/miami-medicaid-billing" text="Read More" colors="bg-pink2 text-white hover:bg-pink-600 text-sm px-4 py-2" />
-              </div>
-            </div>
+            </ScrollReveal>
           </div>
           <div className="text-center mt-8">
-            <Button href="/blog" text="View All Blog Posts" colors="bg-white text-gray-900 hover:bg-pink2 hover:text-white" />
+            <Button href="/blog" text="View All Blog Posts" colors="bg-white text-gray-900 hover:bg-[#9D0D64] hover:text-white" />
           </div>
         </div>
       </section>
 
       {/* SEO/GEO FAQ Section */}
       <section className="max-w-5xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-white to-gray-50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-xl" >
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Medical Billing Services for Miami Healthcare Practices</h2>
-        <p className="text-center text-gray-600 mb-10">Everything you need to know about our medical billing services in Miami and Florida</p>
+        <ScrollReveal direction="up" distance={20}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Medical Billing Services for Miami Healthcare Practices</h2>
+          <p className="text-center text-gray-600 mb-10">Everything you need to know about our medical billing services in Miami and Florida</p>
+        </ScrollReveal>
         <div className="grid md:grid-cols-2 gap-6">
           {faqs.map((faq, index) => (
-            <FAQItem key={index} faq={faq} index={index} />
+            <ScrollReveal key={index} delay={index * 50} direction="up" distance={20}>
+              <FAQItem faq={faq} index={index} />
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -670,85 +736,59 @@ export default function Home() {
       {/* Instagram Feed Section */}
       <section className="w-full bg-gradient-to-b from-gray-50 to-white py-16 mb-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Follow MBMB on Instagram</h2>
-          <p className="text-gray-600 mb-8">@medicalbillingmiamibeach</p>
+          <ScrollReveal direction="up" distance={20}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Follow MBMB on Instagram</h2>
+            <p className="text-gray-600 mb-8">@medicalbillingmiamibeach</p>
+          </ScrollReveal>
           
           {/* Instagram Profile Link */}
-          <div className="flex flex-col items-center justify-center py-8 bg-gray-100 rounded-xl max-w-md mx-auto">
-            <div className="w-20 h-20 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
+          <ScrollReveal delay={150} direction="up" distance={20}>
+            <div className="flex flex-col items-center justify-center py-8 bg-gray-100 rounded-xl max-w-md mx-auto">
+              <div className="w-20 h-20 bg-gradient-to-tr from-yellow-400 via-[#9D0D64] to-purple-600 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <p className="text-gray-700 font-semibold mb-2">medicalbillingmiamibeach</p>
+              <a 
+                href="https://www.instagram.com/medicalbillingmiamibeach" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-[#9D0D64] to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition"
+              >
+                Follow on Instagram
+              </a>
+              <p className="text-sm text-gray-500 mt-4">Latest updates from @medicalbillingmiamibeach</p>
             </div>
-            <p className="text-gray-700 font-semibold mb-2">medicalbillingmiamibeach</p>
-            <a 
-              href="https://www.instagram.com/medicalbillingmiamibeach" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition"
-            >
-              Follow on Instagram
-            </a>
-            <p className="text-sm text-gray-500 mt-4">Latest updates from @medicalbillingmiamibeach</p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section id="practices" className="max-w-7xl w-11/12 mx-auto my-16 py-14" >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
-          {practices.label}
-        </h1>
-        <p className="font-serif text-gray-700 mb-6 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
-          <strong className="text-pink2">Medical Billing Miami Beach </strong>
-          serves 20+ specialties. From primary care to cardiology, dermatology, and mental health — our certified coders know your field's unique billing requirements.
-        </p>
-        <p className="text-gray-600 mb-8 text-lg">
-          Primary Care • Family Medicine • Cardiology • Dermatology • Mental Health • Pediatrics • OB/GYN • Orthopedics • Surgery • Urgent Care 
-          <a href="#specialties-full" className="text-pink2 hover:underline font-semibold ml-2">[+ 12 more]</a>
-        </p>
-        <div className="max-w-5xl">
-          <Link className="font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max shadow-lg shadow-pink2/40 px-6 py-3 rounded-md flex items-center transition-all duration-300 transform hover:-translate-y-1" href="/consultation">
-            <span className="font-bold">Free Billing Audit</span>
-            <span className="ml-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 mt-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white" >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" >
-              <span className="text-white">Medical Coding</span> Services
-            </h2>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
-              Expert medical coding with ICD-10, CPT, and HCPCS expertise. Our AAPC-certified coders ensure accurate documentation and maximum reimbursements.
-            </p>
+        <ScrollReveal direction="up" distance={20}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
+            {practices.label}
+          </h1>
+          <p className="font-serif text-gray-700 mb-6 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
+            <strong className="text-pink2">Medical Billing Miami Beach </strong>
+            serves 20+ specialties. From primary care to cardiology, dermatology, and mental health — our certified coders know your field's unique billing requirements.
+          </p>
+          <p className="text-gray-600 mb-8 text-lg">
+            Primary Care • Family Medicine • Cardiology • Dermatology • Mental Health • Pediatrics • OB/GYN • Orthopedics • Surgery • Urgent Care 
+            <a href="#specialties-full" className="text-pink2 hover:underline font-semibold ml-2">[+ 12 more]</a>
+          </p>
+          <div className="max-w-5xl">
+            <Link className="font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max shadow-lg shadow-pink2/40 px-6 py-3 rounded-md flex items-center transition-all duration-300 transform hover:-translate-y-1" href="/consultation">
+              <span className="font-bold">Free Billing Audit</span>
+              <span className="ml-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </Link>
           </div>
-          
-          {/* Simple clean cards without icons - just text */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
-              <div className="text-3xl mb-3">📋</div>
-              <h3 className="font-bold text-lg text-white mb-1">ICD-10 Coding</h3>
-              <p className="text-gray-400 text-sm">Diagnosis Codes</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
-              <div className="text-3xl mb-3">💳</div>
-              <h3 className="font-bold text-lg text-white mb-1">CPT/HCPCS</h3>
-              <p className="text-gray-400 text-sm">Procedure Codes</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 text-center hover:bg-white/20 transition">
-              <div className="text-3xl mb-3">✏️</div>
-              <h3 className="font-bold text-lg text-white mb-1">Modifiers</h3>
-              <p className="text-gray-400 text-sm">Code Enhancements</p>
-            </div>
-          </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section className="overflow-hidden bg-fixed bg-no-repeat bg-cover bg-center w-full h-fit min-h-[400px] mx-auto background2 border-y-8 border-pink2" />
@@ -769,9 +809,11 @@ export default function Home() {
       
       {/* Services & Partners Section */}
       <section className="w-11/12 max-w-6xl mx-auto mb-24">
-        <h2 className="border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-8 text-center">
-          Our Services & Partners
-        </h2>
+        <ScrollReveal direction="up" distance={20}>
+          <h2 className="border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-8 text-center">
+            Our Services & Partners
+          </h2>
+        </ScrollReveal>
         
         {/* Partner Links - Professional Minimalist Design */}
         <div className="grid md:grid-cols-4 gap-4 mb-10">
@@ -855,8 +897,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* Floating WhatsApp — REMOVED due to PHI conflict. Use phone/email only. */}
       
     </main>
   );
