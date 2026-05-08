@@ -247,8 +247,9 @@ export default function CPTICD10HeroBackground() {
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
         style={{
-          // Parallax: the canvas moves at 0.5x scroll speed
-          transform: 'translateZ(-1px) scale(1.5)',
+          // Parallax: the canvas moves at 0.5x scroll speed via CSS scroll-driven animation
+          // Using will-change for performance, actual parallax handled by parent container
+          willChange: 'transform',
         }}
       />
     </div>

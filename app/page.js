@@ -335,12 +335,12 @@ export default function Home() {
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[85vh] flex flex-col justify-center items-center bg-[#0a1628] overflow-hidden" style={{ perspective: '1px', transformStyle: 'preserve-3d' }}>
-        {/* CPT/ICD-10 animated code rain background with parallax */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ transform: 'translateZ(-1px) scale(2)', zIndex: 0 }}>
+      <section className="relative min-h-[85vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden">
+        {/* CPT/ICD-10 animated code rain background */}
+        <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
           <CPTICD10HeroBackground />
-          {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a1628] to-transparent" />
+          {/* Bottom gradient fade into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" style={{ zIndex: 1 }} />
         </div>
 
         {/* Floating medical icons */}
