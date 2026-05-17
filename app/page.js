@@ -103,6 +103,66 @@ const solutions = [
     icon: "credentialing"
   }
 ]
+const services = [
+  {
+    title: "Revenue Cycle Management",
+    description: "End-to-end revenue cycle optimization from patient intake to final payment. We identify leak points and fix them.",
+    features: ["Claim scrubbing & submission", "Payment posting & reconciliation", "Patient billing & collections", "Monthly reporting & analytics"],
+    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+  },
+  {
+    title: "Medical Coding",
+    description: "AAPC-certified coders ensuring maximum reimbursement with minimal denials. ICD-10, CPT, HCPCS expertise.",
+    features: ["ICD-10-CM diagnosis coding", "CPT/HCPCS procedure coding", "Modifier optimization", "Coding audits & education"],
+    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+  },
+  {
+    title: "Provider Credentialing",
+    description: "Get enrolled with insurance networks fast. We handle CAQH, EDI, ERA, and EFT setup.",
+    features: ["Insurance network enrollment", "CAQH profile management", "EDI/ERA/EFT setup", "Re-credentialing & maintenance"],
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+  },
+  {
+    title: "Denial Management",
+    description: "Aggressive denial follow-up with root-cause analysis. We don't just appeal — we prevent.",
+    features: ["Denial root-cause analysis", "Appeal letter generation", "Payer trend tracking", "Prevention protocols"],
+    icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
+  },
+  {
+    title: "Compliance & Audits",
+    description: "Stay ahead of regulations. HIPAA, HITECH, Florida Medicaid — we've got you covered.",
+    features: ["HIPAA compliance audits", "Coding compliance reviews", "Documentation training", "Risk assessment"],
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
+    title: "Practice Consulting",
+    description: "Strategic guidance to optimize your practice operations, technology, and profitability.",
+    features: ["Workflow analysis", "EHR optimization", "Staff training", "Growth strategy"],
+    icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+  }
+];
+
+const useCases = [
+  {
+    practice: "Family Medicine",
+    problem: "High volume of claims with frequent coding errors leading to 15% denial rate.",
+    solution: "Implemented automated coding validation and real-time claim scrubbing.",
+    result: "Denial rate dropped to 3%. Collections increased 22% in 6 months."
+  },
+  {
+    practice: "Cardiology Practice",
+    problem: "Complex prior authorizations delaying procedures and frustrating patients.",
+    solution: "Built automated prior auth workflow with payer-specific rules engine.",
+    result: "Prior auth turnaround reduced from 5 days to 48 hours. Patient satisfaction up 40%."
+  },
+  {
+    practice: "Urgent Care Chain",
+    problem: "Multiple locations with inconsistent billing processes and compliance gaps.",
+    solution: "Standardized billing workflows across all 4 locations with centralized oversight.",
+    result: "Compliance audit passed with zero findings. Revenue per visit increased 18%."
+  }
+];
+
 const benefits = [
   {
     label: "Accurate Medical Coding:",
@@ -352,18 +412,15 @@ export default function Home() {
         </div>
 
         <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
-          {/* AI-Powered Billing Hero Badge */}
+          {/* AI-Powered Billing Hero Badge — Simplified, single color */}
           <ScrollReveal direction="up" distance={20} duration={500}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00c8b1]/40 bg-[#00c8b1]/10 backdrop-blur-sm mb-6 animate-pulse-glow">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8b1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
                 <path d="M2 17l10 5 10-5" />
                 <path d="M2 12l10 5 10-5" />
               </svg>
-              <span className="text-[#00c8b1] text-sm font-semibold tracking-wide">AI-Enhanced Revenue Intelligence</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
-                <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z" />
-              </svg>
+              <span className="text-white text-sm font-semibold tracking-wide">AI-Enhanced Revenue Intelligence</span>
             </div>
           </ScrollReveal>
 
@@ -386,12 +443,13 @@ export default function Home() {
             <p className="text-white font-bold text-xl drop-shadow-md">✓ Revenue Optimization Focus</p>
           </div>
 
-          {/* Trust Badges - Light style for dark bg */}
-          <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
-            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">AAPC</span>
-            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">HIPAA</span>
-            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">MGMA</span>
-            <span className="text-white/90 font-medium border border-white/30 px-4 py-1.5 rounded backdrop-blur-sm bg-white/10">FMA</span>
+          {/* Trust Badges — Simplified single color */}
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
+            {['AAPC', 'HIPAA', 'MGMA', 'FMA'].map((badge) => (
+              <span key={badge} className="text-white/80 font-medium border border-white/20 px-3 py-1 rounded bg-white/5 text-sm">
+                {badge}
+              </span>
+            ))}
           </div>
           
           {/* PRIMARY CTA — ONE clear action */}
@@ -409,6 +467,120 @@ export default function Home() {
 
       {/* ===== AI PROCESS FLOW SECTION ===== */}
       <AIProcessFlow />
+
+      {/* ===== DETAILED SERVICES SECTION ===== */}
+      <section className="w-full py-20 bg-[#0a1628]">
+        <div className="max-w-7xl mx-auto px-4">
+          <ScrollReveal direction="up" distance={30}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Complete Billing Services</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">Everything your practice needs to maximize revenue and minimize headaches. One partner, full coverage.</p>
+            </div>
+          </ScrollReveal>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, i) => (
+              <ScrollReveal key={service.title} delay={i * 100} direction="up" distance={30}>
+                <div className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
+                    <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-sm text-gray-300">
+                        <svg className="w-4 h-4 text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button href="/consultation" text="Get Your Free Audit" colors="bg-white text-[#0a1628] hover:bg-gray-200 text-lg px-8 py-3" />
+          </div>
+        </div>
+      </section>
+
+      {/* ===== USE CASES / SUCCESS STORIES ===== */}
+      <section className="w-full py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <ScrollReveal direction="up" distance={30}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Real Practice Results</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">See how we've helped Miami healthcare practices transform their revenue cycle.</p>
+            </div>
+          </ScrollReveal>
+          
+          <div className="space-y-8">
+            {useCases.map((case_, i) => (
+              <ScrollReveal key={case_.practice} delay={i * 150} direction="up" distance={30}>
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                  <div className="flex items-start gap-6">
+                    <div className="w-16 h-16 rounded-xl bg-[#0a1628] flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-lg">{case_.practice.charAt(0)}</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">{case_.practice}</h3>
+                      <div className="grid md:grid-cols-3 gap-6">
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Problem</p>
+                          <p className="text-gray-600 text-sm">{case_.problem}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Solution</p>
+                          <p className="text-gray-600 text-sm">{case_.solution}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Result</p>
+                          <p className="text-[#0a1628] font-semibold text-sm">{case_.result}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WHY MBMB ===== */}
+      <section className="w-full py-20 bg-[#0a1628]">
+        <div className="max-w-6xl mx-auto px-4">
+          <ScrollReveal direction="up" distance={30}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Practices Choose MBMB</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">Local expertise meets enterprise-grade execution.</p>
+            </div>
+          </ScrollReveal>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { number: "15+", label: "Years Experience", desc: "Serving Florida healthcare since 2009" },
+              { number: "98%", label: "Clean Claim Rate", desc: "First-pass acceptance rate" },
+              { number: "30%", label: "Avg Revenue Lift", desc: "Within first 6 months" },
+              { number: "24h", label: "Response Time", desc: "Average support response" }
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 100} direction="up" distance={20}>
+                <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                  <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
+                  <div className="text-white font-semibold mb-1">{stat.label}</div>
+                  <div className="text-gray-400 text-sm">{stat.desc}</div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ===== CORE SERVICES (with 3D tilt) ===== */}
       <section className="w-full py-16 bg-gray-50">
@@ -817,6 +989,34 @@ export default function Home() {
         
         {/* Partner Links - Professional Minimalist Design */}
         <div className="grid md:grid-cols-4 gap-4 mb-10">
+          <Link href="https://305business-llc.vercel.app/" target="_blank" className="group">
+            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-cyan-500">
+              <div className="text-white text-center">
+                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-cyan-500 transition-colors">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-base mb-1">305business</h3>
+                <p className="text-xs text-gray-400">Business Marketplace</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="https://aidynamic.pro/" target="_blank" className="group">
+            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-purple-500">
+              <div className="text-white text-center">
+                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-purple-500 transition-colors">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-base mb-1">AI Dynamics Pro</h3>
+                <p className="text-xs text-gray-400">AI Automation</p>
+              </div>
+            </div>
+          </Link>
+          
           <Link href="https://aimedicalscriber.com/" target="_blank" className="group">
             <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-blue-500">
               <div className="text-white text-center">
@@ -831,20 +1031,6 @@ export default function Home() {
             </div>
           </Link>
           
-          <Link href="https://aidynamics.art/" target="_blank" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-purple-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-base mb-1">AI Dynamics</h3>
-                <p className="text-xs text-gray-400">EHR & Billing Software</p>
-              </div>
-            </div>
-          </Link>
-
           <Link href="https://new-law-helper-app.vercel.app/" target="_blank" className="group">
             <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-amber-500">
               <div className="text-white text-center">
@@ -858,24 +1044,10 @@ export default function Home() {
               </div>
             </div>
           </Link>
-          
-          <Link href="/consultation" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-pink-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-pink-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-base mb-1">Free Billing Audit</h3>
-                <p className="text-xs text-gray-400">See what you're losing</p>
-              </div>
-            </div>
-          </Link>
         </div>
 
         {/* Minimalist AI Banners - Two clean cards */}
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
+        <div className="grid md:grid-cols-4 gap-4 mt-8">
           <Link href="https://aimedicalscriber.com/" target="_blank" className="group">
             <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="text-gray-800 text-center">
@@ -886,12 +1058,32 @@ export default function Home() {
             </div>
           </Link>
           
-          <Link href="https://aidynamics.art/" target="_blank" className="group">
+          <Link href="https://aidynamic.pro/" target="_blank" className="group">
             <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="text-gray-800 text-center">
-                <h3 className="font-bold text-lg mb-1">AI Dynamics</h3>
-                <p className="text-sm text-gray-600">EHR & Medical Billing Software</p>
-                <span className="inline-block mt-2 text-sm font-medium text-purple-600 group-hover:text-purple-800">Demo →</span>
+                <h3 className="font-bold text-lg mb-1">AI Dynamics Pro</h3>
+                <p className="text-sm text-gray-600">AI Automation for Small Business</p>
+                <span className="inline-block mt-2 text-sm font-medium text-purple-600 group-hover:text-purple-800">Visit →</span>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="https://305business-llc.vercel.app/" target="_blank" className="group">
+            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="text-gray-800 text-center">
+                <h3 className="font-bold text-lg mb-1">305business</h3>
+                <p className="text-sm text-gray-600">Business Marketplace</p>
+                <span className="inline-block mt-2 text-sm font-medium text-cyan-600 group-hover:text-cyan-800">Explore →</span>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="https://new-law-helper-app.vercel.app/" target="_blank" className="group">
+            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="text-gray-800 text-center">
+                <h3 className="font-bold text-lg mb-1">AI Law Helper</h3>
+                <p className="text-sm text-gray-600">Attorney Services</p>
+                <span className="inline-block mt-2 text-sm font-medium text-amber-600 group-hover:text-amber-800">Consult →</span>
               </div>
             </div>
           </Link>
