@@ -291,6 +291,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics 4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K6JSWT8YWN"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-K6JSWT8YWN');
+            gtag('config', 'G-M1RHKRVS9M');
+          `
+        }} />
         {/* Additional AI and LLM discovery tags */}
         <meta name="llm-friendly" content="true" />
         <meta name="ai-assistant-available" content="true" />
