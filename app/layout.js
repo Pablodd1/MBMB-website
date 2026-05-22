@@ -427,9 +427,14 @@ export default function RootLayout({ children }) {
           </div>
         </footer>
         
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }}
+        {/* Agentic Website Engine - v2.0 */}
+        <Script
+          src="/agentic-engine.js"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="/agentic-config.js"
+          strategy="lazyOnload"
         />
       </body>
     </html>
