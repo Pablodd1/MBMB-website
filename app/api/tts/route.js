@@ -12,6 +12,11 @@ const VOICE_CONFIG = {
     name: 'es-US-Neural2-A', // Warm Spanish female
     ssmlGender: 'FEMALE'
   },
+  ru: {
+    languageCode: 'ru-RU',
+    name: 'ru-RU-Standard-A',
+    ssmlGender: 'FEMALE'
+  },
   ht: {
     languageCode: 'en-US', // Haitian Creole fallback to warm English
     name: 'en-US-Neural2-F',

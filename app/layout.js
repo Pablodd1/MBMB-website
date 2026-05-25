@@ -3,6 +3,7 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import Subscribe from "@UTILS/subscribe";
+import Script from "next/script";
 
 const social = [
   {
@@ -308,16 +309,21 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <head>
-        {/* Additional AI and LLM discovery tags */}
-        <meta name="llm-friendly" content="true" />
-        <meta name="ai-assistant-available" content="true" />
-        <meta name="ai-assistant-capabilities" content="multilingual,voice-input,voice-output,appointment-scheduling,service-info,pricing-info" />
-        <link rel="alternate" href="https://medicalbillingmb.com" hrefLang="en-us" />
-        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-      </head>
       <body className={sansita.className}>
+        {/* Google Analytics 4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-K6JSWT8YWN"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">{
+          `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-K6JSWT8YWN');
+            gtag('config', 'G-M1RHKRVS9M');
+          `
+        }</Script>
         {/* Header with Phone - Enhanced for SEO */}
         <header className="bg-white shadow-sm border-b border-gray-200" itemScope itemType="https://schema.org/WPHeader">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -435,9 +441,14 @@ export default function RootLayout({ children }) {
           </div>
         </footer>
         
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }}
+        {/* Agentic Website Engine - v2.0 */}
+        <Script
+          src="/agentic-engine.js"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="/agentic-config.js"
+          strategy="lazyOnload"
         />
       </body>
     </html>

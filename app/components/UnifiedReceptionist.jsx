@@ -11,7 +11,7 @@ export default function UnifiedReceptionist() {
   const [isSpeaking, setIsSpeaking] = useState(true);
   const [isListening, setIsListening] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState('en'); // en, es, ru, ht
   const [activeMode, setActiveMode] = useState('chat'); // 'chat' or 'call'
   const chatEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -30,7 +30,7 @@ export default function UnifiedReceptionist() {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = language === 'ht' ? 'ht-HT' : language === 'es' ? 'es-ES' : 'en-US';
+      recognitionRef.current.lang = language === 'ht' ? 'ht-HT' : language === 'es' ? 'es-ES' : language === 'ru' ? 'ru-RU' : 'en-US';
 
       recognitionRef.current.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
@@ -253,6 +253,7 @@ export default function UnifiedReceptionist() {
                 <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
                   <button onClick={() => setLanguage('en')} className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>EN</button>
                   <button onClick={() => setLanguage('es')} className={`text-xs px-2 py-1 rounded ${language === 'es' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>ES</button>
+                  <button onClick={() => setLanguage('ru')} className={`text-xs px-2 py-1 rounded ${language === 'ru' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>RU</button>
                   <button onClick={() => setLanguage('ht')} className={`text-xs px-2 py-1 rounded ${language === 'ht' ? 'bg-cyan-500 text-white' : 'text-gray-400 hover:text-white'}`}>HT</button>
                 </div>
                 <button onClick={toggleVoice} className="text-gray-400 hover:text-white transition-colors" title={isSpeaking ? 'Mute voice' : 'Enable voice'}>

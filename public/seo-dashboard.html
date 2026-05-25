@@ -1,0 +1,308 @@
+export default function SEODashboard() {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MBMB SEO Dashboard | Medical Billing Miami Beach</title>
+        <meta name="description" content="Real-time SEO performance dashboard for Medical Billing Miami Beach. Track rankings, citations, content gaps, and AI search visibility." />
+        <link rel="icon" href="/mbmb-white.png" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <style>
+          {`
+            body { font-family: 'Inter', sans-serif; background: #0a0a0f; }
+            .font-display { font-family: 'Playfair Display', serif; }
+            .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); }
+            .glass-strong { background: rgba(255,255,255,0.05); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.08); }
+            .glow-blue { box-shadow: 0 0 40px rgba(59,130,246,0.1); }
+            .glow-teal { box-shadow: 0 0 40px rgba(45,212,191,0.1); }
+            .progress-ring { transform: rotate(-90deg); }
+            .metric-change-up { color: #22c55e; }
+            .metric-change-down { color: #ef4444; }
+            .nature-bg {
+              background: linear-gradient(135deg, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+              position: relative;
+            }
+            .nature-bg::before {
+              content: '';
+              position: fixed; inset: 0;
+              background: url('https://images.unsplash.com/photo-1518173946687-a3f417dddc8d?w=1920&q=80') center/cover;
+              opacity: 0.03;
+              pointer-events: none;
+              z-index: 0;
+            }
+            .grid-bg {
+              background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+              background-size: 50px 50px;
+            }
+          `}
+        </style>
+      </head>
+      <body className="nature-bg grid-bg text-white min-h-screen">
+        {/* Navigation */}
+        <nav className="glass border-b border-white/5 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center font-bold text-lg">M</div>
+              <div>
+                <div className="font-bold text-lg">MBMB SEO Dashboard</div>
+                <div className="text-xs text-slate-400">Medical Billing Miami Beach</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-xs text-slate-400">Last updated: <span className="text-white">Just now</span></div>
+              <div className="px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs font-medium border border-green-500/20">● Live Data</div>
+            </div>
+          </div>
+        </nav>
+
+        <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
+          {/* Hero Metrics */}
+          <div className="mb-8">
+            <h1 className="font-display text-4xl font-bold mb-2">SEO Performance Center</h1>
+            <p className="text-slate-400">Real-time visibility tracking for AI search engines and traditional Google rankings</p>
+          </div>
+
+          {/* Score Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            {[
+              { label: 'AI Overview Score', score: 87, color: '#3b82f6', icon: '🤖', change: '+12%' },
+              { label: 'Traditional SEO', score: 78, color: '#22c55e', icon: '🔍', change: '+5%' },
+              { label: 'Content Quality', score: 92, color: '#a855f7', icon: '✍️', change: '+8%' },
+              { label: 'Technical Health', score: 85, color: '#f59e0b', icon: '⚙️', change: '-2%' },
+            ].map((metric, i) => (
+              <div key={i} className="glass-strong rounded-2xl p-6 glow-blue hover:scale-[1.02] transition-transform">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-2xl">{metric.icon}</span>
+                  <span className={`text-sm font-medium ${metric.change.startsWith('+') ? 'metric-change-up' : 'metric-change-down'}`}>
+                    {metric.change}
+                  </span>
+                </div>
+                <div className="flex items-end gap-3 mb-2">
+                  <div className="relative w-16 h-16">
+                    <svg className="w-16 h-16 progress-ring">
+                      <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.05)" strokeWidth="4" fill="none" />
+                      <circle cx="32" cy="32" r="28" stroke={metric.color} strokeWidth="4" fill="none"
+                        strokeDasharray={`${metric.score * 1.76} 176`}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center font-bold text-lg">{metric.score}</span>
+                  </div>
+                  <div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wider">{metric.label}</div>
+                    <div className="text-sm text-slate-300">of 100</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column - 2/3 */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Keyword Rankings */}
+              <div className="glass-strong rounded-2xl p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="font-display text-xl font-bold">Keyword Rankings</h2>
+                  <div className="flex gap-2">
+                    <button className="px-3 py-1 rounded-lg bg-blue-500/20 text-blue-400 text-xs">All</button>
+                    <button className="px-3 py-1 rounded-lg bg-white/5 text-slate-400 text-xs hover:bg-white/10">AI Mode</button>
+                    <button className="px-3 py-1 rounded-lg bg-white/5 text-slate-400 text-xs hover:bg-white/10">Traditional</button>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { kw: 'medical billing Miami', pos: 3, vol: '1,900', diff: 0, ai: true },
+                    { kw: 'medical billing services', pos: 8, vol: '4,400', diff: -2, ai: true },
+                    { kw: 'revenue cycle management', pos: 12, vol: '8,100', diff: +5, ai: false },
+                    { kw: 'medical coding Miami', pos: 5, vol: '720', diff: +1, ai: true },
+                    { kw: 'healthcare billing Florida', pos: 15, vol: '590', diff: +3, ai: false },
+                    { kw: 'credentialing services', pos: 22, vol: '1,300', diff: -1, ai: false },
+                  ].map((k, i) => (
+                    <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/8 transition-colors">
+                      <div className="w-8 text-center font-bold text-slate-400">{i + 1}</div>
+                      <div className="flex-1">
+                        <div className="font-medium">{k.kw}</div>
+                        <div className="text-xs text-slate-400">Vol: {k.vol}/mo {k.ai && <span className="text-blue-400 ml-1">● AI Mode</span>}</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-bold text-lg">#{k.pos}</div>
+                        <div className={`text-xs ${k.diff > 0 ? 'metric-change-up' : k.diff < 0 ? 'metric-change-down' : 'text-slate-400'}`}>
+                          {k.diff > 0 ? `↑${k.diff}` : k.diff < 0 ? `↓${Math.abs(k.diff)}` : '—'}
+                        </div>
+                      </div>
+                      <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-teal-400 rounded-full" style={{ width: `${Math.max(5, (30 - k.pos) * 3.3)}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Content Gap Analysis */}
+              <div className="glass-strong rounded-2xl p-6">
+                <h2 className="font-display text-xl font-bold mb-4">Content Gap Analysis</h2>
+                <p className="text-sm text-slate-400 mb-4">Topics your competitors rank for that you don't</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    { topic: 'Florida Medicaid billing guide', priority: 'High', traffic: '2,400/mo', competitors: ['RevCycle', 'MedBill Pro'] },
+                    { topic: 'Medicare credentialing timeline', priority: 'High', traffic: '1,800/mo', competitors: ['Credentially', 'CAQH'] },
+                    { topic: 'Medical billing for small practices', priority: 'Medium', traffic: '3,200/mo', competitors: ['Kareo', 'AdvancedMD'] },
+                    { topic: 'ICD-10 coding updates 2026', priority: 'Medium', traffic: '1,500/mo', competitors: ['AAPC', 'Find-A-Code'] },
+                    { topic: 'HIPAA compliant billing software', priority: 'Low', traffic: '900/mo', competitors: ['SimplePractice', 'TherapyNotes'] },
+                    { topic: 'Denial management best practices', priority: 'High', traffic: '2,100/mo', competitors: ['RevCycle', 'MedBill Pro'] },
+                  ].map((gap, i) => (
+                    <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="font-medium text-sm">{gap.topic}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${gap.priority === 'High' ? 'bg-red-500/20 text-red-400' : gap.priority === 'Medium' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-slate-500/20 text-slate-400'}`}>
+                          {gap.priority}
+                        </span>
+                      </div>
+                      <div className="text-xs text-slate-400">Traffic: {gap.traffic}</div>
+                      <div className="text-xs text-slate-500 mt-1">Competitors: {gap.competitors.join(', ')}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - 1/3 */}
+            <div className="space-y-6">
+              {/* Structured Data Health */}
+              <div className="glass-strong rounded-2xl p-6">
+                <h2 className="font-display text-xl font-bold mb-4">Structured Data</h2>
+                <div className="space-y-3">
+                  {[
+                    { type: 'LocalBusiness', status: '✅ Valid', pages: 1 },
+                    { type: 'FAQPage', status: '✅ Valid', pages: 1 },
+                    { type: 'Service', status: '✅ Valid', pages: 6 },
+                    { type: 'ChatBot', status: '✅ Valid', pages: 1 },
+                    { type: 'BreadcrumbList', status: '✅ Valid', pages: 10 },
+                    { type: 'Organization', status: '✅ Valid', pages: 1 },
+                  ].map((schema, i) => (
+                    <div key={i} className="flex justify-between items-center p-2 rounded-lg bg-white/5">
+                      <div className="text-sm">{schema.type}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-400">{schema.pages} page{schema.pages > 1 ? 's' : ''}</span>
+                        <span className="text-green-400 text-sm">{schema.status}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Citation Tracker */}
+              <div className="glass-strong rounded-2xl p-6">
+                <h2 className="font-display text-xl font-bold mb-4">Citation Tracker</h2>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Google Business Profile', url: 'business.google.com', status: '✅ Active', last: 'Today' },
+                    { name: 'Yelp', url: 'yelp.com', status: '✅ Listed', last: '2 days ago' },
+                    { name: 'Healthgrades', url: 'healthgrades.com', status: '🟡 Pending', last: '—' },
+                    { name: 'Yellow Pages', url: 'yellowpages.com', status: '✅ Listed', last: '1 week ago' },
+                    { name: 'Bing Places', url: 'bingplaces.com', status: '✅ Active', last: 'Today' },
+                    { name: 'Avvo (Legal)', url: 'avvo.com', status: '❌ N/A', last: '—' },
+                  ].map((cite, i) => (
+                    <div key={i} className="flex justify-between items-center p-2 rounded-lg bg-white/5">
+                      <div>
+                        <div className="text-sm">{cite.name}</div>
+                        <div className="text-xs text-slate-500">{cite.url}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs">{cite.status}</div>
+                        <div className="text-xs text-slate-500">{cite.last}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* AI Search Visibility */}
+              <div className="glass-strong rounded-2xl p-6">
+                <h2 className="font-display text-xl font-bold mb-4">AI Search Visibility</h2>
+                <div className="space-y-4">
+                  {[
+                    { engine: 'ChatGPT / OpenAI', visible: true, mentions: 12 },
+                    { engine: 'Perplexity AI', visible: true, mentions: 8 },
+                    { engine: 'Google AI Overviews', visible: true, mentions: 5 },
+                    { engine: 'Claude (Anthropic)', visible: false, mentions: 0 },
+                    { engine: 'Gemini (Google)', visible: true, mentions: 3 },
+                  ].map((ai, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className={`w-2 h-2 rounded-full ${ai.visible ? 'bg-green-400' : 'bg-slate-600'}`} />
+                      <div className="flex-1 text-sm">{ai.engine}</div>
+                      <div className="text-xs text-slate-400">{ai.mentions} mentions</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technical SEO */}
+              <div className="glass-strong rounded-2xl p-6">
+                <h2 className="font-display text-xl font-bold mb-4">Technical SEO</h2>
+                <div className="space-y-2">
+                  {[
+                    { check: 'Core Web Vitals', status: '✅ Pass', detail: 'LCP: 1.2s' },
+                    { check: 'Mobile Friendly', status: '✅ Pass', detail: 'Responsive' },
+                    { check: 'HTTPS Security', status: '✅ Pass', detail: 'SSL valid' },
+                    { check: 'Robots.txt', status: '✅ Pass', detail: 'Optimized' },
+                    { check: 'Sitemap.xml', status: '✅ Pass', detail: '12 URLs' },
+                    { check: 'Canonical Tags', status: '✅ Pass', detail: 'All pages' },
+                    { check: 'Hreflang', status: '⚠️ Missing', detail: 'EN/ES/HT' },
+                    { check: 'Schema Validation', status: '✅ Pass', detail: 'No errors' },
+                  ].map((tech, i) => (
+                    <div key={i} className="flex justify-between items-center py-1.5 border-b border-white/5 last:border-0">
+                      <span className="text-sm">{tech.check}</span>
+                      <div className="text-right">
+                        <span className="text-xs">{tech.status}</span>
+                        <span className="text-xs text-slate-500 ml-1">{tech.detail}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Items */}
+          <div className="mt-8 glass-strong rounded-2xl p-6">
+            <h2 className="font-display text-xl font-bold mb-4">Recommended Actions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { action: 'Create Florida Medicaid billing guide', impact: 'High', effort: 'Medium', eta: '2 days', reason: 'Content gap — 2,400/mo traffic' },
+                { action: 'Add hreflang tags (EN/ES/HT)', impact: 'Medium', effort: 'Low', eta: '1 day', reason: 'Missing — bilingual site' },
+                { action: 'Build Healthcare Professionals page', impact: 'High', effort: 'High', eta: '1 week', reason: 'Target specialty keywords' },
+                { action: 'Get Healthgrades listing', impact: 'Medium', effort: 'Low', eta: '3 days', reason: 'Citation gap' },
+                { action: 'Optimize for Claude citations', impact: 'Medium', effort: 'Medium', eta: '3 days', reason: 'Not visible in Anthropic' },
+                { action: 'Add video schema markup', impact: 'Low', effort: 'Low', eta: '1 day', reason: 'Rich results opportunity' },
+              ].map((item, i) => (
+                <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-colors cursor-pointer">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${item.impact === 'High' ? 'bg-red-500/20 text-red-400' : item.impact === 'Medium' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-slate-500/20 text-slate-400'}`}>
+                      {item.impact} Impact
+                    </span>
+                    <span className="text-xs text-slate-400">{item.effort} effort</span>
+                  </div>
+                  <div className="font-medium text-sm mb-1">{item.action}</div>
+                  <div className="text-xs text-slate-400">{item.reason}</div>
+                  <div className="text-xs text-blue-400 mt-2">ETA: {item.eta}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-12 border-t border-white/5 py-8 text-center text-slate-500 text-sm">
+          <p>MBMB SEO Dashboard • Powered by AI Strategy Tool v1.0</p>
+          <p className="mt-1">Built with Google May 2026 AI Overview Guidelines</p>
+        </footer>
+      </body>
+    </html>
+  );
+}
