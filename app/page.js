@@ -352,22 +352,19 @@ export default function Home() {
         </div>
 
         <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
-          {/* AI-Powered Billing Hero Badge */}
-          <ScrollReveal direction="up" distance={20} duration={500}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00c8b1]/40 bg-[#00c8b1]/10 backdrop-blur-sm mb-6 animate-pulse-glow">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8b1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* AI-Powered Billing Hero Badge — Clean, minimal, top-right positioned */}
+          <div className="absolute -top-2 right-0 md:right-4 z-20">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00c8b1]/10 border border-[#00c8b1]/20 backdrop-blur-sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00c8b1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
                 <path d="M2 17l10 5 10-5" />
                 <path d="M2 12l10 5 10-5" />
               </svg>
-              <span className="text-[#00c8b1] text-sm font-semibold tracking-wide">AI-Enhanced Revenue Intelligence</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
-                <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z" />
-              </svg>
+              <span className="text-[#00c8b1] text-xs font-semibold tracking-wide">AI-Enhanced</span>
             </div>
-          </ScrollReveal>
+          </div>
 
-          <header className="" >
+          <header className="mt-4" >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg leading-tight" >
               Miami's Highest Clean-Claim Rate
             </h1>
