@@ -324,6 +324,18 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-M1RHKRVS9M');
           `
         }</Script>
+        {/* Microsoft Clarity - Heatmaps, Session Recordings, AI Insights */}
+        {/* IMPORTANT: Replace CLARITY_MBMB with your actual Clarity Project ID from https://clarity.microsoft.com */}
+        <Script id="clarity" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "CLARITY_MBMB");
+          `
+        }} />
+        {/* End Microsoft Clarity */}
         {/* Header with Phone - Enhanced for SEO */}
         <header className="bg-white shadow-sm border-b border-gray-200" itemScope itemType="https://schema.org/WPHeader">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -441,15 +453,67 @@ export default function RootLayout({ children }) {
           </div>
         </footer>
         
-        {/* Agentic Website Engine - v2.0 */}
+        {/* Agentic Website Engine v3.0 + AI Chatbot v3.0 */}
         <Script
-          src="/agentic-engine.js"
+          src="/agentic-website-engine-v3.js"
           strategy="lazyOnload"
         />
         <Script
-          src="/agentic-config.js"
+          src="/agentic-chatbot-v3.js"
           strategy="lazyOnload"
         />
+        <Script id="agentic-init" strategy="lazyOnload">{
+          `
+            // Initialize Agentic Engine for MBMB
+            window._agenticInstance = new AgenticWebsite({
+              siteId: 'mbmb',
+              apiEndpoint: '/api/agentic',
+              abTesting: {
+                enabled: true,
+                variants: {
+                  headline: [
+                    'Maximize Your Practice Revenue',
+                    'Expert Medical Billing in Miami',
+                    'AAPC-Certified Billing Specialists'
+                  ],
+                  cta: [
+                    'Free Billing Audit',
+                    'Get Started',
+                    'Schedule Consultation'
+                  ]
+                }
+              }
+            });
+
+            // Initialize AI Chatbot for MBMB
+            window.AGENTIC_CHATBOT_CONFIG = {
+              siteName: 'MBMB',
+              primaryColor: '#2563eb',
+              secondaryColor: '#1e40af',
+              position: 'bottom-right',
+              languages: ['en', 'es', 'ht'],
+              defaultLanguage: 'en',
+              welcomeMessage: {
+                en: "🏥 Welcome to Medical Billing Miami Beach! I'm your AI assistant.\\n\\nI can help you:\\n• Get a free billing audit\\n• Learn about our pricing (5.6% to 10% of collections)\\n• Compare our services\\n• Schedule a consultation\\n• Check if we serve your specialty\\n\\nWhat can I help you with today?"
+              },
+              knowledgeBase: \`You are MBMB's AI Virtual Receptionist. You help healthcare providers with medical billing in Miami.\\n\\nSERVICES:\\n• Medical Billing - 5.6% to 10% of collections, performance-based\\n• Medical Coding - AAPC-certified specialists (ICD-10, CPT, HCPCS)\\n• Credentialing - Provider enrollment and CAQH\\n• Revenue Cycle Management - End-to-end management\\n• Denial Management - Appeals and prevention\\n• Insurance Verification - Real-time eligibility checks\\n\\nSPECIALTIES: Family Medicine, Internal Medicine, Pediatrics, OB/GYN, Cardiology, Dermatology, Orthopedics, Urgent Care, General Surgery, Psychiatry, Oncology.\\n\\nPRICING: Performance-based. No upfront fees. You only pay when we collect.\\n\\nCERTIFICATIONS: AAPC Certified, HIPAA Compliant, MGMA Member, FMA Partner. 15+ years experience.\\n\\nCONTACT: Phone (786) 643-2099, Email Jasmel@medicalbillingmb.com, Booking https://booking.medicalbillingmb.com\\n\\nWhen users ask about pricing, generate a pricing block. When they want to compare, generate a comparison block. When they want to book, scroll to the contact or booking section.\`,
+              pricingTiers: [
+                { name: 'Basic Billing', price: '5.6% of collections', features: ['Claim submission', 'Payment posting', 'Basic reporting', 'Email support'], cta: 'Get Started' },
+                { name: 'Full Service', price: '7.5% of collections', features: ['Everything in Basic', 'Denial management', 'Credentialing', 'Insurance verification', 'Monthly analytics', 'Priority phone support'], cta: 'Most Popular', highlighted: true },
+                { name: 'Premium RCM', price: '10% of collections', features: ['Everything in Full Service', 'Revenue cycle optimization', 'Custom dashboards', 'Quarterly business reviews', 'Dedicated account manager', 'Same-day claim submission'], cta: 'Contact Us' }
+              ],
+              suggestions: [
+                'How much do you charge?',
+                'Do you handle my specialty?',
+                'Schedule a free audit',
+                'What makes you different?',
+                'How fast is onboarding?'
+              ]
+            };
+            window._agenticChatbot = new AgenticChatbot(window.AGENTIC_CHATBOT_CONFIG);
+          `
+        }</Script>
+        {/* End Agentic v3.0 */}
       </body>
     </html>
   );
