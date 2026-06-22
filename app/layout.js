@@ -108,7 +108,7 @@ export const metadata = {
     // AISO Meta Tags
     'ai:pricing': '5.6% to 10% of collected revenue. Performance-based. No upfront fees.',
     'ai:certifications': 'AAPC Certified, HIPAA Compliant, MGMA Member, FMA Partner. 15+ years experience. BAA signed.',
-    'ai:free-consultation': 'Free 30-minute billing assessment. Book at https://booking.medicalbillingmb.com',
+    'ai:free-consultation': 'Free 30-minute billing assessment. Book at https://adapted-hampshire-less-moms.trycloudflare.com',
     'openai:title': 'Medical Billing Miami Beach | MBMB',
     'openai:description': 'MBMB provides medical billing, coding, and credentialing services for healthcare practices in Miami. 15+ years experience. Performance-based pricing at 5.6% to 10% of collections.',
     'perplexity:source': 'primary',
@@ -208,13 +208,13 @@ export default function RootLayout({ children }) {
           { '@type': 'Question', 'name': 'What certifications does MBMB hold?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'AAPC certified coders, HIPAA compliance, MGMA member, and FMA partner. 15+ years of experience in medical billing.' } },
           { '@type': 'Question', 'name': 'How quickly can MBMB start billing for my practice?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Most practices are onboarded within 5-7 business days after credentialing verification is complete.' } },
           { '@type': 'Question', 'name': 'Does MBMB handle denied claims?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes. Denial management is a core service. We analyze root causes, file appeals, and implement prevention strategies.' } },
-          { '@type': 'Question', 'name': 'Do you offer free consultations?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes. We offer a free 30-minute billing assessment. Book at https://booking.medicalbillingmb.com' } },
+          { '@type': 'Question', 'name': 'Do you offer free consultations?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes. We offer a free 30-minute billing assessment. Book at https://adapted-hampshire-less-moms.trycloudflare.com' } },
           { '@type': 'Question', 'name': 'What is performance-based pricing?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'You only pay a percentage of what we actually collect for your practice. No flat fees, no hidden charges, no payment until you get paid.' } },
           { '@type': 'Question', 'name': 'Can MBMB credential new providers?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes. We handle initial enrollment and ongoing re-credentialing with insurance networks.' } },
           { '@type': 'Question', 'name': 'Does MBMB verify patient insurance?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes. Real-time eligibility and benefits verification is available to reduce front-desk errors and claim rejections.' } },
           { '@type': 'Question', 'name': 'How does MBMB compare to in-house billing staff?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'MBMB replaces the cost of hiring, training, and managing billing staff while delivering specialized expertise and higher collection rates.' } },
           { '@type': 'Question', 'name': 'Is there a contract or minimum term?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'We offer flexible agreements. No long-term lock-in required. Cancel with 30 days notice.' } },
-          { '@type': 'Question', 'name': 'How do I contact MBMB?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Phone: +1-786-643-2099. Email: Jasmel@medicalbillingmb.com. Website: https://medicalbillingmb.com. Booking: https://booking.medicalbillingmb.com' } }
+          { '@type': 'Question', 'name': 'How do I contact MBMB?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Phone: +1-786-643-2099. Email: Jasmel@medicalbillingmb.com. Website: https://medicalbillingmb.com. Booking: https://adapted-hampshire-less-moms.trycloudflare.com' } }
         ]
       },
       {
@@ -496,7 +496,7 @@ export default function RootLayout({ children }) {
               welcomeMessage: {
                 en: "🏥 Welcome to Medical Billing Miami Beach! I'm your AI assistant.\\n\\nI can help you:\\n• Get a free billing audit\\n• Learn about our pricing (5.6% to 10% of collections)\\n• Compare our services\\n• Schedule a consultation\\n• Check if we serve your specialty\\n\\nWhat can I help you with today?"
               },
-              knowledgeBase: \`You are MBMB's AI Virtual Receptionist. You help healthcare providers with medical billing in Miami.\\n\\nSERVICES:\\n• Medical Billing - 5.6% to 10% of collections, performance-based\\n• Medical Coding - AAPC-certified specialists (ICD-10, CPT, HCPCS)\\n• Credentialing - Provider enrollment and CAQH\\n• Revenue Cycle Management - End-to-end management\\n• Denial Management - Appeals and prevention\\n• Insurance Verification - Real-time eligibility checks\\n\\nSPECIALTIES: Family Medicine, Internal Medicine, Pediatrics, OB/GYN, Cardiology, Dermatology, Orthopedics, Urgent Care, General Surgery, Psychiatry, Oncology.\\n\\nPRICING: Performance-based. No upfront fees. You only pay when we collect.\\n\\nCERTIFICATIONS: AAPC Certified, HIPAA Compliant, MGMA Member, FMA Partner. 15+ years experience.\\n\\nCONTACT: Phone (786) 643-2099, Email Jasmel@medicalbillingmb.com, Booking https://booking.medicalbillingmb.com\\n\\nWhen users ask about pricing, generate a pricing block. When they want to compare, generate a comparison block. When they want to book, scroll to the contact or booking section.\`,
+              knowledgeBase: \`You are MBMB's AI Virtual Receptionist. You help healthcare providers with medical billing in Miami.\\n\\nSERVICES:\\n• Medical Billing - 5.6% to 10% of collections, performance-based\\n• Medical Coding - AAPC-certified specialists (ICD-10, CPT, HCPCS)\\n• Credentialing - Provider enrollment and CAQH\\n• Revenue Cycle Management - End-to-end management\\n• Denial Management - Appeals and prevention\\n• Insurance Verification - Real-time eligibility checks\\n\\nSPECIALTIES: Family Medicine, Internal Medicine, Pediatrics, OB/GYN, Cardiology, Dermatology, Orthopedics, Urgent Care, General Surgery, Psychiatry, Oncology.\\n\\nPRICING: Performance-based. No upfront fees. You only pay when we collect.\\n\\nCERTIFICATIONS: AAPC Certified, HIPAA Compliant, MGMA Member, FMA Partner. 15+ years experience.\\n\\nCONTACT: Phone (786) 643-2099, Email Jasmel@medicalbillingmb.com, Booking https://adapted-hampshire-less-moms.trycloudflare.com\\n\\nWhen users ask about pricing, generate a pricing block. When they want to compare, generate a comparison block. When they want to book, scroll to the contact or booking section.\`,
               pricingTiers: [
                 { name: 'Basic Billing', price: '5.6% of collections', features: ['Claim submission', 'Payment posting', 'Basic reporting', 'Email support'], cta: 'Get Started' },
                 { name: 'Full Service', price: '7.5% of collections', features: ['Everything in Basic', 'Denial management', 'Credentialing', 'Insurance verification', 'Monthly analytics', 'Priority phone support'], cta: 'Most Popular', highlighted: true },
@@ -514,6 +514,14 @@ export default function RootLayout({ children }) {
           `
         }</Script>
         {/* End Agentic v3.0 */}
+        {/* Twilio Integration — SMS/Voice buttons for chatbot */}
+        <Script src="/twilio-frontend.js" strategy="lazyOnload" />
+        <Script id="twilio-init" strategy="lazyOnload">{`
+          window.TWILIO_API_BASE = 'https://twilio-mbmb.vercel.app';
+          if (window.TwilioIntegration) {
+            window.TwilioIntegration.setApiBase('https://twilio-mbmb.vercel.app');
+          }
+        `}</Script>
       </body>
     </html>
   );

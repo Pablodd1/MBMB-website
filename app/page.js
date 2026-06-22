@@ -627,8 +627,10 @@ export default function Home() {
       {/* Unified Receptionist Widget — LEFT side, text + voice */}
       <UnifiedReceptionist />
 
-      {/* Revenue Calculator — Fixed floating widget */}
-      <RevenueCalculator />
+      {/* Revenue Calculator — Fixed floating widget, hidden on mobile */}
+      <div className="hidden md:block fixed bottom-24 right-6 z-40">
+        <RevenueCalculator />
+      </div>
 
       {/* Lead Magnet Popup — Free checklist offer */}
       <LeadMagnetPopup />
@@ -637,10 +639,14 @@ export default function Home() {
       <FloatingVideo />
 
       {/* AI Voice Call Button — Front desk voice assistant */}
-      <AIVoiceCallButton />
+      <div className="fixed bottom-6 left-6 z-50">
+        <AIVoiceCallButton />
+      </div>
 
       {/* Google Calendar Booking — Floating book appointment widget */}
-      <GoogleCalendarBooking />
+      <div className="fixed bottom-6 right-6 z-50">
+        <GoogleCalendarBooking />
+      </div>
       
       {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
         <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >

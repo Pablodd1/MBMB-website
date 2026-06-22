@@ -35,7 +35,7 @@ export default function RevenueCalculator() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-36 right-20 z-50 group"
+        className="group"
         aria-label="Open Revenue Calculator"
         title="Open Revenue Calculator"
       >
@@ -56,7 +56,7 @@ export default function RevenueCalculator() {
   }
 
   return (
-    <div className="fixed bottom-36 right-6 z-50 w-[400px] max-w-[calc(100vw-48px)]">
+    <div className="w-[400px] max-w-[calc(100vw-48px)]">
       <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
 
         {/* Header */}

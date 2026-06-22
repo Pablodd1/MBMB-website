@@ -245,7 +245,7 @@ export default function AIVoiceCallButton() {
     return (
       <button
         onClick={startCall}
-        className="fixed bottom-24 left-6 z-50 group"
+        className="group"
         aria-label="Call AI Assistant"
       >
         <span className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />

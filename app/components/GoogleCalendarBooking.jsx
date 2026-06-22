@@ -93,7 +93,7 @@ export default function GoogleCalendarBooking() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 group"
+        className="group"
       >
         <span className="absolute inset-0 rounded-full bg-pink-500/20 animate-ping" />
         <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 text-white shadow-xl flex items-center justify-center group-hover:shadow-pink-500/50 transition-all duration-300 group-hover:scale-110 border-2 border-white/30">
