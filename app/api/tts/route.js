@@ -1,11 +1,18 @@
 import { NextResponse } from 'next/server';
 
-// Google Cloud TTS configurations - Warm, natural voices
+const VOICE_INSTRUCTIONS = {
+  en: 'Speak as Jass, a warm, upbeat, empathetic, and executive medical office receptionist in Miami Beach. Use natural human pacing, friendly inflection, and reassuring confidence.',
+  es: 'Habla como Jass, una recepcionista ejecutiva de facturación médica en Miami Beach, cálida, amable, profesional y muy natural.',
+  ht: 'Speak with a warm, welcoming, and professional customer service receptionist tone.',
+  ru: 'Говорите тепло, дружелюбно, уверенно и естественно, как профессиональный администратор медицинской клиники в Майами.'
+};
+
+// Google Cloud TTS fallback configurations
 const GOOGLE_VOICE_CONFIG = {
-  en: { languageCode: 'en-US', name: 'en-US-Journey-F', fallbackName: 'en-US-Neural2-F', ssmlGender: 'FEMALE' },
-  es: { languageCode: 'es-US', name: 'es-US-Journey-F', fallbackName: 'es-US-Neural2-A', ssmlGender: 'FEMALE' },
-  ru: { languageCode: 'ru-RU', name: 'ru-RU-Standard-A', fallbackName: 'ru-RU-Standard-A', ssmlGender: 'FEMALE' },
-  ht: { languageCode: 'en-US', name: 'en-US-Journey-F', fallbackName: 'en-US-Neural2-F', ssmlGender: 'FEMALE' }
+  en: { languageCode: 'en-US', name: 'en-US-Neural2-F', ssmlGender: 'FEMALE' },
+  es: { languageCode: 'es-US', name: 'es-US-Neural2-A', ssmlGender: 'FEMALE' },
+  ru: { languageCode: 'ru-RU', name: 'ru-RU-Standard-A', ssmlGender: 'FEMALE' },
+  ht: { languageCode: 'en-US', name: 'en-US-Neural2-F', ssmlGender: 'FEMALE' }
 };
 
 export async function POST(request) {
@@ -17,14 +24,57 @@ export async function POST(request) {
     }
 
     const cleanInput = text.substring(0, 4000);
-    const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
     const GOOGLE_TTS_API_KEY = process.env.GOOGLE_TTS_API_KEY;
 
-    // 1. Primary (Most Human & Ultra-Fast): ElevenLabs Flash v2.5
+    // 1. Primary: OpenAI Latest Human Voice TTS (`gpt-4o-mini-tts` with `coral`/`nova` + receptionist voice instructions -> `tts-1`)
+    if (OPENAI_API_KEY) {
+      const openAiTtsAttempts = [
+        {
+          model: 'gpt-4o-mini-tts',
+          voice: 'coral',
+          instructions: VOICE_INSTRUCTIONS[language] || VOICE_INSTRUCTIONS.en
+        },
+        {
+          model: 'tts-1',
+          voice: 'nova'
+        }
+      ];
+
+      for (const attempt of openAiTtsAttempts) {
+        try {
+          const oaRes = await fetch('https://api.openai.com/v1/audio/speech', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+              ...attempt,
+              input: cleanInput,
+              response_format: 'mp3'
+            })
+          });
+
+          if (oaRes.ok) {
+            const arrayBuffer = await oaRes.arrayBuffer();
+            const audioContent = Buffer.from(arrayBuffer).toString('base64');
+            return NextResponse.json({
+              audioContent,
+              format: 'MP3',
+              provider: `openai-${attempt.model}-${attempt.voice}`
+            });
+          }
+        } catch (e) {
+          console.warn(`OpenAI TTS (${attempt.model}) fallback triggered:`, e.message);
+        }
+      }
+    }
+
+    // 2. Secondary: ElevenLabs Flash v2.5
     if (ELEVENLABS_API_KEY) {
       try {
-        // Default voice: Sarah / Rachel (warm, executive customer service receptionist)
         const voiceId = process.env.ELEVENLABS_VOICE_ID || 'EXAVITQu4vr4xnSDxMaL';
         const elevenRes = await fetch(
           `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`,
@@ -57,36 +107,7 @@ export async function POST(request) {
       }
     }
 
-    // 2. Secondary (Natural & Fast with Single OpenAI Key): OpenAI Audio TTS (`gpt-4o-mini-tts` / `tts-1`)
-    if (OPENAI_API_KEY) {
-      for (const ttsModel of ['gpt-4o-mini-tts', 'tts-1']) {
-        try {
-          const oaRes = await fetch('https://api.openai.com/v1/audio/speech', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-              model: ttsModel,
-              voice: 'nova', // Warm, energetic, professional female receptionist voice
-              input: cleanInput,
-              response_format: 'mp3'
-            })
-          });
-
-          if (oaRes.ok) {
-            const arrayBuffer = await oaRes.arrayBuffer();
-            const audioContent = Buffer.from(arrayBuffer).toString('base64');
-            return NextResponse.json({ audioContent, format: 'MP3', provider: `openai-${ttsModel}` });
-          }
-        } catch (e) {
-          console.warn(`OpenAI TTS (${ttsModel}) fallback triggered:`, e.message);
-        }
-      }
-    }
-
-    // 3. Tertiary: Google Cloud Text-to-Speech
+    // 3. Tertiary: Google Cloud TTS
     if (GOOGLE_TTS_API_KEY) {
       const voiceCfg = GOOGLE_VOICE_CONFIG[language] || GOOGLE_VOICE_CONFIG.en;
       const response = await fetch(
@@ -96,11 +117,7 @@ export async function POST(request) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             input: { text: cleanInput },
-            voice: {
-              languageCode: voiceCfg.languageCode,
-              name: voiceCfg.fallbackName,
-              ssmlGender: voiceCfg.ssmlGender
-            },
+            voice: voiceCfg,
             audioConfig: {
               audioEncoding: 'MP3',
               speakingRate: 0.98,

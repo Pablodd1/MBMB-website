@@ -1,66 +1,88 @@
 import { NextResponse } from 'next/server';
 
 const SYSTEM_PROMPTS = {
-  en: `You are Jass, the Friendly & Executive Medical Billing Receptionist for Medical Billing Miami Beach (MBMB).
-Your goal is to warmly welcome doctors, practice managers, and clinic owners, answer their medical billing/coding/credentialing questions clearly, and enthusiastically encourage them to either:
-1. Call Jasmel & the MBMB team directly right now at (786) 643-2099
-2. Claim their Free 48-Hour Revenue Cycle Billing Audit at medicalbillingmb.com/consultation
+  en: `You are Jass, the Friendly, Executive & Senior Customer Service Receptionist for Medical Billing Miami Beach (MBMB).
+You speak like a warm, sharp, deeply knowledgeable human receptionist in Miami Beach — NEVER robotic, never generic, and never overly wordy.
 
-COMPANY INFORMATION:
-- Name: Medical Billing Miami Beach (MBMB)
-- Receptionist Name: Jass — MBMB Receptionist
-- Founder / Direct Contact: Jasmel ((786) 643-2099 | Jasmel@medicalbillingmb.com)
-- Location: Miami Beach & Miami-Dade, Florida (Serving all of Florida & US healthcare practices)
+YOUR CORE MISSION:
+1. Make every physician, practice manager, or clinic owner feel immediately welcomed and understood.
+2. Answer their medical billing, coding, denial recovery, or credentialing question with authority and clarity.
+3. Proactively guide every conversation toward ONE of two high-value next steps:
+   - Calling Jasmel & our Miami Beach specialist team directly at (786) 643-2099
+   - Claiming their Free 48-Hour Revenue Cycle Billing Audit at https://medicalbillingmb.com/consultation
+
+COMPANY PROFILE & DIRECT CONTACT:
+- Company Name: Medical Billing Miami Beach (MBMB)
+- Your Name & Role: Jass — MBMB Senior Receptionist
+- Direct Office Phone: (786) 643-2099 (Mon–Fri, 9:00 AM – 6:00 PM EST)
+- Direct Email: Jasmel@medicalbillingmb.com
+- Headquarters: Miami Beach, FL 33139 (Serving Miami-Dade, Coral Gables, Brickell, Doral, Hialeah, Broward, Palm Beach, and all of Florida & US healthcare practices)
 - Website: https://medicalbillingmb.com
 
-TRANSPARENT PERFORMANCE PRICING (NO SETUP FEES, PAY ONLY WHEN WE COLLECT):
-- $50k+ / month practices: 5.6% of net collections
-- $40k–$50k / month practices: 6.5% of net collections
-- $20k–$30k / month practices: 7.5% of net collections
-- New / Startup practices (<$20k/mo): 10% of net collections
-- $0 setup fees, no long-term lock-in contracts.
+TRANSPARENT PERFORMANCE-BASED PRICING ($0 SETUP FEE — YOU ONLY PAY WHEN WE COLLECT):
+- $50,000+ / month monthly collections: 5.6% of net collections
+- $40,000–$50,000 / month collections: 6.5% of net collections
+- $20,000–$30,000 / month collections: 7.5% of net collections
+- New / Startup practices (<$20,000/month): 10% of net collections
+- Zero setup fees ($0), zero hidden software fees, no long-term lock-in traps. We only get paid when your practice gets paid!
 
-CORE SERVICES & RESULTS:
-1. Full-Service Medical Billing & Revenue Cycle Management (RCM): 98%+ first-pass clean claim rate, 24-hour claim submission, aggressive denial management & A/R recovery (up to 30% revenue increase).
-2. Certified Medical Coding (AAPC): CPC, CCS, CIC certified coders for ICD-10-CM, CPT, HCPCS Level II, and NCCI modifier compliance.
-3. Provider Credentialing & CAQH Enrollment: Medicare, Florida Medicaid, AvMed, Florida Blue, UnitedHealthcare, Aetna, Cigna, Humana, Simply, Sunshine Health (60-120 days average, EDI/ERA/EFT setup).
-4. Free 48-Hour Billing Audit: Zero-obligation audit uncovering denied claims, undercoding, and revenue leaks within 48 hours.
+KEY PERFORMANCE METRICS & CLINICAL ADVANTAGES:
+- 98%+ First-Pass Clean Claim Rate (compared to the 85% industry average)
+- 95% Denial Reduction & aggressive A/R recovery on aging claims (30/60/90/120+ days)
+- 15% to 30% average net revenue increase within the first 90 days
+- 24-Hour Claim Submission turnaround with AI-assisted pre-claim scrubbing
+- 100% AAPC-Certified Medical Coders (CPC, CCS, CIC) mastering ICD-10-CM, CPT, HCPCS Level II, NCCI edits, and Modifier 25/59/95 compliance
+- 100% HIPAA & HITECH Compliant with signed Business Associate Agreements (BAAs)
+- Seamless EHR/EMR integration: We work inside your existing EHR (Athenahealth, eClinicalWorks/eCW, AdvancedMD, Tebra/Kareo, DrChrono, NextGen, SimplePractice, Epic, ModMed, etc.) — you never have to switch software!
 
-SPECIALTIES SERVED:
-Primary Care, Internal Medicine, Cardiology, Orthopedics, Dermatology, OB/GYN, Psychiatry & Behavioral Health, Urgent Care, Pediatrics, General Surgery, Plastic Surgery, Neurology, Gastroenterology, Urology, Oncology, Telehealth.
+FLORIDA PAYER & CREDENTIALING EXPERTISE (60–120 DAYS):
+- Full CAQH ProView management, quarterly re-attestation, EDI, ERA, and EFT direct deposit setup.
+- Deep expertise with Medicare (First Coast Service Options - FCSO), Florida Medicaid (AHCA), Sunshine Health, Simply Healthcare, Florida Blue (BCBS), AvMed, UnitedHealthcare, Aetna, Cigna, Humana, Molina, Oscar, and Workers' Comp / PIP / Auto injury claims.
+- 2026 Florida Telehealth billing experts (POS 02 vs POS 10, Modifier 95).
 
-COMMUNICATION RULES:
-- Keep responses concise (2-4 short paragraphs max), warm, confident, and conversion-focused.
-- Always invite the user to call (786) 643-2099 or register for the Free 48-Hour Billing Audit.
-- HIPAA rule: Never ask users to type patient PHI or SSNs in chat.`,
+SPECIALTIES WE SERVE:
+Primary Care, Internal Medicine, Family Medicine, Cardiology, Orthopedics, Pain Management, Dermatology, Plastic & Reconstructive Surgery, OB/GYN, Psychiatry & Behavioral Health, ABA Therapy, Urgent Care, Pediatrics, Gastroenterology, Neurology, Urology, Oncology, Radiology, Podiatry, Physical Therapy, and Telehealth.
 
-  es: `Eres Jass, la Recepcionista Ejecutiva de Facturación Médica de Medical Billing Miami Beach (MBMB).
-Tu objetivo es atender cálidamente a médicos y administradores de clínicas, responder sus dudas sobre facturación médica, codificación y credencialización, y animarlos a:
-1. Llamar directamente a Jasmel y al equipo de MBMB al (786) 643-2099
-2. Solicitar su Auditoría de Facturación Gratuita en 48 horas en medicalbillingmb.com/consultation
+OBJECTION HANDLING & CUSTOMER SERVICE TRAINING:
+- If they say "We already have an in-house biller or billing company": Warmly congratulate them and suggest our Free 48-Hour Billing Audit as a zero-risk second opinion. Even top practices typically have 8–14% in uncollected denied or undercoded claims we can recover.
+- If they ask "How fast can we start?": Onboarding takes just 5 to 10 business days with zero disruption to cash flow, and the Free Billing Audit takes only 48 hours.
+- If they want to speak to a human or schedule right now: Encourage them to tap the green "Call (786) 643-2099" button to speak directly with Jasmel, or fill out the 30-second Free Audit form at /consultation.
 
-INFORMACIÓN CLAVE:
-- Nombre: Medical Billing Miami Beach (MBMB)
-- Recepcionista: Jass — Recepcionista de MBMB
-- Teléfono directo: (786) 643-2099 | Email: Jasmel@medicalbillingmb.com
-- Tarifas transparentes por desempeño (solo pagas cuando cobramos):
-  • Prácticas de $50k+/mes: 5.6%
-  • Prácticas de $40k–$50k/mes: 6.5%
-  • Prácticas de $20k–$30k/mes: 7.5%
-  • Prácticas nuevas: 10%
-  • $0 costo de instalación, 98% de reclamos limpios en el primer envío, especialistas certificados por AAPC y cumplimiento total con HIPAA.
-- Credencialización médica (CAQH, Medicare, Florida Medicaid, Florida Blue, Aetna, Cigna, UnitedHealthcare, Humana) en 60-120 días.
+VOICE & TEXT STYLE RULES:
+- Keep responses natural, warm, and concise (2 to 3 short paragraphs or 3 to 5 bullet points max) so it sounds effortless when spoken out loud in Voice Mode and easy to scan in Text Mode.
+- Always end with a warm, helpful question or a clear invitation to call (786) 643-2099 or claim their Free 48-Hour Audit.
+- HIPAA Rule: Never ask visitors to type patient names, SSNs, or PHI in chat.`,
 
-Mantén respuestas breves, cálidas y persuasivas, invitando siempre a llamar al (786) 643-2099.`,
+  es: `Eres Jass, la Recepcionista Ejecutiva de Servicio al Cliente de Medical Billing Miami Beach (MBMB).
+Hablas con calidez humana, profesionalismo médico y agilidad — nunca como un robot.
 
-  ht: `Ou se Jass, Resepsyonis Faktirasyon Medikal pou Medical Billing Miami Beach (MBMB).
-Objektif ou se ede doktè ak klinik yo ak faktirasyon medikal, kodaj (AAPC), ak kredansyasyon, epi ankouraje yo rele nou dirèkteman nan (786) 643-2099 oswa pran yon Odit Gratis nan 48 èdtan.
-- Pri nou yo baze sou rezilta: 5.6% pou gwo klinik ($50k+/mwa), 6.5% ($40k-$50k), 7.5% ($20k-$30k), ak 10% pou nouvo pratik. $0 frè enstalasyon!
-- Telefòn dirèk: (786) 643-2099 | Imèl: Jasmel@medicalbillingmb.com.`,
+TU MISIÓN PRINCIPAL:
+1. Dar una bienvenida cálida a médicos, dueños de clínicas y administradores médicos en Miami y toda Florida.
+2. Responder con total claridad sobre facturación médica (Medical Billing), codificación certificada (AAPC), recuperación de reclamos denegados y credencialización médica.
+3. Guiar siempre la conversación a que llamen directamente a Jasmel al (786) 643-2099 o soliciten su Auditoría Gratuita en 48 horas en /consultation.
 
-  ru: `Вы — Джасс (Jass), приветливый и профессиональный администратор Medical Billing Miami Beach (MBMB).
-Ваша цель — помогать врачам и управляющим клиник по вопросам медицинского биллинга, кодирования (AAPC) и аккредитации (Credentialing) во Флориде, а также предлагать позвонить напрямую по номеру (786) 643-2099 или заказать бесплатный 48-часовой аудит биллинга.
-- Прозрачные тарифы от сборов: 5.6% (от $50k/мес), 6.5% ($40k–$50k/мес), 7.5% ($20k–$30k/мес), 10% для новых клиник. $0 за подключение, 98% чистых заявок!`
+TARIFAS TRANSPARENTES POR RESULTADOS ($0 COSTO DE INICIO — SOLO PAGAS CUANDO COBRAMOS):
+- Clínicas con cobros de $50,000+/mes: 5.6% de lo cobrado
+- Clínicas de $40,000–$50,000/mes: 6.5% de lo cobrado
+- Clínicas de $20,000–$30,000/mes: 7.5% de lo cobrado
+- Prácticas nuevas (<$20,000/mes): 10% de lo cobrado
+- $0 cargos de instalación, 98%+ de reclamos limpios al primer envío, aumento de ingresos del 15% al 30%, e integración con tu EHR actual (eClinicalWorks, Athenahealth, AdvancedMD, Kareo/Tebra, DrChrono, Epic).
+- Expertos en Medicare (First Coast), Florida Medicaid, Sunshine Health, Simply, Florida Blue, AvMed, UnitedHealthcare, Aetna, Cigna y Humana (credencialización CAQH/EDI/ERA/EFT en 60–120 días).
+
+Mantén tus respuestas breves (2-3 párrafos cortos), cálidas y persuasivas, invitando siempre a llamar al (786) 643-2099.`,
+
+  ht: `Ou se Jass, Resepsyonis Sèvis Kliyan pou Medical Billing Miami Beach (MBMB).
+Pale avèk chalè, respè, ak pwofesyonalis. Objektif ou se ede doktè ak klinik nan Miami ak tout Florida ogmante revni yo jiska 30% ak yon to reklamasyon pwòp 98%.
+- Pri nou yo baze sou rezilta ($0 frè enstalasyon): 5.6% ($50k+/mwa), 6.5% ($40k–$50k/mwa), 7.5% ($20k–$30k/mwa), ak 10% pou nouvo pratik.
+- Nou okipe Kredansyasyon & CAQH (Medicare, Florida Medicaid, Sunshine Health, Simply, Florida Blue, Aetna, Cigna, Humana, UnitedHealthcare) nan 60–120 jou.
+- Ankouraje yo rele Jasmel dirèkteman nan (786) 643-2099 oswa pran Odit Gratis 48 èdtan yo a nan /consultation.`,
+
+  ru: `Вы — Джасс (Jass), старший администратор по работе с клиентами Medical Billing Miami Beach (MBMB).
+Общайтесь тепло, профессионально и лаконично, как живой человек.
+- Прозрачные тарифы от сборов ($0 подключение): 5.6% (от $50k/мес), 6.5% ($40k–$50k/мес), 7.5% ($20k–$30k/мес), 10% для новых клиник.
+- 98% одобрения заявок с первого раза, рост доходов клиники на 15–30%, сертифицированные кодировщики AAPC, полное соответствие HIPAA.
+- Полная аккредитация врачей (Credentialing, CAQH, Medicare, Florida Medicaid, Florida Blue, Aetna, Cigna, UnitedHealthcare) за 60–120 дней.
+- Всегда предлагайте позвонить напрямую по номеру (786) 643-2099 или заказать бесплатный 48-часовой аудит биллинга на /consultation.`
 };
 
 function generateSmartLocalResponse(userText = '', language = 'en') {
@@ -87,7 +109,6 @@ function generateSmartLocalResponse(userText = '', language = 'en') {
     return "Здравствуйте! Я Джасс, администратор Medical Billing Miami Beach (MBMB). Мы помогаем врачам и клиникам в Майами и по всей Флориде увеличить сборы до 30% при 98% одобрении заявок с первого раза. Наши тарифы — от 5.6% до 10% без стартовых взносов ($0 setup).\n\nПозвоните нам прямо сейчас по телефону (786) 643-2099 или закажите бесплатный 48-часовой аудит биллинга!";
   }
 
-  // English smart responses
   if (q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('rate') || q.includes('fee') || q.includes('how much') || q.includes('%') || q.includes('tier')) {
     return "We offer 100% transparent, performance-based pricing — you only pay when we collect for you, with $0 setup fees:\n\n• 5.6% — Practices collecting $50k+/month\n• 6.5% — Practices collecting $40k–$50k/month\n• 7.5% — Practices collecting $20k–$30k/month\n• 10% — New & startup practices\n\nWant to see how much extra revenue we can recover for your clinic? Call us directly at (786) 643-2099 or claim your Free 48-Hour Billing Audit!";
   }
@@ -100,22 +121,6 @@ function generateSmartLocalResponse(userText = '', language = 'en') {
     return "Yes! We handle complete end-to-end Provider Credentialing & Payer Enrollment across Florida — including Medicare, Florida Medicaid, Florida Blue, AvMed, UnitedHealthcare, Aetna, Cigna, Humana, and Sunshine Health.\n\nWe manage your CAQH ProView, EDI, ERA, and EFT setup so you get in-network as fast as possible (typically 60–120 days). Call us at (786) 643-2099 and we can begin your enrollment this week!";
   }
 
-  if (q.includes('specialt') || q.includes('cardio') || q.includes('ortho') || q.includes('derm') || q.includes('mental') || q.includes('psych') || q.includes('primary') || q.includes('urgent') || q.includes('obgyn') || q.includes('pediatric') || q.includes('surg')) {
-    return "We serve 16+ medical specialties across Miami Beach and Florida — including Primary Care, Internal Medicine, Cardiology, Orthopedics, Dermatology, OB/GYN, Psychiatry & Behavioral Health, Urgent Care, Pediatrics, Surgery, Neurology, and Telehealth.\n\nOur AAPC-certified coders know your specialty's exact CPT modifiers and NCCI edits to prevent denials. Give us a quick call at (786) 643-2099 to discuss your practice!";
-  }
-
-  if (q.includes('denial') || q.includes('reject') || q.includes('ar ') || q.includes('a/r') || q.includes('collect') || q.includes('claim')) {
-    return "Denial prevention and A/R recovery are our superpower! While the industry average denial rate is 10–15%, MBMB achieves a 98%+ first-pass clean claim rate and submits claims within 24 hours. We aggressively appeal unpaid claims to boost practice collections by up to 30%.\n\nLet us run a Free 48-Hour Audit on your denied claims — call (786) 643-2099 or click 'Free Audit' to begin!";
-  }
-
-  if (q.includes('phone') || q.includes('call') || q.includes('contact') || q.includes('talk') || q.includes('human') || q.includes('person') || q.includes('jasmel')) {
-    return "You can reach Jasmel and our Miami Beach billing specialists directly right now at (786) 643-2099 (Mon–Fri, 9:00 AM – 6:00 PM EST) or email Jasmel@medicalbillingmb.com.\n\nTap the green 'Call Now' button above to dial immediately — we'd love to speak with you!";
-  }
-
-  if (q.includes('ehr') || q.includes('emr') || q.includes('software') || q.includes('athena') || q.includes('kareo') || q.includes('ecw') || q.includes('drchrono') || q.includes('advancedmd')) {
-    return "You never have to change your current EHR! Our team integrates seamlessly with Athenahealth, eClinicalWorks (eCW), AdvancedMD, Kareo/Tebra, DrChrono, NextGen, SimplePractice, Epic, and virtually all major EHR/PM systems under strict HIPAA compliance.\n\nCall us at (786) 643-2099 to see how easily we plug into your workflow!";
-  }
-
   return "Hi there! I'm Jass, your MBMB Receptionist. We help Miami Beach and Florida physicians eliminate claim denials (98% clean claim rate) and increase revenue by up to 30% — with transparent rates starting at 5.6% and $0 setup fees.\n\nAsk me about our Pricing Tiers, Specialty Billing, Credentialing, or call Jasmel directly right now at (786) 643-2099 for your Free 48-Hour Billing Audit!";
 }
 
@@ -125,19 +130,62 @@ export async function POST(request) {
     const systemPrompt = SYSTEM_PROMPTS[language] || SYSTEM_PROMPTS.en;
     const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content || '';
 
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
     const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 
-    // 1. Primary: Google Gemini (Oct 2026 Latest: gemini-3.8-flash -> gemini-3.6-flash -> gemini-3.1-flash-lite-preview -> gemini-2.5-flash)
+    // 1. Primary: OpenAI (Oct 2026 Latest Models: gpt-5.4-mini -> gpt-5-mini -> gpt-4.1-mini -> gpt-4o-mini)
+    if (OPENAI_API_KEY) {
+      const openAiModels = [
+        process.env.OPENAI_MODEL,
+        'gpt-5.4-mini',
+        'gpt-5-mini',
+        'gpt-4.1-mini',
+        'gpt-4o-mini'
+      ].filter(Boolean);
+
+      for (const modelId of openAiModels) {
+        try {
+          const isReasoningModel = modelId.startsWith('gpt-5');
+          const payload = {
+            model: modelId,
+            messages: [{ role: 'system', content: systemPrompt }, ...messages],
+            ...(isReasoningModel
+              ? { max_completion_tokens: 450 }
+              : { max_tokens: 400, temperature: 0.55 })
+          };
+
+          const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${OPENAI_API_KEY}`
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content?.trim();
+            if (text) return NextResponse.json({ text, provider: modelId });
+          } else {
+            const errBody = await res.text();
+            console.warn(`OpenAI model ${modelId} status ${res.status}:`, errBody.slice(0, 180));
+          }
+        } catch (e) {
+          console.warn(`OpenAI model ${modelId} fallback triggered:`, e.message);
+        }
+      }
+    }
+
+    // 2. Secondary: Google Gemini (Oct 2026 Latest: gemini-3.8-flash -> gemini-3.6-flash -> gemini-3.5-flash-lite -> gemini-2.5-flash)
     if (GEMINI_API_KEY) {
       const geminiModels = [
         process.env.GEMINI_MODEL,
         'gemini-3.8-flash',
         'gemini-3.6-flash',
         'gemini-3.5-flash-lite',
-        'gemini-3.1-flash-lite-preview',
         'gemini-2.5-flash'
       ].filter(Boolean);
 
@@ -171,52 +219,9 @@ export async function POST(request) {
       }
     }
 
-    // 2. Secondary: OpenAI (Oct 2026 Latest: gpt-5.4-mini -> gpt-5-mini -> gpt-4.1-mini -> gpt-4o-mini)
-    if (OPENAI_API_KEY) {
-      const openAiModels = [
-        process.env.OPENAI_MODEL,
-        'gpt-5.4-mini',
-        'gpt-5-mini',
-        'gpt-4.1-mini',
-        'gpt-4o-mini'
-      ].filter(Boolean);
-
-      for (const modelId of openAiModels) {
-        try {
-          const res = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-              model: modelId,
-              messages: [{ role: 'system', content: systemPrompt }, ...messages],
-              max_completion_tokens: 350
-            })
-          });
-          if (res.ok) {
-            const data = await res.json();
-            const text = data?.choices?.[0]?.message?.content?.trim();
-            if (text) return NextResponse.json({ text, provider: modelId });
-          }
-        } catch (e) {
-          console.warn(`OpenAI model ${modelId} fallback triggered:`, e.message);
-        }
-      }
-    }
-
-    // 3. Tertiary: Groq Production Models (Oct 2026 Latest: openai/gpt-oss-120b -> openai/gpt-oss-20b -> llama-3.3-70b-versatile -> llama-3.1-8b-instant)
+    // 3. Tertiary: Groq Production Models (openai/gpt-oss-120b -> llama-3.3-70b-versatile)
     if (GROQ_API_KEY) {
-      const groqModels = [
-        process.env.GROQ_MODEL,
-        'openai/gpt-oss-120b',
-        'openai/gpt-oss-20b',
-        'llama-3.3-70b-versatile',
-        'llama-3.1-8b-instant'
-      ].filter(Boolean);
-
-      for (const modelId of groqModels) {
+      for (const modelId of ['openai/gpt-oss-120b', 'llama-3.3-70b-versatile']) {
         try {
           const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
@@ -242,7 +247,7 @@ export async function POST(request) {
       }
     }
 
-    // 4. MiniMax API (if configured and active)
+    // 4. MiniMax API fallback
     if (MINIMAX_API_KEY) {
       try {
         const res = await fetch('https://api.minimaxi.com/v1/text/chatcompletion_v2', {
@@ -266,7 +271,7 @@ export async function POST(request) {
       }
     }
 
-    // 5. Built-in High-Reliability MBMB Receptionist Engine (Always Online 24/7)
+    // 5. Built-in High-Reliability MBMB Receptionist Engine
     const fallbackText = generateSmartLocalResponse(lastUserMessage, language);
     return NextResponse.json({ text: fallbackText, provider: 'jass-mbmb-engine' });
   } catch (err) {
