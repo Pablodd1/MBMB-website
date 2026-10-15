@@ -3,70 +3,58 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Subscribe from "@UTILS/subscribe";
-import LinkToAIMS from "@UTILS/linkToAAMS";
-import VideoShowcase from "@UTILS/videos";
 import Button from "@UTILS/button";
-import LinkToAIDynamic from "@UTILS/linkToAIDynamic";
-import Head from "next/head";
 import SmartImage from "./components/SmartImage";
-import SplashScreen from "./components/SplashScreen";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import CPTICD10HeroBackground from "./components/CPTICD10HeroBackground";
 import UnifiedReceptionist from "./components/UnifiedReceptionist";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
-import FloatingVideo from "./components/FloatingVideo";
-import AIVoiceCallButton from "./components/AIVoiceCallButton";
 import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
 import ScrollReveal from "./components/ScrollReveal";
 import AIFeatureCards from "./components/AIFeatureCards";
 import AIProcessFlow from "./components/AIProcessFlow";
-import FloatingMedicalIcons from "./components/FloatingMedicalIcons";
 
 const faqs = [
   {
     question: "What medical billing services do you offer?",
-    answer: "We provide comprehensive medical billing, coding, revenue cycle management, and credentialing for healthcare practices across Florida. Services include claim submission, denial management, patient billing, and insurance verification."
+    answer: "We provide comprehensive medical billing, coding, revenue cycle management, and provider credentialing for healthcare practices across Miami and South Florida. Services include claim scrubbing & submission, denial management, patient billing, and real-time insurance verification."
   },
   {
     question: "Why should I outsource my medical billing to MBMB?",
-    answer: "Outsourcing reduces administrative burden, minimizes claim denials, ensures compliance with latest coding standards, and maximizes revenue. We specialize in Florida's healthcare market and local payer requirements."
-  },
-  {
-    question: "How long does provider credentialing take?",
-    answer: "Typically 60-120 days depending on the insurance network. We expedite by ensuring all applications are accurate from day one, handling CAQH, EDI, ERA, and EFT setup."
-  },
-  {
-    question: "Do you offer free consultations?",
-    answer: "Yes — we offer a free initial billing audit to identify revenue leaks, analyze denial patterns, and propose strategies to improve collections. Schedule via phone, email, or our online form."
+    answer: "Outsourcing reduces administrative overhead, cuts claim denials from the 15%+ industry average down to 2%, ensures compliance with 2026 coding standards, and increases net collections by 15–30%. We specialize in Florida's healthcare market and local payer rules."
   },
   {
     question: "What is your pricing structure?",
-    answer: "5.6% to 10% of collected revenue — we only get paid when you get paid. No setup fees, no hidden costs, no monthly retainers. The exact percentage depends on practice size, volume, and complexity."
+    answer: "5.6% to 10% of collected revenue — we only get paid when you get paid. No setup fees, no hidden costs, and no monthly retainers. The exact percentage depends on your practice specialty, claim volume, and service tier."
+  },
+  {
+    question: "How long does provider credentialing take in Florida?",
+    answer: "Typically 60–120 days depending on the insurance network. We expedite enrollment by ensuring all applications are 100% accurate from day one, handling CAQH ProView, EDI, ERA, and EFT setup for Florida Blue, Simply, Sunshine Health, Medicare, and Medicaid."
+  },
+  {
+    question: "Do you offer a free billing audit?",
+    answer: "Yes — we offer a free 48-hour billing and coding audit to identify revenue leaks, analyze denial patterns, and quantify how much uncollected revenue your practice can recover. Schedule via phone, calendar widget, or our online consultation form."
   },
   {
     question: "How do you handle claim denials?",
-    answer: "We proactively manage denials with dedicated follow-up. We analyze patterns, appeal when necessary, and implement corrective measures to reduce future denials."
+    answer: "We proactively manage denials with root-cause analysis and appeals filed within 48 hours. Our AI pre-submission scrubbing catches modifier, LCD/NCD, and POS errors before claims ever reach the payer."
   },
   {
     question: "Do you work with my existing EHR system?",
-    answer: "Yes — we integrate with most major EHRs including Epic, Cerner, Athenahealth, eClinicalWorks, and many others. We ensure seamless data flow with minimal disruption."
+    answer: "Yes — we integrate seamlessly with all major EHR and PM systems including eClinicalWorks, Athenahealth, Epic, Cerner, Kareo/Tebra, AdvancedMD, DrChrono, and NextGen with zero disruption to your clinical workflow."
   },
   {
-    question: "How quickly will I receive payments?",
-    answer: "Most claims are paid within 14-30 days of submission. We track every claim and follow up promptly. Florida Medicaid and Medicare typically process within 30-45 days."
+    question: "How quickly will my practice receive payments?",
+    answer: "Most clean electronic claims are paid within 14–21 days of submission. We track every claim daily and follow up aggressively on aging AR (>30/60/90 days)."
   },
   {
     question: "Are you HIPAA compliant?",
-    answer: "Fully HIPAA and HITECH compliant with encrypted data transmission, secure servers, and strict access controls. We sign BAAs with all clients and never share or resell patient data."
+    answer: "Yes. MBMB is 100% HIPAA and HITECH compliant with encrypted data transmission, role-based access controls, and signed Business Associate Agreements (BAAs) with every healthcare practice."
   },
   {
-    question: "How do I get started?",
-    answer: "Schedule a free consultation via phone, email, or our form. We'll analyze your current billing process, identify opportunities, and create a custom plan. Onboarding takes 1-2 weeks with minimal disruption."
-  },
-  {
-    question: "What makes MBMB different?",
-    answer: "Unlike large national companies, we're locally focused on Florida healthcare. Our team has deep knowledge of state Medicaid, Medicare, and commercial payer requirements. Personalized service without corporate bureaucracy."
+    question: "What makes MBMB different from national billing companies?",
+    answer: "Unlike national call-center billing companies, we are locally focused on Miami-Dade, Broward, and South Florida healthcare. Our AAPC-certified team knows First Coast Service Options (FCSO) Medicare, Florida Medicaid (AHCA), and regional commercial plans inside and out—plus we offer bilingual (English/Spanish/Creole) support."
   }
 ];
 
@@ -83,1013 +71,699 @@ const faqSchema = {
   }))
 };
 
-const solutions = [
-  {
-    label: "Medical Billing",
-    description: "Expert medical billing services tailored for Miami healthcare providers. Our AAPC-certified specialists handle everything from claim submission to denial management, ensuring maximum reimbursements and faster payments for your practice.",
-    href: "/consultation",
-    icon: "billing"
-  },
-  {
-    label: "Medical Coding",
-    description: "Precision medical coding with ICD-10, CPT, and HCPCS expertise. We reduce claim denials by 95%+ and ensure compliance with Florida payer requirements and Medicare/Medicaid guidelines.",
-    href: "/consultation",
-    icon: "coding"
-  },
-  {
-    label: "Credentialing",
-    description: "Fast provider credentialing (60-120 days) for insurance networks. We handle CAQH, EDI, ERA, and EFT setup so you can start billing faster.",
-    href: "/consultation",
-    icon: "credentialing"
-  }
-]
 const services = [
   {
-    title: "Revenue Cycle Management",
-    description: "End-to-end revenue cycle optimization from patient intake to final payment. We identify leak points and fix them.",
-    features: ["Claim scrubbing & submission", "Payment posting & reconciliation", "Patient billing & collections", "Monthly reporting & analytics"],
+    title: "Revenue Cycle Management (RCM)",
+    description: "End-to-end revenue cycle optimization from patient intake to final payment posting. We identify revenue leak points and eliminate them.",
+    features: ["AI claim scrubbing & same-day submission", "ERA payment posting & reconciliation", "Aging AR recovery (>30/60/90 days)", "Custom monthly financial analytics"],
+    href: "/services/revenue-cycle-management",
     icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
   },
   {
-    title: "Medical Coding",
-    description: "AAPC-certified coders ensuring maximum reimbursement with minimal denials. ICD-10, CPT, HCPCS expertise.",
-    features: ["ICD-10-CM diagnosis coding", "CPT/HCPCS procedure coding", "Modifier optimization", "Coding audits & education"],
+    title: "AAPC-Certified Medical Coding",
+    description: "Precision ICD-10-CM, CPT, and HCPCS coding by certified specialists ensuring maximum reimbursement and strict payer compliance.",
+    features: ["ICD-10-CM diagnosis coding", "CPT & HCPCS procedure coding", "Modifier 25, 59 & 95 optimization", "Chart audits & provider documentation review"],
+    href: "/services/medical-coding",
     icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
   },
   {
-    title: "Provider Credentialing",
-    description: "Get enrolled with insurance networks fast. We handle CAQH, EDI, ERA, and EFT setup.",
-    features: ["Insurance network enrollment", "CAQH profile management", "EDI/ERA/EFT setup", "Re-credentialing & maintenance"],
+    title: "Provider Credentialing & CAQH",
+    description: "Get enrolled with Florida commercial, Medicare, and Medicaid networks fast. We manage every application and re-attestation.",
+    features: ["Commercial & Medicare/Medicaid enrollment", "CAQH ProView profile management", "EDI, ERA & EFT banking setup", "Ongoing re-credentialing & maintenance"],
+    href: "/services/credentialing",
     icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
   },
   {
-    title: "Denial Management",
-    description: "Aggressive denial follow-up with root-cause analysis. We don't just appeal — we prevent.",
-    features: ["Denial root-cause analysis", "Appeal letter generation", "Payer trend tracking", "Prevention protocols"],
+    title: "Proactive Denial Management",
+    description: "Aggressive denial follow-up with 48-hour appeal turnaround and root-cause prevention protocols.",
+    features: ["Denial root-cause forensics", "Clinical appeal letter generation", "Florida payer trend tracking", "Pre-submission rejection rules"],
+    href: "/services",
     icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
   },
   {
-    title: "Compliance & Audits",
-    description: "Stay ahead of regulations. HIPAA, HITECH, Florida Medicaid — we've got you covered.",
-    features: ["HIPAA compliance audits", "Coding compliance reviews", "Documentation training", "Risk assessment"],
+    title: "Eligibility & Prior Authorizations",
+    description: "Eliminate front-desk claim rejections with real-time patient insurance verification and prior auth tracking.",
+    features: ["Real-time eligibility & co-pay checks", "Prior authorization submission & follow-up", "Florida telehealth POS 02/10 verification", "Out-of-network benefit checks"],
+    href: "/services",
     icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
   },
   {
-    title: "Practice Consulting",
-    description: "Strategic guidance to optimize your practice operations, technology, and profitability.",
-    features: ["Workflow analysis", "EHR optimization", "Staff training", "Growth strategy"],
+    title: "HIPAA Compliance & Practice Consulting",
+    description: "Strategic operational guidance to protect your practice from audits while scaling clinical profitability.",
+    features: ["HIPAA & AHCA compliance reviews", "EHR workflow optimization", "Front-desk staff billing training", "Quarterly financial business reviews"],
+    href: "/consultation",
     icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
   }
 ];
 
-const useCases = [
+const caseStudies = [
   {
-    practice: "Family Medicine",
-    problem: "High volume of claims with frequent coding errors leading to 15% denial rate.",
-    solution: "Implemented automated coding validation and real-time claim scrubbing.",
-    result: "Denial rate dropped to 3%. Collections increased 22% in 6 months."
+    practice: "Dr. Martinez — Family Practice (Miami Beach)",
+    specialtyTag: "Primary Care · 4 Providers",
+    problem: "High volume of claims with frequent modifier and coding errors leading to an 18% denial rate and $127K+ in annual revenue leakage.",
+    solution: "Implemented AAPC-certified coding validation, real-time claim scrubbing, and aggressive AR recovery on 90+ day claims.",
+    result: "Denial rate dropped from 18% to 2.4%. Net collections increased 27% (+$142,000 annualized) within 90 days.",
+    metricBadge: "+27% Net Collections"
   },
   {
-    practice: "Cardiology Practice",
-    problem: "Complex prior authorizations delaying procedures and frustrating patients.",
-    solution: "Built automated prior auth workflow with payer-specific rules engine.",
-    result: "Prior auth turnaround reduced from 5 days to 48 hours. Patient satisfaction up 40%."
+    practice: "Sunrise Pediatrics (Coral Gables, FL)",
+    specialtyTag: "Pediatrics · Florida Medicaid & Commercial",
+    problem: "High Florida Medicaid (MMA) rejections and delayed vaccine/well-visit reimbursements hurting monthly cash flow.",
+    solution: "Restructured AHCA Medicaid coding templates, automated eligibility verification, and standardized modifier workflows.",
+    result: "Reduced denial rate from 16% to under 3%. Average days in AR dropped from 46 days to 18 days.",
+    metricBadge: "Denials Cut 16% → 3%"
   },
   {
-    practice: "Urgent Care Chain",
-    problem: "Multiple locations with inconsistent billing processes and compliance gaps.",
-    solution: "Standardized billing workflows across all 4 locations with centralized oversight.",
-    result: "Compliance audit passed with zero findings. Revenue per visit increased 18%."
+    practice: "South Florida Cardiology & Vascular Group",
+    specialtyTag: "Cardiology · Complex Procedures",
+    problem: "Complex prior authorizations and diagnostic bundling errors delaying high-value procedure reimbursements.",
+    solution: "Built payer-specific prior authorization rules engine and dedicated cardiology CPT coding oversight.",
+    result: "Prior auth turnaround reduced from 5 days to 48 hours. Practice revenue per encounter increased 22%.",
+    metricBadge: "+22% Revenue / Visit"
   }
 ];
 
-const benefits = [
-  {
-    label: "Accurate Medical Coding:",
-    description: "Our expert team ensures precise coding for maximum reimbursement, minimizing errors and denials."
-  },
-  {
-    label: "Efficient Revenue Management:",
-    description: "Streamline your revenue cycle with our comprehensive services, optimizing cash flow and financial performance."
-  },
-  {
-    label: "Timely Reminders: ",
-    description: "Send polite balance reminder calls to patients after the statement cycle, helping them stay informed about their outstanding balances."
-  }
-]
-const pair1 = {
-  src: "/raster/Time-Saving-Medical-Billing-Solutions.webp",
-  alt: "Time-Saving Medical Billing Solutions",
-  h2: "Time-Saving Medical Billing Solutions",
-  p: "Experience unparalleled efficiency with our time-saving medical billing solutions. Our advanced technology and streamlined processes minimize administrative burdens, allowing you to reclaim valuable time for patient care and practice growth. From automated coding to seamless claim submission and follow-up, our services are designed to optimize workflow and maximize productivity.",
-  actions: {
-    label: "Try Now",
-    href: '/consultation'
-  }
-}
-const pair2 = {
-  src: "/raster/healthcare-revenue-cycle-management-companies.webp",
-  alt: "healthcare-revenue-cycle-management-companies",
-  h2: "Credentialing",
-  ul: [
-    "Attestation due for private insurers",
-    "Demographic changes including address",
-    "CAQH Enrollment and Maintenance",
-    "Electronic Data Interchange (EDI)",
-    "Electronic Remittance Advice (ERA)",
-    "Electronic Funds Transfer (EFT)"
-  ],
-  actions: {
-    label: "Consult Now",
-    href: '/consultation'
-  }
-}
-const joinUs = {
-  src: "/raster/mbmb-consultation-new.jpg",
-  alt: "Medical Billing Consultation - Schedule Your Free Audit Today",
-  h2: "Schedule Your Free Audit",
-  p: "Our solutions streamline healthcare revenue management. We handle billing, coding, and collections so you can focus on patient care. No obligation — see how much revenue you're recovering.",
-  actions: {
-    label: "Free Audit",
-    href: '/consultation'
-  }
-}
-const paragraphContent = [
-  "In today's fast-paced healthcare environment, minimizing administrative tasks is essential for maximizing productivity and ensuring quality patient care.",
-  "Our comprehensive suite of services is designed to streamline administrative processes for doctors and clinic administrators, freeing up valuable time and resources.",
-  "By leveraging our expertise in medical billing, coding, and revenue management, you can eliminate the hassle of paperwork and administrative complexities. With our efficient solutions, you'll experience a significant reduction in administrative burden, allowing you to focus on providing the best possible healthcare experience for your patients."
+const specialtiesList = [
+  "Primary Care",
+  "Family Medicine",
+  "Internal Medicine",
+  "Pediatrics",
+  "Cardiology",
+  "Dermatology",
+  "Orthopedics & MSK",
+  "Physical Therapy & Rehab",
+  "OB/GYN",
+  "Psychiatry & Behavioral Health",
+  "Urgent Care Centers",
+  "General Surgery",
+  "Oncology",
+  "Ophthalmology",
+  "Radiology & Imaging",
+  "Urology",
+  "Endocrinology",
+  "Pain Management"
 ];
-const practices = {
-  label: "Practices",
-  description: "understands the unique demands of different medical specialties. Our approach is highly adaptable, ensuring that we meet the specific needs of your practice, regardless of your medical field. From primary care to specialized areas such as cardiology, radiology, and more, our services are tailored to your specialties. We're committed to delivering customized solutions that align with the nature of your practice, ensuring your financial success in your chosen field of healthcare.",
-  ul: [
-    'Primary care',
-    'Family medicine',
-    'Internal medicine',
-    'Pediatrics',
-    'OB/GYN',
-    'General surgery',
-    'Orthopedics',
-    'Dermatology',
-    'Psychiatry',
-    'Cardiology',
-    'Oncology',
-    'Ophthalmology',
-    'Radiology',
-    'Urology',
-    'Endocrinology',
-    'Urgent care'
-  ]
-}
-const links = [
-  [{
-    href: "/consultation",
-    label: "Get Consultation"
+
+const floridaPayers = [
+  "Florida Blue (BCBS)",
+  "Medicare (FCSO)",
+  "Florida Medicaid (AHCA)",
+  "Simply Healthcare",
+  "Sunshine Health",
+  "UnitedHealthcare",
+  "Aetna",
+  "Cigna",
+  "Humana Florida",
+  "AvMed",
+  "Molina Healthcare",
+  "Oscar Health"
+];
+
+const ehrSystems = [
+  "eClinicalWorks",
+  "Athenahealth",
+  "Epic",
+  "Kareo / Tebra",
+  "AdvancedMD",
+  "DrChrono",
+  "NextGen",
+  "Cerner / Oracle",
+  "Practice Fusion",
+  "SimplePractice"
+];
+
+const partners = [
+  {
+    name: "AI Medical Scriber",
+    desc: "HIPAA-Compliant Voice-to-SOAP Clinical Notes",
+    href: "https://aimedicalscriber.com/",
+    badge: "Clinical AI"
   },
   {
-    href: "/consultation",
-    label: "Medical Coding"
+    name: "AI Dynamics Pro",
+    desc: "Medical Front-Desk & Workflow Automation",
+    href: "https://aidynamic.pro/",
+    badge: "Automation"
   },
   {
-    href: "/consultation",
-    label: "Medical Billing"
-  }],
-  [
-    {
-      href: "/billing-details",
-      label: "Billing Form"
-    },
-    {
-      href: "/agreement-sign-up",
-      label: "Agreement Sign-up"
-    },
-    {
-      href: "/privacy-policy",
-      label: "Privacy Policy"
-    },
-    {
-      href: "/terms-of-use",
-      label: "Terms of Use"
-    }
-  ]
-]
-  const social = [
-  {
-    href: "https://api.whatsapp.com/send?phone=17866432099",
-    icon: "whatsapp"
+    name: "305Business",
+    desc: "Miami Healthcare & B2B Partner Network",
+    href: "https://305business-llc.vercel.app/",
+    badge: "Miami Network"
   },
   {
-    href: "https://www.instagram.com/medicalbillingmiamibeach",
-    icon: "instagram"
+    name: "AI Law Helper",
+    desc: "Medical Lien, PIP & Healthcare Legal Tech",
+    href: "https://new-law-helper-app.vercel.app/",
+    badge: "Legal & Compliance"
   }
-]
-const contact = [
-  {
-    href: "https://api.whatsapp.com/send?phone=17866432099",
-    icon: "whatsapp-white",
-    label: "WhatsApp"
-  },
-  {
-    href: "mailto:Jasmel@medicalbillingmb.com",
-    icon: "email",
-    label: "Email"
-  },
-  {
-    href: "tel://+1-786-643-2099",
-    icon: "phone",
-    label: "Phone"
-  }
-]
-const coding = {
-  label: "Medical Coding",
-  description: "Ensure accurate coding for your practice with our team of certified Medical Billing and Coding Specialists, Billing Consultants, and Coding Specialists. Our team has expertise in all specialties and adheres to industry guidelines and standards to meet your medical coding needs. We offer medical coding outsourcing services and provide support for doctor credential services, hospital billing, dispute medical resolution services, and insurance billing consultancy. Trust us to optimize your revenue cycle management and ensure that you receive the reimbursement you deserve.",
-  ul: [
-    { label: "ICD-10 Coding", sublabel: "Diagnosis Codes", icon: "medical-coding-icd" },
-    { label: "CPT/HCPCS Coding", sublabel: "Procedure Codes", icon: "medical-coding-cpt-hcpcs" },
-    { label: "Modifiers", sublabel: "Code Enhancements", icon: "medical-coding-modifiers" }
-  ]
-}
+];
 
 function FAQItem({ faq, index }) {
-  const [isOpen, setIsOpen] = useState(index < 2); // First 2 FAQs open by default
-  
+  const [isOpen, setIsOpen] = useState(index < 2);
+
   return (
-    <div className="bg-white p-4 rounded-xl shadow-md border-l-4 border-pink2 hover:shadow-lg transition-all">
-      <button 
+    <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-[#0066CC] hover:shadow-md transition-all">
+      <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left flex items-center justify-between gap-4"
+        aria-expanded={isOpen}
       >
-        <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+        <h3 className="text-base md:text-lg font-bold text-slate-900 leading-snug flex-1">
           {faq.question}
         </h3>
-        <span className={`text-pink2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <span className={`text-[#0066CC] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </span>
       </button>
-      <div 
+      <div
         className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'}`}
       >
-        <p className="text-gray-700 text-sm leading-relaxed pb-2">{faq.answer}</p>
+        <p className="text-slate-600 text-sm leading-relaxed">{faq.answer}</p>
       </div>
     </div>
-  )
-}
-
-const ImageAndText = (props) => {
-  const { className, content } = props;
-  return (
-    <section className={className.section} >
-      <figure className={className.figure} >
-        <SmartImage
-          src={content.src}
-          alt={content.alt}
-          width={800}
-          height={600}
-          className={className.image}
-        />
-      </figure>
-      <article className={className.article} >
-        <h2 className={className.h2}>
-          {content.h2}
-        </h2>
-        {content.p && <p className={className.p}>{content.p}</p>}
-        {content.ul && (
-          <ul className={className.ul}>
-            {content.ul.map((y, j) => (
-              <li key={`${j}`} className={className.li}>
-              <SmartImage
-                src={'/svg/arrow.svg'}
-                alt={'bullet arrow'}
-                width={20}
-                height={14}
-                className={'inline-block -rotate-45 mr-3 w-4'}
-              />
-                {y}
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="mt-8">
-          <Button href={content.actions.href} text={content.actions.label} colors={className.icon} className="mx-0" />
-        </div>
-      </article>
-    </section>
-  )
+  );
 }
 
 export default function Home() {
-  const [videoFailed, setVideoFailed] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
   return (
-    <main className=" ">
-      {/* Splash Screen - Logo intro on first load */}
-      {showSplash && (
-        <SplashScreen onComplete={() => setShowSplash(false)} />
-      )}
-
+    <div className="bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[85vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden">
-        {/* CPT/ICD-10 animated code rain background */}
+      <section className="relative min-h-[82vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden py-16">
+        {/* Executive Ambient Aurora & Glassmorphic Claim Cards background */}
         <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
           <CPTICD10HeroBackground />
-          {/* Bottom gradient fade into next section */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" style={{ zIndex: 1 }} />
         </div>
 
-        {/* Floating medical icons */}
-        <FloatingMedicalIcons />
-
-        {/* 3D Rotating Logo - Floating above content */}
-        <div className="relative z-10 mb-6">
-          <RotatingLogo3D size={140} />
+        {/* 3D Rotating Logo */}
+        <div className="relative z-10 mb-4">
+          <RotatingLogo3D size={125} />
         </div>
 
-        <article className="w-11/12 md:max-w-3xl mx-auto px-6 py-8 text-center relative z-10" >
-          {/* AI-Powered Billing Hero Badge — Simplified, single color */}
+        <article className="w-11/12 max-w-4xl mx-auto px-4 sm:px-6 py-4 text-center relative z-10">
           <ScrollReveal direction="up" distance={20} duration={500}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-6">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5" />
-                <path d="M2 12l10 5 10-5" />
-              </svg>
-              <span className="text-white text-sm font-semibold tracking-wide">AI-Enhanced Revenue Intelligence</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 backdrop-blur-sm mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#00A8E8] animate-pulse" />
+              <span className="text-[#00A8E8] text-xs sm:text-sm font-bold tracking-wide uppercase">
+                Miami-Dade &amp; South Florida Revenue Cycle Specialists
+              </span>
             </div>
           </ScrollReveal>
 
-          <header className="" >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-bold drop-shadow-lg leading-tight" >
-              Miami's Highest Clean-Claim Rate
+          <header>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-extrabold drop-shadow-lg leading-tight">
+              Medical Billing Miami Beach
+              <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
+                98% Clean-Claim Rate · Recover 15–30% More Practice Revenue
+              </span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mt-3 font-medium drop-shadow-md">
-              Medical billing that maximizes revenue — period.
-            </p>
           </header>
-          <p className="text-gray-100 mt-6 text-sm md:text-lg max-w-2xl mx-auto text-center leading-relaxed drop-shadow-md">
-            15+ years serving Florida healthcare providers. We handle the billing complexity so you can focus on patients. No setup fees. No hidden costs. We only win when you win.
+
+          <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
+            The average South Florida medical practice loses <strong className="text-white">$127,000+ per year</strong> to preventable coding errors, under-paid claims, and unappealed denials. Our AAPC-certified specialists handle your entire billing lifecycle—you only pay when we collect.
           </p>
-          
-          {/* Centered Feature List - White text for video background */}
-          <div className="flex flex-col items-center justify-center gap-2 my-8">
-            <p className="text-white font-bold text-xl drop-shadow-md">✓ Serving Miami Healthcare Providers</p>
-            <p className="text-white font-bold text-xl drop-shadow-md">✓ High Clean Claim Rate</p>
-            <p className="text-white font-bold text-xl drop-shadow-md">✓ Revenue Optimization Focus</p>
+
+          {/* Key Value Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
+            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+              ✓ 5.6%–10% Performance Pricing
+            </div>
+            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+              ✓ $0 Setup · No Long-Term Lock-In
+            </div>
+            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+              ✓ 48-Hour Denial Appeals
+            </div>
           </div>
 
-          {/* Trust Badges — Simplified single color */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
-            {['AAPC', 'HIPAA', 'MGMA', 'FMA'].map((badge) => (
-              <span key={badge} className="text-white/80 font-medium border border-white/20 px-3 py-1 rounded bg-white/5 text-sm">
+          {/* Primary & Secondary CTAs */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+            <Button
+              href="/consultation"
+              text="Schedule Your Free 48-Hour Billing Audit"
+              colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
+              className="w-full sm:w-auto"
+            />
+            <a
+              href="#calculator"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
+            >
+              Calculate Your Denial Loss ↓
+            </a>
+          </div>
+
+          {/* Trust Credentials */}
+          <div className="flex flex-wrap justify-center items-center gap-3 mt-8">
+            {['AAPC Certified Coders', '100% HIPAA Compliant', 'MGMA Member', 'FMA Partner', 'EN / ES / HT Support'].map((badge) => (
+              <span key={badge} className="text-slate-300 font-medium border border-white/15 px-3 py-1 rounded-full bg-white/5 text-xs">
                 {badge}
               </span>
             ))}
           </div>
-          
-          {/* PRIMARY CTA — ONE clear action */}
-          <div className="mb-6">
-            <Button href="/consultation" text='Schedule Your Free Billing Audit' colors="bg-[#ff6b35] text-white hover:bg-[#e55a2b] text-lg px-10 py-4 shadow-lg shadow-[#ff6b35]/30" className="w-full md:w-auto" />
-          </div>
-          <p className="text-gray-400 text-sm mt-2">No obligation. See how much revenue you're losing.</p>
         </article>
-        
-        {/* Rest of page... */}
       </section>
 
-      {/* ===== AI FEATURE CARDS SECTION ===== */}
-      <AIFeatureCards />
+      {/* ===== WHY MBMB STATS BAR ===== */}
+      <section className="w-full py-12 bg-[#0a1628] border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { number: "$47M+", label: "Claims Processed", desc: "For Florida healthcare providers" },
+              { number: "98%", label: "Clean Claim Rate", desc: "First-pass payer acceptance" },
+              { number: "27%", label: "Avg Revenue Lift", desc: "Within first 90–180 days" },
+              { number: "14 Days", label: "Avg Claim Turnaround", desc: "Faster cash flow vs 45+ day avg" }
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 100} direction="up" distance={20}>
+                <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                  <div className="text-3xl md:text-4xl font-extrabold text-[#00A8E8] mb-1">{stat.number}</div>
+                  <div className="text-white font-bold text-base mb-1">{stat.label}</div>
+                  <div className="text-slate-400 text-xs sm:text-sm">{stat.desc}</div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* ===== AI PROCESS FLOW SECTION ===== */}
-      <AIProcessFlow />
+      {/* ===== INLINE INTERACTIVE ROI & DENIAL CALCULATOR ===== */}
+      <section className="w-full py-20 bg-slate-50 px-4">
+        <RevenueCalculator inline={true} />
+      </section>
 
-      {/* ===== DETAILED SERVICES SECTION ===== */}
-      <section className="w-full py-20 bg-[#0a1628]">
+      {/* ===== COMPLETE BILLING SERVICES (SINGLE UNIFIED SECTION) ===== */}
+      <section id="services" className="w-full py-20 bg-[#0a1628]">
         <div className="max-w-7xl mx-auto px-4">
           <ScrollReveal direction="up" distance={30}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Complete Billing Services</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">Everything your practice needs to maximize revenue and minimize headaches. One partner, full coverage.</p>
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-3">
+                Full-Cycle Healthcare Revenue Management
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Complete Medical Billing, Coding &amp; Credentialing Services
+              </h2>
+              <p className="text-slate-300 max-w-2xl mx-auto text-base">
+                Everything your Miami practice needs to eliminate denials, accelerate reimbursements, and stay 100% compliant.
+              </p>
             </div>
           </ScrollReveal>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, i) => (
               <ScrollReveal key={service.title} delay={i * 100} direction="up" distance={30}>
-                <div className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
-                    <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
-                    </svg>
+                <div className="group bg-[#11223d] border border-white/10 rounded-2xl p-7 hover:border-[#00A8E8]/50 transition-all duration-300 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-[#0066CC]/20 border border-[#00A8E8]/30 flex items-center justify-center mb-5 group-hover:bg-[#0066CC] transition-colors">
+                      <svg className="w-6 h-6 text-[#00A8E8] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={service.icon} />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                    <p className="text-slate-300 text-sm mb-5 leading-relaxed">{service.description}</p>
+                    <ul className="space-y-2.5 mb-6">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-200">
+                          <svg className="w-4 h-4 text-[#00A8E8] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-gray-300">
-                        <svg className="w-4 h-4 text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center text-sm font-bold text-[#00A8E8] hover:text-white transition-colors"
+                  >
+                    Explore {service.title.split(' ')[0]} →
+                  </Link>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
-            <Button href="/consultation" text="Get Your Free Audit" colors="bg-white text-[#0a1628] hover:bg-gray-200 text-lg px-8 py-3" />
+            <Button
+              href="/consultation"
+              text="Request Your Custom Practice Proposal"
+              colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base font-bold px-8 py-3.5"
+            />
           </div>
         </div>
       </section>
 
-      {/* ===== USE CASES / SUCCESS STORIES ===== */}
-      <section className="w-full py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <ScrollReveal direction="up" distance={30}>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Real Practice Results</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">See how we've helped Miami healthcare practices transform their revenue cycle.</p>
+      {/* ===== AI FEATURE CARDS & AUTOMATED PIPELINE ===== */}
+      <AIFeatureCards />
+      <AIProcessFlow />
+
+      {/* ===== FLORIDA PAYERS, EHR INTEGRATIONS & SPECIALTIES (LOCAL SEO HUB) ===== */}
+      <section id="practices" className="w-full py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <ScrollReveal direction="up" distance={20}>
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#0066CC] bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+                Built for South Florida Healthcare
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                18+ Medical Specialties · All Florida Payers · Seamless EHR Integration
+              </h2>
+              <p className="text-slate-600 text-base">
+                Serving private practices, specialty clinics, physical therapy centers, and multi-provider groups across Miami Beach, Coral Gables, Brickell, Doral, Hialeah, Kendall, Aventura, and Broward County.
+              </p>
             </div>
           </ScrollReveal>
-          
-          <div className="space-y-8">
-            {useCases.map((case_, i) => (
-              <ScrollReveal key={case_.practice} delay={i * 150} direction="up" distance={30}>
-                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                  <div className="flex items-start gap-6">
-                    <div className="w-16 h-16 rounded-xl bg-[#0a1628] flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold text-lg">{case_.practice.charAt(0)}</span>
+
+          {/* 18 Specialties Full Visible Grid (Replaces broken #specialties-full link) */}
+          <div id="specialties-full" className="mb-14">
+            <h3 className="text-lg font-bold text-slate-900 mb-4 text-center uppercase tracking-wider">
+              Medical Specialties We Serve
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+              {specialtiesList.map((spec) => (
+                <div
+                  key={spec}
+                  className="bg-slate-50 border border-slate-200 hover:border-[#0066CC] rounded-xl px-3.5 py-3 text-center text-xs sm:text-sm font-semibold text-slate-800 transition-colors"
+                >
+                  {spec}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Two-Column Payers & EHR Compatibility */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-slate-900 text-white rounded-2xl p-7 border border-slate-800">
+              <h3 className="text-xl font-bold text-[#00A8E8] mb-2">
+                Florida Insurance Payer Expertise
+              </h3>
+              <p className="text-slate-300 text-sm mb-5">
+                Deep familiarity with regional commercial plans, Medicare MAC (First Coast Service Options), and Florida Medicaid Managed Medical Assistance (MMA) plans:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {floridaPayers.map((payer) => (
+                  <span
+                    key={payer}
+                    className="bg-white/10 border border-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-lg"
+                  >
+                    ✓ {payer}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-blue-50/70 rounded-2xl p-7 border border-blue-200">
+              <h3 className="text-xl font-bold text-[#1A3A5F] mb-2">
+                Plug-and-Play EHR &amp; PM Integration
+              </h3>
+              <p className="text-slate-600 text-sm mb-5">
+                No need to switch your software. Our billing team connects directly into your existing Electronic Health Record system within 5–7 business days:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {ehrSystems.map((ehr) => (
+                  <span
+                    key={ehr}
+                    className="bg-white border border-blue-200 text-[#1A3A5F] text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs"
+                  >
+                    ⚡ {ehr}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== UNIFIED CASE STUDIES / REAL PRACTICE RESULTS ===== */}
+      <section className="w-full py-20 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <ScrollReveal direction="up" distance={30}>
+            <div className="text-center mb-14">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#0066CC] bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+                Verified Miami Case Studies
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+                Real Results From South Florida Practices
+              </h2>
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                See how we transform high denial rates and slow AR cycles into predictable monthly collections.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-6">
+            {caseStudies.map((case_, i) => (
+              <ScrollReveal key={case_.practice} delay={i * 120} direction="up" distance={30}>
+                <div className="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-slate-200 border-l-4 border-l-[#0066CC]">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#0066CC]">
+                        {case_.specialtyTag}
+                      </span>
+                      <h3 className="text-xl font-bold text-slate-900 mt-0.5">{case_.practice}</h3>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">{case_.practice}</h3>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        <div>
-                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Problem</p>
-                          <p className="text-gray-600 text-sm">{case_.problem}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Solution</p>
-                          <p className="text-gray-600 text-sm">{case_.solution}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Result</p>
-                          <p className="text-[#0a1628] font-semibold text-sm">{case_.result}</p>
-                        </div>
-                      </div>
+                    <span className="inline-block self-start md:self-auto bg-emerald-50 text-emerald-700 border border-emerald-200 px-4 py-1.5 rounded-full text-sm font-extrabold">
+                      {case_.metricBadge}
+                    </span>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div>
+                      <p className="text-xs font-bold text-red-600 uppercase tracking-wider mb-1.5">The Challenge</p>
+                      <p className="text-slate-600 text-sm leading-relaxed">{case_.problem}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[#0066CC] uppercase tracking-wider mb-1.5">MBMB Intervention</p>
+                      <p className="text-slate-600 text-sm leading-relaxed">{case_.solution}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Verified Outcome</p>
+                      <p className="text-slate-900 font-semibold text-sm leading-relaxed">{case_.result}</p>
                     </div>
                   </div>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ===== WHY MBMB ===== */}
-      <section className="w-full py-20 bg-[#0a1628]">
-        <div className="max-w-6xl mx-auto px-4">
-          <ScrollReveal direction="up" distance={30}>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Practices Choose MBMB</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">Local expertise meets enterprise-grade execution.</p>
-            </div>
-          </ScrollReveal>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { number: "15+", label: "Years Experience", desc: "Serving Florida healthcare since 2009" },
-              { number: "98%", label: "Clean Claim Rate", desc: "First-pass acceptance rate" },
-              { number: "30%", label: "Avg Revenue Lift", desc: "Within first 6 months" },
-              { number: "24h", label: "Response Time", desc: "Average support response" }
-            ].map((stat, i) => (
-              <ScrollReveal key={stat.label} delay={i * 100} direction="up" distance={20}>
-                <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
-                  <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-white font-semibold mb-1">{stat.label}</div>
-                  <div className="text-gray-400 text-sm">{stat.desc}</div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CORE SERVICES (with 3D tilt) ===== */}
-      <section className="w-full py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <ScrollReveal direction="up" distance={30}>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Core Services</h2>
-            <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Three pillars of revenue cycle management. Every service is designed to do one thing: get you paid faster, with fewer headaches.</p>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-3 gap-6" style={{ perspective: '2000px' }}>
-            <ScrollReveal delay={0} direction="up" distance={40}>
-              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-[#9D0D64] hover:shadow-xl transition text-center">
-                <div className="w-14 h-14 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
-                  <svg className="w-7 h-7 text-[#9D0D64]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </div>
-                <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Billing</h3>
-                <p className="text-gray-600 text-sm">Claim submission, denial management, and payment posting. We handle the full cycle so nothing falls through the cracks.</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={150} direction="up" distance={40}>
-              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-500 hover:shadow-xl transition text-center">
-                <div className="w-14 h-14 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                </div>
-                <h3 className="font-bold text-xl text-gray-900 mb-2">Medical Coding</h3>
-                <p className="text-gray-600 text-sm">ICD-10, CPT, and HCPCS coding by AAPC-certified specialists. Accurate codes mean fewer denials and maximum reimbursement.</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={300} direction="up" distance={40}>
-              <div className="tilt-card bg-white rounded-xl p-6 shadow-lg border-t-4 border-green-500 hover:shadow-xl transition text-center">
-                <div className="w-14 h-14 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <h3 className="font-bold text-xl text-gray-900 mb-2">Credentialing</h3>
-                <p className="text-gray-600 text-sm">Provider enrollment with insurance networks. We handle CAQH, EDI, ERA, and EFT setup — typically in 60-90 days.</p>
-              </div>
-            </ScrollReveal>
-          </div>
           <div className="text-center mt-10">
-            <Button href="/consultation" text="Start Your Free Audit" colors="bg-[#9D0D64] text-white hover:bg-black text-lg px-8 py-3" />
+            <Button
+              href="/consultation"
+              text="Get Similar Results — Claim Your Free Audit"
+              colors="bg-[#0066CC] text-white hover:bg-[#1A3A5F] text-base font-bold px-8 py-3.5"
+            />
           </div>
         </div>
       </section>
 
-      {/* Unified Receptionist Widget — LEFT side, text + voice */}
-      <UnifiedReceptionist />
-
-      {/* Revenue Calculator — Fixed floating widget */}
-      <RevenueCalculator />
-
-      {/* Lead Magnet Popup — Free checklist offer */}
-      <LeadMagnetPopup />
-
-      {/* Floating Video — AI expert presentation */}
-      <FloatingVideo />
-
-      {/* AI Voice Call Button — Front desk voice assistant */}
-      <AIVoiceCallButton />
-
-      {/* Google Calendar Booking — Floating book appointment widget */}
-      <GoogleCalendarBooking />
-      
-      {/* Rest of the page unchanged structure but with semantic/visual tweaks */}
-        <section className="grid lg:grid-cols-2 gap-8 md:max-w-7xl mx-auto md:px-6 py-16 lg:my-12" >
-        <figure className="overflow-hidden lg:rounded-2xl mx-4 shadow-2xl" >
-        <SmartImage
-          className="object-cover hover:scale-105 transition-all ease-linear duration-500 h-fit md:max-h-[500px] w-full mx-auto self-center"
-          src={'/raster/Medical-Billing-and-Coding-Specialists.webp'}
-          width={1200}
-          height={800}
-          alt="Medical Billing and Coding Specialists in Miami Florida"
-          loading="lazy"
-        />
-        </figure>
-        <article className="flex flex-col justify-center py-8 lg:py-0 px-6 w-full max-w-xl mx-auto" >
-          <h2 className="text-3xl lg:text-4xl text-myblack mb-2 font-bold leading-tight underline decoration-pink2" >
-            Experienced Staff
+      {/* ===== 2026 FLORIDA TELEHEALTH & CREDENTIALING SPOTLIGHT ===== */}
+      <section className="max-w-7xl w-11/12 mx-auto my-20 grid lg:grid-cols-2 gap-10 items-center bg-[#0a1628] text-white rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+        <div className="p-8 md:p-12 lg:p-14">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-4">
+            2026 Florida Regulatory Compliance
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+            Fast-Track Provider Credentialing &amp; 2026 Telehealth Billing
           </h2>
-          <h3 className="text-lg xl:text-xl font-semibold text-pink2 mb-6" >
-            Medical Billing and Coding Specialists
-          </h3>
-          <p className="text-base xl:text-lg text-gray-700 leading-relaxed text-justify mb-8" >
-            At our firm, we pride ourselves on being expert medical billing and coding specialists, dedicated to ensuring the financial success of your practice. With years of experience and a deep understanding of healthcare revenue cycle management, we offer unparalleled professionalism and expertise. Trust us to handle your medical billing and coding needs with precision and efficiency, allowing you to focus on providing excellent patient care.
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Whether you are adding a new physician, opening a new clinic in Miami-Dade, or billing telehealth encounters under updated Florida POS 02/10 and Modifier 95 rules, our credentialing team handles all payer paperwork from day one.
           </p>
-          <Button href="#practices" text="Explore Expertise" colors="bg-myblack text-white hover:bg-pink2" className="mx-0" />
-        </article>
-      </section>
-
-      <ul className="grid md:grid-cols-3 w-full h-full bg-black py-16 lg:py-40 my-10 px-6 lg:px-12 gap-10" >
-        {benefits.map((x, i) => {
-          return (
-            <li key={i} className="flex flex-col items-center text-center w-full max-w-sm mx-auto p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"  >
-              <div className="circle w-12 h-12 xl:w-20 xl:h-20 mb-6 before:animate-pulse after:animate-pulse" />
-              <h3 className="text-mypink font-bold text-xl lg:text-2xl mb-4" >
-                {x.label}
-              </h3>
-              <p className="text-gray-300 text-sm xl:text-base font-serif leading-relaxed" >
-                {x.description}
-              </p>
+          <ul className="space-y-2.5 text-sm text-slate-200 mb-8">
+            <li className="flex items-center gap-2.5">
+              <span className="text-[#00A8E8] font-bold">✓</span> CAQH ProView Enrollment &amp; Quarterly Re-Attestation
             </li>
-          )
-        })}
-      </ul>
-
-      <ImageAndText
-        content={pair1}
-        className={{
-          section: "text-white rounded-2xl shadow-2xl shadow-myblack/50 w-11/12 max-w-2xl lg:max-w-6xl mt-16 mb-24 mx-auto flex flex-col lg:flex-row-reverse overflow-hidden",
-          figure: "overflow-hidden flex lg:w-1/2",
-          image: "object-cover transition-transform duration-700 ease hover:scale-105 h-auto w-full lg:h-full lg:min-h-[400px]",
-          article: "bg-black lg:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
-          h2: "mb-6 text-center md:text-left uppercase text-2xl sm:text-3xl lg:text-4xl tracking-widest font-bold text-mypink",
-          p: "text-gray-200 text-base md:text-lg leading-relaxed mb-8",
-          icon: "bg-white text-pink2 hover:bg-pink2 hover:text-white",
-          rect: "stroke-pink2"
-        }}
-      />
-
-      <section className="background1 relative overflow-hidden lg:bg-fixed bg-no-repeat text-white w-full h-fit md:py-24 my-16 mx-auto" >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60 lg:bg-black/40 -z-10"></div>
-        <Image
-          className="sm:hidden absolute inset-0 w-full h-full object-cover -z-20"
-          src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif'}
-          width={1280}
-          height={640}
-          alt="medical billing and medical coding services healthcare revenue management"
-        />
-        <Image
-          className="hidden sm:block lg:hidden absolute inset-0 w-full h-full object-cover -z-20"
-          src={'/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-2.1.avif'}
-          width={1280}
-          height={640}
-          alt="medical billing and medical coding services healthcare revenue management"
-        />
-        <article className="relative py-12 md:px-8 flex flex-col items-center lg:items-start max-w-7xl mx-auto" >
-          <h2 className="text-center lg:text-left uppercase font-orbitron font-bold text-3xl md:text-4xl lg:text-5xl tracking-wide max-w-2xl bg-pink2/90 px-6 py-4 rounded-t-xl shadow-2xl" >
-            Reduce Administrative Burden
-          </h2>
-          <ul className="font-serif text-center lg:text-left text-base lg:text-lg max-w-2xl text-gray-100 bg-black/80 px-8 py-6 shadow-2xl backdrop-blur-sm">
-            {paragraphContent.map((paragraph, index) => <li key={index} className="mb-4 last:mb-0 leading-relaxed" >{paragraph}</li>)}
+            <li className="flex items-center gap-2.5">
+              <span className="text-[#00A8E8] font-bold">✓</span> EDI, ERA &amp; EFT Direct Deposit Setup Across All Payers
+            </li>
+            <li className="flex items-center gap-2.5">
+              <span className="text-[#00A8E8] font-bold">✓</span> 2026 Florida Telehealth POS Code 02/10 &amp; Modifier 95 Auditing
+            </li>
+            <li className="flex items-center gap-2.5">
+              <span className="text-[#00A8E8] font-bold">✓</span> Commercial, Medicare (FCSO) &amp; Florida Medicaid Enrollment
+            </li>
           </ul>
-          <footer className="max-w-2xl bg-myblack px-6 py-6 rounded-b-xl w-full flex justify-center lg:justify-start shadow-2xl" >
-            <Link href={'/consultation'} className="text-sm block">
-              <div className="text-white relative flex justify-center items-center uppercase h-12 w-48 font-bold tracking-wider transition-all ease-in-out duration-300 border-2 border-white hover:border-pink2 hover:bg-pink2 rounded-md">
-                Free Audit
-              </div>
-            </Link>
-          </footer>
-        </article>
-      </section>
-
-      <section className="w-full bg-primary py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
-            Stay Updated
-          </h2>
-          <p className="text-center text-gray-300 mb-8">
-            Get Florida billing news, compliance updates, and revenue tips delivered to your inbox.
-          </p>
-          <Subscribe />
+          <Button
+            href="/services/credentialing"
+            text="Explore Credentialing Services"
+            colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] font-bold px-7 py-3"
+          />
+        </div>
+        <div className="relative h-full min-h-[340px] w-full">
+          <SmartImage
+            src="/raster/healthcare-revenue-cycle-management-companies.webp"
+            alt="Provider Credentialing and Revenue Cycle Management in Miami Florida"
+            width={800}
+            height={600}
+            className="object-cover w-full h-full min-h-[340px]"
+          />
         </div>
       </section>
 
-      <ImageAndText
-        content={pair2}
-        className={{
-          section: "text-myblack bg-white shadow-2xl shadow-pink2/20 w-11/12 xl:max-w-7xl rounded-2xl mt-16 mb-24 mx-auto flex flex-col lg:flex-row overflow-hidden border border-gray-100",
-          figure: "overflow-hidden lg:w-1/2",
-          image: "object-cover transition-transform duration-700 ease hover:scale-105 h-full w-full min-h-[300px]",
-          article: "lg:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
-          h2: "text-center lg:text-left uppercase text-2xl sm:text-3xl lg:text-4xl font-bold text-pink2 mb-6",
-          p: "font-serif text-base tracking-wider",
-          ul: "my-4 w-full",
-          li: "py-3 px-2 border-b border-gray-200 last:border-b-0 flex items-center text-gray-700",
-          icon: "bg-myblack text-white hover:bg-pink2",
-          rect: "stroke-transparent"
-        }}
-      />
-
-      {/* Case Studies Section */}
-      <section className="max-w-6xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 shadow-xl">
-        <ScrollReveal direction="up" distance={30}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Success Stories</h2>
-          <p className="text-center text-gray-600 mb-10">Real results from Miami healthcare practices</p>
-        </ScrollReveal>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Case Study 1 */}
-          <ScrollReveal delay={0} direction="up" distance={30}>
-            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-[#9D0D64]">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-[#0a1628] rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-[#00c8b1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-gray-900">Dr. Martinez</h3>
-                  <p className="text-gray-600 text-sm">Family Practice, Miami Beach</p>
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">"MBMB transformed our billing process. We were losing thousands every month to denials and slow payments."</p>
-              <div className="bg-[#00c8b1]/10 text-[#00c8b1] px-4 py-2 rounded-lg font-bold text-center border border-[#00c8b1]/20">
-                Increased collections 27% in 6 months
-              </div>
-            </div>
-          </ScrollReveal>
-          
-          {/* Case Study 2 */}
-          <ScrollReveal delay={150} direction="up" distance={30}>
-            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-[#0a1628] rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-[#ff6b35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-gray-900">Sunrise Pediatrics</h3>
-                  <p className="text-gray-600 text-sm">Coral Gables, Florida</p>
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">"Our denial rate was killing us. MBMB's expert coding team turned things around completely."</p>
-              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-center border border-blue-200">
-                Reduced denial rate from 18% to 3%
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-        
-        <div className="text-center mt-8">
-          <Button href="/consultation" text="Get Your Free Audit" colors="bg-[#9D0D64] text-white hover:bg-black" />
-        </div>
-      </section>
-
-      {/* ONE strategic CTA section — after trust is established */}
-      <section className="bg-[#0a1628] text-white py-16 my-10 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <ScrollReveal direction="up" distance={30}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Stop Losing Revenue?</h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Most practices leak 15-20% of revenue to billing errors, slow claims, and denied appeals. 
-              Our free audit shows exactly where your money is going — and how to get it back.
-            </p>
-            <Button href="/consultation" text="Start Your Free Audit" colors="bg-[#ff6b35] text-white hover:bg-[#e55a2b] text-lg px-10 py-4 shadow-lg shadow-[#ff6b35]/30" />
-            <p className="text-gray-500 text-sm mt-4">No obligation. Takes 15 minutes. Results in 48 hours.</p>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section className="bg-gray-900 text-white py-16 my-10">
+      {/* ===== BLOG INSIGHTS SECTION ===== */}
+      <section className="bg-slate-900 text-white py-20">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <ScrollReveal direction="up" distance={20}>
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-3">
+                Florida Billing Guides
+              </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing Insights</h2>
-              <p className="text-gray-400">Expert tips, compliance updates, and revenue cycle insights for Miami healthcare practices</p>
+              <p className="text-slate-400">Expert compliance updates and revenue cycle strategies for Miami healthcare practices</p>
             </ScrollReveal>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <ScrollReveal delay={0} direction="up" distance={30}>
-              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
-                <div className="relative h-40">
-                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101" fill className="object-cover" />
+              <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
+                <div className="relative h-44">
+                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101 Guide for Miami Doctors" fill className="object-cover" />
                 </div>
-                <div className="p-5">
-                  <p className="text-gray-400 text-xs mb-2">April 12, 2026</p>
-                  <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">The complete guide to medical billing for Miami doctors.</p>
-                  <Button href="/blog/medical-billing-101" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Practice Guide · April 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">The complete guide to medical billing, clean claims, and outsourcing for Miami doctors.</p>
+                  </div>
+                  <Button href="/blog/medical-billing-101" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={150} direction="up" distance={30}>
-              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
-                <div className="relative h-40">
-                  <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide" fill className="object-cover" />
+              <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
+                <div className="relative h-44">
+                  <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide for Florida Practices" fill className="object-cover" />
                 </div>
-                <div className="p-5">
-                  <p className="text-gray-400 text-xs mb-2">April 14, 2026</p>
-                  <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide</h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a system to fight back.</p>
-                  <Button href="/blog/denial-management-guide" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Denial Prevention · April 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide for Miami Practices</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a 48-hour system to fight back.</p>
+                  </div>
+                  <Button href="/blog/denial-management-guide" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={300} direction="up" distance={30}>
-              <div className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition tilt-card">
-                <div className="relative h-40">
-                  <Image src="/raster/medical-coding-icd.webp" alt="Miami Medicaid Billing" fill className="object-cover" />
+              <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
+                <div className="relative h-44">
+                  <Image src="/raster/medical-coding-icd.webp" alt="Florida Medicaid Billing for Miami Healthcare Providers" fill className="object-cover" />
                 </div>
-                <div className="p-5">
-                  <p className="text-gray-400 text-xs mb-2">April 15, 2026</p>
-                  <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">Navigate Florida Medicaid billing complexities with confidence.</p>
-                  <Button href="/blog/miami-medicaid-billing" text="Read More" colors="bg-[#9D0D64] text-white hover:bg-pink-600 text-sm px-4 py-2" />
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Florida Medicaid · April 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">Navigate Florida AHCA Medicaid billing complexities and MMA plans with confidence.</p>
+                  </div>
+                  <Button href="/blog/miami-medicaid-billing" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
           </div>
-          <div className="text-center mt-8">
-            <Button href="/blog" text="View All Blog Posts" colors="bg-white text-gray-900 hover:bg-[#9D0D64] hover:text-white" />
+          <div className="text-center mt-10">
+            <Button href="/blog" text="View All 4 Florida Billing Guides" colors="bg-white text-slate-900 hover:bg-[#00A8E8] hover:text-white font-bold px-6 py-3" />
           </div>
         </div>
       </section>
 
-      {/* SEO/GEO FAQ Section */}
-      <section className="max-w-5xl mx-auto w-11/12 my-20 py-12 bg-gradient-to-br from-white to-gray-50 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 shadow-xl" >
+      {/* ===== SEO / GEO FAQ SECTION ===== */}
+      <section className="max-w-5xl mx-auto w-11/12 my-20 py-12 bg-slate-50 rounded-3xl border border-slate-200 p-6 md:p-10 shadow-sm">
         <ScrollReveal direction="up" distance={20}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Medical Billing Services for Miami Healthcare Practices</h2>
-          <p className="text-center text-gray-600 mb-10">Everything you need to know about our medical billing services in Miami and Florida</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-3">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-slate-600 mb-10">
+            Transparent answers on pricing, EHR integration, credentialing timelines, and HIPAA security
+          </p>
         </ScrollReveal>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-5">
           {faqs.map((faq, index) => (
-            <ScrollReveal key={index} delay={index * 50} direction="up" distance={20}>
+            <ScrollReveal key={index} delay={index * 40} direction="up" distance={20}>
               <FAQItem faq={faq} index={index} />
             </ScrollReveal>
           ))}
         </div>
       </section>
 
-      {/* Instagram Feed Section */}
-      <section className="w-full bg-gradient-to-b from-gray-50 to-white py-16 mb-10">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <ScrollReveal direction="up" distance={20}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Follow MBMB on Instagram</h2>
-            <p className="text-gray-600 mb-8">@medicalbillingmiamibeach</p>
-          </ScrollReveal>
-          
-          {/* Instagram Profile Link */}
-          <ScrollReveal delay={150} direction="up" distance={20}>
-            <div className="flex flex-col items-center justify-center py-8 bg-gray-100 rounded-xl max-w-md mx-auto">
-              <div className="w-20 h-20 bg-gradient-to-tr from-yellow-400 via-[#9D0D64] to-purple-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </div>
-              <p className="text-gray-700 font-semibold mb-2">medicalbillingmiamibeach</p>
-              <a 
-                href="https://www.instagram.com/medicalbillingmiamibeach" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#9D0D64] to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition"
+      {/* ===== STRATEGIC CONVERSION CTA BANNER ===== */}
+      <section className="bg-gradient-to-r from-[#0a1628] via-[#1A3A5F] to-[#0066CC] text-white py-16 my-12">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <ScrollReveal direction="up" distance={30}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Stop Losing 15–20% of Your Practice Revenue?
+            </h2>
+            <p className="text-slate-200 text-lg mb-8 max-w-2xl mx-auto">
+              Our free 48-hour billing audit reveals your exact denial triggers, under-coded CPTs, and recoverable AR—with zero obligation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="/consultation"
+                text="Schedule Your Free Billing Audit"
+                colors="bg-white text-[#0a1628] hover:bg-[#00A8E8] hover:text-white text-lg font-bold px-8 py-4 shadow-xl"
+              />
+              <a
+                href="tel:+17866432099"
+                className="inline-flex items-center justify-center gap-2 text-lg px-8 py-4 rounded-lg font-bold border-2 border-white text-white hover:bg-white/10 transition-colors"
               >
-                Follow on Instagram
+                📞 Call (786) 643-2099
               </a>
-              <p className="text-sm text-gray-500 mt-4">Latest updates from @medicalbillingmiamibeach</p>
             </div>
+            <p className="text-slate-300 text-xs sm:text-sm mt-4">
+              No setup fees · Signed HIPAA BAA · Onboarding in 5–7 business days
+            </p>
           </ScrollReveal>
         </div>
       </section>
 
-      <section id="practices" className="max-w-7xl w-11/12 mx-auto my-16 py-14" >
+      {/* ===== HEALTHCARE TECHNOLOGY ECOSYSTEM PARTNERS (SINGLE CLEAN GRID) ===== */}
+      <section className="w-11/12 max-w-6xl mx-auto my-16 pb-8">
         <ScrollReveal direction="up" distance={20}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl text-gray-900 font-bold underline decoration-pink2 mb-8" >
-            {practices.label}
-          </h1>
-          <p className="font-serif text-gray-700 mb-6 text-base md:text-lg lg:text-xl max-w-5xl leading-relaxed">
-            <strong className="text-pink2">Medical Billing Miami Beach </strong>
-            serves 20+ specialties. From primary care to cardiology, dermatology, and mental health — our certified coders know your field's unique billing requirements.
-          </p>
-          <p className="text-gray-600 mb-8 text-lg">
-            Primary Care • Family Medicine • Cardiology • Dermatology • Mental Health • Pediatrics • OB/GYN • Orthopedics • Surgery • Urgent Care 
-            <a href="#specialties-full" className="text-pink2 hover:underline font-semibold ml-2">[+ 12 more]</a>
-          </p>
-          <div className="max-w-5xl">
-            <Link className="font-sans cta bg-mygreen text-white hover:bg-myblack text-lg lg:text-xl h-fit w-max shadow-lg shadow-pink2/40 px-6 py-3 rounded-md flex items-center transition-all duration-300 transform hover:-translate-y-1" href="/consultation">
-              <span className="font-bold">Free Billing Audit</span>
-              <span className="ml-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </span>
-            </Link>
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-bold text-slate-800 uppercase tracking-wider">
+              Our Healthcare &amp; AI Technology Ecosystem
+            </h2>
+            <p className="text-slate-500 text-sm mt-1">
+              Integrated clinical documentation, front-desk automation, and compliance partners in South Florida
+            </p>
           </div>
         </ScrollReveal>
-      </section>
 
-      <section className="overflow-hidden bg-fixed bg-no-repeat bg-cover bg-center w-full h-fit min-h-[400px] mx-auto background2 border-y-8 border-pink2" />
-
-      <ImageAndText
-        content={joinUs}
-        className={{
-          section: "text-myblack bg-gray-50 shadow-xl w-11/12 xl:max-w-7xl rounded-2xl mt-24 mb-32 mx-auto flex flex-col md:flex-row overflow-hidden",
-          figure: "overflow-hidden md:w-1/2",
-          image: "object-cover transition-transform duration-700 ease h-full w-full hover:scale-105 min-h-[300px]",
-          article: "md:w-1/2 justify-center flex flex-col py-10 px-8 lg:px-16",
-          h2: "mb-6 text-center lg:text-left uppercase text-2xl sm:text-3xl lg:text-4xl font-bold text-pink2",
-          p: "text-gray-700 text-base md:text-lg leading-relaxed mb-8",
-          icon: "bg-black text-white hover:bg-pink2",
-          rect: "stroke-transparent"
-        }}
-      />
-      
-      {/* Services & Partners Section */}
-      <section className="w-11/12 max-w-6xl mx-auto mb-24">
-        <ScrollReveal direction="up" distance={20}>
-          <h2 className="border-b-4 border-pink2 pb-2 text-2xl font-bold text-gray-900 uppercase tracking-wider mb-8 text-center">
-            Our Services & Partners
-          </h2>
-        </ScrollReveal>
-        
-        {/* Partner Links - Professional Minimalist Design */}
-        <div className="grid md:grid-cols-4 gap-4 mb-10">
-          <Link href="https://305business-llc.vercel.app/" target="_blank" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-cyan-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-cyan-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {partners.map((partner) => (
+            <Link key={partner.name} href={partner.href} target="_blank" rel="noopener noreferrer" className="group">
+              <div className="bg-slate-50 border border-slate-200 hover:border-[#0066CC] rounded-xl p-5 hover:shadow-md transition-all duration-300 h-full flex flex-col justify-between">
+                <div>
+                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0066CC] bg-blue-50 px-2.5 py-0.5 rounded-full mb-2">
+                    {partner.badge}
+                  </span>
+                  <h3 className="font-bold text-base text-slate-900 group-hover:text-[#0066CC] transition-colors">
+                    {partner.name}
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">{partner.desc}</p>
                 </div>
-                <h3 className="font-bold text-base mb-1">305business</h3>
-                <p className="text-xs text-gray-400">Business Marketplace</p>
+                <span className="inline-block mt-3 text-xs font-bold text-[#0066CC]">
+                  Explore Partner →
+                </span>
               </div>
-            </div>
-          </Link>
-          
-          <Link href="https://aidynamic.pro/" target="_blank" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-purple-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-base mb-1">AI Dynamics Pro</h3>
-                <p className="text-xs text-gray-400">AI Automation</p>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="https://aimedicalscriber.com/" target="_blank" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-blue-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-base mb-1">AI Medical Scriber</h3>
-                <p className="text-xs text-gray-400">Voice-to-SOAM notes</p>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="https://new-law-helper-app.vercel.app/" target="_blank" className="group">
-            <div className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700 hover:border-amber-500">
-              <div className="text-white text-center">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center group-hover:bg-amber-500 transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-base mb-1">AI Law Helper</h3>
-                <p className="text-xs text-gray-400">Attorney Services</p>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Minimalist AI Banners - Two clean cards */}
-        <div className="grid md:grid-cols-4 gap-4 mt-8">
-          <Link href="https://aimedicalscriber.com/" target="_blank" className="group">
-            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="text-gray-800 text-center">
-                <h3 className="font-bold text-lg mb-1">AI Medical Scriber</h3>
-                <p className="text-sm text-gray-600">Minimal, secure AI note-taking</p>
-                <span className="inline-block mt-2 text-sm font-medium text-blue-600 group-hover:text-blue-800">Learn More →</span>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="https://aidynamic.pro/" target="_blank" className="group">
-            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="text-gray-800 text-center">
-                <h3 className="font-bold text-lg mb-1">AI Dynamics Pro</h3>
-                <p className="text-sm text-gray-600">AI Automation for Small Business</p>
-                <span className="inline-block mt-2 text-sm font-medium text-purple-600 group-hover:text-purple-800">Visit →</span>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="https://305business-llc.vercel.app/" target="_blank" className="group">
-            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="text-gray-800 text-center">
-                <h3 className="font-bold text-lg mb-1">305business</h3>
-                <p className="text-sm text-gray-600">Business Marketplace</p>
-                <span className="inline-block mt-2 text-sm font-medium text-cyan-600 group-hover:text-cyan-800">Explore →</span>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="https://new-law-helper-app.vercel.app/" target="_blank" className="group">
-            <div className="bg-gray-100 border border-gray-300 rounded-xl p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="text-gray-800 text-center">
-                <h3 className="font-bold text-lg mb-1">AI Law Helper</h3>
-                <p className="text-sm text-gray-600">Attorney Services</p>
-                <span className="inline-block mt-2 text-sm font-medium text-amber-600 group-hover:text-amber-800">Consult →</span>
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
       </section>
-      
-    </main>
+
+      {/* ===== FLOATING WIDGETS (DECLUTTERED: 1 LEFT, 1 RIGHT, DELAYED EXIT/ENGAGEMENT POPUP) ===== */}
+      {/* Left: Unified Multilingual Chat + Voice Receptionist ("Sofia") */}
+      <UnifiedReceptionist />
+
+      {/* Right: Direct Google Calendar Audit Booking */}
+      <GoogleCalendarBooking />
+
+      {/* Delayed 25s Florida Compliance Checklist Offer */}
+      <LeadMagnetPopup />
+    </div>
   );
 }

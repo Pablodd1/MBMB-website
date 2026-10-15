@@ -327,7 +327,7 @@ export default function UnifiedReceptionist() {
               >
                 📞 {officeNumber}
               </a>
-              <p className="text-gray-500 text-xs mt-6">Mon-Sat: 4:00 PM - 6:00 PM EST</p>
+              <p className="text-gray-500 text-xs mt-6">Mon–Fri: 9:00 AM – 6:00 PM EST</p>
               <button 
                 onClick={() => setActiveMode('chat')}
                 className="mt-4 text-cyan-400 text-sm hover:text-cyan-300 transition-colors"

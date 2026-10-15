@@ -1,16 +1,12 @@
-
 export const metadata = {
-  // metadataBase: new URL('https://medicalbillingmb.com/'),
-  title: 'Consultation Form - Medical Billing Miami Beach',
-  keywords: 'Medical Billing, Medical Coding, Medical Credentialling, Healthcare, Miami Florida, USA, consultation, Services , form , free',
-  description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Trust our specialists for accurate healthcare administration.',
-  generator: 'Next.js',
-  applicationName: 'MBMB',
-  creator: 'Design and Developed By M Talha | Founder of MyAbabeel',
+  title: 'Practice Business & Credentialing Details',
+  keywords: 'Provider Credentialing Form Miami, CAQH Setup Florida, Medical Practice Business Details, MBMB Credentialing',
+  description: 'Provide your medical practice and provider credentialing details to begin insurance network enrollment and RCM setup with Medical Billing Miami Beach.',
+  creator: 'Medical Billing Miami Beach (MBMB)',
   alternates: {
-    canonical: 'https://medicalbillingmb.com'
+    canonical: 'https://medicalbillingmb.com/business-details'
   }
-}
+};
 
 export default function Layout({ children }) {
   return children;

@@ -86,7 +86,7 @@ const Consultation = () => {
                     src={'/mbmb-white.png'}
                     width={250}
                     height={180}
-                    alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
+                    alt="Medical Billing Miami Beach | Medical Revenue Cycle Management & Healthcare Coding"
                 />
             </Link>
             <h1 className=" text-3xl md:text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach <span className="text-pink2 block mt-2">Free Billing Audit Registration</span></h1>

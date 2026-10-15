@@ -1,70 +1,109 @@
 export default function sitemap() {
+  const baseUrl = 'https://medicalbillingmb.com';
+  const now = new Date();
+
   return [
     {
-      url: 'https://medicalbillingmb.com',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
     },
     {
-      url: 'https://medicalbillingmb.com/consultation',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/billing-details',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/agreement-sign-up',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/business-details',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/services',
-      lastModified: new Date(),
+      url: `${baseUrl}/services`,
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: 'https://medicalbillingmb.com/services/medical-coding',
-      lastModified: new Date(),
+      url: `${baseUrl}/services/medical-coding`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/credentialing`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/revenue-cycle-management`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/consultation`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://medicalbillingmb.com/services/credentialing',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/services/revenue-cycle-management',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://medicalbillingmb.com/blog',
-      lastModified: new Date(),
+      url: `${baseUrl}/blog`,
+      lastModified: now,
       changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/medical-billing-101`,
+      lastModified: now,
+      changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: 'https://medicalbillingmb.com/blog/medical-billing-101',
-      lastModified: new Date(),
+      url: `${baseUrl}/blog/denial-management-guide`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/miami-medicaid-billing`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/top-5-medical-billing-mistakes`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/billing-details`,
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
-  ]
+    {
+      url: `${baseUrl}/business-details`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/agreement-sign-up`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/terms-of-use`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+  ];
 }
