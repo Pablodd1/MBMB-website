@@ -130,84 +130,115 @@ export async function POST(request) {
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
     const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 
-    // 1. Primary: Google Gemini 2.5 Flash (Fastest, Best for Receptionist Chat & Voice)
+    // 1. Primary: Google Gemini (Oct 2026 Latest: gemini-3.8-flash -> gemini-3.6-flash -> gemini-3.1-flash-lite-preview -> gemini-2.5-flash)
     if (GEMINI_API_KEY) {
-      try {
-        const geminiContents = messages.map(m => ({
-          role: m.role === 'assistant' ? 'model' : 'user',
-          parts: [{ text: m.content }]
-        }));
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              systemInstruction: { parts: [{ text: systemPrompt }] },
-              contents: geminiContents,
-              generationConfig: { temperature: 0.5, maxOutputTokens: 350 }
-            })
+      const geminiModels = [
+        process.env.GEMINI_MODEL,
+        'gemini-3.8-flash',
+        'gemini-3.6-flash',
+        'gemini-3.5-flash-lite',
+        'gemini-3.1-flash-lite-preview',
+        'gemini-2.5-flash'
+      ].filter(Boolean);
+
+      const geminiContents = messages.map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }]
+      }));
+
+      for (const modelId of geminiModels) {
+        try {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${GEMINI_API_KEY}`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                contents: geminiContents,
+                generationConfig: { temperature: 0.5, maxOutputTokens: 350 }
+              })
+            }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+            if (text) return NextResponse.json({ text, provider: modelId });
           }
-        );
-        if (res.ok) {
-          const data = await res.json();
-          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-          if (text) return NextResponse.json({ text, provider: 'gemini-2.5-flash' });
+        } catch (e) {
+          console.warn(`Gemini model ${modelId} fallback triggered:`, e.message);
         }
-      } catch (e) {
-        console.warn('Gemini fallback triggered:', e.message);
       }
     }
 
-    // 2. Secondary: OpenAI GPT-4o-mini
+    // 2. Secondary: OpenAI (Oct 2026 Latest: gpt-5.4-mini -> gpt-5-mini -> gpt-4.1-mini -> gpt-4o-mini)
     if (OPENAI_API_KEY) {
-      try {
-        const res = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${OPENAI_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            messages: [{ role: 'system', content: systemPrompt }, ...messages],
-            max_tokens: 350,
-            temperature: 0.5
-          })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          const text = data?.choices?.[0]?.message?.content?.trim();
-          if (text) return NextResponse.json({ text, provider: 'gpt-4o-mini' });
+      const openAiModels = [
+        process.env.OPENAI_MODEL,
+        'gpt-5.4-mini',
+        'gpt-5-mini',
+        'gpt-4.1-mini',
+        'gpt-4o-mini'
+      ].filter(Boolean);
+
+      for (const modelId of openAiModels) {
+        try {
+          const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+              model: modelId,
+              messages: [{ role: 'system', content: systemPrompt }, ...messages],
+              max_completion_tokens: 350
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content?.trim();
+            if (text) return NextResponse.json({ text, provider: modelId });
+          }
+        } catch (e) {
+          console.warn(`OpenAI model ${modelId} fallback triggered:`, e.message);
         }
-      } catch (e) {
-        console.warn('OpenAI fallback triggered:', e.message);
       }
     }
 
-    // 3. Tertiary: Groq Llama-3.3-70b-versatile
+    // 3. Tertiary: Groq Production Models (Oct 2026 Latest: openai/gpt-oss-120b -> openai/gpt-oss-20b -> llama-3.3-70b-versatile -> llama-3.1-8b-instant)
     if (GROQ_API_KEY) {
-      try {
-        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GROQ_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: 'llama-3.3-70b-versatile',
-            messages: [{ role: 'system', content: systemPrompt }, ...messages],
-            max_tokens: 350,
-            temperature: 0.5
-          })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          const text = data?.choices?.[0]?.message?.content?.trim();
-          if (text) return NextResponse.json({ text, provider: 'groq-llama-3.3' });
+      const groqModels = [
+        process.env.GROQ_MODEL,
+        'openai/gpt-oss-120b',
+        'openai/gpt-oss-20b',
+        'llama-3.3-70b-versatile',
+        'llama-3.1-8b-instant'
+      ].filter(Boolean);
+
+      for (const modelId of groqModels) {
+        try {
+          const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${GROQ_API_KEY}`
+            },
+            body: JSON.stringify({
+              model: modelId,
+              messages: [{ role: 'system', content: systemPrompt }, ...messages],
+              max_tokens: 350,
+              temperature: 0.5
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content?.trim();
+            if (text) return NextResponse.json({ text, provider: `groq:${modelId}` });
+          }
+        } catch (e) {
+          console.warn(`Groq model ${modelId} fallback triggered:`, e.message);
         }
-      } catch (e) {
-        console.warn('Groq fallback triggered:', e.message);
       }
     }
 
