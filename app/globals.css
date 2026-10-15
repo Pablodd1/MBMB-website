@@ -31,8 +31,12 @@ h1, h2, h3, h4, h5, h6 {
   transform: none;
 }
 
-#consultation>div>input {
-  color: black;
+#consultation input,
+#consultation textarea,
+#contact input,
+#contact textarea {
+  color: #0f172a;
+  background-color: #ffffff;
 }
 
 .cta {

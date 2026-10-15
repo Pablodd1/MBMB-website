@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Subscribe from "@UTILS/subscribe";
 import Script from "next/script";
+import UnifiedReceptionist from "./components/UnifiedReceptionist";
 
 const social = [
   {
@@ -420,6 +421,9 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </footer>
+
+        {/* Global Floating Multilingual Receptionist ("Jass — MBMB Receptionist") */}
+        <UnifiedReceptionist />
       </body>
     </html>
   );

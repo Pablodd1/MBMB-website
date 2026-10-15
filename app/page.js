@@ -7,7 +7,6 @@ import Button from "@UTILS/button";
 import SmartImage from "./components/SmartImage";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import CPTICD10HeroBackground from "./components/CPTICD10HeroBackground";
-import UnifiedReceptionist from "./components/UnifiedReceptionist";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
 import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
@@ -755,10 +754,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FLOATING WIDGETS (DECLUTTERED: 1 LEFT, 1 RIGHT, DELAYED EXIT/ENGAGEMENT POPUP) ===== */}
-      {/* Left: Unified Multilingual Chat + Voice Receptionist ("Sofia") */}
-      <UnifiedReceptionist />
-
+      {/* ===== FLOATING WIDGETS ===== */}
       {/* Right: Direct Google Calendar Audit Booking */}
       <GoogleCalendarBooking />
 
