@@ -80,7 +80,7 @@ const Contact = () => {
 
 
     return (
-        <main className="bg-primary text-white px-4 py-10 flex flex-col items-center justify-center min-h-screen w-screen max-w-full">
+        <main className="bg-primary text-white px-4 py-10 flex flex-col items-center justify-center min-h-screen w-full max-w-full overflow-x-hidden">
             <div className="max-w-6xl w-full mx-auto">
                 <h1 className="text-3xl md:text-4xl font-bold text-center my-8 lg:my-12">Medical Billing Miami Beach <span className="text-[#00A8E8] block mt-2">Contact Us</span></h1>
                 
@@ -96,13 +96,13 @@ const Contact = () => {
                     </div>
                     <div className="py-2">
                         <h2 className="text-2xl font-bold mb-3">Get in Touch With Our Team</h2>
-                        <p className="text-slate-300 mb-6 text-sm">Have questions about our medical billing services? Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+                        <p className="text-slate-300 mb-6 text-sm">Have questions about our medical billing services or our administrative billing-support pilot for law firms? Fill out the form below and we&apos;ll get back to you within 1 business day.</p>
                         
                         <div className="mb-6 p-4 bg-[#0066CC]/20 border border-[#00A8E8]/30 rounded-xl">
                             <p className="text-sm text-slate-200"><strong className="text-white">Direct Contact:</strong></p>
                             <p className="text-sm text-slate-200 mt-1">📞 <a href="tel:+17866432099" className="text-[#00A8E8] font-bold hover:underline">(786) 643-2099</a></p>
                             <p className="text-sm text-slate-200">📧 <a href="mailto:Jasmel@medicalbillingmb.com" className="text-[#00A8E8] hover:underline">Jasmel@medicalbillingmb.com</a></p>
-                            <p className="text-xs text-slate-400 mt-2">Mon-Fri: 9AM-6PM EST</p>
+                            <p className="text-xs text-slate-400 mt-2">Mon-Fri: 9AM-6PM EST (Eastern Time — America/New_York)</p>
                         </div>
                         
                         <form id='contact' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4 font-sans ${submitting ? 'opacity-45 cursor-wait grayscale' : ''}`}>
@@ -113,23 +113,29 @@ const Contact = () => {
                             </div>
                             
                             <div>
-                                <label htmlFor="email" className="block mb-1.5 text-sm font-semibold text-slate-200">Email *</label>
+                                <label htmlFor="email" className="block mb-1.5 text-sm font-semibold text-slate-200">Business Email *</label>
                                 <input type="email" id="email" name="email" value={query ? query.email : ''} onChange={handleChange} placeholder="doctor@practice.com" className={`${className} ${submitting ? 'cursor-wait' : ''}`} required />
                                 {formErrors?.email && <p className="text-rose-400 text-xs mt-1">{formErrors.email}</p>}
                             </div>
                             
                             <div className="md:col-span-2">
-                                <label htmlFor="practiceName" className="block mb-1.5 text-sm font-semibold text-slate-200">Practice Name *</label>
-                                <input type="text" id="practiceName" name="practiceName" value={query ? query.practiceName : ''} onChange={handleChange} placeholder="Practice Name" className={`${className} ${submitting ? 'cursor-wait' : ''}`} required />
+                                <label htmlFor="practiceName" className="block mb-1.5 text-sm font-semibold text-slate-200">Practice or Firm Name *</label>
+                                <input type="text" id="practiceName" name="practiceName" value={query ? query.practiceName : ''} onChange={handleChange} placeholder="Practice or Organization Name" className={`${className} ${submitting ? 'cursor-wait' : ''}`} required />
                                 {formErrors?.practiceName && <p className="text-rose-400 text-xs mt-1">{formErrors.practiceName}</p>}
                             </div>
                             
                             <div className="md:col-span-2">
                                 <label htmlFor="message" className="block mb-1.5 text-sm font-semibold text-slate-200">Message (optional)</label>
-                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="4" placeholder="How can we help your practice?" className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
+                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="4" aria-describedby="contact-phi-warning" placeholder="How can we help your practice or organization?" className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
+                                <p id="contact-phi-warning" className="mt-2 text-xs text-amber-200 bg-amber-500/10 border border-amber-400/30 rounded-lg px-3 py-2 leading-relaxed">
+                                    <strong>Important Privacy Notice:</strong> Do not include patient names, dates of birth, medical records, insurance IDs, or other sensitive information in this form. Review our{' '}
+                                    <Link href="/privacy-policy" className="text-[#00A8E8] underline font-semibold hover:text-white">
+                                        Privacy Policy
+                                    </Link>.
+                                </p>
                             </div>
                             
-                            <div className="md:col-span-2 flex pt-3">
+                            <div className="md:col-span-2 flex pt-2">
                                 <button type="submit" className={`w-full py-3.5 px-6 rounded-xl font-bold text-base shadow-lg transition duration-300 ${submitting ? 'bg-gray-500 opacity-45 cursor-wait' : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 cursor-pointer'}`}>
                                     {
                                         submitting

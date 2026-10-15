@@ -294,13 +294,13 @@ export default function Home() {
           {/* Key Value Pillars */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
             <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ 5.6%–10% Performance Pricing
+              ✓ 5.6%–10% Collection Pricing*
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ $0 Setup · No Long-Term Lock-In
+              ✓ Human AAPC Review + AI Double-Check
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ 48-Hour Denial Appeals
+              ✓ 24–48 Hr Claim &amp; Denial Turnaround
             </div>
           </div>
 
@@ -308,7 +308,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
             <Button
               href="/consultation"
-              text="Schedule Your Free 48-Hour Billing Audit"
+              text="Request a Free Billing Consultation"
               colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
               className="w-full sm:w-auto"
             />
@@ -322,33 +322,123 @@ export default function Home() {
 
           {/* Trust Credentials */}
           <div className="flex flex-wrap justify-center items-center gap-3 mt-8">
-            {['AAPC Certified Coders', '100% HIPAA Compliant', 'MGMA Member', 'FMA Partner', 'EN / ES / HT Support'].map((badge) => (
+            {['U.S. AAPC-Certified Coders', 'HIPAA-Aligned Workflows', 'Human + AI Double-Check', 'Miami Beach Account Hub', 'EN / ES / HT Support'].map((badge) => (
               <span key={badge} className="text-slate-300 font-medium border border-white/15 px-3 py-1 rounded-full bg-white/5 text-xs">
                 {badge}
               </span>
             ))}
           </div>
+          <p className="text-[11px] text-slate-400 mt-4 max-w-xl mx-auto">
+            *Final pricing is confirmed in a written proposal based on monthly claim volume, specialty mix, and required services.
+          </p>
         </article>
       </section>
 
-      {/* ===== WHY MBMB STATS BAR ===== */}
+      {/* ===== WHY MBMB OPERATIONAL COMMITMENTS BAR ===== */}
       <section className="w-full py-12 bg-[#0a1628] border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { number: "$47M+", label: "Claims Processed", desc: "For Florida healthcare providers" },
-              { number: "98%", label: "Clean Claim Rate", desc: "First-pass payer acceptance" },
-              { number: "27%", label: "Avg Revenue Lift", desc: "Within first 90–180 days" },
-              { number: "14 Days", label: "Avg Claim Turnaround", desc: "Faster cash flow vs 45+ day avg" }
+              { number: "5.6%–10%", label: "Collection-Based Fee", desc: "Proposal-scoped · $0 setup fee" },
+              { number: "24–48 Hr", label: "Claim & Denial Triage", desc: "Clean submission & appeal workflow" },
+              { number: "10+ Yrs", label: "Fulfillment Experience", desc: "U.S. AAPC-certified billing team" },
+              { number: "Dual-Check", label: "Human + AI Scrubbing", desc: "Certified coders + AI rule audit" }
             ].map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 100} direction="up" distance={20}>
                 <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
-                  <div className="text-3xl md:text-4xl font-extrabold text-[#00A8E8] mb-1">{stat.number}</div>
+                  <div className="text-2xl md:text-3xl font-extrabold text-[#00A8E8] mb-1">{stat.number}</div>
                   <div className="text-white font-bold text-base mb-1">{stat.label}</div>
                   <div className="text-slate-400 text-xs sm:text-sm">{stat.desc}</div>
                 </div>
               </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TWO-AUDIENCE PATHWAY: FOR PROVIDERS & FOR ATTORNEYS ===== */}
+      <section className="w-full py-16 bg-white border-b border-slate-200 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#0066CC] bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+              Dedicated Workflows by Audience
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-3">
+              Choose Your Solution Pathway
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base">
+              We coordinate specialized revenue cycle operations for healthcare practices and structured medical bill organization for legal teams.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Pathway 1: Healthcare Providers */}
+            <div className="rounded-2xl bg-[#0a1628] text-white p-8 border border-slate-800 shadow-xl flex flex-col justify-between">
+              <div>
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#00A8E8] bg-[#00A8E8]/15 border border-[#00A8E8]/30 px-3 py-1 rounded-full mb-4">
+                  For Healthcare Providers &amp; Clinics
+                </span>
+                <h3 className="text-2xl font-bold mb-3">
+                  End-to-End Revenue Cycle Management &amp; Coding
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  Full-service medical billing, AAPC-certified coding with AI pre-submission double-check, provider credentialing, and proactive denial recovery—scoped at 5.6%–10% of collections.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-200 mb-8">
+                  <li>✓ Daily claim scrubbing, EDI submission &amp; ERA posting</li>
+                  <li>✓ 48-hour denial root-cause analysis &amp; appeals</li>
+                  <li>✓ CAQH, Medicare, Florida Medicaid &amp; commercial credentialing</li>
+                </ul>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/for-providers"
+                  className="inline-flex items-center justify-center bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-sm px-6 py-3.5 rounded-xl transition"
+                >
+                  Explore Provider Services →
+                </Link>
+                <Link
+                  href="/how-we-work"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white font-semibold text-sm px-5 py-3.5 rounded-xl transition"
+                >
+                  How We Work
+                </Link>
+              </div>
+            </div>
+
+            {/* Pathway 2: Attorneys & Legal Teams */}
+            <div className="rounded-2xl bg-slate-900 text-white p-8 border border-slate-800 shadow-xl flex flex-col justify-between">
+              <div>
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-pink bg-pink/15 border border-pink/30 px-3 py-1 rounded-full mb-4">
+                  For Personal Injury &amp; Medical-Legal Teams
+                </span>
+                <h3 className="text-2xl font-bold mb-3">
+                  Medical Billing Clarity for Your Legal Team
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  We organize fragmented provider bills, EOBs, and payment records into clean chronologies, plain-English code explanations, and charge-to-balance tables—so attorneys and paralegals can review medical special damages faster.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-200 mb-8">
+                  <li>✓ Source-linked medical billing chronology &amp; duplicate flagging</li>
+                  <li>✓ Plain-English CPT, ICD-10 &amp; HCPCS code explanations</li>
+                  <li>✓ Charge, adjustment, payment &amp; open-balance reconciliation</li>
+                </ul>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/for-attorneys"
+                  className="inline-flex items-center justify-center bg-pink hover:bg-pink/90 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition"
+                >
+                  Explore Attorney Pilot Workflow →
+                </Link>
+                <Link
+                  href="/for-attorneys#pilot-intake-form"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white font-semibold text-sm px-5 py-3.5 rounded-xl transition"
+                >
+                  Request Sample Deliverable
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -500,19 +590,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== UNIFIED CASE STUDIES / REAL PRACTICE RESULTS ===== */}
+      {/* ===== ILLUSTRATIVE PRACTICE SCENARIOS ===== */}
       <section className="w-full py-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollReveal direction="up" distance={30}>
             <div className="text-center mb-14">
               <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#0066CC] bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
-                Verified Miami Case Studies
+                Illustrative Practice Scenarios
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-                Real Results From South Florida Practices
+                How Clean-Claim Scrubbing &amp; Denial Recovery Transform Cash Flow
               </h2>
               <p className="text-slate-600 max-w-2xl mx-auto">
-                See how we transform high denial rates and slow AR cycles into predictable monthly collections.
+                Representative specialty billing scenarios illustrating how our human coding review and AI double-check address high denial rates and slow AR cycles.
               </p>
             </div>
           </ScrollReveal>
@@ -524,7 +614,7 @@ export default function Home() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
                     <div>
                       <span className="text-xs font-bold uppercase tracking-wider text-[#0066CC]">
-                        {case_.specialtyTag}
+                        {case_.specialtyTag} · Illustrative Scenario
                       </span>
                       <h3 className="text-xl font-bold text-slate-900 mt-0.5">{case_.practice}</h3>
                     </div>
@@ -539,11 +629,11 @@ export default function Home() {
                       <p className="text-slate-600 text-sm leading-relaxed">{case_.problem}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[#0066CC] uppercase tracking-wider mb-1.5">MBMB Intervention</p>
+                      <p className="text-xs font-bold text-[#0066CC] uppercase tracking-wider mb-1.5">MBMB Workflow Intervention</p>
                       <p className="text-slate-600 text-sm leading-relaxed">{case_.solution}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Verified Outcome</p>
+                      <p className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Target Workflow Outcome</p>
                       <p className="text-slate-900 font-semibold text-sm leading-relaxed">{case_.result}</p>
                     </div>
                   </div>
@@ -552,10 +642,14 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <p className="text-xs text-slate-500 text-center mt-6 max-w-3xl mx-auto italic">
+            Note: The scenarios above are illustrative examples of revenue cycle interventions and are not a guarantee of specific financial outcomes. Actual collections depend on specialty, payer mix, clinical documentation, and claim volume.
+          </p>
+
+          <div className="text-center mt-8">
             <Button
               href="/consultation"
-              text="Get Similar Results — Claim Your Free Audit"
+              text="Request a Custom Practice Assessment"
               colors="bg-[#0066CC] text-white hover:bg-[#1A3A5F] text-base font-bold px-8 py-3.5"
             />
           </div>

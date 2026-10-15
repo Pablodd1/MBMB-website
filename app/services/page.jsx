@@ -9,7 +9,7 @@ const services = [
     description: 'Expert medical billing services for healthcare providers across Miami and South Florida. Our AAPC-certified specialists handle claims submission, denial management, payment posting, and revenue optimization so you can focus on patient care.',
     icon: '/svg/billing.svg',
     features: ['Claims Submission', 'Denial Management', 'Payment Posting', 'Insurance Verification', 'Patient Billing', 'AR Follow-up'],
-    href: '/consultation',
+    href: '/for-providers',
     image: '/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-7.5.avif'
   },
   {
@@ -211,8 +211,11 @@ export default function ServicesPage() {
                   <span className="text-white font-semibold">5.6% – 10% of Collections</span>
                 </div>
               </div>
+              <p className="text-xs text-gray-400 mb-6 leading-relaxed">
+                Pricing depends on agreed services, claim volume, and complexity ($0 setup fee for standard EHR connections). Request a written proposal detailing fees and included services.
+              </p>
               <Button href="/consultation" text="Schedule Free Consultation" colors="w-full bg-[#0066CC] text-white hover:bg-[#00A8E8] py-4" />
-              <p className="text-center text-gray-500 text-sm mt-4">No long-term lock-in · Cancel anytime with 30 days notice</p>
+              <p className="text-center text-gray-500 text-sm mt-4">Flexible terms · See written proposal for scope &amp; notice details</p>
             </div>
           </div>
         </div>

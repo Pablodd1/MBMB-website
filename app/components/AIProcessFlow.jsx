@@ -3,15 +3,14 @@
 import ScrollReveal from './ScrollReveal';
 
 /**
- * AIProcessFlow — Visual flow showing the AI billing pipeline
- * Paper Claims → AI Scanning → Smart Coding → Automated Submission → Payment Tracking
- * Uses scroll-triggered reveals with connecting lines
+ * AIProcessFlow — Visual flow showing the Human Experience + AI Double-Check pipeline
+ * Responsive layout preventing horizontal overflow at 1024px-1180px viewports
  */
 
 const steps = [
   {
-    label: 'Paper Claims',
-    description: 'Physical or digital claim documents received',
+    label: 'Clinical Intake',
+    description: 'Encounter notes & payer eligibility received from your EHR',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
@@ -23,8 +22,19 @@ const steps = [
     ),
   },
   {
-    label: 'AI Scanning',
-    description: 'OCR + NLP extracts data with 99.7% accuracy',
+    label: 'Human Coding Review',
+    description: 'Experienced AAPC-certified coders read charts & select CPT/ICD-10 codes',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+    highlight: true,
+  },
+  {
+    label: 'AI Double-Check',
+    description: 'AI claim scrubber verifies modifiers, NCCI edits & payer rules pre-submission',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -37,19 +47,8 @@ const steps = [
     highlight: true,
   },
   {
-    label: 'Smart Coding',
-    description: 'AI suggests optimal CPT/ICD-10 codes instantly',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-    highlight: true,
-  },
-  {
-    label: 'Auto Submission',
-    description: 'Claims submitted to payers in real-time',
+    label: 'EDI Submission',
+    description: 'Clean claims transmitted electronically within 24 hours',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <line x1="22" y1="2" x2="11" y2="13" />
@@ -58,8 +57,8 @@ const steps = [
     ),
   },
   {
-    label: 'Payment Tracking',
-    description: 'Real-time status + AR aging analytics',
+    label: 'ERA & AR Follow-Up',
+    description: 'Payment posting, denial appeals & monthly financial reporting',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 1v22" />
@@ -71,8 +70,8 @@ const steps = [
 
 function FlowArrow() {
   return (
-    <div className="hidden md:flex items-center justify-center w-12 shrink-0">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#00c8b1]/50">
+    <div className="hidden lg:flex items-center justify-center w-6 xl:w-10 shrink-0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-[#00c8b1]/50">
         <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
@@ -81,8 +80,8 @@ function FlowArrow() {
 
 function FlowArrowMobile() {
   return (
-    <div className="flex md:hidden items-center justify-center h-10">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#00c8b1]/50">
+    <div className="flex sm:hidden items-center justify-center h-8">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-[#00c8b1]/50">
         <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
@@ -107,27 +106,27 @@ export default function AIProcessFlow() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
               </svg>
-              <span className="text-[#ff6b35] text-sm font-medium tracking-wide">AUTOMATED PIPELINE</span>
+              <span className="text-[#ff6b35] text-sm font-medium tracking-wide">HUMAN EXPERIENCE + AI DOUBLE-CHECK</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              From Claim to <span style={{ color: '#00c8b1' }}>Payment</span>
+              From Clinical Note to <span style={{ color: '#00c8b1' }}>Verified Payment</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Our AI-powered workflow eliminates manual steps, reduces errors, and accelerates your revenue cycle from days to hours.
+              Experienced AAPC-certified specialists read your documentation first, and our AI verification layer double-checks every code and modifier before submission.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Flow steps — horizontal on desktop, vertical on mobile */}
-        <div className="flex flex-col md:flex-row items-stretch justify-center gap-0">
+        {/* Flow steps — responsive flex/grid without horizontal overflow at 1180px */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row items-stretch justify-center gap-4 lg:gap-0 w-full">
           {steps.map((step, i) => (
-            <div key={step.label} className="flex flex-col md:flex-row items-center">
-              <ScrollReveal delay={i * 200} direction="up" distance={30}>
-                <div className="relative group">
+            <div key={step.label} className="flex flex-col lg:flex-row items-center lg:flex-1 min-w-0">
+              <ScrollReveal delay={i * 150} direction="up" distance={25} className="w-full">
+                <div className="relative group w-full h-full">
                   {/* Card */}
                   <div
                     className={`
-                      relative w-[220px] p-6 rounded-xl border text-center
+                      relative w-full p-5 rounded-xl border text-center h-full
                       transition-all duration-500
                       ${step.highlight
                         ? 'bg-[#00c8b1]/10 border-[#00c8b1]/40 shadow-lg shadow-[#00c8b1]/10'
@@ -162,7 +161,7 @@ export default function AIProcessFlow() {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-500 text-xs leading-relaxed">
+                    <p className="text-gray-400 text-xs leading-relaxed">
                       {step.description}
                     </p>
 
@@ -190,17 +189,17 @@ export default function AIProcessFlow() {
         </div>
 
         {/* Bottom stats */}
-        <ScrollReveal delay={400} direction="up" distance={20}>
+        <ScrollReveal delay={350} direction="up" distance={20}>
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
             {[
-              { value: '3x', label: 'Faster Processing' },
-              { value: '40%', label: 'Fewer Denials' },
-              { value: '99.2%', label: 'Coding Accuracy' },
-              { value: '24/7', label: 'AI Monitoring' },
+              { value: '24h', label: 'Claim Submission' },
+              { value: '98%', label: 'Clean Claim Target' },
+              { value: '2-Step', label: 'Human + AI Verification' },
+              { value: '48h', label: 'Denial Appeal Window' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-2xl md:text-3xl font-bold text-[#00c8b1] mb-1">{stat.value}</div>
-                <div className="text-gray-500 text-xs uppercase tracking-wider">{stat.label}</div>
+                <div className="text-gray-400 text-xs uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>

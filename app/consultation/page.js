@@ -81,7 +81,7 @@ const Consultation = () => {
 
 
     return (
-        <main className="bg-primary text-white px-4 py-10 flex flex-col items-center justify-center min-h-screen w-screen max-w-full">
+        <main className="bg-primary text-white px-4 py-10 flex flex-col items-center justify-center min-h-screen w-full max-w-full overflow-x-hidden">
             <div className="max-w-6xl w-full mx-auto">
                 <h1 className="text-3xl md:text-4xl font-bold text-center my-8 lg:my-12">
                     Medical Billing Miami Beach
@@ -109,11 +109,11 @@ const Consultation = () => {
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
                                 <p className="text-xl font-extrabold text-[#00A8E8]">98%</p>
-                                <p className="text-[11px] text-slate-300">Clean Claim Rate</p>
+                                <p className="text-[11px] text-slate-300">Clean Claim Target</p>
                             </div>
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
-                                <p className="text-xl font-extrabold text-emerald-400">+30%</p>
-                                <p className="text-[11px] text-slate-300">Revenue Recovery</p>
+                                <p className="text-xl font-extrabold text-emerald-400">15–30%</p>
+                                <p className="text-[11px] text-slate-300">Est. Revenue Lift</p>
                             </div>
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
                                 <p className="text-xl font-extrabold text-[#00A8E8]">48h</p>
@@ -147,10 +147,16 @@ const Consultation = () => {
                                 {formErrors?.practiceName && <p className="text-rose-400 text-xs mt-1">{formErrors.practiceName}</p>}
                             </div>
                             <div className="md:col-span-2">
-                                <label htmlFor="message" className="block mb-1.5 text-sm font-semibold text-slate-200">Phone Number / Billing Goals (Optional)</label>
-                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="3" placeholder="Share your phone number, current EHR, or biggest billing challenge..." className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
+                                <label htmlFor="message" className="block mb-1.5 text-sm font-semibold text-slate-200">Phone Number / General Billing Goals (Optional)</label>
+                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="3" aria-describedby="consultation-phi-warning" placeholder="Share your phone number, current EHR, or general billing goals..." className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
+                                <p id="consultation-phi-warning" className="mt-2 text-xs text-amber-200 bg-amber-500/10 border border-amber-400/30 rounded-lg px-3 py-2 leading-relaxed">
+                                    <strong>Important Privacy Notice:</strong> Do not include patient names, dates of birth, medical records, insurance IDs, or other sensitive information in this form. Review our{' '}
+                                    <Link href="/privacy-policy" className="text-[#00A8E8] underline font-semibold hover:text-white">
+                                        Privacy Policy
+                                    </Link>.
+                                </p>
                             </div>
-                            <div className="md:col-span-2 flex pt-3">
+                            <div className="md:col-span-2 flex pt-2">
                                 <button type="submit" className={`w-full py-3.5 px-6 rounded-xl font-bold text-base shadow-lg transition duration-300 ${submitting ? 'bg-gray-500 opacity-45 cursor-wait' : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 shadow-blue-600/25 cursor-pointer'}`}>
                                     {
                                         submitting

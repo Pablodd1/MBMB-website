@@ -68,6 +68,11 @@ export default function MiamiMedicaidBilling() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="lg:grid lg:grid-cols-3 lg:gap-12">
             <article className="lg:col-span-2">
+              <div className="mb-8 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+                <span><strong>Author:</strong> MBMB Editorial &amp; Compliance Review Team</span>
+                <span><strong>Reviewed:</strong> October 15, 2026</span>
+                <span><strong>Primary References:</strong> Florida AHCA (SMMC / Region 11) · CMS Medicaid Guidelines</span>
+              </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 Miami-Dade County has one of the <strong>largest Medicaid enrollments in Florida</strong>, making Medicaid billing a critical revenue stream for many practices—but also one of the most complex. Florida Medicaid has unique requirements, frequent regulatory changes, and some of the strictest documentation demands in the country.
               </p>
@@ -101,7 +106,7 @@ export default function MiamiMedicaidBilling() {
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
                   <h3 className="font-bold text-gray-900 mb-2 text-lg">Claim Timely Filing</h3>
-                  <p className="text-gray-700">Florida Medicaid claims must be submitted within 12 months of the date of service. For managed care claims, timely filing limits are often shorter (90-180 days).Denied claims resubmission windows are even shorter—typically 30-60 days.</p>
+                  <p className="text-gray-700">Florida Medicaid fee-for-service claims generally must be submitted within 12 months of the date of service, while Managed Medical Assistance (MMA) plans enforce contract-specific timely filing limits (often 90–180 days). Denied claim reconsideration and appeal windows are typically 30–60 days depending on the MCO.</p>
                 </div>
               </div>
 
@@ -148,23 +153,23 @@ export default function MiamiMedicaidBilling() {
             {/* Sidebar */}
             <aside className="lg:col-span-1">
               <div className="bg-gray-50 rounded-2xl p-6 mb-6">
-                <h3 className="font-bold text-gray-900 mb-4">Florida Medicaid Stats</h3>
+                <h3 className="font-bold text-gray-900 mb-4">Florida Medicaid Context</h3>
                 <ul className="space-y-3 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
                     <span className="text-pink2 font-bold">•</span>
-                    <span>Miami-Dade has 400K+ Medicaid recipients</span>
+                    <span>Miami-Dade (AHCA Region 11) has one of Florida&apos;s largest Medicaid populations</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-pink2 font-bold">•</span>
-                    <span>6 MCOs operate in Miami-Dade County</span>
+                    <span>Multiple AHCA-contracted SMMC / MMA plans serve Miami-Dade enrollees</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-pink2 font-bold">•</span>
-                    <span>Typical Medicaid denial rate: 15-25%</span>
+                    <span>Common denial triggers: eligibility shifts &amp; missing prior auths</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-pink2 font-bold">•</span>
-                    <span>60-120 day credentialing timeline</span>
+                    <span>Typical 60–120 day payer credentialing review window</span>
                   </li>
                 </ul>
               </div>

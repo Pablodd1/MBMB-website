@@ -75,8 +75,8 @@ const benefits = [
     icon: '/svg/realtime.svg'
   },
   {
-    title: 'Compliance Guaranteed',
-    description: 'Stay compliant with ever-changing healthcare regulations, payer requirements, and HIPAA.',
+    title: 'HIPAA-Aligned Workflows',
+    description: 'Stay aligned with healthcare billing regulations, payer requirements, and HIPAA privacy standards with signed BAAs.',
     icon: '/svg/compliance.svg'
   },
   {
@@ -292,7 +292,7 @@ export default function RevenueCycleManagementPage() {
                 Why Choose <span className="text-pink2">MBMB</span> for RCM?
               </h2>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                Since 2015, Medical Billing Miami Beach has been the trusted RCM partner for healthcare providers across South Florida. Our team combines deep industry expertise with proven processes to deliver measurable results.
+                Backed by 15+ years of combined team and U.S. certified fulfillment partner experience, Medical Billing Miami Beach is the accountable RCM partner for healthcare providers across South Florida. Our specialists read every chart and pair human coding review with AI pre-submission verification.
               </p>
               
               <div className="space-y-6">
@@ -301,8 +301,8 @@ export default function RevenueCycleManagementPage() {
                     <span className="text-2xl">✓</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">AAPC-Certified Specialists</h4>
-                    <p className="text-gray-400 text-sm">Our coders and billers hold active AAPC certifications</p>
+                    <h4 className="font-semibold text-lg mb-1">AAPC-Certified Specialists + AI Double-Check</h4>
+                    <p className="text-gray-400 text-sm">Experienced coders review documentation first, followed by AI claim scrubbing</p>
                   </div>
                 </div>
                 
@@ -311,8 +311,8 @@ export default function RevenueCycleManagementPage() {
                     <span className="text-2xl">✓</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">No Upfront Costs</h4>
-                    <p className="text-gray-400 text-sm">We work on contingency - you only pay when we collect</p>
+                    <h4 className="font-semibold text-lg mb-1">No Upfront Setup Costs ($0)</h4>
+                    <p className="text-gray-400 text-sm">Performance-based percentage of net collections — you pay as we collect</p>
                   </div>
                 </div>
                 
@@ -322,7 +322,7 @@ export default function RevenueCycleManagementPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg mb-1">Transparent Reporting</h4>
-                    <p className="text-gray-400 text-sm">Real-time dashboards and regular performance reviews</p>
+                    <p className="text-gray-400 text-sm">Monthly collection, denial root-cause, and aging A/R performance reviews</p>
                   </div>
                 </div>
               </div>
@@ -330,24 +330,27 @@ export default function RevenueCycleManagementPage() {
             
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
               <h3 className="text-2xl font-bold mb-6 text-center">Ready to Optimize Your Revenue?</h3>
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Clean Claim Rate</span>
-                  <span className="text-green-400 font-semibold">95%+</span>
+                  <span className="text-gray-300">Clean Claim Rate Target</span>
+                  <span className="text-green-400 font-semibold">95%–98%</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Revenue Increase</span>
-                  <span className="text-white font-semibold">15-30%</span>
+                  <span className="text-gray-300">Estimated Revenue Lift</span>
+                  <span className="text-white font-semibold">15–30% (Illustrative)</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Pricing</span>
-                  <span className="text-white font-semibold">4-8% of Collections</span>
+                  <span className="text-gray-300">Performance Pricing</span>
+                  <span className="text-white font-semibold">5.6%–10% of Collections</span>
                 </div>
                 <div className="flex justify-between items-center py-3">
                   <span className="text-gray-300">Initial Consultation</span>
                   <span className="text-green-400 font-semibold">FREE</span>
                 </div>
               </div>
+              <p className="text-xs text-gray-400 mb-6 leading-relaxed">
+                Pricing depends on agreed services, claim volume, and complexity ($0 setup fee for standard EHR onboarding). Request a written proposal detailing fees and included services.
+              </p>
               <Button href="/consultation" text="Get Free Revenue Analysis" colors="w-full bg-pink2 text-white hover:bg-pink2/80 py-4" />
             </div>
           </div>

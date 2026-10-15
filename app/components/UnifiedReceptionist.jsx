@@ -6,14 +6,14 @@ const QUICK_PROMPTS = {
   en: [
     { label: '💰 Pricing Tiers (5.6%–10%)', text: 'What are your medical billing pricing tiers and rates?' },
     { label: '🤖 Human + AI Double-Check', text: 'How do your human coders and AI work together to prevent claim denials?' },
-    { label: '🎯 Free 48h Billing Audit', text: 'How does the Free 48-Hour Billing Audit work?' },
-    { label: '📋 Credentialing & CAQH', text: 'How long does insurance credentialing and CAQH enrollment take?' }
+    { label: '⚖️ For Attorneys & Law Firms', text: 'How does your medical billing organization and reconciliation support for attorneys work?' },
+    { label: '🎯 Free 48h Billing Audit', text: 'How does the Free 48-Hour Billing Audit work?' }
   ],
   es: [
     { label: '💰 Tarifas (5.6%–10%)', text: '¿Cuáles son sus tarifas y precios de facturación médica?' },
     { label: '🤖 Experiencia + Doble Check IA', text: '¿Cómo combinan especialistas humanos con Inteligencia Artificial?' },
-    { label: '🎯 Auditoría Gratis 48h', text: '¿Cómo funciona la auditoría gratuita en 48 horas?' },
-    { label: '📋 Credencialización', text: '¿Cuánto toma la credencialización médica con seguros?' }
+    { label: '⚖️ Para Abogados y Bufetes', text: '¿Cómo funciona el soporte administrativo de organización de facturas médicas para abogados?' },
+    { label: '🎯 Auditoría Gratis 48h', text: '¿Cómo funciona la auditoría gratuita en 48 horas?' }
   ],
   ht: [
     { label: '💰 Pri nou yo (5.6%–10%)', text: 'Ki pri sèvis faktirasyon medikal nou yo?' },
@@ -31,7 +31,7 @@ export default function UnifiedReceptionist() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi Doctor! 👋 I'm Jass, your MBMB Receptionist. We combine experienced AAPC coders who read every chart with AI that double-checks every claim (98% clean claim rate, rates from 5.6%). How can I help your practice today?"
+      content: "Hi! 👋 I'm Jass, your MBMB Receptionist. We combine experienced AAPC coders who read every chart with AI pre-submission verification (5.6%–10% collection tiers), and we also offer administrative medical bill organization for law firms (/for-attorneys). How can I help you today?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -44,12 +44,39 @@ export default function UnifiedReceptionist() {
   const chatEndRef = useRef(null);
   const recognitionRef = useRef(null);
   const currentAudioRef = useRef(null);
+  const triggerBtnRef = useRef(null);
+  const chatInputRef = useRef(null);
+  const closeBtnRef = useRef(null);
 
   const officeNumber = '+1-786-643-2099';
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Focus management and Escape key handling for non-modal chat panel
+  useEffect(() => {
+    if (!isOpen) return;
+    const focusTimer = setTimeout(() => {
+      if (activeMode === 'chat' && chatInputRef.current) {
+        chatInputRef.current.focus();
+      } else if (closeBtnRef.current) {
+        closeBtnRef.current.focus();
+      }
+    }, 60);
+
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        setTimeout(() => triggerBtnRef.current?.focus(), 40);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      clearTimeout(focusTimer);
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [isOpen, activeMode]);
 
   // Speech recognition
   useEffect(() => {
@@ -271,9 +298,11 @@ export default function UnifiedReceptionist() {
         )}
 
         <button
+          ref={triggerBtnRef}
           onClick={toggleWidget}
           className="bg-gradient-to-r from-[#0066CC] via-[#0088DD] to-[#00A8E8] text-white pl-3.5 pr-5 py-3 rounded-full shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-400/50 border border-white/20 transition-all duration-300 hover:scale-105 flex items-center gap-3 cursor-pointer"
           aria-label="Open Jass MBMB Receptionist"
+          aria-expanded={isOpen}
         >
           <div className="relative">
             <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center font-extrabold text-sm border border-white/30">
@@ -296,6 +325,8 @@ export default function UnifiedReceptionist() {
       {/* WIDGET PANEL - LEFT SIDE */}
       {isOpen && (
         <div
+          role="region"
+          aria-label="Jass MBMB Receptionist Chat Panel"
           className="fixed bottom-24 left-5 z-50 w-[395px] max-w-[calc(100vw-32px)] rounded-3xl overflow-hidden shadow-2xl border border-[#00A8E8]/40"
           style={{ background: 'linear-gradient(145deg, #0a1628 0%, #0f1f38 55%, #0a1628 100%)' }}
         >
@@ -321,7 +352,11 @@ export default function UnifiedReceptionist() {
                 </div>
               </div>
               <button
-                onClick={toggleWidget}
+                ref={closeBtnRef}
+                onClick={() => {
+                  toggleWidget();
+                  setTimeout(() => triggerBtnRef.current?.focus(), 40);
+                }}
                 className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Close chat"
               >
@@ -434,6 +469,7 @@ export default function UnifiedReceptionist() {
                   onClick={toggleVoice}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                   title={isSpeaking ? 'Mute Jass voice' : 'Enable Jass voice'}
+                  aria-label={isSpeaking ? 'Mute Jass voice' : 'Enable Jass voice'}
                 >
                   {isSpeaking ? (
                     <svg className="w-4 h-4 text-[#00A8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -450,7 +486,12 @@ export default function UnifiedReceptionist() {
               {/* Input */}
               <div className="p-3 border-t border-cyan-500/20 bg-slate-950/90">
                 <div className="flex gap-2">
+                  <label htmlFor="jass-chat-input" className="sr-only">
+                    Ask Jass a question about MBMB services
+                  </label>
                   <input
+                    id="jass-chat-input"
+                    ref={chatInputRef}
                     className="flex-1 bg-white text-slate-900 border border-slate-300 text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/30 placeholder:text-slate-400 font-medium transition-all"
                     placeholder={isListening ? "Listening... speak now" : "Ask Jass anything or tap mic..."}
                     value={input}
@@ -459,6 +500,7 @@ export default function UnifiedReceptionist() {
                   />
                   <button
                     onClick={toggleListening}
+                    aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
                     className={`px-3 py-2.5 rounded-xl transition-all cursor-pointer ${
                       isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700'
                     }`}
@@ -473,6 +515,7 @@ export default function UnifiedReceptionist() {
                   <button
                     onClick={() => sendMessage()}
                     disabled={loading || !input.trim()}
+                    aria-label="Send chat message"
                     className="bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white px-4 py-2.5 rounded-xl font-bold hover:opacity-95 transition-all disabled:opacity-40 cursor-pointer"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -480,6 +523,9 @@ export default function UnifiedReceptionist() {
                     </svg>
                   </button>
                 </div>
+                <p className="text-[10px] text-slate-400 mt-1.5 text-center">
+                  General business inquiries only — do not enter patient names, DOBs, or PHI.
+                </p>
               </div>
             </>
           )}

@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     question: "Should I outsource my medical billing or keep it in-house?",
-    answer: "This depends on your practice size, budget, and tolerance for administrative burden. In-house billing gives you direct control but requires hiring certified billers, ongoing training, software investments, and management time. Outsourcing to a medical billing service in Miami typically costs 5-8% of collections but eliminates staffing headaches, reduces denials, and often increases revenue through better coding and follow-up. For most practices under $2M in annual billing, outsourcing is more cost-effective."
+    answer: "This depends on your practice size, budget, and tolerance for administrative burden. In-house billing gives you direct control but requires hiring certified billers, ongoing training, software investments, and management time. Outsourcing to a medical billing service in Miami typically costs 5.6%–10% of collections depending on volume and scope, while reducing staffing overhead, cutting denials, and improving coding and follow-up. For most practices under $2M in annual billing, outsourcing is more cost-effective."
   },
   {
     question: "What credentials should I look for in a medical billing service?",
@@ -173,12 +173,17 @@ export default function MedicalBilling101() {
       </nav>
 
       {/* Main Content */}
-      <main id="content" className="bg-white">
+      <main id="content" className="bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="lg:grid lg:grid-cols-3 lg:gap-12">
             
             {/* Article Content */}
             <article className="lg:col-span-2">
+              <div className="mb-8 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+                <span><strong>Author:</strong> MBMB Editorial &amp; Compliance Review Team</span>
+                <span><strong>Reviewed:</strong> October 15, 2026</span>
+                <span><strong>Primary References:</strong> CMS Medicare Claims Processing Manual · Florida AHCA</span>
+              </div>
               
               {/* What is Medical Billing */}
               <section className="mb-12">
@@ -240,7 +245,7 @@ export default function MedicalBilling101() {
                 
                 <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">1. Complex Florida Medicaid Requirements</h3>
                 <p className="text-gray-700 mb-4">
-                  Florida's Medicaid program has some of the strictest documentation requirements in the country. Miami-Dade County in particular has high Medicaid enrollment, which means many primary care physicians and specialists serve a significant Medicaid population. The administrative burden of Florida Medicaid billing—including prior authorization requirements, the Kathleen Jennings waiver, and constantly changing coverage rules—consumes enormous staff time.
+                  Florida's Medicaid program has strict documentation and prior authorization requirements. Miami-Dade County (AHCA Region 11) has significant Medicaid enrollment, which means many primary care physicians and specialists serve a large Medicaid population. Navigating Statewide Medicaid Managed Care (SMMC) plan rules, prior authorizations, and timely filing windows consumes substantial staff time.
                 </p>
 
                 <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">2. High Volume of International Patients</h3>
@@ -484,7 +489,7 @@ export default function MedicalBilling101() {
                       <span className="text-pink2 mr-3 text-xl font-bold">06</span>
                       <div>
                         <strong className="block mb-1">What is your fee structure?</strong>
-                        <span className="text-gray-300 text-sm">Most medical billing services charge 5-8% of collections. Be wary of flat fees that don't align incentives, or percentage rates that seem too low to provide adequate service.</span>
+                        <span className="text-gray-300 text-sm">At MBMB, performance-based pricing ranges from 5.6% to 10% of collections depending on monthly volume, specialty complexity, and agreed scope ($0 setup fee). Always request a written proposal detailing included services.</span>
                       </div>
                     </div>
                   </div>
@@ -515,7 +520,7 @@ export default function MedicalBilling101() {
               </section>
 
               {/* FAQ Section */}
-              <section className="mb-12" id="faq">
+              <section className="mb-12 scroll-mt-24" id="faq">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Frequently Asked Questions
                 </h2>
@@ -542,7 +547,7 @@ export default function MedicalBilling101() {
 
             {/* Sidebar */}
             <aside className="mt-12 lg:mt-0">
-              <div className="sticky top-8 space-y-8">
+              <div className="sticky top-24 space-y-8">
                 
                 {/* CTA Card */}
                 <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 text-white">
@@ -569,39 +574,39 @@ export default function MedicalBilling101() {
                   <h3 className="font-bold text-gray-900 mb-4">Our Services</h3>
                   <ul className="space-y-3">
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/for-providers" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
-                        Medical Billing
+                        Medical Billing for Providers
                       </Link>
                     </li>
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/services/medical-coding" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
-                        Medical Coding
+                        Medical Coding (ICD-10 &amp; CPT)
                       </Link>
                     </li>
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/services/credentialing" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
-                        Provider Credentialing
+                        Provider Credentialing (CAQH)
                       </Link>
                     </li>
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/services/revenue-cycle-management" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
                         Revenue Cycle Management
                       </Link>
                     </li>
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/blog/denial-management-guide" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
-                        Denial Management
+                        Denial Management Guide
                       </Link>
                     </li>
                     <li>
-                      <Link href="/consultation" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
+                      <Link href="/for-attorneys" className="flex items-center text-gray-700 hover:text-pink2 transition-colors">
                         <span className="w-2 h-2 bg-pink2 rounded-full mr-3"></span>
-                        Insurance Verification
+                        Billing Support for Attorneys
                       </Link>
                     </li>
                   </ul>

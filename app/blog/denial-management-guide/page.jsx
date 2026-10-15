@@ -68,8 +68,13 @@ export default function DenialManagementGuide() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="lg:grid lg:grid-cols-3 lg:gap-12">
             <article className="lg:col-span-2">
+              <div className="mb-8 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+                <span><strong>Author:</strong> MBMB Editorial &amp; Compliance Review Team</span>
+                <span><strong>Reviewed:</strong> October 15, 2026</span>
+                <span><strong>Primary References:</strong> CMS Claims Processing Manual · HFMA &amp; AAPC Coding Standards</span>
+              </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Did you know that <strong>65% of denied claims are never resubmitted</strong>? For a typical Miami medical practice, this represents hundreds of thousands of dollars in lost revenue every year. The good news: most denials are preventable, and even denied claims can often be successfully appealed with the right process.
+                Industry benchmarks indicate that a high share of denied claims are never reworked or appealed without a structured denial workflow. For a busy Miami medical practice, unaddressed denials represent significant preventable revenue leakage. The good news: most denials are preventable with pre-submission review, and denied claims can often be resolved with timely root-cause follow-up.
               </p>
 
               <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-10">The 5 Most Common Denial Types in Miami</h2>

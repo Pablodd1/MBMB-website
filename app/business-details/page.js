@@ -80,7 +80,7 @@ const Consultation = () => {
 
 
     return (
-        <main className="bg-primary text-white px-4 py-8 flex flex-col items-center justify-center min-h-screen w-screen max-w-full ">
+        <main className="bg-primary text-white px-4 py-8 flex flex-col items-center justify-center min-h-screen w-full max-w-full overflow-x-hidden">
 
             <Link href='/' className="md:absolute top-5 left-5" >
                 <Image
@@ -88,11 +88,11 @@ const Consultation = () => {
                     src={'/mbmb-white.png'}
                     width={250}
                     height={180}
-                    alt="Medical Billing Miami Beach | Company | Medical Reveneu Management | Healthcare Coding"
+                    alt="Medical Billing Miami Beach | Company | Medical Revenue Management | Healthcare Coding"
                 />
             </Link>
             <h1 className=" text-4xl font-semibold text-center my-14 lg:my-20">Medical Billing Miami Beach</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl w-full">
                 <div>
                     <Image
                         src="/raster/join-medical-billing-coding-miami-beach-today.webp"
@@ -122,6 +122,9 @@ const Consultation = () => {
                         <div className="md:col-span-2">
                             <label htmlFor="message" className="block mb-1">Message (optional)</label>
                             <textarea id="message" name="message" value={query.message} onChange={handleChange} rows="4" placeholder="Message" className="bg-white text-slate-900 placeholder:text-slate-400 w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                            <p className="mt-2 text-xs text-amber-200 bg-amber-500/10 border border-amber-400/30 rounded-lg px-3 py-2">
+                                Do not include patient names, dates of birth, medical records, insurance IDs, or other sensitive information in this form. See our <Link href="/privacy-policy" className="underline text-[#00A8E8]">Privacy Policy</Link>.
+                            </p>
                         </div>
                         <div className="md:col-span-2 flex py-6">
                             <button type="submit" className="w-full max-w-sm mx-auto bg-blue-500 text-white py-2.5 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>

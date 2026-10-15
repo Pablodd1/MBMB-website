@@ -185,16 +185,28 @@ export default function PrivacyPolicy() {
           </div>
         </section>
 
-        {/* Data Sharing */}
+        {/* Data Sharing & AI / Analytics Safeguards */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Information Sharing</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Information Sharing, AI Tools &amp; Analytics Safeguards</h2>
           <p className="text-gray-700 mb-4">We do NOT sell, trade, or share your personal information with third parties except:</p>
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
             <li>With your explicit consent</li>
             <li>To comply with legal obligations</li>
-            <li>With trusted service providers who sign BAAs (Business Associate Agreements)</li>
+            <li>With trusted U.S. fulfillment partners and service providers under signed confidentiality and Business Associate Agreements (BAAs) where applicable</li>
             <li>To protect our rights or safety</li>
           </ul>
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 space-y-3 text-sm text-slate-800">
+            <h3 className="font-bold text-base text-slate-900">AI Receptionist, Website Forms &amp; Advertising Pixel Policy</h3>
+            <p>
+              <strong>1. Public Website Forms &amp; Chat Assistant:</strong> Our public consultation, contact, attorney pilot inquiry forms, and the Jass website receptionist are designed strictly for general, non-sensitive business inquiries. Visitors must not enter patient names, dates of birth, medical record numbers, insurance IDs, or protected health information (PHI) into public website forms or chat boxes.
+            </p>
+            <p>
+              <strong>2. Analytics &amp; Advertising Pixels:</strong> Website analytics (such as Google Analytics 4 / Tag Manager) and marketing pixels (such as Meta Pixel, when enabled) collect aggregate pageview and high-level navigation events only. Our analytics configuration explicitly excludes form field contents, free-text message bodies, and sensitive URL query parameters.
+            </p>
+            <p>
+              <strong>3. Client Billing &amp; Legal Document Handling:</strong> When a medical practice or law firm engages MBMB, any billing ledgers, EOBs/ERAs, or patient-related records are exchanged exclusively through agreed, access-controlled channels governed by written confidentiality and HIPAA Business Associate Agreements (BAAs) where required. Public consumer AI endpoints are never used to train on client records.
+            </p>
+          </div>
         </section>
 
         {/* Your Rights */}

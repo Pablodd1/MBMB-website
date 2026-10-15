@@ -335,20 +335,23 @@ export default function CredentialingPage() {
             
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
               <h3 className="text-2xl font-bold mb-6 text-center">Ready to Get Credentialed?</h3>
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Process Time</span>
-                  <span className="text-white font-semibold">60-120 Days</span>
+                  <span className="text-gray-300">Typical Payer Review Window</span>
+                  <span className="text-white font-semibold">60–120 Days</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
                   <span className="text-gray-300">Network Applications</span>
-                  <span className="text-white font-semibold">Unlimited</span>
+                  <span className="text-white font-semibold">Scoped per Agreement</span>
                 </div>
                 <div className="flex justify-between items-center py-3">
                   <span className="text-gray-300">Initial Consultation</span>
                   <span className="text-green-400 font-semibold">FREE</span>
                 </div>
               </div>
+              <p className="text-xs text-gray-400 mb-6 leading-relaxed">
+                We coordinate enrollment applications and follow-up for the payers included in your agreement. Payer review times vary; approval and network participation are not guaranteed.
+              </p>
               <Button href="/consultation" text="Start Credentialing Today" colors="w-full bg-pink2 text-white hover:bg-pink2/80 py-4" />
             </div>
           </div>
