@@ -5,15 +5,15 @@ import Link from 'next/link';
 const QUICK_PROMPTS = {
   en: [
     { label: '💰 Pricing Tiers (5.6%–10%)', text: 'What are your medical billing pricing tiers and rates?' },
+    { label: '🤖 Human + AI Double-Check', text: 'How do your human coders and AI work together to prevent claim denials?' },
     { label: '🎯 Free 48h Billing Audit', text: 'How does the Free 48-Hour Billing Audit work?' },
-    { label: '📋 Credentialing & CAQH', text: 'How long does insurance credentialing and CAQH enrollment take?' },
-    { label: '🩺 Specialties & EHRs', text: 'Which medical specialties and EHR systems do you work with?' }
+    { label: '📋 Credentialing & CAQH', text: 'How long does insurance credentialing and CAQH enrollment take?' }
   ],
   es: [
     { label: '💰 Tarifas (5.6%–10%)', text: '¿Cuáles son sus tarifas y precios de facturación médica?' },
+    { label: '🤖 Experiencia + Doble Check IA', text: '¿Cómo combinan especialistas humanos con Inteligencia Artificial?' },
     { label: '🎯 Auditoría Gratis 48h', text: '¿Cómo funciona la auditoría gratuita en 48 horas?' },
-    { label: '📋 Credencialización', text: '¿Cuánto toma la credencialización médica con seguros?' },
-    { label: '📞 Hablar con Jasmel', text: 'Quiero hablar por teléfono con su equipo' }
+    { label: '📋 Credencialización', text: '¿Cuánto toma la credencialización médica con seguros?' }
   ],
   ht: [
     { label: '💰 Pri nou yo (5.6%–10%)', text: 'Ki pri sèvis faktirasyon medikal nou yo?' },
@@ -31,7 +31,7 @@ export default function UnifiedReceptionist() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi Doctor! 👋 I'm Jass, your MBMB Receptionist. Ask me about our 5.6%–10% performance rates, free 48-hour billing audit, or tap below to call us directly at (786) 643-2099!"
+      content: "Hi Doctor! 👋 I'm Jass, your MBMB Receptionist. We combine experienced AAPC coders who read every chart with AI that double-checks every claim (98% clean claim rate, rates from 5.6%). How can I help your practice today?"
     }
   ]);
   const [input, setInput] = useState('');
