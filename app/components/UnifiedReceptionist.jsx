@@ -343,17 +343,16 @@ export default function UnifiedReceptionist() {
               >
                 💬 Chat Now
               </button>
-              <a
-                href={`tel:${officeNumber.replace(/-/g, '')}`}
+              <button
                 onClick={() => setActiveMode('call')}
-                className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center ${
+                className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
                   activeMode === 'call'
                     ? 'bg-emerald-500 text-slate-950 shadow-md'
                     : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30'
                 }`}
               >
-                📞 Call Jass
-              </a>
+                🎙️ Voice / Call
+              </button>
               <Link
                 href="/consultation"
                 onClick={() => setIsOpen(false)}
@@ -485,32 +484,54 @@ export default function UnifiedReceptionist() {
             </>
           )}
 
-          {/* Call Mode */}
+          {/* Call Mode: Live AI Voice Receptionist OR Direct Phone Call */}
           {activeMode === 'call' && (
-            <div className="p-6 text-center flex flex-col items-center justify-center" style={{ height: '350px' }}>
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto mb-3 animate-pulse">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+            <div className="p-5 text-center flex flex-col items-center justify-between" style={{ height: '355px' }}>
+              {/* Live Voice Assistant Card */}
+              <div className="w-full bg-slate-900/90 border border-[#00A8E8]/40 rounded-2xl p-4 shadow-inner">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
+                    {isListening ? 'Listening to You Now...' : loading ? 'Jass is Thinking...' : 'Live AI Voice Call with Jass'}
+                  </span>
+                </div>
+                <p className="text-slate-200 text-xs leading-relaxed mb-3 line-clamp-3">
+                  {messages[messages.length - 1]?.content}
+                </p>
+                <button
+                  onClick={toggleListening}
+                  className={`w-full py-3 px-4 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg ${
+                    isListening
+                      ? 'bg-red-500 text-white animate-pulse shadow-red-500/30'
+                      : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 shadow-cyan-500/25'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
+                  </svg>
+                  {isListening ? 'Tap to Finish Speaking' : '🎙️ Tap & Speak to Jass Live'}
+                </button>
               </div>
-              <h3 className="text-white font-bold text-lg mb-1">Speak With Jasmel &amp; Our Team</h3>
-              <p className="text-slate-300 text-xs max-w-xs mb-5">
-                Get immediate answers on your practice&apos;s billing, denied claims, or credentialing in Miami &amp; across Florida.
-              </p>
-              <a
-                href={`tel:${officeNumber.replace(/-/g, '')}`}
-                className="w-full max-w-xs bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 px-6 py-3.5 rounded-xl font-extrabold text-base shadow-lg shadow-emerald-500/25 hover:scale-105 transition-all"
-              >
-                📞 Call (786) 643-2099
-              </a>
-              <Link
-                href="/consultation"
-                onClick={() => setIsOpen(false)}
-                className="mt-3 text-xs font-semibold text-[#00A8E8] hover:underline"
-              >
-                Or schedule your Free 48-Hour Billing Audit online →
-              </Link>
-              <p className="text-slate-400 text-[11px] mt-4">Mon–Fri: 9:00 AM – 6:00 PM EST · Direct Line</p>
+
+              {/* Divider */}
+              <div className="flex items-center w-full gap-3 my-1">
+                <div className="flex-1 h-px bg-slate-800"></div>
+                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Or Call Our Miami Office</span>
+                <div className="flex-1 h-px bg-slate-800"></div>
+              </div>
+
+              {/* Direct Office Phone Call */}
+              <div className="w-full">
+                <a
+                  href={`tel:${officeNumber.replace(/-/g, '')}`}
+                  className="w-full block bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 px-5 py-3 rounded-xl font-extrabold text-sm shadow-lg shadow-emerald-500/25 hover:scale-[1.02] transition-all"
+                >
+                  📞 Call Office Directly: (786) 643-2099
+                </a>
+                <p className="text-slate-400 text-[11px] mt-1.5">Speak directly with Jasmel · Mon–Fri 9AM–6PM EST</p>
+              </div>
             </div>
           )}
         </div>
