@@ -432,7 +432,7 @@ export default function Home() {
                   Explore Attorney Pilot Workflow →
                 </Link>
                 <Link
-                  href="/for-attorneys#pilot-intake-form"
+                  href="/for-attorneys#pilot-form"
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white font-semibold text-sm px-5 py-3.5 rounded-xl transition"
                 >
                   Request Sample Deliverable
