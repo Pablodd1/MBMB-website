@@ -705,61 +705,61 @@ export default function Home() {
           <div className="text-center mb-12">
             <ScrollReveal direction="up" distance={20}>
               <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-3">
-                Florida Billing Guides
+                Florida Billing &amp; Legal Support Guides
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing Insights</h2>
-              <p className="text-slate-400">Expert compliance updates and revenue cycle strategies for Miami healthcare practices</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">Medical Billing &amp; Chronology Insights</h2>
+              <p className="text-slate-400">Expert compliance updates, AI + Human coding workflows, and medical bill reconciliation guides</p>
             </ScrollReveal>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <ScrollReveal delay={0} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101 Guide for Miami Doctors" fill className="object-cover" />
+                  <Image src="/raster/medical-coding-cpt-hcpcs.webp" alt="Medical Bill Review, Chronologies and EOB Reconciliation for Legal Teams" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Practice Guide · April 2026</p>
-                    <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
-                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">The complete guide to medical billing, clean claims, and outsourcing for Miami doctors.</p>
+                    <p className="text-pink text-xs font-semibold mb-2">For Attorneys &amp; Paralegals · Oct 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Medical Bill Review, Chronologies &amp; EOB Reconciliation for Legal Teams</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">How legal teams organize fragmented CMS-1500/UB-04 bills, reconcile EOB adjustments, and flag duplicate CPT charges.</p>
                   </div>
-                  <Button href="/blog/medical-billing-101" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
+                  <Button href="/blog/medical-billing-chronology-reconciliation-for-attorneys" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={150} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif" alt="Denial Management Guide for Florida Practices" fill className="object-cover" />
+                  <Image src="/raster/medical-coding-modifiers.webp" alt="Human AAPC Coders + AI Pre-Submission Double-Check" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Denial Prevention · April 2026</p>
-                    <h3 className="font-bold text-lg mb-2">Denial Management: A Complete Guide for Miami Practices</h3>
-                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">Every denied claim is lost revenue unless you have a 48-hour system to fight back.</p>
+                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Human + AI Workflow · Oct 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Human AAPC Coders + AI Double-Check: Preventing Claim Denials</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">How our two-layer verification catches NCCI bundling conflicts and missing modifiers before claims leave your EHR.</p>
                   </div>
-                  <Button href="/blog/denial-management-guide" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
+                  <Button href="/blog/ai-double-check-medical-coding-clean-claims" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={300} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/medical-coding-icd.webp" alt="Florida Medicaid Billing for Miami Healthcare Providers" fill className="object-cover" />
+                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101 Guide for Miami Doctors" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Florida Medicaid · April 2026</p>
-                    <h3 className="font-bold text-lg mb-2">Florida Medicaid Billing for Miami Providers</h3>
-                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">Navigate Florida AHCA Medicaid billing complexities and MMA plans with confidence.</p>
+                    <p className="text-[#00A8E8] text-xs font-semibold mb-2">Practice Guide · Oct 2026</p>
+                    <h3 className="font-bold text-lg mb-2">Medical Billing 101: Everything Miami Doctors Need to Know</h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">The complete guide to medical billing, clean claims, and 5.6%–10% collection pricing for Miami doctors.</p>
                   </div>
-                  <Button href="/blog/miami-medicaid-billing" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
+                  <Button href="/blog/medical-billing-101" text="Read Guide" colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-sm px-4 py-2" />
                 </div>
               </div>
             </ScrollReveal>
           </div>
           <div className="text-center mt-10">
-            <Button href="/blog" text="View All 4 Florida Billing Guides" colors="bg-white text-slate-900 hover:bg-[#00A8E8] hover:text-white font-bold px-6 py-3" />
+            <Button href="/blog" text="View All 7 Florida Billing & Legal Guides" colors="bg-white text-slate-900 hover:bg-[#00A8E8] hover:text-white font-bold px-6 py-3" />
           </div>
         </div>
       </section>

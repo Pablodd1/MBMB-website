@@ -28,8 +28,8 @@ export default function RotatingLogo3D({ size = 180, className = '' }) {
 
       if (container) {
         container.style.transform = `
-          rotateY(${targetX * 25}deg) 
-          rotateX(${-targetY * 25}deg)
+          rotateY(${targetX * 18}deg) 
+          rotateX(${-targetY * 18}deg)
         `;
       }
 
@@ -51,120 +51,29 @@ export default function RotatingLogo3D({ size = 180, className = '' }) {
       style={{
         perspective: '1000px',
         width: size,
-        height: size,
+        height: size * 0.78,
       }}
     >
       <div
         ref={containerRef}
-        className="w-full h-full relative"
+        className="w-full h-full relative flex items-center justify-center"
         style={{
           transformStyle: 'preserve-3d',
           transition: 'transform 0.1s ease-out',
           willChange: 'transform',
         }}
       >
-        {/* Main Logo Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl overflow-hidden"
+        {/* Clean Transparent 3D Logo — No Box Background */}
+        <Image
+          src="/mbmb-white.png"
+          alt="Medical Billing Miami Beach (MBMB) Logo"
+          width={Math.round(size * 0.95)}
+          height={Math.round(size * 0.7)}
+          className="object-contain select-none pointer-events-none"
           style={{
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            boxShadow: '0 0 40px rgba(255, 192, 203, 0.2), inset 0 0 40px rgba(255, 192, 203, 0.1)',
+            filter: 'drop-shadow(0 8px 24px rgba(0, 168, 232, 0.35))',
           }}
-        >
-          <Image
-            src="/mbmb-white.png"
-            alt="MBMB Logo"
-            width={size * 0.75}
-            height={size * 0.55}
-            className="object-contain"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(255, 192, 203, 0.5))',
-            }}
-          />
-        </div>
-
-        {/* Right Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl"
-          style={{
-            transform: 'rotateY(90deg) translateZ(' + size / 2 + 'px)',
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(to right, rgba(236, 72, 153, 0.3), rgba(236, 72, 153, 0.1))',
-            border: '1px solid rgba(236, 72, 153, 0.3)',
-            width: size / 8,
-            left: '50%',
-            marginLeft: -size / 16,
-          }}
-        />
-
-        {/* Left Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl"
-          style={{
-            transform: 'rotateY(-90deg) translateZ(' + size / 2 + 'px)',
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(to left, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1))',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            width: size / 8,
-            left: '50%',
-            marginLeft: -size / 16,
-          }}
-        />
-
-        {/* Top Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl"
-          style={{
-            transform: 'rotateX(90deg) translateZ(' + size / 2 + 'px)',
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(to top, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            height: size / 8,
-            top: '50%',
-            marginTop: -size / 16,
-          }}
-        />
-
-        {/* Bottom Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl"
-          style={{
-            transform: 'rotateX(-90deg) translateZ(' + size / 2 + 'px)',
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            height: size / 8,
-            top: '50%',
-            marginTop: -size / 16,
-          }}
-        />
-
-        {/* Back Face */}
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl"
-          style={{
-            transform: 'rotateY(180deg) translateZ(' + size / 16 + 'px)',
-            backfaceVisibility: 'hidden',
-            background: 'linear-gradient(135deg, rgba(0,0,0,0.8), rgba(30,30,30,0.9))',
-            border: '1px solid rgba(255,255,255,0.1)',
-          }}
-        >
-          <div className="text-center">
-            <p className="text-white text-xs font-bold tracking-widest">MBMB</p>
-            <p className="text-pink-400 text-[8px] tracking-wider mt-0.5">MIAMI BEACH</p>
-          </div>
-        </div>
-
-        {/* Glow effect behind */}
-        <div
-          className="absolute inset-0 rounded-2xl pointer-events-none"
-          style={{
-            transform: 'translateZ(-20px)',
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)',
-            filter: 'blur(20px)',
-          }}
+          priority
         />
       </div>
     </div>
