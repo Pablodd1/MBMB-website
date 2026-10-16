@@ -1,4 +1,3 @@
-import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,20 +18,6 @@ const social = [
     label: "MBMB on Instagram"
   }
 ];
-
-const montserrat = Montserrat({
-  weight: ['600', '700', '800', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-montserrat',
-});
-
-const openSans = Open_Sans({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-open-sans',
-});
 
 export const metadata = {
   metadataBase: new URL('https://medicalbillingmb.com'),
@@ -213,8 +198,16 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
-      <body className={`${openSans.className} antialiased text-slate-900 bg-white overflow-x-hidden`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased text-slate-900 bg-white overflow-x-hidden">
         {/* Global Structured Data JSON-LD */}
         <script
           type="application/ld+json"
