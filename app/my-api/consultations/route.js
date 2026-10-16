@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "jasmelacosta@gmail.com";
+import {
+  sendBrevoTransactional,
+  syncBrevoContact,
+  buildProspectConfirmationEmail,
+  getAdminRecipients,
+} from "@UTILS/email";
 
 export async function POST(req) {
   try {
@@ -23,50 +26,61 @@ export async function POST(req) {
       ? "New Attorney Billing-Support Pilot Inquiry - MBMB"
       : "New Provider Consultation / Audit Submission - MBMB";
 
-    const html = `
-      <h2>${heading}</h2>
-      <p><strong>Name:</strong> ${query.fullName}</p>
-      <p><strong>Email:</strong> ${query.email}</p>
-      <p><strong>${isAttorneyPilot ? "Law Firm" : "Practice Name"}:</strong> ${orgName}</p>
-      ${query.phone ? `<p><strong>Phone:</strong> ${query.phone}</p>` : ""}
-      ${query.serviceInterest ? `<p><strong>Service Interest:</strong> ${query.serviceInterest}</p>` : ""}
-      <p><strong>Details / Message:</strong> ${query.message || "(None)"}</p>
-      <hr>
-      <p><em>Submitted at: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} EST/EDT</em></p>
+    const adminHtml = `
+      <div style="font-family:Arial,sans-serif;max-width:600px;padding:24px;border:1px solid #e2e8f0;border-radius:12px;">
+        <h2 style="color:#0a1628;margin-top:0;">${heading}</h2>
+        <p><strong>Name:</strong> ${query.fullName}</p>
+        <p><strong>Email:</strong> <a href="mailto:${query.email}">${query.email}</a></p>
+        <p><strong>${isAttorneyPilot ? "Law Firm" : "Practice Name"}:</strong> ${orgName}</p>
+        ${query.phone ? `<p><strong>Phone:</strong> <a href="tel:${query.phone}">${query.phone}</a></p>` : ""}
+        ${query.serviceInterest ? `<p><strong>Service Interest:</strong> ${query.serviceInterest}</p>` : ""}
+        <p><strong>Details / Message:</strong></p>
+        <p style="background:#f8fafc;padding:12px;border-radius:8px;">${query.message || "(None)"}</p>
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;" />
+        <p style="font-size:12px;color:#64748b;"><em>Submitted at: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} EST/EDT</em></p>
+      </div>
     `;
-    const subject = isAttorneyPilot
-      ? `MBMB Attorney Pilot Inquiry: ${query.fullName} (${orgName})`
-      : `MBMB Consultation: ${query.fullName} (${orgName})`;
 
-    let emailSent = false;
-    if (BREVO_API_KEY) {
-      try {
-        await fetch("https://api.brevo.com/v3/smtp/email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": BREVO_API_KEY,
-          },
-          body: JSON.stringify({
-            sender: { name: "MBMB Website", email: "Jasmel@medicalbillingmb.com" },
-            to: [{ email: ADMIN_EMAIL }],
-            subject,
-            htmlContent: html,
-            replyTo: { email: query.email, name: query.fullName },
-          }),
-        });
-        emailSent = true;
-      } catch (e) {
-        console.warn("Brevo consultation email failed:", e.message);
-      }
-    } else {
-      console.warn("BREVO_API_KEY not set, consultation email logged");
-    }
+    const adminSubject = isAttorneyPilot
+      ? `⚖️ MBMB Attorney Pilot Inquiry: ${query.fullName} (${orgName})`
+      : `🩺 MBMB Provider Consultation: ${query.fullName} (${orgName})`;
+
+    // 1. Send Admin Alert via Brevo
+    const adminResult = await sendBrevoTransactional({
+      to: getAdminRecipients(),
+      subject: adminSubject,
+      htmlContent: adminHtml,
+      replyTo: { email: query.email, name: query.fullName },
+    });
+
+    // 2. Send Branded Confirmation Email to Prospect via Brevo
+    const confirmation = buildProspectConfirmationEmail({
+      fullName: query.fullName,
+      orgName,
+      inquiryType: isAttorneyPilot ? "attorney-pilot" : "provider-consultation",
+    });
+
+    const prospectResult = await sendBrevoTransactional({
+      to: [{ email: query.email, name: query.fullName }],
+      subject: confirmation.subject,
+      htmlContent: confirmation.htmlContent,
+      replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel — MBMB" },
+    });
+
+    // 3. Upsert Contact into Brevo CRM
+    await syncBrevoContact({
+      email: query.email,
+      fullName: query.fullName,
+      organization: orgName,
+      phone: query.phone || "",
+      inquiryType: isAttorneyPilot ? "Attorney Pilot" : "Provider Consultation",
+    });
 
     return NextResponse.json(
       {
         message: "Success",
-        emailSent,
+        emailSent: adminResult.sent,
+        confirmationSent: prospectResult.sent,
       },
       { status: 200 }
     );

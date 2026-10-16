@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "jasmelacosta@gmail.com";
+import {
+  sendBrevoTransactional,
+  syncBrevoContact,
+  buildProspectConfirmationEmail,
+  getAdminRecipients,
+} from "@UTILS/email";
 
 export async function POST(req) {
   try {
@@ -17,48 +20,59 @@ export async function POST(req) {
       );
     }
 
-    const html = `
-      <h2>New Contact Form Submission - MBMB Website</h2>
-      <p><strong>Name:</strong> ${query.fullName}</p>
-      <p><strong>Email:</strong> ${query.email}</p>
-      <p><strong>Practice / Organization Name:</strong> ${query.practiceName || query.firmName || "N/A"}</p>
-      ${query.phone ? `<p><strong>Phone:</strong> ${query.phone}</p>` : ""}
-      <p><strong>Message:</strong></p>
-      <p>${query.message || "(No additional message provided)"}</p>
-      <hr>
-      <p><em>Submitted at: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} EST/EDT</em></p>
-    `;
-    const subject = `MBMB Contact: ${query.fullName} (${query.practiceName || query.firmName || "Inquiry"})`;
+    const orgName = query.practiceName || query.firmName || "";
 
-    let emailSent = false;
-    if (BREVO_API_KEY) {
-      try {
-        await fetch("https://api.brevo.com/v3/smtp/email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": BREVO_API_KEY,
-          },
-          body: JSON.stringify({
-            sender: { name: "MBMB Website", email: "Jasmel@medicalbillingmb.com" },
-            to: [{ email: ADMIN_EMAIL }],
-            subject,
-            htmlContent: html,
-            replyTo: { email: query.email, name: query.fullName },
-          }),
-        });
-        emailSent = true;
-      } catch (e) {
-        console.warn("Brevo contact email failed:", e.message);
-      }
-    } else {
-      console.warn("BREVO_API_KEY not set, contact email logged");
-    }
+    const adminHtml = `
+      <div style="font-family:Arial,sans-serif;max-width:600px;padding:24px;border:1px solid #e2e8f0;border-radius:12px;">
+        <h2 style="color:#0a1628;margin-top:0;">New Contact Form Submission - MBMB Website</h2>
+        <p><strong>Name:</strong> ${query.fullName}</p>
+        <p><strong>Email:</strong> <a href="mailto:${query.email}">${query.email}</a></p>
+        <p><strong>Practice / Organization Name:</strong> ${orgName || "N/A"}</p>
+        ${query.phone ? `<p><strong>Phone:</strong> <a href="tel:${query.phone}">${query.phone}</a></p>` : ""}
+        <p><strong>Message:</strong></p>
+        <p style="background:#f8fafc;padding:12px;border-radius:8px;">${query.message || "(No additional message provided)"}</p>
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;" />
+        <p style="font-size:12px;color:#64748b;"><em>Submitted at: ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} EST/EDT</em></p>
+      </div>
+    `;
+    const subject = `📩 MBMB Contact: ${query.fullName} (${orgName || "General Inquiry"})`;
+
+    // 1. Send Admin Alert via Brevo
+    const adminResult = await sendBrevoTransactional({
+      to: getAdminRecipients(),
+      subject,
+      htmlContent: adminHtml,
+      replyTo: { email: query.email, name: query.fullName },
+    });
+
+    // 2. Send Branded Confirmation Email to Visitor via Brevo
+    const confirmation = buildProspectConfirmationEmail({
+      fullName: query.fullName,
+      orgName,
+      inquiryType: query.inquiryType || "provider-consultation",
+    });
+
+    const prospectResult = await sendBrevoTransactional({
+      to: [{ email: query.email, name: query.fullName }],
+      subject: confirmation.subject,
+      htmlContent: confirmation.htmlContent,
+      replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel — MBMB" },
+    });
+
+    // 3. Upsert Contact into Brevo CRM
+    await syncBrevoContact({
+      email: query.email,
+      fullName: query.fullName,
+      organization: orgName,
+      phone: query.phone || "",
+      inquiryType: "Contact Form",
+    });
 
     return NextResponse.json(
       {
         message: "Success",
-        emailSent,
+        emailSent: adminResult.sent,
+        confirmationSent: prospectResult.sent,
       },
       { status: 200 }
     );
