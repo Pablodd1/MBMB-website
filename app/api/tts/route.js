@@ -24,11 +24,44 @@ export async function POST(request) {
     }
 
     const cleanInput = text.substring(0, 4000);
+    const XAI_API_KEY = process.env.XAI_API_KEY || process.env.GROK_API_KEY;
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
     const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
     const GOOGLE_TTS_API_KEY = process.env.GOOGLE_TTS_API_KEY;
 
-    // 1. Primary: OpenAI Latest Human Voice TTS (`gpt-4o-mini-tts` with `coral`/`nova` + receptionist voice instructions -> `tts-1`)
+    // 1. Primary (Option B): xAI Grok Voice 3.0 Standalone TTS (`grok-voice-3.0`, voice `ara` — $15/1M chars, ~90ms TTFA)
+    if (XAI_API_KEY) {
+      try {
+        const grokVoice = process.env.GROK_VOICE || 'ara';
+        const grokRes = await fetch('https://api.x.ai/v1/audio/speech', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${XAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'grok-voice-3.0',
+            voice: grokVoice,
+            input: cleanInput,
+            response_format: 'mp3'
+          })
+        });
+
+        if (grokRes.ok) {
+          const arrayBuffer = await grokRes.arrayBuffer();
+          const audioContent = Buffer.from(arrayBuffer).toString('base64');
+          return NextResponse.json({
+            audioContent,
+            format: 'MP3',
+            provider: `grok-voice-3.0-${grokVoice}`
+          });
+        }
+      } catch (e) {
+        console.warn('Grok Voice 3.0 TTS fallback triggered:', e.message);
+      }
+    }
+
+    // 2. Secondary: OpenAI Latest Human Voice TTS (`gpt-4o-mini-tts` with `coral`/`nova` + receptionist voice instructions -> `tts-1`)
     if (OPENAI_API_KEY) {
       const openAiTtsAttempts = [
         {

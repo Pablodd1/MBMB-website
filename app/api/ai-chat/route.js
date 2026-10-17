@@ -144,12 +144,113 @@ export async function POST(request) {
     const systemPrompt = SYSTEM_PROMPTS[language] || SYSTEM_PROMPTS.en;
     const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content || '';
 
+    const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+    const XAI_API_KEY = process.env.XAI_API_KEY || process.env.GROK_API_KEY;
+    const KIMI_API_KEY = process.env.KIMI_API_KEY || process.env.MOONSHOT_API_KEY;
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
     const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 
-    // 1. Primary: OpenAI (Oct 2026 Latest Models: gpt-5.4-mini -> gpt-5-mini -> gpt-4.1-mini -> gpt-4o-mini)
+    // 1. Primary (Option B): DeepSeek V3.2 Fast ($0.14/1M tokens)
+    if (DEEPSEEK_API_KEY) {
+      try {
+        const dsRes = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'deepseek-chat',
+            messages: [{ role: 'system', content: systemPrompt }, ...messages],
+            max_tokens: 400,
+            temperature: 0.45
+          })
+        });
+        if (dsRes.ok) {
+          const data = await dsRes.json();
+          const text = (data?.choices?.[0]?.message?.content || '')
+            .replace(/<think>[\s\S]*?<\/think>/gi, '')
+            .trim();
+          if (text) return NextResponse.json({ text, provider: 'deepseek-chat' });
+        }
+      } catch (e) {
+        console.warn('DeepSeek fallback triggered:', e.message);
+      }
+    }
+
+    // 2. Secondary (Option B): xAI Grok Fast Brain
+    if (XAI_API_KEY) {
+      const grokModels = [process.env.GROK_MODEL, 'grok-3-mini-fast', 'grok-3-mini', 'grok-3-fast'].filter(Boolean);
+      for (const grokModel of grokModels) {
+        try {
+          const grokRes = await fetch('https://api.x.ai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${XAI_API_KEY}`
+            },
+            body: JSON.stringify({
+              model: grokModel,
+              messages: [{ role: 'system', content: systemPrompt }, ...messages],
+              max_tokens: 400,
+              temperature: 0.45
+            })
+          });
+          if (grokRes.ok) {
+            const data = await grokRes.json();
+            const text = (data?.choices?.[0]?.message?.content || '')
+              .replace(/<think>[\s\S]*?<\/think>/gi, '')
+              .trim();
+            if (text) return NextResponse.json({ text, provider: grokModel });
+          }
+        } catch (e) {
+          console.warn(`Grok (${grokModel}) fallback triggered:`, e.message);
+        }
+      }
+    }
+
+    // 3. Kimi (Moonshot Global api.moonshot.ai — kimi-k2.6 / kimi-k3 non-thinking fast mode)
+    if (KIMI_API_KEY) {
+      const kimiEndpoints = [
+        'https://api.moonshot.ai/v1/chat/completions',
+        'https://api.moonshot.cn/v1/chat/completions'
+      ];
+      for (const endpoint of kimiEndpoints) {
+        for (const kimiModel of ['kimi-k2.6', 'kimi-k3']) {
+          try {
+            const kimiRes = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${KIMI_API_KEY}`
+              },
+              body: JSON.stringify({
+                model: kimiModel,
+                messages: [{ role: 'system', content: systemPrompt }, ...messages],
+                thinking: { type: 'disabled' },
+                temperature: 0.6,
+                max_tokens: 400
+              })
+            });
+            if (kimiRes.ok) {
+              const data = await kimiRes.json();
+              const text = (data?.choices?.[0]?.message?.content || '')
+                .replace(/<think>[\s\S]*?<\/think>/gi, '')
+                .trim();
+              if (text) return NextResponse.json({ text, provider: kimiModel });
+            } else if (kimiRes.status === 401) {
+              break; // Try next regional endpoint
+            }
+          } catch (e) {
+            console.warn(`Kimi (${kimiModel}) fallback triggered:`, e.message);
+          }
+        }
+      }
+    }
+
+    // 4. Failover: OpenAI (Oct 2026 Latest Models: gpt-5.4-mini -> gpt-5-mini -> gpt-4.1-mini -> gpt-4o-mini)
     if (OPENAI_API_KEY) {
       const openAiModels = [
         process.env.OPENAI_MODEL,
