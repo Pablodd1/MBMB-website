@@ -29,21 +29,20 @@ export async function POST(request) {
     const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
     const GOOGLE_TTS_API_KEY = process.env.GOOGLE_TTS_API_KEY;
 
-    // 1. Primary (Option B): xAI Grok Voice 3.0 Standalone TTS (`grok-voice-3.0`, voice `ara` — $15/1M chars, ~90ms TTFA)
+    // 1. Primary (Option B): xAI Grok Voice 3.0 Standalone TTS (`https://api.x.ai/v1/tts`, voice_id `ara` — $15/1M chars, ~90ms TTFA)
     if (XAI_API_KEY) {
       try {
         const grokVoice = process.env.GROK_VOICE || 'ara';
-        const grokRes = await fetch('https://api.x.ai/v1/audio/speech', {
+        const grokRes = await fetch('https://api.x.ai/v1/tts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${XAI_API_KEY}`
           },
           body: JSON.stringify({
-            model: 'grok-voice-3.0',
-            voice: grokVoice,
-            input: cleanInput,
-            response_format: 'mp3'
+            text: cleanInput,
+            voice_id: grokVoice,
+            language: language || 'auto'
           })
         });
 
@@ -55,6 +54,8 @@ export async function POST(request) {
             format: 'MP3',
             provider: `grok-voice-3.0-${grokVoice}`
           });
+        } else {
+          console.warn('Grok TTS HTTP status:', grokRes.status, (await grokRes.text()).slice(0, 160));
         }
       } catch (e) {
         console.warn('Grok Voice 3.0 TTS fallback triggered:', e.message);
