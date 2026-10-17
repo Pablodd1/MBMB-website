@@ -10,9 +10,9 @@ const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
 const BREVO_CONTACTS_URL = "https://api.brevo.com/v3/contacts";
 
 function getAdminRecipients() {
-  const primary = process.env.ADMIN_EMAIL || "Jasmel@medicalbillingmb.com";
+  const primary = process.env.ADMIN_EMAIL || "jasmel@medicalbillingmb.com";
   const backup = "jasmelacosta@gmail.com";
-  const emails = Array.from(new Set([primary, "Jasmel@medicalbillingmb.com", backup]));
+  const emails = Array.from(new Set([primary, "jasmel@medicalbillingmb.com", backup]));
   return emails.map((email) => ({ email }));
 }
 
@@ -21,8 +21,8 @@ export async function sendBrevoTransactional({
   subject,
   htmlContent,
   replyTo,
-  senderName = "Medical Billing Miami Beach (MBMB)",
-  senderEmail = process.env.BREVO_SENDER_EMAIL || "Jasmel@medicalbillingmb.com",
+  senderName = "Jasmel — Medical Billing Miami Beach",
+  senderEmail = process.env.BREVO_SENDER_EMAIL || "jasmel@medicalbillingmb.com",
 }) {
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
   if (!BREVO_API_KEY) {
