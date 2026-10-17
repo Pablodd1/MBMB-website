@@ -4,24 +4,24 @@ import Link from 'next/link';
 
 const QUICK_PROMPTS = {
   en: [
-    { label: '💰 Pricing Tiers (5.6%–10%)', text: 'What are your medical billing pricing tiers and rates?' },
-    { label: '🤖 Human + AI Double-Check', text: 'How do your human coders and AI work together to prevent claim denials?' },
-    { label: '⚖️ For Attorneys & Law Firms', text: 'How does your medical billing organization and reconciliation support for attorneys work?' },
-    { label: '🎯 Free 48h Billing Audit', text: 'How does the Free 48-Hour Billing Audit work?' }
+    { label: '💰 Pricing Tiers (5.6%–10%)', text: 'What are your medical billing pricing tiers and what is included?' },
+    { label: '🤖 Human + AI Double-Check', text: 'How do your AAPC human coders and AI work together to prevent claim denials?' },
+    { label: '⚖️ Forensic Billing for Attorneys', text: 'How does your medical billing chronology and EOB reconciliation support for attorneys work?' },
+    { label: '🏥 Credentialing & EHRs', text: 'Which Florida insurance payers do you credential with, and which EHR systems do you support?' }
   ],
   es: [
-    { label: '💰 Tarifas (5.6%–10%)', text: '¿Cuáles son sus tarifas y precios de facturación médica?' },
-    { label: '🤖 Experiencia + Doble Check IA', text: '¿Cómo combinan especialistas humanos con Inteligencia Artificial?' },
-    { label: '⚖️ Para Abogados y Bufetes', text: '¿Cómo funciona el soporte administrativo de organización de facturas médicas para abogados?' },
-    { label: '🎯 Auditoría Gratis 48h', text: '¿Cómo funciona la auditoría gratuita en 48 horas?' }
+    { label: '💰 Tarifas (5.6%–10%)', text: '¿Cuáles son sus tarifas de facturación médica y qué incluyen?' },
+    { label: '🤖 Experiencia + Doble Check IA', text: '¿Cómo combinan codificadores humanos AAPC con Inteligencia Artificial?' },
+    { label: '⚖️ Para Abogados y Bufetes', text: '¿Cómo funciona la organización y conciliación de facturas médicas para abogados?' },
+    { label: '🏥 Credencialización y EHR', text: '¿Con qué aseguradoras de Florida trabajan y qué sistemas EHR soportan?' }
   ],
   ht: [
     { label: '💰 Pri nou yo (5.6%–10%)', text: 'Ki pri sèvis faktirasyon medikal nou yo?' },
-    { label: '🎯 Odit Gratis 48h', text: 'Kijan odit gratis la fonksyone?' }
+    { label: '🏥 Kredansyalizasyon & AI', text: 'Kijan espesyalis AAPC nou yo ak AI travay ansanm?' }
   ],
   ru: [
-    { label: '💰 Тарифы (5.6%–10%)', text: 'Какие у вас тарифы на медицинский биллинг?' },
-    { label: '🎯 Бесплатный аудит 48ч', text: 'Как заказать бесплатный аудит биллинга?' }
+    { label: '💰 Тарифы (5.6%–10%)', text: 'Какие у вас тарифы на медицинский биллинг и что входит?' },
+    { label: '🏥 Аккредитация и EHR', text: 'С какими страховыми и системами EHR вы работаете?' }
   ]
 };
 
@@ -30,17 +30,17 @@ export default function UnifiedReceptionist() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! 👋 I'm Jass, your MBMB AI Receptionist. We combine experienced AAPC coders who read every chart with AI pre-submission verification (5.6%–10% collection tiers), and we also offer administrative medical bill organization for law firms (/for-attorneys). How can I help you today?"
+      content: "Hi! 👋 I'm Jass, your MBMB AI Front Desk Receptionist. I can answer all your questions right here—whether about our 5.6%–10% billing tiers, our AAPC human coders + AI double-check workflow, Florida credentialing, EHR compatibility, or our medical billing chronology & reconciliation service for attorneys. What can I help you with today?"
     }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  // Voice output is ON automatically in 'call' (Voice AI) mode, and optional in 'chat' (Text Chat) mode
+  // Voice output is ON automatically in 'call' (Web Voice Call) mode, and optional in 'chat' (Text Chat) mode
   const [voiceEnabledInChat, setVoiceEnabledInChat] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [language, setLanguage] = useState('en'); // en, es, ru, ht
-  const [activeMode, setActiveMode] = useState('chat'); // 'chat' (Text Chat priority) or 'call' (Voice AI Representative)
+  const [activeMode, setActiveMode] = useState('chat'); // 'chat' (Text Chat) or 'call' (Web Voice Call with Jass)
 
   const chatEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -53,8 +53,6 @@ export default function UnifiedReceptionist() {
   const triggerBtnRef = useRef(null);
   const chatInputRef = useRef(null);
   const closeBtnRef = useRef(null);
-
-  const officeNumber = '+1-786-643-2099';
 
   useEffect(() => {
     activeModeRef.current = activeMode;
@@ -164,7 +162,7 @@ export default function UnifiedReceptionist() {
     const cleanText = text
       .replace(/\*\*\*/g, '')
       .replace(/\*/g, '')
-      .replace(/[•🎯💰📋🩺📞👋✅🤖⚖️🎙️💬]/g, '')
+      .replace(/[•🎯💰📋🩺📞👋✅🤖⚖️🎙️💬🏥]/g, '')
       .trim();
     if (!cleanText) return;
 
@@ -179,7 +177,6 @@ export default function UnifiedReceptionist() {
         signal: controller.signal
       });
 
-      // If another speech request started or audio was stopped while fetching, discard this response
       if (reqId !== ttsRequestIdRef.current) return;
 
       if (!res.ok) {
@@ -245,7 +242,7 @@ export default function UnifiedReceptionist() {
         body: JSON.stringify({ messages: next, language: languageRef.current })
       });
       const data = await res.json();
-      let botResponse = data?.text || 'I would love to help! Please call Jasmel directly at (786) 643-2099 for immediate assistance.';
+      let botResponse = data?.text || "I'm here to help! Ask me about our pricing tiers, AAPC coding + AI double-check, credentialing, or attorney billing chronologies.";
       botResponse = botResponse.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
       const botMsg = { role: 'assistant', content: botResponse };
       setMessages(prev => [...prev, botMsg]);
@@ -255,7 +252,7 @@ export default function UnifiedReceptionist() {
         ...prev,
         {
           role: 'assistant',
-          content: "Hi! Please call Jasmel & our Miami Beach billing team directly at (786) 643-2099 or claim your Free 48-Hour Billing Audit at /consultation!"
+          content: "I'm right here! Please ask your question again, or let me know if you'd like me to connect you with our staff or book an appointment."
         }
       ]);
     } finally {
@@ -300,12 +297,12 @@ export default function UnifiedReceptionist() {
     stopAllAudio();
     setActiveMode(newMode);
     if (newMode === 'call') {
-      // Speak a single concise greeting when entering Voice AI Representative mode
+      // Speak a single concise greeting when entering Web Voice Call mode
       const greetings = {
-        en: "Hi! I'm Jass, your MBMB voice representative. Tap the microphone button below and ask me anything about our billing rates, coding, or attorney support.",
-        es: "¡Hola! Soy Jass, tu representante de voz de MBMB. Toca el micrófono abajo y pregúntame sobre nuestras tarifas, codificación o soporte para abogados.",
-        ht: "Bonjou! Mwen se Jass, reprezantan vwa MBMB ou. Peze mikwofòn nan pou poze kesyon ou.",
-        ru: "Здравствуйте! Я Джасс, голосовой представитель MBMB. Нажмите на микрофон ниже и задайте любой вопрос."
+        en: "Hi! I'm Jass, your MBMB front desk voice receptionist. Tap the microphone below and ask me any question about our medical billing, coding, credentialing, or attorney support.",
+        es: "¡Hola! Soy Jass, tu recepcionista de voz de MBMB. Toca el micrófono abajo y hazme cualquier pregunta sobre facturación médica, codificación, credencialización o soporte para abogados.",
+        ht: "Bonjou! Mwen se Jass, resepsyonis vwa MBMB ou. Peze mikwofòn nan pou poze nenpòt kesyon ou genyen.",
+        ru: "Здравствуйте! Я Джасс, голосовой администратор MBMB. Нажмите на микрофон ниже и задайте любой вопрос."
       };
       speakText(greetings[language] || greetings.en, true);
     }
@@ -353,13 +350,13 @@ export default function UnifiedReceptionist() {
 
   return (
     <>
-      {/* SINGLE UNIFIED FLOATING BUTTON (BOTTOM-LEFT) — NO DUPLICATE STACKED TEASER */}
+      {/* SINGLE UNIFIED FLOATING FRONT-DESK BUTTON (BOTTOM-LEFT) */}
       <div className="fixed bottom-5 left-5 z-50">
         <button
           ref={triggerBtnRef}
           onClick={toggleWidget}
           className="bg-gradient-to-r from-[#0066CC] via-[#0088DD] to-[#00A8E8] text-white pl-3.5 pr-5 py-3 rounded-full shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-400/50 border border-white/20 transition-all duration-300 hover:scale-105 flex items-center gap-3 cursor-pointer"
-          aria-label={isOpen ? 'Close Jass AI Representative' : 'Open Jass AI Representative (Text Chat or Voice AI)'}
+          aria-label={isOpen ? 'Close Jass AI Front Desk' : 'Open Jass AI Front Desk (Text Chat or Web Voice Call)'}
           aria-expanded={isOpen}
         >
           <div className="relative">
@@ -372,19 +369,19 @@ export default function UnifiedReceptionist() {
             <div className="flex items-center gap-1.5">
               <span className="text-sm font-extrabold tracking-tight leading-none">Ask Jass</span>
               <span className="text-[10px] bg-emerald-400/20 text-emerald-200 border border-emerald-300/30 px-1.5 py-0.5 rounded-full font-semibold">
-                LIVE
+                AI FRONT DESK
               </span>
             </div>
-            <span className="text-[11px] text-cyan-100 block mt-0.5">Text Chat · Voice AI Representative</span>
+            <span className="text-[11px] text-cyan-100 block mt-0.5">Text Chat · Live Web Voice Call</span>
           </div>
         </button>
       </div>
 
-      {/* UNIFIED WIDGET PANEL - LEFT SIDE */}
+      {/* UNIFIED FRONT-DESK PANEL - LEFT SIDE */}
       {isOpen && (
         <div
           role="region"
-          aria-label="Jass MBMB AI Representative Panel"
+          aria-label="Jass MBMB AI Front Desk Panel"
           className="fixed bottom-24 left-5 z-50 w-[395px] max-w-[calc(100vw-32px)] rounded-3xl overflow-hidden shadow-2xl border border-[#00A8E8]/40"
           style={{ background: 'linear-gradient(145deg, #0a1628 0%, #0f1f38 55%, #0a1628 100%)' }}
         >
@@ -402,11 +399,11 @@ export default function UnifiedReceptionist() {
                   <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 animate-pulse"></span>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-sm leading-tight">Jass — MBMB AI Representative</h3>
+                  <h3 className="text-white font-bold text-sm leading-tight">Jass — AI Front Desk</h3>
                   <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="text-emerald-400 text-xs font-semibold">● Online Now</span>
+                    <span className="text-emerald-400 text-xs font-semibold">● Online 24/7</span>
                     <span className="text-slate-400 text-[11px]">
-                      · {activeMode === 'chat' ? 'Text Chat Mode' : 'Live Voice AI Mode'}
+                      · {activeMode === 'chat' ? 'Text Chat Representative' : 'Live Web Voice Representative'}
                     </span>
                   </div>
                 </div>
@@ -426,45 +423,35 @@ export default function UnifiedReceptionist() {
               </button>
             </div>
 
-            {/* Priority Mode Switcher: 1. Text Chat | 2. Voice AI Representative | 3. Free Audit */}
-            <div className="grid grid-cols-3 gap-2 mt-3.5">
+            {/* 2 Primary Modes: Text Chat vs Live Web Voice Call */}
+            <div className="grid grid-cols-2 gap-2 mt-3.5">
               <button
                 onClick={() => switchMode('chat')}
-                className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   activeMode === 'chat'
                     ? 'bg-[#00A8E8] text-slate-950 shadow-md shadow-cyan-500/20'
                     : 'bg-slate-800/70 text-slate-300 hover:text-white'
                 }`}
               >
-                💬 Text Chat
+                💬 Text Chat with Jass
               </button>
               <button
                 onClick={() => switchMode('call')}
-                className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
                   activeMode === 'call'
                     ? 'bg-emerald-500 text-slate-950 shadow-md'
                     : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30'
                 }`}
               >
-                🎙️ Voice AI
+                🎙️ Voice Call on Website
               </button>
-              <Link
-                href="/consultation"
-                onClick={() => {
-                  stopAllAudio();
-                  setIsOpen(false);
-                }}
-                className="py-2 px-2.5 rounded-xl text-xs font-bold bg-white/10 text-white hover:bg-white/20 transition-all text-center border border-white/15"
-              >
-                🎯 Free Audit
-              </Link>
             </div>
           </div>
 
           {/* MODE 1: TEXT CHAT (Silent by default unless speaker icon toggled) */}
           {activeMode === 'chat' && (
             <>
-              <div className="p-4 overflow-y-auto space-y-3" style={{ height: '270px' }}>
+              <div className="p-4 overflow-y-auto space-y-3" style={{ height: '280px' }}>
                 {messages.map((m, idx) => (
                   <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div
@@ -482,7 +469,7 @@ export default function UnifiedReceptionist() {
                 {/* Interactive Quick-Action Topic Pills */}
                 {!loading && (
                   <div className="pt-1">
-                    <p className="text-[11px] text-slate-400 mb-1.5 font-medium">Tap a question or type below:</p>
+                    <p className="text-[11px] text-slate-400 mb-1.5 font-medium">Ask Jass any question:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {prompts.map((item, i) => (
                         <button
@@ -521,12 +508,12 @@ export default function UnifiedReceptionist() {
                   <button onClick={() => setLanguage('ht')} className={`text-[11px] font-semibold px-2 py-0.5 rounded cursor-pointer ${language === 'ht' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'}`}>HT</button>
                 </div>
 
-                <a
-                  href="tel:+17866432099"
-                  className="text-[11px] font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                <button
+                  onClick={() => sendMessage('I would like to speak with Jasmel or book an appointment.')}
+                  className="text-[11px] font-semibold text-slate-300 hover:text-[#00A8E8] transition-colors cursor-pointer"
                 >
-                  📞 (786) 643-2099
-                </a>
+                  Request Staff / Book
+                </button>
 
                 <button
                   onClick={toggleVoiceInChat}
@@ -562,7 +549,7 @@ export default function UnifiedReceptionist() {
                     id="jass-chat-input"
                     ref={chatInputRef}
                     className="flex-1 bg-white text-slate-900 border border-slate-300 text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/30 placeholder:text-slate-400 font-medium transition-all"
-                    placeholder={isListening ? 'Listening... speak now' : 'Type your question for Jass...'}
+                    placeholder={isListening ? 'Listening... speak now' : 'Type any question for Jass...'}
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={handleKey}
@@ -599,71 +586,79 @@ export default function UnifiedReceptionist() {
             </>
           )}
 
-          {/* MODE 2: VOICE AI REPRESENTATIVE (Single-Voice Guaranteed + Direct Phone Option) */}
+          {/* MODE 2: LIVE WEB VOICE CALL WITH JASS (Right on the Website) */}
           {activeMode === 'call' && (
-            <div className="p-5 text-center flex flex-col items-center justify-between" style={{ height: '355px' }}>
-              <div className="w-full bg-slate-900/90 border border-[#00A8E8]/40 rounded-2xl p-4 shadow-inner">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : isPlayingAudio ? 'bg-[#00A8E8] animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
-                      {isListening
-                        ? 'Listening to You...'
-                        : loading
-                        ? 'Jass is Thinking...'
-                        : isPlayingAudio
-                        ? 'Jass is Speaking...'
-                        : 'Grok Voice 3.0 AI Representative'}
-                    </span>
+            <div className="p-4 flex flex-col justify-between" style={{ height: '360px' }}>
+              <div className="w-full bg-slate-900/90 border border-[#00A8E8]/40 rounded-2xl p-4 shadow-inner flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : isPlayingAudio ? 'bg-[#00A8E8] animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
+                        {isListening
+                          ? 'Listening to You...'
+                          : loading
+                          ? 'Jass is Thinking...'
+                          : isPlayingAudio
+                          ? 'Jass is Speaking...'
+                          : 'Web Voice Call Ready'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      {isPlayingAudio && (
+                        <button
+                          onClick={stopAllAudio}
+                          className="text-[11px] font-bold text-rose-300 hover:text-white bg-rose-500/20 border border-rose-500/40 px-2 py-0.5 rounded-md cursor-pointer"
+                        >
+                          ⏹ Mute
+                        </button>
+                      )}
+                      <div className="flex items-center gap-0.5 bg-slate-800/80 rounded-md p-0.5 border border-slate-700/60">
+                        <button onClick={() => setLanguage('en')} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded cursor-pointer ${language === 'en' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400'}`}>EN</button>
+                        <button onClick={() => setLanguage('es')} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded cursor-pointer ${language === 'es' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400'}`}>ES</button>
+                      </div>
+                    </div>
                   </div>
-                  {isPlayingAudio && (
-                    <button
-                      onClick={stopAllAudio}
-                      className="text-[11px] font-bold text-rose-300 hover:text-white bg-rose-500/20 border border-rose-500/40 px-2 py-0.5 rounded-md cursor-pointer"
-                    >
-                      ⏹ Stop Audio
-                    </button>
-                  )}
+
+                  {/* Live Voice Transcript Box */}
+                  <div className="text-slate-200 text-xs leading-relaxed bg-slate-950/70 p-3 rounded-xl border border-slate-800 max-h-[145px] overflow-y-auto text-left whitespace-pre-line">
+                    {messages[messages.length - 1]?.content}
+                  </div>
                 </div>
 
-                <p className="text-slate-200 text-xs leading-relaxed mb-3 line-clamp-3 text-left bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
-                  {messages[messages.length - 1]?.content}
-                </p>
-
-                <button
-                  onClick={toggleListening}
-                  className={`w-full py-3 px-4 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg ${
-                    isListening
-                      ? 'bg-red-500 text-white animate-pulse shadow-red-500/30'
-                      : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 shadow-cyan-500/25'
-                  }`}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
-                  </svg>
-                  {isListening ? 'Tap When Done Speaking' : '🎙️ Tap & Speak to Jass Live'}
-                </button>
+                {/* Primary Web Voice Call Mic Button */}
+                <div className="mt-3">
+                  <button
+                    onClick={toggleListening}
+                    className={`w-full py-3.5 px-4 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg ${
+                      isListening
+                        ? 'bg-red-500 text-white animate-pulse shadow-red-500/30'
+                        : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 shadow-cyan-500/25'
+                    }`}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
+                    </svg>
+                    {isListening ? 'Tap When Done Speaking' : '🎙️ Tap & Speak to Jass on Website'}
+                  </button>
+                </div>
               </div>
 
-              {/* Divider */}
-              <div className="flex items-center w-full gap-3 my-1">
-                <div className="flex-1 h-px bg-slate-800"></div>
-                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Or Call Our Miami Office</span>
-                <div className="flex-1 h-px bg-slate-800"></div>
-              </div>
-
-              {/* Direct Office Phone Call */}
-              <div className="w-full">
-                <a
-                  href={`tel:${officeNumber.replace(/-/g, '')}`}
-                  onClick={stopAllAudio}
-                  className="w-full block bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 px-5 py-3 rounded-xl font-extrabold text-sm shadow-lg shadow-emerald-500/25 hover:scale-[1.02] transition-all"
+              {/* Optional Discreet Links Only If Visitor Explicitly Wants to Book or Request Staff */}
+              <div className="pt-2.5 flex items-center justify-between text-[11px] text-slate-400 px-1">
+                <span>Jass answers all questions live on this call.</span>
+                <Link
+                  href="/consultation"
+                  onClick={() => {
+                    stopAllAudio();
+                    setIsOpen(false);
+                  }}
+                  className="text-cyan-300 hover:text-white font-semibold underline underline-offset-2"
                 >
-                  📞 Call Office Directly: (786) 643-2099
-                </a>
-                <p className="text-slate-400 text-[11px] mt-1.5">Speak directly with Jasmel · Mon–Fri 9AM–6PM EST</p>
+                  Book Appointment
+                </Link>
               </div>
             </div>
           )}
