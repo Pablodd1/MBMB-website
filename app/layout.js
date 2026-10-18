@@ -217,59 +217,49 @@ export default function RootLayout({ children }) {
         {/* Privacy-Safe Analytics & Meta/Google Scripts (Section 8) */}
         <MarketingAndAnalyticsScripts />
 
-        {/* Sticky Clinical Brand Header (Section 6 Navigation) */}
+        {/* Sticky Clinical Brand Header (Two-Line Layout) */}
         <header
           className="sticky top-0 z-40 bg-[#0a1628]/95 backdrop-blur-md border-b border-white/10 text-white shadow-lg"
           itemScope
           itemType="https://schema.org/WPHeader"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex justify-between items-center py-3">
-            {/* Brand Logo & Title */}
-            <Link href="/" className="flex items-center gap-3 group shrink-0" itemScope itemType="https://schema.org/Organization">
-              <div className="w-10 h-10 border-2 border-r-0 border-[#00A8E8] flex items-center justify-center px-1 transition-transform group-hover:scale-105">
+          {/* LINE 1: MBMB Brand Mark + Single-Row Navigation + Direct Phone */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex justify-between items-center gap-4">
+            {/* Left: MBMB Only */}
+            <Link href="/" className="flex items-center gap-2.5 group shrink-0" itemScope itemType="https://schema.org/Organization">
+              <div className="w-9 h-9 border-2 border-r-0 border-[#00A8E8] flex items-center justify-center px-1 transition-transform group-hover:scale-105">
                 <span className="font-serif font-bold text-white text-xs tracking-tighter leading-none">MB<br/>MB</span>
               </div>
-              <div>
-                <span className="text-white font-bold text-base sm:text-lg tracking-tight block leading-tight" itemProp="name">
-                  Medical Billing Miami Beach
-                </span>
-                <span className="text-[#00A8E8] text-xs font-medium hidden sm:block">
-                  Human Expertise + AI Verification · RCM &amp; Legal Bill Support
-                </span>
-              </div>
+              <span className="text-white font-extrabold text-lg sm:text-xl tracking-wider whitespace-nowrap" itemProp="alternateName">
+                MBMB
+              </span>
             </Link>
 
-            {/* Primary Desktop Navigation (Section 6 Architecture) */}
-            <nav className="hidden xl:flex items-center gap-6 text-sm font-medium text-slate-200" aria-label="Main Navigation">
-              <Link href="/" className="hover:text-[#00A8E8] transition-colors">Home</Link>
-              <Link href="/for-providers" className="hover:text-[#00A8E8] transition-colors">For Providers</Link>
-              <Link href="/for-attorneys" className="hover:text-[#00A8E8] transition-colors text-[#00A8E8] font-semibold">For Attorneys</Link>
-              <Link href="/services" className="hover:text-[#00A8E8] transition-colors">Services</Link>
-              <Link href="/how-we-work" className="hover:text-[#00A8E8] transition-colors">How We Work</Link>
-              <Link href="/about" className="hover:text-[#00A8E8] transition-colors">About</Link>
-              <Link href="/contact" className="hover:text-[#00A8E8] transition-colors">Contact</Link>
+            {/* Center: Primary Desktop Navigation (Never Wraps) */}
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-medium text-slate-200 whitespace-nowrap" aria-label="Main Navigation">
+              <Link href="/" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Home</Link>
+              <Link href="/for-providers" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">For Providers</Link>
+              <Link href="/for-attorneys" className="hover:text-[#00A8E8] transition-colors text-[#00A8E8] font-semibold whitespace-nowrap">For Attorneys</Link>
+              <Link href="/services" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Services</Link>
+              <Link href="/how-we-work" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">How We Work</Link>
+              <Link href="/about" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">About</Link>
+              <Link href="/contact" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Contact</Link>
             </nav>
 
-            {/* Right CTA, Phone & Mobile Menu Toggle */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5" itemScope itemType="https://schema.org/ContactPoint">
+            {/* Right: Direct Phone & Mobile Menu Toggle (Request Consultation moved to Line 2) */}
+            <div className="flex items-center gap-3 shrink-0" itemScope itemType="https://schema.org/ContactPoint">
               <a
                 href="tel:+17866432099"
-                className="text-white hover:text-[#00A8E8] font-bold text-xs sm:text-sm transition hidden md:flex items-center gap-1.5"
+                className="text-white hover:text-[#00A8E8] font-bold text-xs sm:text-sm transition flex items-center gap-1.5 whitespace-nowrap"
                 itemProp="telephone"
                 content="+1-786-643-2099"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span>(786) 643-2099</span>
               </a>
-              <Link
-                href="/consultation"
-                className="bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-lg shadow-md shadow-[#0066CC]/30 transition-all whitespace-nowrap"
-              >
-                Request a Consultation
-              </Link>
 
               {/* Accessible Mobile / Tablet Menu */}
-              <details className="relative xl:hidden">
+              <details className="relative lg:hidden">
                 <summary
                   className="list-none cursor-pointer p-2 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-white"
                   aria-label="Toggle navigation menu"
@@ -297,6 +287,28 @@ export default function RootLayout({ children }) {
                   </div>
                 </nav>
               </details>
+            </div>
+          </div>
+
+          {/* LINE 2: Full Name "Medical Billing Miami Beach" + "Request Consultation" CTA */}
+          <div className="bg-[#060d18]/90 border-t border-white/10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center gap-3">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 min-w-0">
+                <Link href="/" className="text-white font-bold text-sm sm:text-base tracking-tight hover:text-[#00A8E8] transition-colors truncate" itemProp="name">
+                  Medical Billing Miami Beach
+                </Link>
+                <span className="hidden md:inline text-white/25">|</span>
+                <span className="text-[#00A8E8] text-xs font-medium hidden md:inline truncate">
+                  Human Expertise + AI Verification · RCM &amp; Legal Bill Support
+                </span>
+              </div>
+
+              <Link
+                href="/consultation"
+                className="bg-gradient-to-r from-[#0066CC] to-[#00A8E8] hover:opacity-95 text-white font-bold text-xs sm:text-sm px-4 py-1.5 rounded-lg shadow-md shadow-[#0066CC]/30 transition-all whitespace-nowrap shrink-0"
+              >
+                Request Consultation
+              </Link>
             </div>
           </div>
         </header>
