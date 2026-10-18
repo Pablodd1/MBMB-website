@@ -21,21 +21,29 @@ const Contact = () => {
         practiceName: ''
     });
 
+    const fieldLabels = {
+        fullName: 'Full Name',
+        email: 'Business Email',
+        practiceName: 'Practice or Firm Name',
+    };
+
     const handleChange = (e) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const { name, value, placeholder } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
         switch (name) {
             case "email":
-                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: 'Email is required' }));
+                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: 'Business Email is required' }));
                 else if (!emailRegex.test(value)) setFormErrors((x) => ({ ...x, [name]: 'Invalid Email Format' }));
                 else setFormErrors((x) => ({ ...x, [name]: '' }));
                 break;
+            case "message":
+                break;
             default:
-                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: `${placeholder} is Required` }));
+                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: `${fieldLabels[name] || 'This field'} is required` }));
                 else setFormErrors((x) => ({ ...x, [name]: '' }));
                 break;
         }
@@ -56,6 +64,17 @@ const Contact = () => {
             const data = await response.json();
             if (response.ok) {
                 setAlert({ message: '✅ Message sent! We will contact you within 24 hours.', type: 'success' });
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    practiceName: '',
+                    message: ''
+                });
+                setFormErrors({
+                    fullName: '',
+                    email: '',
+                    practiceName: ''
+                });
             } else {
                 setAlert({ message: data.error || 'Something went wrong. Please try again or call (786) 643-2099.', type: 'alert' });
             }
@@ -64,17 +83,6 @@ const Contact = () => {
         }
         finally {
             setSubmitting(false);
-            setFormData({
-                fullName: '',
-                email: '',
-                practiceName: '',
-                message: ''
-            });
-            setFormErrors({
-                fullName: '',
-                email: '',
-                practiceName: ''
-            });
         }
     };
 

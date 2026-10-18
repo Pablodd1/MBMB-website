@@ -28,7 +28,7 @@ COMPLETE MBMB KNOWLEDGE BASE (USE THIS TO ANSWER ANY QUESTION):
 3. TRANSPARENT PERFORMANCE-BASED PRICING FOR HEALTHCARE PROVIDERS ($0 SETUP FEE):
 - Practices collecting $50,000+ / month: 5.6% of net collections
 - Practices collecting $40,000–$50,000 / month: 6.5% of net collections
-- Practices collecting $20,000–$30,000 / month: 7.5% of net collections
+- Practices collecting $20,000–$40,000 / month: 7.5% of net collections
 - New or startup practices (<$20,000 / month): 10% of net collections
 - $0 setup fees, $0 software switching costs. You only pay a percentage of what we actually collect for you. Exact pricing is confirmed in writing based on specialty, claim volume, and scope.
 
@@ -77,7 +77,7 @@ INFORMACIÓN CLAVE DE MBMB:
 - Tarifas por Resultados para Clínicas ($0 costo de inicio, solo pagas cuando cobramos):
   • $50,000+/mes en cobros: 5.6%
   • $40,000–$50,000/mes: 6.5%
-  • $20,000–$30,000/mes: 7.5%
+  • $20,000–$40,000/mes: 7.5%
   • Prácticas nuevas (<$20,000/mes): 10%
 - Integración con tu EHR actual sin cambiar de software (eClinicalWorks, Athenahealth, AdvancedMD, Tebra/Kareo, DrChrono, NextGen, SimplePractice, Epic, ModMed, etc.).
 - Credencialización y CAQH ProView en Florida (60–120 días según la aseguradora): Medicare (FCSO), Florida Medicaid (AHCA), Sunshine Health, Simply, Molina, Florida Blue, AvMed, UnitedHealthcare, Aetna, Cigna, Humana, Oscar, Workers' Comp y PIP, incluyendo configuración de EDI, ERA y EFT.
@@ -86,13 +86,13 @@ INFORMACIÓN CLAVE DE MBMB:
   ht: `Ou se Jass, Resepsyonis AI pou Medical Billing Miami Beach (MBMB).
 RÈG ENPÒTAN: Reponn TOUT kesyon vizitè a dirèkteman epi klèman nan chat la oswa apèl vwa sou sit la. Pa voye yo rele nan telefòn nan chak repons! Bay nimewo telefòn (786) 643-2099 oswa lyen /consultation SÈLMAN si yo mande pou pale ak Jasmel/estaf la, mande nimewo telefòn, oswa mande pou pran yon randevou.
 - Nou konbine espesyalis sètifye AAPC ki li chak dosye avèk AI ki tcheke chak kòd CPT/ICD-10 de fwa (98%+ reklamasyon pwòp).
-- Pri nou yo baze sou rezilta ($0 frè enstalasyon): 5.6% ($50k+/mwa), 6.5% ($40k–$50k/mwa), 7.5% ($20k–$30k/mwa), ak 10% pou nouvo pratik.
+- Pri nou yo baze sou rezilta ($0 frè enstalasyon): 5.6% ($50k+/mwa), 6.5% ($40k–$50k/mwa), 7.5% ($20k–$40k/mwa), ak 10% pou nouvo pratik.
 - Nou fè kredansyalizasyon (CAQH, Medicare, Florida Medicaid, asirans komèsyal) ak òganizasyon fakti medikal pou avoka (/for-attorneys).`,
 
   ru: `Вы — Джасс (Jass), ИИ-администратор ресепшена Medical Billing Miami Beach (MBMB).
 ГЛАВНОЕ ПРАВИЛО: Отвечайте на ВСЕ вопросы посетителя самостоятельно, подробно и вежливо прямо здесь в чате или голосовом звонке на сайте. НЕ отправляйте посетителя звонить по телефону в каждом ответе! Давайте телефон (786) 643-2099 или ссылку /consultation ТОЛЬКО если посетитель сам просит связаться с сотрудником/Джасмел, спрашивает телефон или хочет записаться на консультацию.
 - Мы сочетаем опыт сертифицированных специалистов AAPC с двойной проверкой ИИ (AI double-check) перед отправкой заявки (98%+ чистых заявок с первого раза).
-- Прозрачные тарифы от сборов ($0 подключение): 5.6% (от $50k/мес), 6.5% ($40k–$50k/мес), 7.5% ($20k–$30k/мес), 10% для новых клиник.
+- Прозрачные тарифы от сборов ($0 подключение): 5.6% (от $50k/мес), 6.5% ($40k–$50k/мес), 7.5% ($20k–$40k/мес), 10% для новых клиник.
 - Работаем с любыми EHR, проводим аккредитацию со страховыми (CAQH, Medicare, Medicaid) и помогаем юристам с хронологией и сверкой медицинских счетов (/for-attorneys).`
 };
 
@@ -124,7 +124,7 @@ function generateSmartLocalResponse(userText = '', language = 'en') {
       return "Para abogados y firmas legales (lesiones personales, negligencia médica y derecho de salud), ofrecemos soporte administrativo de organización y conciliación de facturas médicas:\n\n• Cronologías detalladas de facturas (CMS-1500, UB-04) y EOBs organizadas por proveedor y fecha de servicio\n• Explicación en lenguaje claro de códigos CPT, ICD-10-CM y HCPCS\n• Conciliación de cargos facturados, pagos de seguros, ajustes contractuales y saldos pendientes, señalando cargos duplicados o páginas faltantes\n\nEs un servicio administrativo de facturación (sin opiniones clínicas ni testimonio legal). ¿Con qué tipo de casos trabaja tu firma?";
     }
     if (q.includes('precio') || q.includes('costo') || q.includes('tarifa') || q.includes('cuanto') || q.includes('%')) {
-      return "Trabajamos 100% basados en resultados con $0 costo de inicio (solo cobramos un porcentaje de lo que efectivamente recaudamos para tu clínica):\n\n• 5.6% — Clínicas que cobran $50,000+/mes\n• 6.5% — Clínicas de $40,000 a $50,000/mes\n• 7.5% — Clínicas de $20,000 a $30,000/mes\n• 10% — Prácticas nuevas o en crecimiento (<$20,000/mes)\n\nEsto incluye codificación certificada por AAPC, doble verificación con IA antes del envío, posteo de pagos ERA y seguimiento de cuentas por cobrar. ¿Qué especialidad tiene tu práctica médica?";
+      return "Trabajamos 100% basados en resultados con $0 costo de inicio (solo cobramos un porcentaje de lo que efectivamente recaudamos para tu clínica):\n\n• 5.6% — Clínicas que cobran $50,000+/mes\n• 6.5% — Clínicas de $40,000 a $50,000/mes\n• 7.5% — Clínicas de $20,000 a $40,000/mes\n• 10% — Prácticas nuevas o en crecimiento (<$20,000/mes)\n\nEsto incluye codificación certificada por AAPC, doble verificación con IA antes del envío, posteo de pagos ERA y seguimiento de cuentas por cobrar. ¿Qué especialidad tiene tu práctica médica?";
     }
     if (q.includes('credencial') || q.includes('seguro') || q.includes('medicaid') || q.includes('medicare') || q.includes('caqh')) {
       return "Nos encargamos de todo el proceso de credencialización y CAQH ProView en Florida (Medicare FCSO, Florida Medicaid AHCA, Sunshine Health, Simply, Florida Blue, AvMed, UnitedHealthcare, Aetna, Cigna y Humana), además de configurar EDI, ERA y EFT para depósitos directos.\n\nEl tiempo promedio de aprobación de las aseguradoras es de 60 a 120 días. ¿Cuántos proveedores necesitas credencializar?";
@@ -155,7 +155,7 @@ function generateSmartLocalResponse(userText = '', language = 'en') {
   }
 
   if (q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('rate') || q.includes('fee') || q.includes('how much') || q.includes('%') || q.includes('tier')) {
-    return "Our healthcare provider pricing is 100% performance-based with $0 setup fees — you only pay a percentage of net collections:\n\n• 5.6% — Practices collecting $50,000+ / month\n• 6.5% — Practices collecting $40,000–$50,000 / month\n• 7.5% — Practices collecting $20,000–$30,000 / month\n• 10% — New & startup practices (<$20,000 / month)\n\nThis covers end-to-end AAPC-certified coding review, AI pre-submission claim scrubbing, 24–48h claim submission, ERA payment posting, and denial recovery. What medical specialty is your practice, and what is your approximate monthly volume?";
+    return "Our healthcare provider pricing is 100% performance-based with $0 setup fees — you only pay a percentage of net collections:\n\n• 5.6% — Practices collecting $50,000+ / month\n• 6.5% — Practices collecting $40,000–$50,000 / month\n• 7.5% — Practices collecting $20,000–$40,000 / month\n• 10% — New & startup practices (<$20,000 / month)\n\nThis covers end-to-end AAPC-certified coding review, AI pre-submission claim scrubbing, 24–48h claim submission, ERA payment posting, and denial recovery. What medical specialty is your practice, and what is your approximate monthly volume?";
   }
 
   if (q.includes('ai') || q.includes('denial') || q.includes('clean') || q.includes('how do you work') || q.includes('workflow') || q.includes('code') || q.includes('coding')) {

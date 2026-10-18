@@ -13,6 +13,7 @@ const Consultation = () => {
     const [query, setFormData] = useState({
         fullName: '',
         email: '',
+        phone: '',
         practiceName: '',
         message: ''
     });
@@ -22,21 +23,31 @@ const Consultation = () => {
         practiceName: ''
     });
 
+    const fieldLabels = {
+        fullName: 'Full Name',
+        email: 'Work Email',
+        phone: 'Phone Number',
+        practiceName: 'Practice Name & Specialty',
+    };
+
     const handleChange = (e) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const { name, value, placeholder } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
         switch (name) {
             case "email":
-                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: 'Email is required' }));
+                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: 'Work Email is required' }));
                 else if (!emailRegex.test(value)) setFormErrors((x) => ({ ...x, [name]: 'Invalid Email Format' }));
                 else setFormErrors((x) => ({ ...x, [name]: '' }));
                 break;
+            case "phone":
+            case "message":
+                break;
             default:
-                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: `${placeholder} is Required` }));
+                if (!value.trim()) setFormErrors((x) => ({ ...x, [name]: `${fieldLabels[name] || 'This field'} is required` }));
                 else setFormErrors((x) => ({ ...x, [name]: '' }));
                 break;
         }
@@ -47,16 +58,34 @@ const Consultation = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
+            const payload = {
+                ...query,
+                message: query.phone
+                    ? `Phone: ${query.phone}${query.message ? ` | Notes: ${query.message}` : ''}`
+                    : query.message,
+            };
             const response = await fetch('/my-api/consultations', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(query)
+                body: JSON.stringify(payload)
             });
             const data = await response.json();
             if (response.ok) {
                 setAlert({ message: '✅ Registration successful! We will contact you within 24 hours to schedule your free audit.', type: 'success' });
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    practiceName: '',
+                    message: ''
+                });
+                setFormErrors({
+                    fullName: '',
+                    email: '',
+                    practiceName: ''
+                });
             } else {
                 setAlert({ message: data.error || 'Something went wrong. Please try again or call (786) 643-2099.', type: 'alert' });
             }
@@ -65,17 +94,6 @@ const Consultation = () => {
         }
         finally {
             setSubmitting(false);
-            setFormData({
-                fullName: '',
-                email: '',
-                practiceName: '',
-                message: ''
-            });
-            setFormErrors({
-                fullName: '',
-                email: '',
-                practiceName: ''
-            });
         }
     };
 
@@ -141,14 +159,18 @@ const Consultation = () => {
                                 <input type="email" id="email" name="email" value={query ? query.email : ''} onChange={handleChange} placeholder="doctor@practice.com" className={`${className} ${submitting ? 'cursor-wait' : ''}`} required />
                                 {formErrors?.email && <p className="text-rose-400 text-xs mt-1">{formErrors.email}</p>}
                             </div>
-                            <div className="md:col-span-2">
+                            <div>
+                                <label htmlFor="phone" className="block mb-1.5 text-sm font-semibold text-slate-200">Direct Phone Number</label>
+                                <input type="tel" id="phone" name="phone" value={query ? query.phone : ''} onChange={handleChange} placeholder="(786) 555-0199" className={`${className} ${submitting ? 'cursor-wait' : ''}`} />
+                            </div>
+                            <div>
                                 <label htmlFor="practiceName" className="block mb-1.5 text-sm font-semibold text-slate-200">Practice Name &amp; Specialty *</label>
                                 <input type="text" id="practiceName" name="practiceName" value={query ? query.practiceName : ''} onChange={handleChange} placeholder="Miami Beach Cardiology Associates" className={`${className} ${submitting ? 'cursor-wait' : ''}`} required />
                                 {formErrors?.practiceName && <p className="text-rose-400 text-xs mt-1">{formErrors.practiceName}</p>}
                             </div>
                             <div className="md:col-span-2">
-                                <label htmlFor="message" className="block mb-1.5 text-sm font-semibold text-slate-200">Phone Number / General Billing Goals (Optional)</label>
-                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="3" aria-describedby="consultation-phi-warning" placeholder="Share your phone number, current EHR, or general billing goals..." className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
+                                <label htmlFor="message" className="block mb-1.5 text-sm font-semibold text-slate-200">Current EHR &amp; General Billing Goals (Optional)</label>
+                                <textarea id="message" name="message" value={query ? query.message : ''} onChange={handleChange} rows="3" aria-describedby="consultation-phi-warning" placeholder="Share your current EHR, approximate monthly volume, or billing goals..." className={`${className} ${submitting ? 'cursor-wait' : ''}`}></textarea>
                                 <p id="consultation-phi-warning" className="mt-2 text-xs text-amber-200 bg-amber-500/10 border border-amber-400/30 rounded-lg px-3 py-2 leading-relaxed">
                                     <strong>Important Privacy Notice:</strong> Do not include patient names, dates of birth, medical records, insurance IDs, or other sensitive information in this form. Review our{' '}
                                     <Link href="/privacy-policy" className="text-[#00A8E8] underline font-semibold hover:text-white">

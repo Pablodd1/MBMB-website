@@ -141,7 +141,7 @@ export default function RevenueCalculator({ inline = false }) {
                 {[
                   { rate: 5.6, name: '$50K+/mo Tier', desc: 'High-Volume RCM' },
                   { rate: 6.5, name: '$40K–$50K/mo', desc: 'Established Clinic' },
-                  { rate: 7.5, name: '$20K–$30K/mo', desc: 'Growing Practice' },
+                  { rate: 7.5, name: '$20K–$40K/mo', desc: 'Growing Practice' },
                   { rate: 10, name: 'New / Startup', desc: 'Under $20K/mo' },
                 ].map((tier) => (
                   <button

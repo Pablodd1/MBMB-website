@@ -130,7 +130,7 @@ export default function Top5BillingMistakes() {
               </div>
 
               <p className="text-gray-700 mb-8">
-                Miami practices often struggle with code selection for new procedures, modifier usage, and捆绑 billing rules. Even experienced billers make errors when they lack specialty-specific training.
+                Miami practices often struggle with code selection for new procedures, modifier usage, and NCCI bundling rules. Even experienced billers make errors when they lack specialty-specific training.
               </p>
 
               <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-10">
@@ -235,8 +235,8 @@ export default function Top5BillingMistakes() {
                 </div>
 
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                  <h3 className="font-bold text-gray-900 mb-2">Q: How long do we have to appeal a denied claim?</h3>
-                  <p className="text-gray-700">Timely filing limits vary by payer. Florida Medicaid typically allows 365 days from date of service. Commercial insurers usually allow 90-180 days. Medicare allows 365 days. Check individual payer contracts for specific deadlines.</p>
+                  <h3 className="font-bold text-gray-900 mb-2">Q: How long do we have to appeal a denied claim vs. submit an initial claim?</h3>
+                  <p className="text-gray-700">Initial timely filing limits and appeal deadlines are separate windows. For initial claims, Medicare and Florida Medicaid allow 365 days from the date of service (DOS), while commercial payers typically allow 90–180 days. For denied claim appeals, commercial insurers and Florida Medicaid MMA plans typically require reconsideration within 30–180 days from the EOB/remittance date, and Medicare (First Coast Service Options) allows 120 days from the initial determination for a Level 1 Redetermination.</p>
                 </div>
 
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
@@ -278,7 +278,7 @@ export default function Top5BillingMistakes() {
                   <h3 className="text-lg font-bold mb-3">Contact Us</h3>
                   <div className="space-y-2 text-sm">
                     <p><span className="text-gray-400">Phone:</span> (786) 643-2099</p>
-                    <p><span className="text-gray-400">Email:</span> info@medicalbillingmb.com</p>
+                    <p><span className="text-gray-400">Email:</span> Jasmel@medicalbillingmb.com</p>
                     <p><span className="text-gray-400">Web:</span> medicalbillingmb.com</p>
                   </div>
                 </div>

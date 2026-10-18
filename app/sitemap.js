@@ -118,24 +118,6 @@ export default function sitemap() {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/billing-details`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/business-details`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/agreement-sign-up`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/privacy-policy`,
       lastModified: now,
       changeFrequency: 'yearly',

@@ -18,23 +18,12 @@ const formFields = [
     {
         groupName: 'Provider Information',
         fields: [
-            { fieldName: 'Tax Identification Number (Tax ID)', dataType: 'text', regexTest: /^\d{2}-\d{3}-\d{4}$/ },
             { fieldName: 'Provider Name', dataType: 'text', regexTest: '' },
-            { fieldName: 'Date of Birth', dataType: 'date', regexTest: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/ },
             { fieldName: 'Joining Date / Start Date of Group', dataType: 'date', regexTest: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/ },
-            { fieldName: 'Social Security Number (SSN#)', dataType: 'text', regexTest: /^\d{3}-\d{2}-\d{4}$/ },
             { fieldName: 'Group National Provider Identifier (NPI)', dataType: 'text', regexTest: /^\d{10}$/ },
             { fieldName: 'Individual NPI', dataType: 'text', regexTest: /^\d{10}$/ },
             { fieldName: 'Provider Specialty', dataType: 'text', regexTest: '' },
             { fieldName: 'Provider Degree', dataType: 'text', regexTest: '' }
-        ],
-    },
-    {
-        groupName: 'Login Information',
-        fields: [
-            { fieldName: 'CAQH Login', dataType: 'text', regexTest: '' },
-            { fieldName: 'CAQH Password', dataType: 'password', regexTest: '' },
-            { fieldName: 'PECOS Login', dataType: 'text', regexTest: '' }
         ],
     },
     {

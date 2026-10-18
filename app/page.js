@@ -205,16 +205,16 @@ const partners = [
     badge: "Automation"
   },
   {
-    name: "305Business",
-    desc: "Miami Healthcare & B2B Partner Network",
-    href: "https://305business-llc.vercel.app/",
-    badge: "Miami Network"
+    name: "MBMB Provider Hub",
+    desc: "End-to-End Florida RCM & AAPC Coding",
+    href: "/for-providers",
+    badge: "For Clinics"
   },
   {
-    name: "AI Law Helper",
-    desc: "Medical Lien, PIP & Healthcare Legal Tech",
-    href: "https://new-law-helper-app.vercel.app/",
-    badge: "Legal & Compliance"
+    name: "MBMB Legal Bill Support",
+    desc: "Source-Linked Medical Bill Chronologies & EOB Reconciliation",
+    href: "/for-attorneys",
+    badge: "For Law Firms"
   }
 ];
 
@@ -318,6 +318,14 @@ export default function Home() {
             >
               Calculate Your Denial Loss ↓
             </a>
+          </div>
+          <div className="mt-4">
+            <Link
+              href="/for-attorneys"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#00A8E8] hover:text-white transition-colors"
+            >
+              <span>⚖️ Personal Injury or Healthcare Law Firm? Explore our 1-Case Medical Bill Chronology &amp; Reconciliation Pilot →</span>
+            </Link>
           </div>
 
           {/* Trust Credentials */}

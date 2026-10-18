@@ -25,17 +25,22 @@ const attorneyFaqs = [
   {
     question: 'What types of files can you help organize?',
     answer:
-      'Itemized bills, billing ledgers, and Explanation of Benefits (EOB) statements.',
+      'Itemized bills, CMS-1500 (professional) and UB-04 (facility) claims, patient billing ledgers, Explanation of Benefits (EOB) statements, and PIP / MedPay / LOP payment logs.',
   },
   {
     question: 'Do you provide legal or medical opinions?',
     answer:
-      'No. We provide administrative billing organization and reconciliation support so your legal team can review the records efficiently.',
+      'No. We provide administrative billing organization, plain-English code translation, and document-level number reconciliation so your legal team can review the records efficiently.',
   },
   {
-    question: 'How do we share documents?',
+    question: 'How do we share documents and protect confidentiality?',
     answer:
-      'Contact us to agree on a handling method before sending any sensitive files. Do not submit sensitive information through the website form.',
+      'Contact us to agree on an encrypted transfer method before sending any sensitive files, and we are happy to execute your firm’s Confidentiality Agreement / NDA or HIPAA Business Associate Agreement (BAA). Do not submit sensitive patient information through the public website form.',
+  },
+  {
+    question: 'What formats do we receive, and what is the typical turnaround?',
+    answer:
+      'Deliverables are provided in both an editable Excel / CSV workbook (for sorting and filtering by provider, date, or payer) and a clean, Bates/page-referenced PDF summary table. Standard 1-case pilot files are typically completed within 3–5 business days.',
   },
 ];
 
@@ -57,7 +62,7 @@ export default function ForAttorneysPage() {
           name: 'Florida',
         },
         description:
-          'Administrative medical billing organization, EOB and ledger comparison, and source-linked billing question summaries for law firms and legal teams.',
+          'Administrative medical billing organization, plain-English CPT/ICD-10/HCPCS code explanations, EOB and ledger comparison, and source-linked billing question summaries for law firms and legal teams.',
       },
       {
         '@type': 'FAQPage',
@@ -102,7 +107,7 @@ export default function ForAttorneysPage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 mb-6">
             <span className="w-2 h-2 rounded-full bg-[#00A8E8]" />
             <span className="text-[#00A8E8] text-xs sm:text-sm font-bold uppercase tracking-wider">
-              Administrative Billing-Support Pilot for Law Firms
+              U.S. AAPC-Certified Coders + AI Verification · 1-Case Law Firm Pilot
             </span>
           </div>
 
@@ -111,7 +116,7 @@ export default function ForAttorneysPage() {
           </h1>
 
           <p className="text-slate-200 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            Need help making sense of itemized medical bills and EOBs? We work alongside your team to organize billing records, reconcile payments and adjustments, and flag administrative billing questions—so you can review the numbers with confidence.
+            Need help making sense of itemized medical bills, CMS-1500/UB-04 claims, and EOBs? Our AAPC-certified billing specialists work alongside your team to organize billing records, translate CPT/ICD-10 codes into plain English, reconcile payments and adjustments, and flag administrative billing questions—so you can review the numbers with confidence.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -142,7 +147,7 @@ export default function ForAttorneysPage() {
               How We Can Help Your Firm
             </h2>
             <p className="text-slate-600 text-base">
-              When case files include dozens of provider statements, ledgers, and Explanation of Benefits (EOB) documents, our billing specialists organize the numbers into a clean, source-linked reference table.
+              When case files include dozens of provider statements, CMS-1500/UB-04 forms, ledgers, and Explanation of Benefits (EOB) documents, our AAPC-certified specialists organize the numbers into a clean, source-linked reference table (delivered in editable Excel/CSV &amp; PDF).
             </p>
           </div>
 
@@ -151,9 +156,9 @@ export default function ForAttorneysPage() {
               <div className="w-12 h-12 rounded-xl bg-[#0066CC]/10 text-[#0066CC] flex items-center justify-center font-extrabold text-lg mb-5">
                 01
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Organize itemized bills</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Organize bills &amp; translate codes</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                We sort billing documents by provider, service date, and document reference, creating a clear, chronological view of charges.
+                We sort CMS-1500s, UB-04s, and ledgers chronologically by provider, service date, and Bates/page reference—translating CPT, ICD-10-CM, HCPCS, and modifiers (-25, -59, -26/-TC) into plain English.
               </p>
             </div>
 
@@ -161,9 +166,9 @@ export default function ForAttorneysPage() {
               <div className="w-12 h-12 rounded-xl bg-[#0066CC]/10 text-[#0066CC] flex items-center justify-center font-extrabold text-lg mb-5">
                 02
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Compare payments and balances</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Reconcile payments &amp; balances</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                We line up billed charges, payments, adjustments, and remaining balances across statements and EOBs to show how the figures connect.
+                We line up original billed charges, commercial/government EOB payments, contractual adjustments, PIP/MedPay logs, and stated open balances to show exactly how the figures connect.
               </p>
             </div>
 
@@ -171,9 +176,9 @@ export default function ForAttorneysPage() {
               <div className="w-12 h-12 rounded-xl bg-[#0066CC]/10 text-[#0066CC] flex items-center justify-center font-extrabold text-lg mb-5">
                 03
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Highlight billing questions</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Flag duplicates &amp; billing questions</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                We note potential duplicate lines, missing pages, or unclear adjustments and prepare source-linked questions for your team to review.
+                We note potential duplicate line items (e.g., facility vs. professional billing overlap), missing statement pages, or unclear adjustments and prepare source-linked questions for counsel.
               </p>
             </div>
           </div>
@@ -183,14 +188,14 @@ export default function ForAttorneysPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-5">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
-                  Illustrative Output Format
+                  Illustrative Output Format (Delivered in Editable Excel/CSV &amp; PDF)
                 </span>
                 <h3 className="text-lg md:text-xl font-bold mt-0.5">
                   Source-Linked Billing Chronology &amp; Reconciliation Table
                 </h3>
               </div>
               <span className="text-xs text-slate-400">
-                Sample administrative layout (redacted / non-clinical)
+                Sample administrative layout (redacted / non-clinical · 3–5 business day pilot turnaround)
               </span>
             </div>
 
@@ -200,7 +205,7 @@ export default function ForAttorneysPage() {
                   <tr className="border-b border-slate-700 text-slate-300">
                     <th className="py-3 px-3">Date / Provider</th>
                     <th className="py-3 px-3">Source Doc Ref</th>
-                    <th className="py-3 px-3">Code / Description</th>
+                    <th className="py-3 px-3">Code / Plain-English Description</th>
                     <th className="py-3 px-3">Billed</th>
                     <th className="py-3 px-3">Paid / Adj.</th>
                     <th className="py-3 px-3">Stated Bal.</th>
@@ -211,7 +216,7 @@ export default function ForAttorneysPage() {
                   <tr>
                     <td className="py-3 px-3 font-medium">2026-02-14 · Imaging Center A</td>
                     <td className="py-3 px-3 text-slate-400">Ledger p. 4 / EOB p. 2</td>
-                    <td className="py-3 px-3">72148 — Lumbar Spine MRI w/o</td>
+                    <td className="py-3 px-3">CPT 72148 — Lumbar Spine MRI w/o Contrast</td>
                     <td className="py-3 px-3">$1,850.00</td>
                     <td className="py-3 px-3">$420.00 / $980.00</td>
                     <td className="py-3 px-3">$450.00</td>
@@ -220,7 +225,7 @@ export default function ForAttorneysPage() {
                   <tr>
                     <td className="py-3 px-3 font-medium">2026-02-14 · Imaging Center A</td>
                     <td className="py-3 px-3 text-slate-400">Statement #2 p. 1</td>
-                    <td className="py-3 px-3">72148 — Lumbar Spine MRI w/o</td>
+                    <td className="py-3 px-3">CPT 72148 — Lumbar Spine MRI w/o Contrast</td>
                     <td className="py-3 px-3">$1,850.00</td>
                     <td className="py-3 px-3">$0.00 / $0.00</td>
                     <td className="py-3 px-3">$1,850.00</td>
@@ -228,14 +233,23 @@ export default function ForAttorneysPage() {
                   </tr>
                   <tr>
                     <td className="py-3 px-3 font-medium">2026-03-03 · Ortho Group B</td>
-                    <td className="py-3 px-3 text-slate-400">Itemized Bill p. 3</td>
-                    <td className="py-3 px-3">99204 / 20610 — Office Visit &amp; Inj.</td>
+                    <td className="py-3 px-3 text-slate-400">CMS-1500 p. 3</td>
+                    <td className="py-3 px-3">CPT 99204-25 / 20610 — New Pt Visit &amp; Major Joint Inj.</td>
                     <td className="py-3 px-3">$640.00</td>
                     <td className="py-3 px-3">Pending EOB</td>
                     <td className="py-3 px-3">$640.00</td>
                     <td className="py-3 px-3 text-amber-300">Missing page 4 of itemized statement; follow-up question noted.</td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr className="border-t-2 border-slate-700 bg-slate-950/60 font-bold text-white">
+                    <td className="py-3 px-3" colSpan={3}>Sample Roll-Up Summary (De-Duplicated Net Verified vs. Gross Stated)</td>
+                    <td className="py-3 px-3">$2,490.00 Net ($4,340 Gross)</td>
+                    <td className="py-3 px-3">$420.00 / $980.00</td>
+                    <td className="py-3 px-3 text-emerald-400">$1,090.00 Verified</td>
+                    <td className="py-3 px-3 text-xs text-slate-300">$1,850.00 duplicate billing line isolated for counsel review.</td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

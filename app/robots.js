@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/my-api/'],
+      disallow: ['/my-api/', '/billing-details', '/business-details', '/agreement-sign-up'],
     },
     sitemap: 'https://medicalbillingmb.com/sitemap.xml',
   }

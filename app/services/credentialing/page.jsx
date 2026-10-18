@@ -85,8 +85,8 @@ const processTimeline = [
 ]
 
 const insuranceNetworks = [
-  'Aetna', 'AvMed', 'Blue Cross Blue Shield', 'Cigna', 'Florida Blue',
-  'Humana', 'Magnolia Health', 'Medicaid Florida', 'Medicare',
+  'Aetna', 'Ambetter', 'AvMed', 'Blue Cross Blue Shield', 'Cigna', 'Florida Blue',
+  'Humana', 'Sunshine Health', 'Florida Medicaid (AHCA)', 'Medicare (FCSO)',
   'Molina Healthcare', 'Oscar Health', 'Simply Healthcare', 'UnitedHealthcare', 'WellCare'
 ]
 

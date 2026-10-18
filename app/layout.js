@@ -236,12 +236,13 @@ export default function RootLayout({ children }) {
             </Link>
 
             {/* Center: Primary Desktop Navigation (Never Wraps) */}
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-medium text-slate-200 whitespace-nowrap" aria-label="Main Navigation">
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium text-slate-200 whitespace-nowrap" aria-label="Main Navigation">
               <Link href="/" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Home</Link>
-              <Link href="/for-providers" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">For Providers</Link>
-              <Link href="/for-attorneys" className="hover:text-[#00A8E8] transition-colors text-[#00A8E8] font-semibold whitespace-nowrap">For Attorneys</Link>
+              <Link href="/for-providers" className="hover:text-white transition-colors text-[#00A8E8] font-semibold whitespace-nowrap">For Providers</Link>
+              <Link href="/for-attorneys" className="hover:text-white transition-colors text-[#00A8E8] font-semibold whitespace-nowrap">For Attorneys</Link>
               <Link href="/services" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Services</Link>
               <Link href="/how-we-work" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">How We Work</Link>
+              <Link href="/blog" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Insights</Link>
               <Link href="/about" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">About</Link>
               <Link href="/contact" className="hover:text-[#00A8E8] transition-colors whitespace-nowrap">Contact</Link>
             </nav>

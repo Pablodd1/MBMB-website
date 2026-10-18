@@ -158,7 +158,7 @@ export default function ServicesPage() {
               Why Choose <span className="text-[#00A8E8]">MBMB</span> for Your Medical Billing?
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-              With 15+ years of experience serving Florida practices, we are Miami&apos;s trusted partner in healthcare revenue cycle management. Our AAPC-certified specialists combine Florida payer expertise with AI-powered claim scrubbing to deliver a 98% clean claim rate.
+              Backed by 10+ years of specialized U.S. medical billing fulfillment experience serving Florida practices, we are Miami&apos;s trusted partner in healthcare revenue cycle management. Our AAPC-certified specialists combine Florida payer expertise with AI-powered claim scrubbing to deliver a 98% clean claim rate.
             </p>
           </div>
 
