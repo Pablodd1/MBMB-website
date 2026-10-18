@@ -171,7 +171,7 @@ export default function CredentialingPage() {
             
             <div className="relative">
               <Image
-                src="/raster/Time-Saving-Medical-Billing-Solutions.webp"
+                src="/raster/authentic/service-credentialing-hero.jpg"
                 alt="Provider Credentialing Services - CAQH, EDI, ERA, EFT"
                 width={600}
                 height={400}

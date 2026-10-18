@@ -16,7 +16,7 @@ const posts = [
     title: 'Medical Bill Review, Chronologies & EOB Reconciliation for Legal Teams (2026 Guide)',
     description:
       'How personal injury attorneys and paralegals organize fragmented CMS-1500/UB-04 bills, reconcile EOB adjustments, flag duplicate CPT charges, and build source-linked billing chronologies.',
-    image: '/raster/medical-coding-cpt-hcpcs.webp',
+    image: '/raster/authentic/attorneys-legal-chronology.jpg',
     date: 'October 16, 2026',
     tag: 'For Attorneys & Legal Teams',
   },
@@ -25,7 +25,7 @@ const posts = [
     title: 'Human AAPC-Certified Coders + AI Pre-Submission Double-Check: Preventing Claim Denials',
     description:
       'Why neither blind AI automation nor manual-only billing is enough in 2026—and how MBMB’s two-layer verification catches NCCI edits and modifier gaps before submission.',
-    image: '/raster/medical-coding-modifiers.webp',
+    image: '/raster/authentic/blog-ai-coding-double-check.jpg',
     date: 'October 16, 2026',
     tag: 'Human + AI Workflow',
   },
@@ -34,7 +34,7 @@ const posts = [
     title: 'Florida Provider Credentialing, CAQH ProView & Payer Enrollment Guide (2026)',
     description:
       'Step-by-step guide to aligning CAQH ProView, NPI Type 1 & Type 2, Medicare PECOS (FCSO), Florida Medicaid (AHCA), and EDI/ERA billing setup.',
-    image: '/raster/healthcare-revenue-cycle-management-companies.webp',
+    image: '/raster/authentic/blog-florida-credentialing.jpg',
     date: 'October 16, 2026',
     tag: 'Credentialing & CAQH',
   },
@@ -43,7 +43,7 @@ const posts = [
     title: 'Medical Billing 101: Everything Miami Doctors Need to Know',
     description:
       'The complete guide to medical billing for Miami doctors. Learn what medical billing is, why Miami practices struggle, common mistakes, and how to optimize revenue.',
-    image: '/raster/Medical-Billing-and-Coding-Specialists.webp',
+    image: '/raster/authentic/blog-medical-billing-101.jpg',
     date: 'Reviewed October 15, 2026',
     tag: 'Practice Guide',
   },
@@ -52,7 +52,7 @@ const posts = [
     title: 'Denial Management: A Complete Guide for Miami Practices',
     description:
       'Every denied claim is lost revenue—unless you have a 48-hour system to fight back. Learn how top Miami practices recover denied and underpaid claims.',
-    image: '/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif',
+    image: '/raster/authentic/blog-denial-medicaid-mistakes.jpg',
     date: 'Reviewed October 15, 2026',
     tag: 'Denial Recovery',
   },
@@ -61,7 +61,7 @@ const posts = [
     title: 'Florida Medicaid Billing for Miami Healthcare Providers',
     description:
       'Everything Miami doctors need to know about Florida Medicaid billing: coverage requirements, MMA plans, AHCA compliance, and clean claim workflows.',
-    image: '/raster/medical-coding-icd.webp',
+    image: '/raster/authentic/blog-medicaid-miami.jpg',
     date: 'Reviewed October 15, 2026',
     tag: 'Florida Medicaid',
   },
@@ -70,7 +70,7 @@ const posts = [
     title: 'Top 5 Medical Billing Mistakes Costing Miami Practices $100K+/Year',
     description:
       'Discover the 5 most expensive coding, modifier, and prior authorization mistakes in South Florida clinics—and how AAPC-certified scrubbing prevents them.',
-    image: '/raster/Time-Saving-Medical-Billing-Solutions.webp',
+    image: '/raster/authentic/blog-top5-mistakes.jpg',
     date: 'Reviewed October 15, 2026',
     tag: 'Revenue Leakage',
   },

@@ -16,7 +16,7 @@ export const metadata = {
     authors: ['Medical Billing Miami Beach (MBMB)'],
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-1.2.avif',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-denial-medicaid-mistakes.jpg',
         width: 1200,
         height: 800,
         alt: 'Denial Management Guide for Miami Medical Practices'

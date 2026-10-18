@@ -20,7 +20,7 @@ export const metadata = {
     type: 'article',
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/medical-coding-modifiers.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-ai-coding-double-check.jpg',
         width: 1200,
         height: 630,
         alt: 'Human AAPC Coders and AI Pre-Submission Double-Check Workflow',
@@ -133,7 +133,7 @@ export default function AiDoubleCheckCodingBlogPage() {
       <main className="max-w-4xl mx-auto px-4 py-14 space-y-12">
         <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200">
           <Image
-            src="/raster/medical-coding-modifiers.webp"
+            src="/raster/authentic/blog-ai-coding-double-check.jpg"
             alt="Human AAPC Medical Coders and AI Claim Scrubbing Double-Check"
             fill
             className="object-cover"

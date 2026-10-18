@@ -16,7 +16,7 @@ export const metadata = {
     authors: ['Medical Billing Miami Beach (MBMB)'],
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/Medical-Billing-and-Coding-Specialists.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-medical-billing-101.jpg',
         width: 1200,
         height: 800,
         alt: 'Medical Billing 101 Guide for Miami Doctors'
@@ -27,7 +27,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Medical Billing 101: Everything Miami Doctors Need to Know',
     description: 'The complete guide to medical billing for Miami doctors.',
-    images: ['https://medicalbillingmb.com/raster/Medical-Billing-and-Coding-Specialists.webp']
+    images: ['https://medicalbillingmb.com/raster/authentic/blog-medical-billing-101.jpg']
   },
   alternates: {
     canonical: 'https://medicalbillingmb.com/blog/medical-billing-101'

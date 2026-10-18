@@ -16,7 +16,7 @@ export const metadata = {
     authors: ['Medical Billing Miami Beach (MBMB)'],
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/medical-coding-icd.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-medicaid-miami.jpg',
         width: 1200,
         height: 800,
         alt: 'Florida Medicaid Billing Guide'

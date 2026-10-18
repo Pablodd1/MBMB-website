@@ -20,7 +20,7 @@ export const metadata = {
     type: 'article',
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/medical-coding-cpt-hcpcs.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/attorneys-legal-chronology.jpg',
         width: 1200,
         height: 630,
         alt: 'Medical Billing Chronology and EOB Reconciliation for Attorneys',
@@ -135,7 +135,7 @@ export default function AttorneyBillingChronologyGuidePage() {
       <main className="max-w-4xl mx-auto px-4 py-14 space-y-12">
         <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200">
           <Image
-            src="/raster/medical-coding-cpt-hcpcs.webp"
+            src="/raster/authentic/attorneys-legal-chronology.jpg"
             alt="Medical Billing Chronology and CPT HCPCS Code Reconciliation for Law Firms"
             fill
             className="object-cover"

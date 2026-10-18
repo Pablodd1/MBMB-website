@@ -6,7 +6,7 @@ const codingTypes = [
   {
     title: 'ICD-10 Coding',
     description: 'International Classification of Diseases, 10th Revision codes for accurate diagnosis documentation.',
-    icon: '/raster/medical-coding-icd.webp',
+    icon: '/raster/authentic/coding-card-icd10.jpg',
     features: [
       'Over 70,000 diagnosis codes',
       'Accurate clinical documentation',
@@ -19,7 +19,7 @@ const codingTypes = [
   {
     title: 'CPT/HCPCS Coding',
     description: 'Current Procedural Terminology and Healthcare Common Procedure Coding System for procedure coding.',
-    icon: '/raster/medical-coding-cpt-hcpcs.webp',
+    icon: '/raster/authentic/coding-card-cpt.jpg',
     features: [
       'Evaluation & Management codes',
       'Surgical procedure codes',
@@ -32,7 +32,7 @@ const codingTypes = [
   {
     title: 'Modifier Usage',
     description: 'Proper application of modifiers to provide additional context for procedures and services.',
-    icon: '/raster/medical-coding-modifiers.webp',
+    icon: '/raster/authentic/coding-card-modifiers.jpg',
     features: [
       '25 Modifier - Significant E/M',
       '59 Modifier - Distinct service',
@@ -147,7 +147,7 @@ export default function MedicalCodingPage() {
             
             <div className="relative">
               <Image
-                src="/raster/medical-coding-icd.webp"
+                src="/raster/authentic/service-coding-hero.jpg"
                 alt="Medical Coding Services - ICD-10, CPT, HCPCS"
                 width={600}
                 height={400}

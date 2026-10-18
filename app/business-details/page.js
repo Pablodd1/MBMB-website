@@ -95,7 +95,7 @@ const Consultation = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl w-full">
                 <div>
                     <Image
-                        src="/raster/join-medical-billing-coding-miami-beach-today.webp"
+                        src="/raster/authentic/consultation-audit-desk.jpg"
                         alt="Medical Billing and Coding"
                         width={700}
                         height={400}

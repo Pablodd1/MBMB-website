@@ -15,7 +15,7 @@ export const metadata = {
     authors: ['Medical Billing Miami Beach (MBMB)'],
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/medical-billing-mistakes-miami.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-top5-mistakes.jpg',
         width: 1200,
         height: 800,
         alt: 'Top 5 Medical Billing Mistakes Miami Practices Make'
@@ -26,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Top 5 Medical Billing Mistakes Miami Practices Make',
     description: 'Discover the most costly medical billing mistakes Miami practices make.',
-    images: ['https://medicalbillingmb.com/raster/medical-billing-mistakes-miami.webp']
+    images: ['https://medicalbillingmb.com/raster/authentic/blog-top5-mistakes.jpg']
   },
   alternates: {
     canonical: 'https://medicalbillingmb.com/blog/top-5-medical-billing-mistakes'

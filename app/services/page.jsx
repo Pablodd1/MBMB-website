@@ -10,7 +10,7 @@ const services = [
     icon: '/svg/billing.svg',
     features: ['Claims Submission', 'Denial Management', 'Payment Posting', 'Insurance Verification', 'Patient Billing', 'AR Follow-up'],
     href: '/for-providers',
-    image: '/raster/medical-billing-and-medical-coding-services-healthcare-revenue-management-7.5.avif'
+    image: '/raster/authentic/services-overview-billing.jpg'
   },
   {
     title: 'Medical Coding',
@@ -18,7 +18,7 @@ const services = [
     icon: '/svg/coding.svg',
     features: ['ICD-10 Coding', 'CPT/HCPCS Coding', 'Modifiers', 'Code Auditing', 'Compliance Review', 'Specialty Coding'],
     href: '/services/medical-coding',
-    image: '/raster/medical-coding-icd.webp'
+    image: '/raster/authentic/services-overview-coding.jpg'
   },
   {
     title: 'Provider Credentialing',
@@ -26,7 +26,7 @@ const services = [
     icon: '/svg/credentialing.svg',
     features: ['CAQH Enrollment', 'EDI Setup', 'ERA Configuration', 'EFT Setup', 'Network Applications', 'Demographic Updates'],
     href: '/services/credentialing',
-    image: '/raster/Time-Saving-Medical-Billing-Solutions.webp'
+    image: '/raster/authentic/services-overview-credentialing.jpg'
   },
   {
     title: 'Revenue Cycle Management',
@@ -34,7 +34,7 @@ const services = [
     icon: '/svg/rcm.svg',
     features: ['Patient Registration', 'Insurance Verification', 'Charge Capture', 'Claims Processing', 'Denial Management', 'Payment Posting', 'Reporting & Analytics'],
     href: '/services/revenue-cycle-management',
-    image: '/raster/healthcare-revenue-cycle-management-companies.webp'
+    image: '/raster/authentic/services-overview-rcm.jpg'
   }
 ]
 

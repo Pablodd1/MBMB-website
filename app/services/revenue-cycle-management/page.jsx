@@ -171,7 +171,7 @@ export default function RevenueCycleManagementPage() {
             
             <div className="relative">
               <Image
-                src="/raster/healthcare-revenue-cycle-management-companies.webp"
+                src="/raster/authentic/service-rcm-hero.jpg"
                 alt="Revenue Cycle Management Services"
                 width={600}
                 height={400}

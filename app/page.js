@@ -698,8 +698,8 @@ export default function Home() {
         </div>
         <div className="relative h-full min-h-[340px] w-full">
           <SmartImage
-            src="/raster/healthcare-revenue-cycle-management-companies.webp"
-            alt="Provider Credentialing and Revenue Cycle Management in Miami Florida"
+            src="/raster/authentic/home-credentialing-doctor.jpg"
+            alt="Miami Physician and Clinic Administrator Reviewing Credentialing and Telehealth Billing"
             width={800}
             height={600}
             className="object-cover w-full h-full min-h-[340px]"
@@ -723,7 +723,7 @@ export default function Home() {
             <ScrollReveal delay={0} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/medical-coding-cpt-hcpcs.webp" alt="Medical Bill Review, Chronologies and EOB Reconciliation for Legal Teams" fill className="object-cover" />
+                  <Image src="/raster/authentic/attorneys-legal-chronology.jpg" alt="Medical Bill Review, Chronologies and EOB Reconciliation for Legal Teams" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
@@ -738,7 +738,7 @@ export default function Home() {
             <ScrollReveal delay={150} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/medical-coding-modifiers.webp" alt="Human AAPC Coders + AI Pre-Submission Double-Check" fill className="object-cover" />
+                  <Image src="/raster/authentic/blog-ai-coding-double-check.jpg" alt="Human AAPC Coders + AI Pre-Submission Double-Check" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
@@ -753,7 +753,7 @@ export default function Home() {
             <ScrollReveal delay={300} direction="up" distance={30}>
               <div className="bg-slate-800/90 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00A8E8]/50 transition h-full flex flex-col">
                 <div className="relative h-44">
-                  <Image src="/raster/Medical-Billing-and-Coding-Specialists.webp" alt="Medical Billing 101 Guide for Miami Doctors" fill className="object-cover" />
+                  <Image src="/raster/authentic/blog-medical-billing-101.jpg" alt="Medical Billing 101 Guide for Miami Doctors" fill className="object-cover" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>

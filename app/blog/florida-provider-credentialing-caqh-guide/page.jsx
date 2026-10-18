@@ -20,7 +20,7 @@ export const metadata = {
     type: 'article',
     images: [
       {
-        url: 'https://medicalbillingmb.com/raster/healthcare-revenue-cycle-management-companies.webp',
+        url: 'https://medicalbillingmb.com/raster/authentic/blog-florida-credentialing.jpg',
         width: 1200,
         height: 630,
         alt: 'Florida Provider Credentialing and CAQH Enrollment Guide',
@@ -133,7 +133,7 @@ export default function FloridaCredentialingGuidePage() {
       <main className="max-w-4xl mx-auto px-4 py-14 space-y-12">
         <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200">
           <Image
-            src="/raster/healthcare-revenue-cycle-management-companies.webp"
+            src="/raster/authentic/blog-florida-credentialing.jpg"
             alt="Florida Provider Credentialing and CAQH Enrollment"
             fill
             className="object-cover"

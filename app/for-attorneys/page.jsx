@@ -103,35 +103,55 @@ export default function ForAttorneysPage() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#0a1628] via-[#102340] to-[#0a1628] text-white py-20 lg:py-24 border-b border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#00A8E8]" />
-            <span className="text-[#00A8E8] text-xs sm:text-sm font-bold uppercase tracking-wider">
-              U.S. AAPC-Certified Coders + AI Verification · 1-Case Law Firm Pilot
-            </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-7 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#00A8E8]" />
+              <span className="text-[#00A8E8] text-xs sm:text-sm font-bold uppercase tracking-wider">
+                U.S. AAPC-Certified Coders + AI Verification · 1-Case Law Firm Pilot
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+              Medical billing clarity for your legal team
+            </h1>
+
+            <p className="text-slate-200 text-lg md:text-xl leading-relaxed mb-10">
+              Need help making sense of itemized medical bills, CMS-1500/UB-04 claims, and EOBs? Our AAPC-certified billing specialists work alongside your team to organize billing records, translate CPT/ICD-10 codes into plain English, reconcile payments and adjustments, and flag administrative billing questions—so you can review the numbers with confidence.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+              <a
+                href="#pilot-form"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-base shadow-xl shadow-[#0066CC]/30 transition-all"
+              >
+                Discuss a Pilot File
+              </a>
+              <a
+                href="#pilot-workflow"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-white/25 hover:bg-white/10 text-white font-bold text-base transition-all"
+              >
+                How Our Process Works
+              </a>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
-            Medical billing clarity for your legal team
-          </h1>
-
-          <p className="text-slate-200 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            Need help making sense of itemized medical bills, CMS-1500/UB-04 claims, and EOBs? Our AAPC-certified billing specialists work alongside your team to organize billing records, translate CPT/ICD-10 codes into plain English, reconcile payments and adjustments, and flag administrative billing questions—so you can review the numbers with confidence.
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a
-              href="#pilot-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-base shadow-xl shadow-[#0066CC]/30 transition-all"
-            >
-              Discuss a Pilot File
-            </a>
-            <a
-              href="#pilot-workflow"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-white/25 hover:bg-white/10 text-white font-bold text-base transition-all"
-            >
-              How Our Process Works
-            </a>
+          <div className="lg:col-span-5">
+            <div className="rounded-2xl overflow-hidden border-2 border-[#00A8E8]/40 shadow-2xl bg-[#060d18]">
+              <img
+                src="/raster/authentic/attorneys-legal-chronology.jpg"
+                alt="Miami Trial Attorney and Paralegal Reviewing Tabbed Medical Billing Chronology Binders"
+                className="w-full h-72 sm:h-80 object-cover"
+              />
+              <div className="p-4 bg-[#060d18] border-t border-white/10">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
+                  Source-Linked Chronologies &amp; EOB Reconciliation
+                </span>
+                <p className="text-xs text-slate-300 mt-1">
+                  Delivered in editable Excel/CSV &amp; Bates-referenced PDF tables (3–5 business day standard pilot turnaround).
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

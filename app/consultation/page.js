@@ -108,7 +108,7 @@ const Consultation = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-slate-900/70 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl">
                     <div className='h-full relative'>
                         <Image
-                            src="/raster/join-medical-billing-coding-miami-beach-today.webp"
+                            src="/raster/authentic/consultation-audit-desk.jpg"
                             alt="Medical Billing and Coding Audit Registration Miami Beach"
                             className='object-cover h-full rounded-2xl mx-auto shadow-lg border border-white/10'
                             width={700}

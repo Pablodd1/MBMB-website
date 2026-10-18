@@ -25,42 +25,42 @@ const deliverables = [
     description:
       'Every superbill and encounter is reviewed by U.S. AAPC-certified coders and cross-checked with AI rule verification for NCCI bundling, modifier accuracy, and payer-specific LCD/NCD compliance before submission.',
     badge: '01',
-    image: '/raster/medical-coding-cpt-hcpcs.webp',
+    image: '/raster/authentic/providers-workflow-scrubbing.jpg',
   },
   {
     title: 'Daily Claim Submission & ERA Auto-Posting',
     description:
       'Clean claims are submitted within 24–48 business hours of receiving complete chart documentation. Electronic Remittance Advice (ERA) payments and adjustments are reconciled daily.',
     badge: '02',
-    image: '/raster/Time-Saving-Medical-Billing-Solutions.webp',
+    image: '/raster/authentic/providers-workflow-era.jpg',
   },
   {
     title: 'Proactive Denial Management & Appeals',
     description:
       'Zero write-offs without investigation. Every CO, PR, or OA denial is categorized, corrected, or appealed with clinical documentation references within 48 hours of receipt.',
     badge: '03',
-    image: '/raster/medical-coding-modifiers.webp',
+    image: '/raster/authentic/providers-workflow-denials.jpg',
   },
   {
     title: 'Provider Credentialing & Enrollment',
     description:
       'CAQH ProView maintenance, NPI Type 1 & Type 2 registration, Medicare PECOS, Florida Medicaid, and commercial payer contracting managed end-to-end.',
     badge: '04',
-    image: '/raster/Medical-Billing-and-Coding-Specialists.webp',
+    image: '/raster/authentic/providers-workflow-credentialing.jpg',
   },
   {
     title: 'Monthly Financial & Aging Transparency',
     description:
       'Clear monthly executive packets covering gross collection rate, net collection percentage, days in AR, 30/60/90/120+ aging buckets, and payer mix performance.',
     badge: '05',
-    image: '/raster/healthcare-revenue-cycle-management-companies.webp',
+    image: '/raster/authentic/providers-workflow-reporting.jpg',
   },
   {
     title: 'Seamless EHR & PM Integration',
     description:
       'We work inside your existing EHR and Practice Management platform—including Athenahealth, Kareo/Tebra, AdvancedMD, eClinicalWorks, DrChrono, NextGen, and Epic.',
     badge: '06',
-    image: '/raster/medical-coding-icd.webp',
+    image: '/raster/authentic/providers-workflow-intake.jpg',
   },
 ];
 
@@ -186,7 +186,7 @@ export default function ForProvidersPage() {
           <div className="lg:col-span-5 space-y-4">
             <div className="relative rounded-2xl overflow-hidden border-2 border-[#00A8E8]/40 shadow-2xl bg-[#0a1628]">
               <Image
-                src="/raster/Medical-Billing-and-Coding-Specialists.webp"
+                src="/raster/authentic/providers-hero-team.jpg"
                 alt="AAPC-Certified Medical Billing and Coding Specialists for Healthcare Providers"
                 width={640}
                 height={420}
@@ -206,7 +206,7 @@ export default function ForProvidersPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-xl overflow-hidden border border-white/15 bg-[#0a1628] shadow-lg">
                 <Image
-                  src="/raster/medical-coding-cpt-hcpcs.webp"
+                  src="/raster/authentic/providers-coding-specialist.jpg"
                   alt="CPT and HCPCS Medical Coding Verification"
                   width={320}
                   height={200}
@@ -218,7 +218,7 @@ export default function ForProvidersPage() {
               </div>
               <div className="rounded-xl overflow-hidden border border-white/15 bg-[#0a1628] shadow-lg">
                 <Image
-                  src="/raster/healthcare-revenue-cycle-management-companies.webp"
+                  src="/raster/authentic/providers-rcm-analytics.jpg"
                   alt="Healthcare Revenue Cycle Management Analytics"
                   width={320}
                   height={200}
@@ -386,7 +386,7 @@ export default function ForProvidersPage() {
 
           <div className="bg-[#0f1f38] border border-[#00A8E8]/30 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/raster/join-medical-billing-coding-miami-beach-today.webp"
+              src="/raster/authentic/providers-audit-consultation.jpg"
               alt="Miami Beach Medical Billing Coordination and Certified U.S. Fulfillment"
               width={600}
               height={320}

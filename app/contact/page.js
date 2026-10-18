@@ -95,8 +95,8 @@ const Contact = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-slate-900/70 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl">
                     <div className='h-full relative'>
                         <Image
-                            src="/raster/join-medical-billing-coding-miami-beach-today.webp"
-                            alt="Medical Billing and Coding"
+                            src="/raster/authentic/contact-miami-coord-hub.jpg"
+                            alt="Medical Billing Miami Beach Client Coordination Hub"
                             className='object-cover h-full rounded-2xl mx-auto shadow-lg border border-white/10'
                             width={700}
                             height={400}
