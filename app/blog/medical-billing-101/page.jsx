@@ -179,6 +179,21 @@ export default function MedicalBilling101() {
             
             {/* Article Content */}
             <article className="lg:col-span-2">
+              <div className="mb-6 rounded-2xl overflow-hidden border border-slate-200 shadow-lg relative h-64 sm:h-80 w-full">
+                <Image src="/raster/authentic/blog-medical-billing-101.jpg" alt="Miami Physician Reviewing Practice Medical Billing Summary" fill className="object-cover" priority />
+              </div>
+              <div className="mb-8 p-6 bg-slate-900 text-white rounded-2xl border border-[#00A8E8]/30 shadow-md">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#00A8E8] mb-2">60-Second Executive Summary for Florida Physicians</div>
+                <ul className="space-y-2 text-sm text-slate-200 mb-4">
+                  <li>✓ <strong>98%+ First-Pass Clean Claims:</strong> U.S. AAPC-certified coding review paired with an AI pre-submission double-check.</li>
+                  <li>✓ <strong>5.6%–10% Collection Tiers ($0 Setup):</strong> We work directly inside your existing EHR with zero software migration.</li>
+                  <li>✓ <strong>48-Hour Denial Turnaround:</strong> Every CO/PR/OA denial is investigated and appealed within 48 business hours.</li>
+                </ul>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/consultation" className="inline-block bg-[#0066CC] hover:bg-[#00A8E8] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition">Request Your Free 48-Hr Billing Audit →</Link>
+                  <Link href="/for-providers" className="inline-block bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition">Compare Collection Tiers</Link>
+                </div>
+              </div>
               <div className="mb-8 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
                 <span><strong>Author:</strong> MBMB Editorial &amp; Compliance Review Team</span>
                 <span><strong>Reviewed:</strong> October 15, 2026</span>

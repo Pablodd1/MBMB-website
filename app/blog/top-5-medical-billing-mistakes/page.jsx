@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@UTILS/button'
 
@@ -50,7 +51,7 @@ export default function Top5BillingMistakes() {
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               Medical billing errors cost Miami practices thousands of dollars every year. These five mistakes are the most damaging—and most preventable.
             </p>
-            <Button href="/consultation" text="Get a Free Billing Audit" colors="bg-blue2 text-white hover:bg-blue2/80" />
+            <Button href="/consultation" text="Get a Free Billing Audit" colors="bg-pink2 text-white hover:bg-pink2/80" />
           </div>
         </div>
       </section>
@@ -73,6 +74,9 @@ export default function Top5BillingMistakes() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="lg:grid lg:grid-cols-3 lg:gap-12">
             <article className="lg:col-span-2">
+              <div className="mb-6 rounded-2xl overflow-hidden border border-slate-200 shadow-lg relative h-64 sm:h-80 w-full">
+                <Image src="/raster/authentic/blog-top5-mistakes.jpg" alt="Physician and Practice Manager Reviewing Monthly Billing Audit" fill className="object-cover" priority />
+              </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 Medical billing errors cost Miami practices thousands of dollars every year. A single rejected claim can take 30-45 days to resolve, draining staff hours and delaying revenue. Yet most billing problems stem from preventable mistakes that practices overlook daily.
               </p>
@@ -260,7 +264,7 @@ export default function Top5BillingMistakes() {
                 <p className="text-lg mb-6 opacity-90">Contact Medical Billing Miami Beach for a free practice assessment.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button href="tel:+17866432099" text="Call (786) 643-2099" colors="bg-white text-blue2 hover:bg-gray-100" />
-                  <Button href="/consultation" text="Free Assessment" colors="bg-blue2 text-white hover:bg-blue2/80" />
+                  <Button href="/consultation" text="Free Assessment" colors="bg-pink2 text-white hover:bg-pink2/80" />
                 </div>
               </div>
             </article>

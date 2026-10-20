@@ -80,16 +80,38 @@ export default function BlogIndex() {
   return (
     <main className="bg-[#0a1628] text-white min-h-screen px-4 py-16">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-3">
             MBMB Knowledge Hub · 7 Comprehensive Guides
           </span>
           <h1 className="text-3xl md:text-5xl font-bold mb-4">
             Medical Billing, AI Verification &amp; Legal Bill Review Insights
           </h1>
-          <p className="text-slate-300 text-base md:text-lg">
+          <p className="text-slate-300 text-base md:text-lg mb-6">
             Actionable guides for Florida healthcare providers and legal teams—covering AAPC coding + AI double-check workflows, credentialing, and source-linked medical billing chronologies.
           </p>
+
+          {/* Above-the-Fold Quick Action Bar to Eliminate Blog Index Bounce */}
+          <div className="flex flex-wrap items-center justify-center gap-3 bg-slate-900/90 border border-white/15 rounded-2xl p-4 shadow-lg">
+            <Link
+              href="/for-providers"
+              className="inline-flex items-center gap-2 bg-[#0066CC] hover:bg-[#00A8E8] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition"
+            >
+              <span>For Medical Practices (5.6%–10% RCM) →</span>
+            </Link>
+            <Link
+              href="/for-attorneys#pilot-form"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-[#00A8E8]/40 text-[#00A8E8] text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition"
+            >
+              <span>For Law Firms (1-Case Chronology Pilot) →</span>
+            </Link>
+            <Link
+              href="/consultation"
+              className="inline-flex items-center gap-2 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition"
+            >
+              <span>Request Free 48-Hr Audit</span>
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

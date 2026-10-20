@@ -68,6 +68,9 @@ export default function MiamiMedicaidBilling() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="lg:grid lg:grid-cols-3 lg:gap-12">
             <article className="lg:col-span-2">
+              <div className="mb-6 rounded-2xl overflow-hidden border border-slate-200 shadow-lg relative h-64 sm:h-80 w-full">
+                <Image src="/raster/authentic/blog-medicaid-miami.jpg" alt="Miami Clinic Coordinator Reviewing Florida Medicaid Coverage" fill className="object-cover" priority />
+              </div>
               <div className="mb-8 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
                 <span><strong>Author:</strong> MBMB Editorial &amp; Compliance Review Team</span>
                 <span><strong>Reviewed:</strong> October 15, 2026</span>
