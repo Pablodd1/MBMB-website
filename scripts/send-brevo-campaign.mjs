@@ -1,6 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import dns from 'node:dns';
+
+dns.setDefaultResultOrder('ipv4first');
 
 function loadEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return;
@@ -35,6 +38,8 @@ const args = process.argv.slice(2);
 const campaignArg = (args.find((a) => a.startsWith('--type='))?.split('=')[1] || 'both').toLowerCase();
 const listIdArg = args.find((a) => a.startsWith('--list='))?.split('=')[1] || process.env.BREVO_LIST_ID;
 const dryRun = args.includes('--dry-run');
+const isFollowUp = args.includes('--followup') || !args.includes('--initial');
+const checkOnly = args.includes('--status');
 
 async function brevoRequest(endpoint, options = {}) {
   const res = await fetch(`https://api.brevo.com/v3${endpoint}`, {
@@ -57,6 +62,18 @@ async function brevoRequest(endpoint, options = {}) {
     throw new Error(`Brevo API ${endpoint} failed (${res.status}): ${JSON.stringify(data)}`);
   }
   return data;
+}
+
+async function printRecentCampaigns() {
+  const data = await brevoRequest('/emailCampaigns?limit=5&sort=desc');
+  const campaigns = data?.campaigns || [];
+  console.log('\n=== Recent Brevo Email Campaigns ===');
+  for (const c of campaigns) {
+    const stats = c.statistics?.globalStats || {};
+    console.log(
+      `#${c.id} [${c.status}] "${c.name}" | Subject: "${c.subject}" | Sent: ${stats.sent ?? 0}, Delivered: ${stats.delivered ?? 0}, Opened: ${stats.uniqueViews ?? 0}, Clicked: ${stats.uniqueClicks ?? 0}`
+    );
+  }
 }
 
 async function resolveSender() {
@@ -151,31 +168,57 @@ async function createAndSendCampaign({ name, subject, previewText, templateFile,
 }
 
 async function main() {
+  await printRecentCampaigns();
+  if (checkOnly) return;
+
   const sender = await resolveSender();
   const listIds = await resolveTargetLists();
+  const today = new Date().toISOString().slice(0, 10);
 
   const campaignsToRun = [];
 
   if (campaignArg === 'attorney' || campaignArg === 'both') {
-    campaignsToRun.push({
-      name: `MBMB Attorney Forensic & Chronology Pilot (EN/ES) - ${new Date().toISOString().slice(0, 10)}`,
-      subject:
-        'Complimentary 1-Case Pilot: Medical Billing Chronologies & Forensic EOB Reconciliation | Piloto Gratuito',
-      previewText:
-        'AAPC-certified coders + AI double-check for Florida PI, Med-Mal, and Healthcare attorneys (English & Español).',
-      templateFile: 'brevo-attorney-pilot-en-es.html',
-    });
+    if (isFollowUp) {
+      campaignsToRun.push({
+        name: `MBMB Attorney Follow-Up #2: Case Roll-Up & Duplicate Detection (EN/ES) - ${today}`,
+        subject:
+          'Following Up: Before Your Next Demand or Mediation — Source-Linked Medical Bill Chronologies (Excel + PDF)',
+        previewText:
+          'See how our U.S. AAPC-certified coders catch duplicate lines and reconcile CMS-1500/UB-04 & EOB ledgers in 3–5 days.',
+        templateFile: 'brevo-attorney-followup-en-es.html',
+      });
+    } else {
+      campaignsToRun.push({
+        name: `MBMB Attorney Forensic & Chronology Pilot (EN/ES) - ${today}`,
+        subject:
+          'Complimentary 1-Case Pilot: Medical Billing Chronologies & Forensic EOB Reconciliation | Piloto Gratuito',
+        previewText:
+          'AAPC-certified coders + AI double-check for Florida PI, Med-Mal, and Healthcare attorneys (English & Español).',
+        templateFile: 'brevo-attorney-pilot-en-es.html',
+      });
+    }
   }
 
   if (campaignArg === 'provider' || campaignArg === 'both') {
-    campaignsToRun.push({
-      name: `MBMB Healthcare Provider Audit & AI Double-Check (EN/ES) - ${new Date().toISOString().slice(0, 10)}`,
-      subject:
-        'Human AAPC Coders + AI Pre-Submission Scrubbing: Complimentary 20-Claim Audit | Auditoría Gratuita',
-      previewText:
-        'Catch CPT/ICD-10, modifier, and NCCI bundling errors before claims go out (English & Español).',
-      templateFile: 'brevo-provider-audit-en-es.html',
-    });
+    if (isFollowUp) {
+      campaignsToRun.push({
+        name: `MBMB Provider Follow-Up #2: 3 Quiet Revenue Leaks & 90-Day Benchmark (EN/ES) - ${today}`,
+        subject:
+          'Following Up: The 3 Quiet Billing Leaks Costing South Florida Clinics 12%–18% (+ 90-Day Case Study)',
+        previewText:
+          'How a 4-provider Miami Beach practice cut denials from 18% to 2.4% (+27% collections) inside their existing EHR.',
+        templateFile: 'brevo-provider-followup-en-es.html',
+      });
+    } else {
+      campaignsToRun.push({
+        name: `MBMB Healthcare Provider Audit & AI Double-Check (EN/ES) - ${today}`,
+        subject:
+          'Human AAPC Coders + AI Pre-Submission Scrubbing: Complimentary 20-Claim Audit | Auditoría Gratuita',
+        previewText:
+          'Catch CPT/ICD-10, modifier, and NCCI bundling errors before claims go out (English & Español).',
+        templateFile: 'brevo-provider-audit-en-es.html',
+      });
+    }
   }
 
   const results = [];
