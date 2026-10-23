@@ -40,6 +40,7 @@ const listIdArg = args.find((a) => a.startsWith('--list='))?.split('=')[1] || pr
 const dryRun = args.includes('--dry-run');
 const isFollowUp = args.includes('--followup') || !args.includes('--initial');
 const checkOnly = args.includes('--status');
+const resumePaused = args.includes('--resume');
 
 async function brevoRequest(endpoint, options = {}) {
   const res = await fetch(`https://api.brevo.com/v3${endpoint}`, {
@@ -65,14 +66,55 @@ async function brevoRequest(endpoint, options = {}) {
 }
 
 async function printRecentCampaigns() {
-  const data = await brevoRequest('/emailCampaigns?limit=5&sort=desc');
+  const acc = await brevoRequest('/account');
+  const credits = acc?.plan?.[0]?.credits ?? 0;
+  console.log(`\n=== Brevo Account Plan: ${acc?.plan?.[0]?.type || 'unknown'} | Daily Credits Remaining Today: ${credits} ===`);
+
+  const data = await brevoRequest('/emailCampaigns?limit=6&sort=desc');
   const campaigns = data?.campaigns || [];
-  console.log('\n=== Recent Brevo Email Campaigns ===');
+  console.log('=== Recent Brevo Email Campaigns ===');
   for (const c of campaigns) {
-    const stats = c.statistics?.globalStats || {};
-    console.log(
-      `#${c.id} [${c.status}] "${c.name}" | Subject: "${c.subject}" | Sent: ${stats.sent ?? 0}, Delivered: ${stats.delivered ?? 0}, Opened: ${stats.uniqueViews ?? 0}, Clicked: ${stats.uniqueClicks ?? 0}`
+    const detail = await brevoRequest(`/emailCampaigns/${c.id}`);
+    const cs = detail.statistics?.campaignStats || [];
+    const tot = cs.reduce(
+      (a, x) => ({
+        sent: a.sent + x.sent,
+        delivered: a.delivered + x.delivered,
+        uniqueViews: a.uniqueViews + x.uniqueViews,
+        clickers: a.clickers + x.clickers,
+        uniqueClicks: a.uniqueClicks + x.uniqueClicks,
+      }),
+      { sent: 0, delivered: 0, uniqueViews: 0, clickers: 0, uniqueClicks: 0 }
     );
+    console.log(
+      `#${c.id} [${detail.status}] (Remaining: ${detail.statistics?.remaining ?? 0}) "${c.name}" | Sent: ${tot.sent}, Delivered: ${tot.delivered}, Unique Opens: ${tot.uniqueViews}, Clicks: ${tot.clickers} (${tot.uniqueClicks} unique)`
+    );
+  }
+  return { credits, campaigns };
+}
+
+async function resumeSuspendedCampaigns(campaignIds = [233, 234]) {
+  const acc = await brevoRequest('/account');
+  const credits = acc?.plan?.[0]?.credits ?? 0;
+  if (credits <= 0) {
+    console.log(`\nNo daily credits remaining right now (credits=${credits}). Will resume after next daily reset.`);
+    return;
+  }
+  for (const id of campaignIds) {
+    const detail = await brevoRequest(`/emailCampaigns/${id}`);
+    const remaining = detail?.statistics?.remaining ?? 0;
+    if (detail.status === 'suspended' && remaining > 0) {
+      console.log(`\nResuming suspended Campaign #${id} ("${detail.name}", remaining=${remaining}) with ${credits} available daily credits...`);
+      await brevoRequest(`/emailCampaigns/${id}/status`, {
+        method: 'PUT',
+        body: JSON.stringify({ status: 'queued' }),
+      });
+      await brevoRequest(`/emailCampaigns/${id}/sendNow`, {
+        method: 'POST',
+      });
+      console.log(`  -> Triggered today's batch for Campaign #${id}!`);
+      break;
+    }
   }
 }
 
@@ -169,6 +211,10 @@ async function createAndSendCampaign({ name, subject, previewText, templateFile,
 
 async function main() {
   await printRecentCampaigns();
+  if (resumePaused) {
+    await resumeSuspendedCampaigns([233, 234]);
+    return;
+  }
   if (checkOnly) return;
 
   const sender = await resolveSender();
