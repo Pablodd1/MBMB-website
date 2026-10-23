@@ -65,6 +65,34 @@ const CAMPAIGN_POSTS = [
   },
 ];
 
+const WAVE2_POSTS = [
+  {
+    title: 'Post 6: Modifier 25, 59 & XE/XS — Stopping Surgical & E/M Unbundling Rejections',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/providers-coding-specialist.jpg',
+    text: `🔍 Are Modifier 25, 59, or XE/XS Rejections Quietly Draining Your Specialty Practice?\n\nIn Cardiology, Orthopedics, Pain Management, and Dermatology, NCCI bundling edits and missing modifiers are the #1 trigger for preventable First Coast Medicare (FCSO) and commercial claim denials.\n\nAt Medical Billing Miami Beach (MBMB):\n✅ U.S. AAPC-certified coders verify your operative & clinical chart notes first\n✅ Our AI secondary check flags NCCI unbundling conflicts and LCD/NCD medical-necessity gaps before transmission\n✅ 98%+ first-pass clean claim rate inside your existing EHR\n\n👉 Request a complimentary 20-claim coding & modifier benchmark:\n🔗 https://medicalbillingmb.com/services/medical-coding?utm_source=buffer&utm_medium=social&utm_campaign=coding_modifiers\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalCoding #CPT #ICD10 #AAPCCertified #Orthopedics #Cardiology #MiamiPhysicians #RevenueCycle`,
+  },
+  {
+    title: 'Post 7: 48-Hour Denial Management & Clinical Appeals (Zero Unchecked Write-Offs)',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/providers-workflow-denials.jpg',
+    text: `⏱️ Industry Secret: Up to 65% of Denied Medical Claims Are Never Re-Worked by Traditional Billing Services.\n\nWriting off CO, PR, or OA denials as "uncollectable" without clinical investigation costs South Florida clinics $50,000–$150,000+ every year.\n\nOur 48-Hour Denial Recovery Protocol:\n✅ Every denied line item is logged and categorized within 24 hours\n✅ Root-cause analysis & clinical chart appeal letters submitted within 48 business hours\n✅ Aging 30 / 60 / 90 / 120+ day A/R recovery sweep\n\n🔗 https://medicalbillingmb.com/blog/denial-management-guide?utm_source=buffer&utm_medium=social&utm_campaign=denial_appeals_48h\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#DenialManagement #AccountsReceivable #MedicalBillingMiami #HealthcareRevenue #PracticeOwners #SouthFlorida`,
+  },
+  {
+    title: 'Post 8: Florida Medicaid (AHCA & MMA Plans) Billing for Miami-Dade & Broward Clinics',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/blog-medicaid-miami.jpg',
+    text: `🌴 Billing Florida Medicaid (AHCA Region 11) & MMA Plans Without the Rejections.\n\nMiami-Dade and Broward have the highest Medicaid Managed Medical Assistance enrollment in Florida—including Sunshine Health, Simply Healthcare, Molina, Humana Medical Plan, and Community Care Plan.\n\nWe help Pediatric, OB/GYN, Behavioral Health, and Primary Care clinics:\n✅ Verify straight Medicaid vs. MCO assignment prior to every visit\n✅ Navigate Florida Medicaid fee schedules, prior authorizations & timely filing rules\n✅ Eliminate bilingual front-desk intake errors (English & Español)\n\n🔗 https://medicalbillingmb.com/blog/miami-medicaid-billing?utm_source=buffer&utm_medium=social&utm_campaign=fl_medicaid_mma\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#FloridaMedicaid #MiamiPediatrics #OBGYN #BehavioralHealth #MiamiDadeHealthcare #MedicalBilling`,
+  },
+  {
+    title: 'Post 9: For PI & Med-Mal Paralegals — Catching Duplicate Billing Lines Before Mediation',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/blog-ai-coding-double-check.jpg',
+    text: `⚖️ How Many Hours Does Your Legal Team Spend Reconciling Medical Bills & EOBs Before a Demand Goes Out?\n\nWhen hospital UB-04s, physician CMS-1500s, imaging centers, and anesthesia ledgers overlap, duplicate CPT charges and unreconciled contractual adjustments can slip into your special damages calculation.\n\nMBMB’s AAPC-certified coders + AI double-check deliver a clean, source-linked package in 3–5 business days:\n📊 Editable Excel/CSV + Formatted PDF\n📄 Every line linked to the exact source PDF and page number\n🔍 Duplicate charges & missing date ranges clearly flagged\n\n👉 Try our 1-Case Pilot on your next demand or mediation file:\n🔗 https://medicalbillingmb.com/for-attorneys#pilot-form?utm_source=buffer&utm_medium=social&utm_campaign=legal_paralegal_pilot\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#PersonalInjuryAttorney #Paralegal #LitigationSupport #FloridaLawyers #DemandPackage #MedMal #MiamiLaw`,
+  },
+  {
+    title: 'Post 10: Bilingual Miami Beach Coordination + 24/7 AI Receptionist Front Desk',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/consultation-audit-desk.jpg',
+    text: `🤝 Local Miami Beach Coordination + U.S. AAPC-Certified Fulfillment.\n\nWhether you are a multi-provider medical group looking to cut denials below 2.5%, a launching clinic needing fast CAQH & payer credentialing, or a Florida law firm needing source-linked medical billing chronologies—our team is ready to help.\n\n✅ $0 Setup Fee | 5.6%–10% Collection Tiers\n✅ Works inside your existing EHR\n✅ Bilingual Support (English & Español)\n\nBook your confidential 15-minute consultation today:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=miami_coord_hub\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBillingMiamiBeach #MBMB #MiamiDoctors #FloridaHealthcare #HealthcareConsulting #MiamiBusiness`,
+  },
+];
+
 async function bufferGraphQL(query, variables = {}) {
   const res = await fetch('https://api.buffer.com/graphql', {
     method: 'POST',
@@ -125,7 +153,7 @@ async function createBufferPost({ channelId, service, text, imageUrl, saveToDraf
 
 async function main() {
   const args = process.argv.slice(2);
-  const mode = args.includes('--queue') ? 'queue' : args.includes('--draft') ? 'draft' : 'status';
+  const mode = args.includes('--queue') ? 'queue' : args.includes('--wave2') ? 'wave2' : args.includes('--draft') ? 'draft' : 'status';
 
   const statusData = await bufferGraphQL(
     `query($orgId: OrganizationId!) {
@@ -169,9 +197,10 @@ async function main() {
   if (mode === 'status') return;
 
   const saveToDraft = mode === 'draft';
-  console.log(`\n=== Creating ${CAMPAIGN_POSTS.length} Posts Across Instagram & LinkedIn (mode=${mode}) ===`);
+  const postsToCreate = mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
+  console.log(`\n=== Creating ${postsToCreate.length} Posts Across Instagram & LinkedIn (mode=${mode}) ===`);
 
-  for (const item of CAMPAIGN_POSTS) {
+  for (const item of postsToCreate) {
     for (const [service, channelId] of Object.entries(CHANNELS)) {
       const res = await createBufferPost({
         channelId,
