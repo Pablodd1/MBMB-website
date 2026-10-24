@@ -155,37 +155,37 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose <span className="text-pink2">MBMB</span> for Your Medical Billing?
+              Why Choose <span className="text-[#00A8E8]">MBMB</span> for Your Medical Billing?
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-              Since 2015, we've been Miami's trusted partner in healthcare revenue management. Our team of AAPC-certified specialists combines deep industry knowledge with cutting-edge technology to deliver exceptional results.
+              With 15+ years of experience serving Florida practices, we are Miami&apos;s trusted partner in healthcare revenue cycle management. Our AAPC-certified specialists combine Florida payer expertise with AI-powered claim scrubbing to deliver a 98% clean claim rate.
             </p>
           </div>
 
           {/* 3-Column Benefits Grid */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
-              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">✓</span>
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-[#00A8E8]/50 transition-colors">
+              <div className="w-16 h-16 bg-[#0066CC]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl text-[#00A8E8]">✓</span>
               </div>
-              <h4 className="font-semibold text-xl mb-2">95%+ Clean Claim Rate</h4>
-              <p className="text-gray-400 text-sm">Our rigorous coding and documentation standards ensure minimal claim denials</p>
+              <h4 className="font-semibold text-xl mb-2">98% Clean Claim Rate</h4>
+              <p className="text-gray-400 text-sm">Our rigorous coding and pre-submission scrubbing ensure minimal claim denials</p>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
-              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">$</span>
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-[#00A8E8]/50 transition-colors">
+              <div className="w-16 h-16 bg-[#0066CC]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl text-[#00A8E8]">$</span>
               </div>
               <h4 className="font-semibold text-xl mb-2">No Upfront Costs</h4>
-              <p className="text-gray-400 text-sm">We work on contingency - you only pay when we collect for you</p>
+              <p className="text-gray-400 text-sm">Performance-based model — you only pay when we collect revenue for your practice</p>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-pink2/50 transition-colors">
-              <div className="w-16 h-16 bg-pink2/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 text-center hover:border-[#00A8E8]/50 transition-colors">
+              <div className="w-16 h-16 bg-[#0066CC]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🤖</span>
               </div>
-              <h4 className="font-semibold text-xl mb-2">24/7 AI Assistant</h4>
-              <p className="text-gray-400 text-sm">Multilingual AI chatbot available around the clock to answer patient questions</p>
+              <h4 className="font-semibold text-xl mb-2">24/7 AI &amp; Dedicated Support</h4>
+              <p className="text-gray-400 text-sm">Multilingual support (English, Spanish, Creole) and real-time reporting dashboards</p>
             </div>
           </div>
 
@@ -196,23 +196,23 @@ export default function ServicesPage() {
               <div className="space-y-0 mb-8">
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
                   <span className="text-gray-300">Service Area</span>
-                  <span className="text-white font-semibold">Miami &amp; South Florida</span>
+                  <span className="text-white font-semibold">Miami-Dade, Broward &amp; South Florida</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Response Time</span>
-                  <span className="text-white font-semibold">&lt; 24 Hours</span>
+                  <span className="text-gray-300">Audit Turnaround</span>
+                  <span className="text-white font-semibold">&lt; 48 Hours</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Initial Consultation</span>
-                  <span className="text-green-400 font-semibold">FREE</span>
+                  <span className="text-gray-300">Initial Billing Audit</span>
+                  <span className="text-green-400 font-semibold">100% FREE</span>
                 </div>
                 <div className="flex justify-between items-center py-3">
-                  <span className="text-gray-300">Pricing</span>
-                  <span className="text-white font-semibold">4-8% of Collections</span>
+                  <span className="text-gray-300">Performance Pricing</span>
+                  <span className="text-white font-semibold">5.6% – 10% of Collections</span>
                 </div>
               </div>
-              <Button href="/consultation" text="Schedule Free Consultation" colors="w-full bg-pink2 text-white hover:bg-pink2/80 py-4" />
-              <p className="text-center text-gray-500 text-sm mt-4">No commitment required</p>
+              <Button href="/consultation" text="Schedule Free Consultation" colors="w-full bg-[#0066CC] text-white hover:bg-[#00A8E8] py-4" />
+              <p className="text-center text-gray-500 text-sm mt-4">No long-term lock-in · Cancel anytime with 30 days notice</p>
             </div>
           </div>
         </div>

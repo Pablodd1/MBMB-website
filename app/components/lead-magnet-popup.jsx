@@ -1,30 +1,36 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 
 export default function LeadMagnetPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [showCount, setShowCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const hasSeenPopup = localStorage.getItem('mbmb_lead_magnet_seen');
-    const lastShown = localStorage.getItem('mbmb_lead_magnet_last_shown');
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
-
-    if (!hasSeenPopup || (lastShown && now - parseInt(lastShown) > oneDay)) {
-      setTimeout(() => {
+    if (!hasSeenPopup) {
+      const timer = setTimeout(() => {
         setIsOpen(true);
-        localStorage.setItem('mbmb_lead_magnet_last_shown', now.toString());
-      }, 5000);
+      }, 25000); // Show after 25 seconds of engaged reading, not immediately
+      return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+    setLoading(true);
+    try {
+      await fetch('/my-api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+    } catch (_) {
+      // Fallback silently so user still gets confirmation
+    } finally {
+      setLoading(false);
       setSubmitted(true);
       localStorage.setItem('mbmb_lead_magnet_seen', 'true');
       setTimeout(() => {
@@ -41,97 +47,85 @@ export default function LeadMagnetPopup() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closePopup}></div>
-      
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
-        <button 
+
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
+        <button
           onClick={closePopup}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 z-10"
+          aria-label="Close checklist offer"
+          className="absolute top-3 right-3 text-white/80 hover:text-white z-10 p-1"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div className="bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-white">
+        <div className="bg-gradient-to-r from-[#0a1628] to-[#0066CC] p-6 text-white">
           <div className="flex items-center gap-3">
-            <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
+              <svg className="w-7 h-7 text-[#00A8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
             <div>
-              <h2 className="text-xl font-bold">FREE DOWNLOAD</h2>
-              <p className="text-white/80 text-sm">2026 Florida Billing Compliance Checklist</p>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">Free Practice Resource</span>
+              <h2 className="text-lg font-bold leading-snug">2026 Florida Billing &amp; Telehealth Compliance Checklist</h2>
             </div>
           </div>
         </div>
 
         <div className="p-6">
           {submitted ? (
-            <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-6">
+              <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-              <p className="text-gray-600">Check your email for the compliance checklist.</p>
+              <h3 className="text-lg font-bold text-slate-900 mb-1">Checklist Sent!</h3>
+              <p className="text-slate-600 text-sm">Check your inbox for the 2026 Florida Billing &amp; Telehealth Checklist.</p>
             </div>
           ) : (
             <>
-              <div className="space-y-3 mb-6">
-                <p className="text-gray-700 text-sm">
-                  Ensure your practice meets all <strong>HIPAA</strong> and <strong>Florida</strong> requirements with our comprehensive checklist.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    HIPAA Privacy Rule updates
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Florida Medicaid requirements
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    2026 coding changes
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Security risk assessment checklist
-                  </li>
-                </ul>
-              </div>
+              <p className="text-slate-700 text-sm mb-4">
+                Protect your Miami practice against preventable claim denials with our updated 2026 audit guide:
+              </p>
+              <ul className="text-sm text-slate-600 space-y-2 mb-5">
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  Florida Telehealth POS Code 02/10 &amp; Modifier 95 rules
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  Florida Medicaid (AHCA) &amp; FCSO Medicare updates
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  Top 10 CPT/ICD-10 denial triggers &amp; HIPAA BAA checklist
+                </li>
+              </ul>
 
               <form onSubmit={handleSubmit}>
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="Enter your practice email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent mb-3"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066CC] text-slate-900 text-sm mb-3"
                 />
-                <button 
+                <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-500/30 transition-all"
+                  disabled={loading}
+                  className="w-full bg-[#0066CC] hover:bg-[#1A3A5F] text-white py-3 rounded-lg font-bold text-sm transition-all disabled:opacity-50"
                 >
-                  Get Free Checklist →
+                  {loading ? 'Sending...' : 'Send Me the Free Checklist →'}
                 </button>
               </form>
-              
-              <p className="text-xs text-gray-500 text-center mt-3">
-                No spam. Unsubscribe anytime.
+
+              <p className="text-xs text-slate-400 text-center mt-3">
+                100% confidential. Unsubscribe anytime.
               </p>
             </>
           )}

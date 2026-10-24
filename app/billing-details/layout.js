@@ -1,16 +1,12 @@
-
 export const metadata = {
-  // metadataBase: new URL('https://medicalbillingmb.com/'),
-  title: 'Consultation Form - Medical Billing Miami Beach',
-  keywords: 'Medical Billing, Medical Coding, Medical Credentialling, Healthcare, Miami Florida, USA, consultation, Services , form , free',
-  description: 'Expert medical billing, coding, and credentialing services in Miami, Florida. Trust our specialists for accurate healthcare administration.',
-  generator: 'Next.js',
-  applicationName: 'MBMB',
-  creator: 'Design and Developed By M Talha | Founder of MyAbabeel',
+  title: 'Practice Billing Details Onboarding',
+  keywords: 'Medical Billing Onboarding Miami, Practice Billing Setup, Healthcare Revenue Cycle Onboarding, MBMB Client Portal',
+  description: 'Submit your practice billing details for fast 5-7 business day onboarding with Medical Billing Miami Beach (MBMB).',
+  creator: 'Medical Billing Miami Beach (MBMB)',
   alternates: {
-    canonical: 'https://medicalbillingmb.com'
+    canonical: 'https://medicalbillingmb.com/billing-details'
   }
-}
+};
 
 export default function Layout({ children }) {
   return children;

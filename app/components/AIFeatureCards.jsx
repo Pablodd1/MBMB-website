@@ -11,8 +11,8 @@ import ScrollReveal from './ScrollReveal';
 
 const features = [
   {
-    title: 'AI Denial Prediction',
-    description: 'Our system predicts claim denials before submission, reducing rejections by up to 40%. Machine learning models trained on millions of Florida claims.',
+    title: 'Human Review + AI Double-Check',
+    description: 'Our experienced AAPC-certified specialists read every clinical note first, and our AI engine double-checks every CPT/ICD-10 code and modifier to confirm 100% accuracy before submission.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -22,12 +22,12 @@ const features = [
       </svg>
     ),
     accent: '#00c8b1',
-    stat: '40%',
-    statLabel: 'Fewer Denials',
+    stat: '2x',
+    statLabel: 'Human + AI Verified',
   },
   {
-    title: 'Smart Coding Assistant',
-    description: 'AI-powered CPT/ICD-10 code suggestions with 99.2% accuracy. Real-time coding guidance that learns from your specialty and payer mix.',
+    title: 'AI Pre-Claim Denial Scrubbing',
+    description: 'After our coders prepare your claim, our machine learning engine cross-checks millions of Florida payer rules (Medicare, Medicaid, BCBS, Aetna, UHC) to catch rejection triggers in seconds.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" />
@@ -35,13 +35,13 @@ const features = [
         <line x1="10" y1="12" x2="14" y2="12" strokeDasharray="2 2" />
       </svg>
     ),
-    accent: '#ff6b35',
-    stat: '99.2%',
-    statLabel: 'Accuracy',
+    accent: '#00A8E8',
+    stat: '98%+',
+    statLabel: 'Clean Claim Rate',
   },
   {
-    title: 'Revenue Intelligence Dashboard',
-    description: 'Real-time analytics powered by machine learning. Track AR aging, denial patterns, and revenue trends — all in one intelligent dashboard.',
+    title: '24/7 Revenue & A/R Intelligence',
+    description: 'Continuous AI monitoring paired with dedicated human A/R specialists who aggressively follow up on underpaid or aging claims so not a single dollar is left behind.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 3v18h18" />
@@ -52,8 +52,8 @@ const features = [
       </svg>
     ),
     accent: '#00c8b1',
-    stat: '24/7',
-    statLabel: 'Monitoring',
+    stat: '+30%',
+    statLabel: 'Revenue Recovery',
   },
 ];
 
@@ -195,13 +195,13 @@ export default function AIFeatureCards() {
                 <path d="M2 17l10 5 10-5" />
                 <path d="M2 12l10 5 10-5" />
               </svg>
-              <span className="text-[#00c8b1] text-sm font-medium tracking-wide">AI-POWERED TECHNOLOGY</span>
+              <span className="text-[#00c8b1] text-sm font-medium tracking-wide">EXPERT CODERS + AI DOUBLE-VERIFICATION</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Intelligence That <span style={{ color: '#ff6b35' }}>Pays</span>
+              Human Experience. <span className="text-[#00A8E8]">AI Confirmation.</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Machine learning models trained on millions of claims. Predictive analytics that catch errors before they cost you money.
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+              Our seasoned AAPC-certified specialists read every chart and claim with real-world expertise — and our AI engine double-checks every code, modifier, and payer rule before submission.
             </p>
           </div>
         </ScrollReveal>

@@ -103,28 +103,28 @@ const Consultation = () => {
                 </div>
                 <div className="my-8 ">
                     <h2 className="text-xl font-semibold mb-4">Consultation Form</h2>
-                    <form id='consultation' onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4  font-sans">
+                    <form id='consultation' onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 font-sans">
                         <div>
                             <label htmlFor="fullName" className="block mb-1">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" value={query.fullName} onChange={handleChange} placeholder="Full Name" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                            <input type="text" id="fullName" name="fullName" value={query.fullName} onChange={handleChange} placeholder="Full Name" className="w-full px-4 py-2.5 bg-white text-slate-900 placeholder:text-slate-400 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
                             {formErrors.fullName && <p className="text-red-500 mt-1">{formErrors.fullName}</p>}
                         </div>
                         <div>
                             <label htmlFor="email" className="block mb-1">Email</label>
-                            <input type="email" id="email" name="email" value={query.email} onChange={handleChange} placeholder="Email" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                            <input type="email" id="email" name="email" value={query.email} onChange={handleChange} placeholder="Email" className="w-full px-4 py-2.5 bg-white text-slate-900 placeholder:text-slate-400 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
                             {formErrors.email && <p className="text-red-500 mt-1">{formErrors.email}</p>}
                         </div>
-                        <div>
+                        <div className="md:col-span-2">
                             <label htmlFor="practiceName" className="block mb-1">Practice Name</label>
-                            <input type="text" id="practiceName" name="practiceName" value={query.practiceName} onChange={handleChange} placeholder="Practice Name" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                            <input type="text" id="practiceName" name="practiceName" value={query.practiceName} onChange={handleChange} placeholder="Practice Name" className="w-full px-4 py-2.5 bg-white text-slate-900 placeholder:text-slate-400 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
                             {formErrors.practiceName && <p className="text-red-500 mt-1">{formErrors.practiceName}</p>}
                         </div>
-                        <div className="col-span-2 ">
+                        <div className="md:col-span-2">
                             <label htmlFor="message" className="block mb-1">Message (optional)</label>
-                            <textarea id="message" name="message" value={query.message} onChange={handleChange} rows="4" placeholder="Message" className=" text-black w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                            <textarea id="message" name="message" value={query.message} onChange={handleChange} rows="4" placeholder="Message" className="bg-white text-slate-900 placeholder:text-slate-400 w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea>
                         </div>
-                        <div className="col-span-2 flex py-6">
-                            <button type="submit" className="w-full max-w-sm mx-auto bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>
+                        <div className="md:col-span-2 flex py-6">
+                            <button type="submit" className="w-full max-w-sm mx-auto bg-blue-500 text-white py-2.5 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>
                         </div>
                     </form>
                 </div>

@@ -46,10 +46,10 @@ export default function GoogleCalendarBooking() {
             date: date.toISOString().split('T')[0],
             dayName: date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }),
             slots: [
-              { time: '4:00 PM', available: Math.random() > 0.3 },
-              { time: '4:30 PM', available: Math.random() > 0.3 },
-              { time: '5:00 PM', available: Math.random() > 0.3 },
-              { time: '5:30 PM', available: Math.random() > 0.3 }
+              { time: '10:00 AM', available: true },
+              { time: '11:30 AM', available: true },
+              { time: '2:00 PM', available: true },
+              { time: '4:00 PM', available: true }
             ]
           });
         }
@@ -93,16 +93,17 @@ export default function GoogleCalendarBooking() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="group"
+        className="fixed bottom-6 right-6 z-50 group"
+        aria-label="Book Free Billing Audit"
       >
-        <span className="absolute inset-0 rounded-full bg-pink-500/20 animate-ping" />
-        <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 text-white shadow-xl flex items-center justify-center group-hover:shadow-pink-500/50 transition-all duration-300 group-hover:scale-110 border-2 border-white/30">
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <span className="absolute inset-0 rounded-full bg-[#0066CC]/20 animate-ping" />
+        <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#0066CC] to-[#1A3A5F] text-white shadow-xl flex items-center justify-center group-hover:shadow-[#0066CC]/50 transition-all duration-300 group-hover:scale-110 border-2 border-white/30">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
         </div>
-        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs font-semibold text-pink-600 whitespace-nowrap bg-white/90 px-2 py-0.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          Book Now
+        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs font-semibold text-[#0066CC] whitespace-nowrap bg-white/95 px-2 py-0.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          Book Audit
         </span>
       </button>
     );
@@ -117,12 +118,12 @@ export default function GoogleCalendarBooking() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">You're Booked!</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">You&apos;re Booked!</h3>
           <p className="text-gray-600 mb-2">Check your email for confirmation.</p>
-          <p className="text-sm text-gray-500 mb-6">We've sent a Google Meet link and calendar invite to {formData.email}</p>
+          <p className="text-sm text-gray-500 mb-6">We&apos;ve sent a Google Meet link and calendar invite to {formData.email}</p>
           <button
             onClick={() => { setIsOpen(false); setSuccess(false); }}
-            className="w-full py-3 bg-pink-600 text-white rounded-xl font-semibold hover:bg-pink-700 transition-colors"
+            className="w-full py-3 bg-[#0066CC] text-white rounded-xl font-semibold hover:bg-[#1A3A5F] transition-colors"
           >
             Close
           </button>
@@ -135,11 +136,11 @@ export default function GoogleCalendarBooking() {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
       <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-pink-600 to-pink-800 text-white px-8 py-6 rounded-t-3xl">
+        <div className="bg-gradient-to-r from-[#0a1628] to-[#0066CC] text-white px-8 py-6 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold">Book Your Free Billing Assessment</h3>
-              <p className="text-pink-100 text-sm mt-1">30 minutes · Google Meet · No obligation</p>
+              <p className="text-blue-100 text-sm mt-1">30 minutes · Google Meet · No obligation</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
