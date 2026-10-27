@@ -93,6 +93,19 @@ const WAVE2_POSTS = [
   },
 ];
 
+async function bufferMCP(method, params = {}) {
+  const res = await fetch('https://mcp.buffer.com/mcp', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${BUFFER_API_KEY}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json, text/event-stream',
+    },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
+  });
+  return res.json();
+}
+
 async function bufferGraphQL(query, variables = {}) {
   const res = await fetch('https://api.buffer.com/graphql', {
     method: 'POST',
@@ -153,7 +166,15 @@ async function createBufferPost({ channelId, service, text, imageUrl, saveToDraf
 
 async function main() {
   const args = process.argv.slice(2);
-  const mode = args.includes('--queue') ? 'queue' : args.includes('--wave2') ? 'wave2' : args.includes('--draft') ? 'draft' : 'status';
+  const mode = args.includes('--queue')
+    ? 'queue'
+    : args.includes('--wave2')
+      ? 'wave2'
+      : args.includes('--retry-failed')
+        ? 'retry-failed'
+        : args.includes('--draft')
+          ? 'draft'
+          : 'status';
 
   const statusData = await bufferGraphQL(
     `query($orgId: OrganizationId!) {
@@ -164,8 +185,9 @@ async function main() {
         service
         type
         isQueuePaused
+        isDisconnected
       }
-      posts(input: { organizationId: $orgId }, first: 12) {
+      posts(input: { organizationId: $orgId }, first: 40) {
         edges {
           node {
             id
@@ -184,17 +206,67 @@ async function main() {
   const channels = statusData?.data?.channels || [];
   console.log('\n=== Connected Buffer Channels ===');
   for (const ch of channels) {
-    console.log(`- [${ch.service.toUpperCase()}] ${ch.displayName} (ID: ${ch.id}, Queue Paused: ${ch.isQueuePaused})`);
+    console.log(
+      `- [${ch.service.toUpperCase()}] ${ch.displayName} (ID: ${ch.id}, Disconnected: ${ch.isDisconnected}, Queue Paused: ${ch.isQueuePaused})`
+    );
   }
 
   const posts = statusData?.data?.posts?.edges?.map((e) => e.node) || [];
-  console.log('\n=== Recent Buffer Posts ===');
-  for (const p of posts.slice(0, 6)) {
+  console.log(`\n=== All Recent & Scheduled Buffer Posts (${posts.length}) ===`);
+  for (const p of posts) {
     const firstLine = (p.text || '').split('\n')[0];
-    console.log(`- [${p.status}] Channel: ${p.channelId} | Due/Sent: ${p.sentAt || p.dueAt || 'Draft'} | "${firstLine}"`);
+    const chLabel = p.channelId === CHANNELS.instagram ? 'IG (@medicalbillingmiami)' : 'LI (Medical Billing MB)';
+    console.log(`- [${p.status.toUpperCase()}] ${chLabel} | ID: ${p.id} | Due/Sent: ${p.sentAt || p.dueAt || 'Draft'} | "${firstLine}"`);
   }
 
   if (mode === 'status') return;
+
+  if (mode === 'retry-failed') {
+    const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS];
+    const erroredPosts = posts.filter((p) => p.status === 'error' || p.status === 'failed');
+    if (erroredPosts.length === 0) {
+      console.log('\nNo failed/error posts found in Buffer.');
+      return;
+    }
+    console.log(`\n=== Retrying ${erroredPosts.length} Failed Posts in Place via Buffer MCP (edit_post) ===`);
+    for (const errPost of erroredPosts) {
+      const firstLine = (errPost.text || '').split('\n')[0];
+      const matched = allDefinedPosts.find((item) => item.text.split('\n')[0] === firstLine);
+      const service = errPost.channelId === CHANNELS.instagram ? 'instagram' : 'linkedin';
+      const imageUrl = matched?.imageUrl || 'https://medicalbillingmb.com/raster/authentic/providers-workflow-denials.jpg';
+
+      const editRes = await bufferMCP('tools/call', {
+        name: 'edit_post',
+        arguments: {
+          postId: errPost.id,
+          text: errPost.text,
+          mode: 'addToQueue',
+          assets: [{ image: { url: imageUrl, thumbnailUrl: imageUrl } }],
+          ...(service === 'instagram'
+            ? {
+                metadata: {
+                  instagram: {
+                    type: 'post',
+                    shouldShareToFeed: true,
+                  },
+                },
+              }
+            : {}),
+        },
+      });
+
+      const contentText = editRes?.result?.content?.[0]?.text || '';
+      if (!editRes?.result?.isError && contentText.startsWith('{')) {
+        const updated = JSON.parse(contentText);
+        console.log(
+          `  RE-SCHEDULED IN PLACE [${service.toUpperCase()}] "${firstLine}" -> Post ID: ${updated.id} (status: ${updated.status}, dueAt: ${updated.dueAt})`
+        );
+      } else {
+        console.log(`  WARN [${service.toUpperCase()}] "${firstLine}" ->`, JSON.stringify(editRes));
+      }
+    }
+    return;
+  }
 
   const saveToDraft = mode === 'draft';
   const postsToCreate = mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
