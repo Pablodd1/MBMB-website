@@ -93,6 +93,39 @@ const WAVE2_POSTS = [
   },
 ];
 
+const WAVE3_POSTS = [
+  {
+    title: 'Post 11: 5 Most Costly Medical Billing Mistakes in Miami Practices (Blog Guide)',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/blog-top5-mistakes.jpg',
+    text: `⚠️ Are These 5 Common Billing Mistakes Quietly Costing Your Miami Practice $50,000+ a Year?\n\nEven busy clinics with steady patient volume lose 12%–18% of collectable revenue to preventable workflow gaps:\n1️⃣ Front-desk eligibility & copay verification misses (especially HMO/MMA plans)\n2️⃣ Undocumented Modifier 25 & 59 usage triggering NCCI edits\n3️⃣ Delayed ERA/835 reconciliation letting CO/OA denials age past timely filing\n4️⃣ Under-coding E/M levels out of audit fear instead of coding to clinical documentation\n5️⃣ Lapsed CAQH ProView re-attestations freezing commercial reimbursements\n\nRead our complete South Florida guide & checklist:\n🔗 https://medicalbillingmb.com/blog/top-5-medical-billing-mistakes?utm_source=buffer&utm_medium=social&utm_campaign=top5_mistakes_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBilling #PracticeManagement #MiamiPhysicians #RevenueCycle #HealthcareFinance #AAPCCertified #SouthFloridaDoctors`,
+  },
+  {
+    title: 'Post 12: Medical Billing 101 — Complete Executive Guide for Florida Physicians',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/blog-medical-billing-101.jpg',
+    text: `📘 Medical Billing 101: The 60-Second Executive Benchmark for Miami Doctors & Clinic Owners.\n\nHow does your practice compare against healthy South Florida revenue cycle benchmarks?\n✅ First-Pass Clean Claim Rate: 98%+ (Industry avg: 75%–85%)\n✅ Days in Accounts Receivable (A/R): Under 28 days\n✅ Denial Resolution Turnaround: 24–48 business hours\n✅ Transparent Collection Tiers: 5.6%–10% ($0 setup fee, zero EHR migration)\n\nExplore our full guide on how U.S. AAPC-certified coders + AI pre-submission scrubbing protect your bottom line:\n🔗 https://medicalbillingmb.com/blog/medical-billing-101?utm_source=buffer&utm_medium=social&utm_campaign=billing_101_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBilling101 #MiamiDoctors #ClinicOwners #PrivatePractice #HealthcareRCM #MedicalCoding #MiamiBeach`,
+  },
+  {
+    title: 'Post 13: Forensic Charge-to-Balance EOB Reconciliation for Florida Trial Attorneys',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/attorneys-legal-chronology.jpg',
+    text: `⚖️ Going Into Mediation or Preparing a Personal Injury Demand Package in Florida?\n\nDefense adjusters scrutinize every CPT line item, contractual adjustment, and overlapping hospital/physician bill. Handing over raw, unreconciled ledgers weakens your special damages presentation.\n\nMBMB’s U.S. AAPC-certified coders + AI verification build litigation-ready billing packages in 3–5 business days:\n✅ Source-Linked Chronology (every charge cited to the exact PDF & page)\n✅ Duplicate & Unbundled Charge Detection\n✅ Clear Table Separating Total Billed, Adjustments, Paid & Net Open Balance (Excel + PDF)\n\n👉 Request a Sample Deliverable or 1-Case Pilot:\n🔗 https://medicalbillingmb.com/for-attorneys?utm_source=buffer&utm_medium=social&utm_campaign=attorney_forensic_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#FloridaTrialLawyers #PersonalInjuryLaw #MedMal #LitigationSupport #Paralegal #MiamiLawFirms #SpecialDamages`,
+  },
+  {
+    title: 'Post 14: End-to-End Revenue Cycle Management (RCM) Inside Your Existing EHR',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/service-rcm-hero.jpg',
+    text: `🔄 Full-Lifecycle Revenue Cycle Management — Without Switching Your EHR.\n\nSwitching billing teams shouldn't disrupt your front desk or clinical charting. MBMB plugs directly into eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, NextGen, DrChrono, and 25+ EHR platforms:\n\n🔹 Real-Time Eligibility & Prior Auth Verification\n🔹 Daily AAPC Coding + AI Pre-Submission Scrubbing\n🔹 Electronic 837 Claim Submission & Daily 835 ERA Posting\n🔹 48-Hour Clinical Denial Appeals & Patient Statement Support\n\nSee how our 6-step RCM workflow increases net collections:\n🔗 https://medicalbillingmb.com/services/revenue-cycle-management?utm_source=buffer&utm_medium=social&utm_campaign=rcm_lifecycle_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#RevenueCycleManagement #RCM #EHR #MedicalBillingMiami #HealthcareOperations #PracticeGrowth #SouthFloridaHealthcare`,
+  },
+  {
+    title: 'Post 15: Launching a New Clinic in South Florida? Fast-Track Payer Credentialing',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/home-credentialing-doctor.jpg',
+    text: `🏥 Opening a New Medical Practice or Adding a Provider in Miami-Dade, Broward, or Palm Beach?\n\nCredentialing bottlenecks are the #1 reason new clinics face 90–120 day cash-flow gaps. Our dedicated Florida enrollment specialists handle every detail from day one:\n\n✅ NPI Type 1 & Type 2 + CAQH ProView Setup & Quarterly Attestations\n✅ First Coast Medicare (FCSO) PECOS Enrollment\n✅ Florida Medicaid (AHCA) & MMA Plans (Sunshine, Simply, Molina)\n✅ Major Commercial Payers + ERA/EFT Direct Deposit Linkage\n\nStart billing cleanly from your very first patient:\n🔗 https://medicalbillingmb.com/blog/florida-provider-credentialing-guide?utm_source=buffer&utm_medium=social&utm_campaign=credentialing_guide_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#ProviderCredentialing #NewMedicalPractice #FloridaMedicaid #MedicarePECOS #CAQH #MiamiHealthcare #DoctorLife`,
+  },
+  {
+    title: 'Post 16: Bilingual Atención en Español & English — Free 20-Claim Audit',
+    imageUrl: 'https://medicalbillingmb.com/raster/authentic/contact-miami-coord-hub.jpg',
+    text: `🌎 Atención Directa en Miami Beach (English & Español) + U.S. AAPC-Certified Coders.\n\nWant to see exactly where your practice is losing collectable revenue before committing to anything?\n\nRequest our complimentary 20-Claim Revenue & Coding Benchmark:\n📊 We review 20 recent encounters/denials from your EHR\n🔍 We flag missed modifiers (-25, -59, -95), under-coded E/M visits, and payer underpayments\n💰 You receive a clear, actionable recovery report within 48 hours\n\nBook your 15-minute discovery call today:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=audit_20claim_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBillingMiamiBeach #MBMB #MedicosEnMiami #SouthFloridaClinics #MedicalCodingAudit #HealthcareMiami`,
+  },
+];
+
 async function bufferMCP(method, params = {}) {
   const res = await fetch('https://mcp.buffer.com/mcp', {
     method: 'POST',
@@ -170,11 +203,13 @@ async function main() {
     ? 'queue'
     : args.includes('--wave2')
       ? 'wave2'
-      : args.includes('--retry-failed')
-        ? 'retry-failed'
-        : args.includes('--draft')
-          ? 'draft'
-          : 'status';
+      : args.includes('--wave3')
+        ? 'wave3'
+        : args.includes('--retry-failed')
+          ? 'retry-failed'
+          : args.includes('--draft')
+            ? 'draft'
+            : 'status';
 
   const statusData = await bufferGraphQL(
     `query($orgId: OrganizationId!) {
@@ -222,7 +257,7 @@ async function main() {
   if (mode === 'status') return;
 
   if (mode === 'retry-failed') {
-    const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS];
+    const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS, ...WAVE3_POSTS];
     const erroredPosts = posts.filter((p) => p.status === 'error' || p.status === 'failed');
     if (erroredPosts.length === 0) {
       console.log('\nNo failed/error posts found in Buffer.');
@@ -269,7 +304,7 @@ async function main() {
   }
 
   const saveToDraft = mode === 'draft';
-  const postsToCreate = mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
+  const postsToCreate = mode === 'wave3' ? WAVE3_POSTS : mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
   console.log(`\n=== Creating ${postsToCreate.length} Posts Across Instagram & LinkedIn (mode=${mode}) ===`);
 
   for (const item of postsToCreate) {
