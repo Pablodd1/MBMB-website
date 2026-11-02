@@ -121,8 +121,36 @@ const WAVE3_POSTS = [
   },
   {
     title: 'Post 16: Bilingual Atención en Español & English — Free 20-Claim Audit',
-    imageUrl: 'https://medicalbillingmb.com/raster/authentic/contact-miami-coord-hub.jpg',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-4-split-collage.jpg',
     text: `🌎 Atención Directa en Miami Beach (English & Español) + U.S. AAPC-Certified Coders.\n\nWant to see exactly where your practice is losing collectable revenue before committing to anything?\n\nRequest our complimentary 20-Claim Revenue & Coding Benchmark:\n📊 We review 20 recent encounters/denials from your EHR\n🔍 We flag missed modifiers (-25, -59, -95), under-coded E/M visits, and payer underpayments\n💰 You receive a clear, actionable recovery report within 48 hours\n\nBook your 15-minute discovery call today:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=audit_20claim_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBillingMiamiBeach #MBMB #MedicosEnMiami #SouthFloridaClinics #MedicalCodingAudit #HealthcareMiami`,
+  },
+];
+
+const WAVE4_STYLED_POSTS = [
+  {
+    title: 'Post 17 [Style 1 - Editorial Magazine Overlay]: Behind-the-Desk Miami Coding Audit Story',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-1-editorial-overlay.jpg',
+    text: `Last week, a 3-physician clinic in Miami-Dade sent us 20 recent EOBs to review.\n\nOn paper, their previous biller told them their collection rate was "fine."\n\nWithin 40 minutes, our AAPC-certified coder found $4,820 in unpaid procedural line items from a single month. Every time an office visit (99214) was billed alongside an in-office procedure, the claim went out without Modifier 25 or the right NCCI unbundling support. When First Coast Medicare and Florida Blue denied the second line item, the old billing team simply wrote it off.\n\nThat's why every claim we touch goes through a U.S. AAPC-certified human coder first, and an AI pre-submission double-check second—bringing first-pass clean claims to 98.4%.\n\nWant us to look at 20 of your recent claims—free and confidential?\n\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=style1_editorial_audit\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MiamiDoctors #MedicalBillingMiami #PracticeOwners #HealthcareFinance #SouthFloridaMedicine`,
+  },
+  {
+    title: 'Post 18 [Style 2 - FinTech ROI Scorecard]: 90-Day Miami Practice Benchmark ($142K Net Recovery)',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-2-data-infographic.jpg',
+    text: `THE REAL COST OF AN 18% DENIAL RATE (4-Provider Miami Practice):\n\n• Monthly Billed Volume: $85,000\n• Unworked / Timed-Out Denials: -$10,580 / mo\n• Annual Preventable Revenue Loss: -$127,000 / yr\n\n————————————————————\n\nAFTER 90 DAYS WITH MBMB (Inside Their Existing EHR):\n\n• First-Pass Clean Claim Rate: 98.4%\n• Denial Rate After AAPC + AI Scrubbing: 2.4%\n• Denial Appeal Turnaround: Under 48 Hours\n• Net Annualized Recovery: +$142,000 / yr\n• Software Migration Cost: $0\n\n————————————————————\n\nHow much of your earned revenue is sitting in 60+ day A/R right now? Find out with a 48-hour benchmark audit:\n\n🔗 https://medicalbillingmb.com/for-providers?utm_source=buffer&utm_medium=social&utm_campaign=style2_roi_scorecard\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#HealthcareROI #MedicalPracticeManagement #MiamiBeach #AAPCCertified #RCM`,
+  },
+  {
+    title: 'Post 19 [Style 3 - Minimalist Billboard Poster]: 65% of Denied Claims Are Never Appealed',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-3-minimal-billboard.jpg',
+    text: `Most medical practices don't have a "patient volume" problem.\nThey have a silent write-off problem.\n\nUp to 65% of denied medical claims are never appealed by traditional billing companies. It is faster for a volume-based biller to chase the easy 80% and quietly write off your hardest 20% as "uncollectable."\n\nThose "uncollectable" claims are your profit margin.\n\nAt Medical Billing Miami Beach, we don't write off a single CO, PR, or OA denial without a clinical chart investigation and a 48-hour appeal.\n\n• We work inside your existing EHR.\n• We charge $0 setup fees.\n• We only get paid when you collect (5.6%–10%).\n\nStop funding payer profits with preventable write-offs.\n\n🔗 https://medicalbillingmb.com/blog/denial-management-guide?utm_source=buffer&utm_medium=social&utm_campaign=style3_billboard_denials\n📞 (786) 643-2099\n\n#PrivatePractice #MiamiHealthcare #RevenueCycle #MedicalCoding #DoctorLife`,
+  },
+  {
+    title: 'Post 20 [Style 4 - Split-Screen Photo + Action Card]: U.S. AAPC Coders + AI Double-Check',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-4-split-collage.jpg',
+    text: `Q: "If we switch our medical billing to MBMB, do we have to change our EHR or retrain our front desk?"\n\nA: No. Zero software migration.\n\nOur U.S. AAPC-certified coders and billing specialists plug directly into your current system—whether you run eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, NextGen, or DrChrono.\n\nQ: "How fast can you spot where we're losing money?"\n\nA: Within 48 hours. We pull a sample of 20 recent encounters and EOBs, run our human coder + AI double-check, and hand you a plain-English report showing every missed modifier, under-coded visit, and recoverable denial.\n\nBook your complimentary 20-Claim Audit today:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=style4_split_card\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MiamiPhysicians #FloridaHealthcare #MedicalBillingServices #ClinicManagement #MBMB`,
+  },
+  {
+    title: 'Post 21 [Style 5 - 3D Glassmorphism UI Card]: Turning Denied CO-50 Claims Into Paid 98.4% Clean Claims',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style-5-3d-glass-ui.jpg',
+    text: `EN | For South Florida Physicians & Law Firms:\nTurning a "DENIED CO-50" rejection into a paid claim requires clinical chart evidence, exact NCCI modifier logic, and relentless 48-hour follow-up. We combine local Miami Beach coordination with U.S. AAPC-certified coders and AI pre-submission verification—delivering 98.4% clean claims for clinics and 3–5 day source-linked billing chronologies for trial attorneys.\n\nES | Para Médicos y Abogados en el Sur de la Florida:\nTransformamos reclamos rechazados en ingresos cobrados en 48 horas. Nuestro equipo certificado por la AAPC en EE. UU., respaldado por verificación de Inteligencia Artificial, trabaja directamente dentro de su EHR actual sin costo de instalación ($0 setup fee, tarifas transparentes del 5.6% al 10%).\n\n📍 Miami Beach, FL | 📞 (786) 643-2099\n🔗 https://medicalbillingmb.com/services/medical-coding?utm_source=buffer&utm_medium=social&utm_campaign=style5_3d_glass_ui\n\n#MedicosEnMiami #MiamiHealthcare #MedicalBillingMiamiBeach #AbogadosMiami #SouthFloridaDoctors`,
   },
 ];
 
@@ -205,11 +233,13 @@ async function main() {
       ? 'wave2'
       : args.includes('--wave3')
         ? 'wave3'
-        : args.includes('--retry-failed')
-          ? 'retry-failed'
-          : args.includes('--draft')
-            ? 'draft'
-            : 'status';
+        : args.includes('--wave4')
+          ? 'wave4'
+          : args.includes('--retry-failed')
+            ? 'retry-failed'
+            : args.includes('--draft')
+              ? 'draft'
+              : 'status';
 
   const statusData = await bufferGraphQL(
     `query($orgId: OrganizationId!) {
@@ -257,7 +287,7 @@ async function main() {
   if (mode === 'status') return;
 
   if (mode === 'retry-failed') {
-    const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS, ...WAVE3_POSTS];
+    const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS, ...WAVE3_POSTS, ...WAVE4_STYLED_POSTS];
     const erroredPosts = posts.filter((p) => p.status === 'error' || p.status === 'failed');
     if (erroredPosts.length === 0) {
       console.log('\nNo failed/error posts found in Buffer.');
@@ -268,7 +298,7 @@ async function main() {
       const firstLine = (errPost.text || '').split('\n')[0];
       const matched = allDefinedPosts.find((item) => item.text.split('\n')[0] === firstLine);
       const service = errPost.channelId === CHANNELS.instagram ? 'instagram' : 'linkedin';
-      const imageUrl = matched?.imageUrl || 'https://medicalbillingmb.com/raster/authentic/providers-workflow-denials.jpg';
+      const imageUrl = matched?.imageUrl || 'https://medicalbillingmb.com/raster/social/style-1-editorial-overlay.jpg';
 
       const editRes = await bufferMCP('tools/call', {
         name: 'edit_post',
@@ -304,7 +334,8 @@ async function main() {
   }
 
   const saveToDraft = mode === 'draft';
-  const postsToCreate = mode === 'wave3' ? WAVE3_POSTS : mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
+  const postsToCreate =
+    mode === 'wave4' ? WAVE4_STYLED_POSTS : mode === 'wave3' ? WAVE3_POSTS : mode === 'wave2' ? WAVE2_POSTS : CAMPAIGN_POSTS;
   console.log(`\n=== Creating ${postsToCreate.length} Posts Across Instagram & LinkedIn (mode=${mode}) ===`);
 
   for (const item of postsToCreate) {
