@@ -126,31 +126,36 @@ const WAVE3_POSTS = [
   },
 ];
 
-const WAVE4_STYLED_POSTS = [
+const WEEKLY_STYLE2_POSTS = [
   {
-    title: 'Post 17 [Style 1 - Editorial Magazine Overlay]: Behind-the-Desk Miami Coding Audit Story',
-    imageUrl: 'https://medicalbillingmb.com/raster/social/style-1-editorial-overlay.jpg',
-    text: `Last week, a 3-physician clinic in Miami-Dade sent us 20 recent EOBs to review.\n\nOn paper, their previous biller told them their collection rate was "fine."\n\nWithin 40 minutes, our AAPC-certified coder found $4,820 in unpaid procedural line items from a single month. Every time an office visit (99214) was billed alongside an in-office procedure, the claim went out without Modifier 25 or the right NCCI unbundling support. When First Coast Medicare and Florida Blue denied the second line item, the old billing team simply wrote it off.\n\nThat's why every claim we touch goes through a U.S. AAPC-certified human coder first, and an AI pre-submission double-check second—bringing first-pass clean claims to 98.4%.\n\nWant us to look at 20 of your recent claims—free and confidential?\n\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=style1_editorial_audit\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MiamiDoctors #MedicalBillingMiami #PracticeOwners #HealthcareFinance #SouthFloridaMedicine`,
+    title: 'Week 1 (Nov 2): 90-Day Miami Practice Benchmark Scorecard (18.0% to 2.4% Denial Rate)',
+    dueAt: '2026-11-02T15:00:00-05:00',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week1-90day-benchmark.jpg',
+    text: `90-DAY MIAMI PRACTICE BENCHMARK (4-Provider Clinic):\n\n• Before MBMB: 18.0% Denial Rate | -$127,000/yr Preventable Revenue Leakage\n• With MBMB: 2.4% Denial Rate (98.4% Clean Claims) | +$142,000 Net Annualized Recovery\n• Zero EHR Migration ($0 Setup Fee)\n\nEvery encounter is verified by U.S. AAPC-certified coders first and an AI pre-submission double-check second—directly inside your existing EHR.\n\nFind out how much earned revenue is sitting in your 60+ day A/R with a complimentary 20-claim benchmark:\n🔗 https://medicalbillingmb.com/for-providers?utm_source=buffer&utm_medium=social&utm_campaign=weekly_style2_w1\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBillingMiami #HealthcareROI #PracticeManagement #MiamiDoctors #AAPCCertified #RCM`,
   },
   {
-    title: 'Post 18 [Style 2 - FinTech ROI Scorecard]: 90-Day Miami Practice Benchmark ($142K Net Recovery)',
-    imageUrl: 'https://medicalbillingmb.com/raster/social/style-2-data-infographic.jpg',
-    text: `THE REAL COST OF AN 18% DENIAL RATE (4-Provider Miami Practice):\n\n• Monthly Billed Volume: $85,000\n• Unworked / Timed-Out Denials: -$10,580 / mo\n• Annual Preventable Revenue Loss: -$127,000 / yr\n\n————————————————————\n\nAFTER 90 DAYS WITH MBMB (Inside Their Existing EHR):\n\n• First-Pass Clean Claim Rate: 98.4%\n• Denial Rate After AAPC + AI Scrubbing: 2.4%\n• Denial Appeal Turnaround: Under 48 Hours\n• Net Annualized Recovery: +$142,000 / yr\n• Software Migration Cost: $0\n\n————————————————————\n\nHow much of your earned revenue is sitting in 60+ day A/R right now? Find out with a 48-hour benchmark audit:\n\n🔗 https://medicalbillingmb.com/for-providers?utm_source=buffer&utm_medium=social&utm_campaign=style2_roi_scorecard\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#HealthcareROI #MedicalPracticeManagement #MiamiBeach #AAPCCertified #RCM`,
+    title: 'Week 2 (Nov 9): 48-Hour Denial Recovery Scorecard (Zero Unchecked Write-Offs)',
+    dueAt: '2026-11-09T10:00:00-05:00',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week2-denial-recovery.jpg',
+    text: `48-HOUR DENIAL RECOVERY SCORECARD:\n\n• Industry Average: Up to 65% of denied claims go unworked | 30–60 day appeal lag | Silent write-offs\n• With MBMB: 100% of CO, PR & OA denials investigated | <48-hour clinical appeals | 98.4% clean claims\n\nWriting off denied procedural and E/M line items as "uncollectable" without clinical chart investigation costs South Florida practices $50,000–$150,000+ every year.\n\nRequest your free 48-hour denial & A/R recovery audit:\n🔗 https://medicalbillingmb.com/blog/denial-management-guide?utm_source=buffer&utm_medium=social&utm_campaign=weekly_style2_w2\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#DenialManagement #AccountsReceivable #MiamiHealthcare #PrivatePractice #MedicalCoding #SouthFloridaDoctors`,
   },
   {
-    title: 'Post 19 [Style 3 - Minimalist Billboard Poster]: 65% of Denied Claims Are Never Appealed',
-    imageUrl: 'https://medicalbillingmb.com/raster/social/style-3-minimal-billboard.jpg',
-    text: `Most medical practices don't have a "patient volume" problem.\nThey have a silent write-off problem.\n\nUp to 65% of denied medical claims are never appealed by traditional billing companies. It is faster for a volume-based biller to chase the easy 80% and quietly write off your hardest 20% as "uncollectable."\n\nThose "uncollectable" claims are your profit margin.\n\nAt Medical Billing Miami Beach, we don't write off a single CO, PR, or OA denial without a clinical chart investigation and a 48-hour appeal.\n\n• We work inside your existing EHR.\n• We charge $0 setup fees.\n• We only get paid when you collect (5.6%–10%).\n\nStop funding payer profits with preventable write-offs.\n\n🔗 https://medicalbillingmb.com/blog/denial-management-guide?utm_source=buffer&utm_medium=social&utm_campaign=style3_billboard_denials\n📞 (786) 643-2099\n\n#PrivatePractice #MiamiHealthcare #RevenueCycle #MedicalCoding #DoctorLife`,
+    title: 'Week 3 (Nov 16): Florida Trial Attorney Billing & Chronology Scorecard (1-Case Pilot)',
+    dueAt: '2026-11-16T10:00:00-05:00',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week3-attorney-chronology.jpg',
+    text: `FLORIDA TRIAL ATTORNEY BILLING SCORECARD:\n\n• Raw Medical Bills: Unflagged duplicate CPT charges | Unreconciled EOBs | 15+ paralegal hours per demand\n• MBMB 1-Case Pilot: Exact PDF & page citations | Full Charge-to-Balance table (Excel + PDF) | 3–5 business day turnaround\n\nOur U.S. AAPC-certified coders + AI verification reconcile hospital UB-04s, physician CMS-1500s, and EOB adjustments into a clean, litigation-ready package before mediation or demand submission.\n\nTest our team on 1 active file:\n🔗 https://medicalbillingmb.com/for-attorneys?utm_source=buffer&utm_medium=social&utm_campaign=weekly_style2_w3\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#FloridaTrialLawyers #PersonalInjuryLaw #MedMal #LitigationSupport #Paralegal #MiamiLawFirms`,
   },
   {
-    title: 'Post 20 [Style 4 - Split-Screen Photo + Action Card]: U.S. AAPC Coders + AI Double-Check',
-    imageUrl: 'https://medicalbillingmb.com/raster/social/style-4-split-collage.jpg',
-    text: `Q: "If we switch our medical billing to MBMB, do we have to change our EHR or retrain our front desk?"\n\nA: No. Zero software migration.\n\nOur U.S. AAPC-certified coders and billing specialists plug directly into your current system—whether you run eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, NextGen, or DrChrono.\n\nQ: "How fast can you spot where we're losing money?"\n\nA: Within 48 hours. We pull a sample of 20 recent encounters and EOBs, run our human coder + AI double-check, and hand you a plain-English report showing every missed modifier, under-coded visit, and recoverable denial.\n\nBook your complimentary 20-Claim Audit today:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=style4_split_card\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MiamiPhysicians #FloridaHealthcare #MedicalBillingServices #ClinicManagement #MBMB`,
+    title: 'Week 4 (Nov 23): Florida Payer Credentialing Scorecard (Medicare PECOS, AHCA & Commercial)',
+    dueAt: '2026-11-23T10:00:00-05:00',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week4-credentialing-scorecard.jpg',
+    text: `FLORIDA PAYER CREDENTIALING SCORECARD:\n\n• DIY Enrollment: 90–120 day cash-flow freeze | Lapsed CAQH ProView holds | Missing ERA/EFT linkage\n• MBMB Enrollment: Fast-track Medicare PECOS (FCSO), Florida Medicaid (AHCA/MMA) & Commercial setup | Quarterly CAQH re-attestations managed\n\nAdding a physician, NP, or PA—or launching a new South Florida clinic? Start billing cleanly from your very first patient.\n\n🔗 https://medicalbillingmb.com/services/credentialing?utm_source=buffer&utm_medium=social&utm_campaign=weekly_style2_w4\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#ProviderCredentialing #CAQH #FloridaMedicaid #MedicarePECOS #ClinicOwners #MiamiMedicine`,
   },
   {
-    title: 'Post 21 [Style 5 - 3D Glassmorphism UI Card]: Turning Denied CO-50 Claims Into Paid 98.4% Clean Claims',
-    imageUrl: 'https://medicalbillingmb.com/raster/social/style-5-3d-glass-ui.jpg',
-    text: `EN | For South Florida Physicians & Law Firms:\nTurning a "DENIED CO-50" rejection into a paid claim requires clinical chart evidence, exact NCCI modifier logic, and relentless 48-hour follow-up. We combine local Miami Beach coordination with U.S. AAPC-certified coders and AI pre-submission verification—delivering 98.4% clean claims for clinics and 3–5 day source-linked billing chronologies for trial attorneys.\n\nES | Para Médicos y Abogados en el Sur de la Florida:\nTransformamos reclamos rechazados en ingresos cobrados en 48 horas. Nuestro equipo certificado por la AAPC en EE. UU., respaldado por verificación de Inteligencia Artificial, trabaja directamente dentro de su EHR actual sin costo de instalación ($0 setup fee, tarifas transparentes del 5.6% al 10%).\n\n📍 Miami Beach, FL | 📞 (786) 643-2099\n🔗 https://medicalbillingmb.com/services/medical-coding?utm_source=buffer&utm_medium=social&utm_campaign=style5_3d_glass_ui\n\n#MedicosEnMiami #MiamiHealthcare #MedicalBillingMiamiBeach #AbogadosMiami #SouthFloridaDoctors`,
+    title: 'Week 5 (Nov 30): Transparent Collection Tiers Scorecard (5.6%–10% | $0 Setup Fee)',
+    dueAt: '2026-11-30T10:00:00-05:00',
+    imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week5-transparent-pricing.jpg',
+    text: `TRANSPARENT COLLECTION TIERS ($0 SETUP FEE):\n\n• $50,000+ / mo Volume → 5.6% Rate\n• $40,000–$50,000 / mo → 6.5% Rate\n• $20,000–$40,000 / mo → 7.5% Rate\n• New & Launching Clinics (<$20k/mo) → 10.0% Rate\n\nWe plug directly into eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, NextGen, DrChrono, and 25+ EHRs with zero migration cost. Bilingual coordination in Miami Beach (English & Español).\n\nBook your complimentary 20-Claim Audit:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=weekly_style2_w5\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalBillingMiamiBeach #MBMB #TransparentPricing #SouthFloridaHealthcare #DoctorLife #MiamiBeach`,
   },
 ];
 
@@ -227,14 +232,14 @@ async function createBufferPost({ channelId, service, text, imageUrl, saveToDraf
 
 async function main() {
   const args = process.argv.slice(2);
-  const mode = args.includes('--queue')
-    ? 'queue'
-    : args.includes('--wave2')
-      ? 'wave2'
-      : args.includes('--wave3')
-        ? 'wave3'
-        : args.includes('--wave4')
-          ? 'wave4'
+  const mode = args.includes('--weekly-style2')
+    ? 'weekly-style2'
+    : args.includes('--queue')
+      ? 'queue'
+      : args.includes('--wave2')
+        ? 'wave2'
+        : args.includes('--wave3')
+          ? 'wave3'
           : args.includes('--retry-failed')
             ? 'retry-failed'
             : args.includes('--draft')
@@ -285,6 +290,56 @@ async function main() {
   }
 
   if (mode === 'status') return;
+
+  if (mode === 'weekly-style2') {
+    const scheduledPosts = posts.filter((p) => p.status === 'scheduled');
+    console.log(`\n=== Clearing ${scheduledPosts.length} Previously Scheduled Daily Posts via Buffer MCP (delete_post) ===`);
+    for (const oldPost of scheduledPosts) {
+      const delRes = await bufferMCP('tools/call', {
+        name: 'delete_post',
+        arguments: { postId: oldPost.id },
+      });
+      const delText = delRes?.result?.content?.[0]?.text || '';
+      console.log(`  DELETED Old Scheduled Post ${oldPost.id} (${oldPost.dueAt}) -> ${delText.slice(0, 80)}`);
+    }
+
+    console.log(`\n=== Scheduling 5 Weekly "Style 2" Executive Scorecard Posts (Once a Week: IG & LinkedIn) ===`);
+    for (const item of WEEKLY_STYLE2_POSTS) {
+      for (const [service, channelId] of Object.entries(CHANNELS)) {
+        const createRes = await bufferMCP('tools/call', {
+          name: 'create_post',
+          arguments: {
+            channelId,
+            schedulingType: 'automatic',
+            mode: 'customScheduled',
+            dueAt: item.dueAt,
+            text: item.text,
+            assets: [{ image: { url: item.imageUrl, thumbnailUrl: item.imageUrl } }],
+            ...(service === 'instagram'
+              ? {
+                  metadata: {
+                    instagram: {
+                      type: 'post',
+                      shouldShareToFeed: true,
+                    },
+                  },
+                }
+              : {}),
+          },
+        });
+        const contentText = createRes?.result?.content?.[0]?.text || '';
+        if (!createRes?.result?.isError && contentText.startsWith('{')) {
+          const created = JSON.parse(contentText);
+          console.log(
+            `  SCHEDULED [${service.toUpperCase()}] ${item.title} -> Post ID: ${created.id} | Due: ${created.dueAt} | Image: ${item.imageUrl}`
+          );
+        } else {
+          console.log(`  WARN [${service.toUpperCase()}] ${item.title} ->`, JSON.stringify(createRes));
+        }
+      }
+    }
+    return;
+  }
 
   if (mode === 'retry-failed') {
     const allDefinedPosts = [...CAMPAIGN_POSTS, ...WAVE2_POSTS, ...WAVE3_POSTS, ...WAVE4_STYLED_POSTS];
