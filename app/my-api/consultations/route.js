@@ -4,6 +4,7 @@ import {
   syncBrevoContact,
   buildProspectConfirmationEmail,
   getAdminRecipients,
+  isBotOrSpamSubmission,
 } from "@UTILS/email";
 
 export async function POST(req) {
@@ -19,6 +20,20 @@ export async function POST(req) {
         },
         { status: 400 }
       );
+    }
+
+    // Block automated spam/bot crawlers silently before burning Brevo credits or alerting admin
+    const spamCheck = isBotOrSpamSubmission({
+      fullName: query.fullName,
+      email: query.email,
+      orgName,
+      message: query.message || "",
+      honeypot: query.website || query.companyWebsite || "",
+      formLoadedAt: query.formLoadedAt || 0,
+    });
+    if (spamCheck.isSpam) {
+      console.warn("Blocked bot/spam consultation submission:", spamCheck.reason, query.email, query.fullName);
+      return NextResponse.json({ message: "Success", filtered: true }, { status: 200 });
     }
 
     const isAttorneyPilot = query.inquiryType === "attorney-pilot";

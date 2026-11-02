@@ -16,6 +16,80 @@ function getAdminRecipients() {
   return emails.map((email) => ({ email }));
 }
 
+const DISPOSABLE_OR_TEST_DOMAINS = new Set([
+  "example.com",
+  "test.com",
+  "mailinator.com",
+  "guerrillamail.com",
+  "tempmail.com",
+  "10minutemail.com",
+  "yopmail.com",
+  "sharklasers.com",
+  "trashmail.com",
+]);
+
+function looksGibberishToken(str = "") {
+  const clean = String(str).replace(/[^a-zA-Z]/g, "");
+  if (clean.length < 5) return false;
+  const upperTransitions = (clean.slice(1).match(/[A-Z]/g) || []).length;
+  if (clean.length >= 8 && upperTransitions >= 3) return true;
+  if (/[bcdfghjklmnpqrstvwxz]{5,}/i.test(clean)) return true;
+  if (clean.length >= 5 && !/[aeiouy]/i.test(clean)) return true;
+  return false;
+}
+
+export function isBotOrSpamSubmission({
+  fullName = "",
+  email = "",
+  orgName = "",
+  message = "",
+  honeypot = "",
+  formLoadedAt = 0,
+}) {
+  if (honeypot && String(honeypot).trim().length > 0) {
+    return { isSpam: true, reason: "honeypot_filled" };
+  }
+
+  if (formLoadedAt && Number(formLoadedAt) > 0) {
+    const elapsedMs = Date.now() - Number(formLoadedAt);
+    if (elapsedMs >= 0 && elapsedMs < 1500) {
+      return { isSpam: true, reason: "submitted_too_fast" };
+    }
+  }
+
+  const emailLower = String(email).trim().toLowerCase();
+  const domain = emailLower.split("@")[1] || "";
+  const localPart = emailLower.split("@")[0] || "";
+
+  if (DISPOSABLE_OR_TEST_DOMAINS.has(domain)) {
+    return { isSpam: true, reason: "disposable_domain" };
+  }
+  if ((localPart.match(/\./g) || []).length >= 4) {
+    return { isSpam: true, reason: "dotted_bot_email" };
+  }
+
+  const nameWords = String(fullName).trim().split(/\s+/);
+  const orgWords = String(orgName)
+    .replace(/\(Law Firm Pilot\)/gi, "")
+    .replace(/\b(LLC|Inc|PLLC|PA|MD|DO|Corp)\b/gi, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (nameWords.some((w) => looksGibberishToken(w))) {
+    return { isSpam: true, reason: "gibberish_name" };
+  }
+  if (orgWords.some((w) => looksGibberishToken(w))) {
+    return { isSpam: true, reason: "gibberish_org" };
+  }
+
+  if (/(https?:\/\/|www\.|crypto|bitcoin|casino|viagra|seo\s+service)/i.test(String(message))) {
+    return { isSpam: true, reason: "spam_keywords_or_links" };
+  }
+
+  return { isSpam: false };
+}
+
 export async function sendBrevoTransactional({
   to,
   subject,

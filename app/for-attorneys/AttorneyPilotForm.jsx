@@ -7,6 +7,7 @@ const inputClasses =
   'w-full px-4 py-3 bg-white text-slate-900 placeholder:text-slate-400 border border-slate-300 rounded-xl focus:outline-none focus:border-[#0066CC] focus:ring-2 focus:ring-[#0066CC]/25 shadow-2xs font-medium text-sm transition-all';
 
 export default function AttorneyPilotForm() {
+  const [formLoadedAt] = useState(() => Date.now());
   const [formData, setFormData] = useState({
     fullName: '',
     firmName: '',
@@ -14,6 +15,7 @@ export default function AttorneyPilotForm() {
     phone: '',
     serviceInterest: 'Itemized Bill & EOB Organization Pilot',
     message: '',
+    website: '',
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -60,6 +62,8 @@ export default function AttorneyPilotForm() {
           phone: formData.phone,
           serviceInterest: formData.serviceInterest,
           message: formData.message,
+          website: formData.website,
+          formLoadedAt,
         }),
       });
 
@@ -94,6 +98,18 @@ export default function AttorneyPilotForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="attorney-website">Website</label>
+        <input
+          id="attorney-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={formData.website}
+          onChange={handleChange}
+        />
+      </div>
       {status && (
         <div
           role="status"

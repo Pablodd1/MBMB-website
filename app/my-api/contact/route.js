@@ -4,6 +4,7 @@ import {
   syncBrevoContact,
   buildProspectConfirmationEmail,
   getAdminRecipients,
+  isBotOrSpamSubmission,
 } from "@UTILS/email";
 
 export async function POST(req) {
@@ -21,6 +22,20 @@ export async function POST(req) {
     }
 
     const orgName = query.practiceName || query.firmName || "";
+
+    // Block automated spam/bot crawlers silently before burning Brevo credits or alerting admin
+    const spamCheck = isBotOrSpamSubmission({
+      fullName: query.fullName,
+      email: query.email,
+      orgName,
+      message: query.message || "",
+      honeypot: query.website || query.companyWebsite || "",
+      formLoadedAt: query.formLoadedAt || 0,
+    });
+    if (spamCheck.isSpam) {
+      console.warn("Blocked bot/spam contact submission:", spamCheck.reason, query.email, query.fullName);
+      return NextResponse.json({ message: "Success", filtered: true }, { status: 200 });
+    }
 
     const adminHtml = `
       <div style="font-family:Arial,sans-serif;max-width:600px;padding:24px;border:1px solid #e2e8f0;border-radius:12px;">
