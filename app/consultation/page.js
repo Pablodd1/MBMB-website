@@ -151,7 +151,7 @@ const Consultation = () => {
                             <a href="tel:+17866432099" className="text-emerald-400 font-bold text-sm hover:underline">Call (786) 643-2099 →</a>
                         </div>
 
-                        <form id='consultation' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4 font-sans ${submitting ? 'opacity-45 cursor-wait grayscale' : ''}`}>
+                        <form id='consultation' onSubmit={handleSubmit} toolname='request_provider_billing_audit' tooldescription='Register a healthcare practice or clinic for a free 48-hour medical billing and coding audit with Medical Billing Miami Beach (MBMB). Do not submit patient PHI.' className={`grid grid-cols-1 md:grid-cols-2 gap-4 font-sans ${submitting ? 'opacity-45 cursor-wait grayscale' : ''}`}>
                             <div className="hidden" aria-hidden="true">
                                 <label htmlFor="website">Website</label>
                                 <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" value={query ? query.website : ''} onChange={handleChange} />

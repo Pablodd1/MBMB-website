@@ -3,6 +3,26 @@ import Link from 'next/link'
 import SmartImage from '../components/SmartImage'
 import Button from '@UTILS/button'
 
+export const metadata = {
+  title: 'Medical Billing, Coding, Credentialing & RCM Services Overview',
+  description:
+    'Explore Medical Billing Miami Beach (MBMB) services: end-to-end Revenue Cycle Management (5.6%–10% of collections), AAPC-certified coding + AI double-check, Florida provider credentialing, and legal bill organization.',
+  keywords:
+    'medical billing services Miami, medical coding services Florida, provider credentialing Miami Beach, healthcare revenue cycle management South Florida, MBMB services',
+  alternates: {
+    canonical: 'https://medicalbillingmb.com/services',
+  },
+  openGraph: {
+    title: 'Medical Billing, Coding & Credentialing Services | MBMB',
+    description:
+      'Complete revenue cycle management, AAPC-certified coding with AI pre-submission double-check, and Florida payer credentialing in Miami Beach.',
+    url: 'https://medicalbillingmb.com/services',
+    siteName: 'Medical Billing Miami Beach (MBMB)',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
 const services = [
   {
     title: 'Medical Billing',
@@ -240,24 +260,3 @@ export default function ServicesPage() {
   )
 }
 
-export const metadata = {
-  title: 'Medical Billing Services Miami | Medical Coding, Credentialing & RCM',
-  description: 'Expert medical billing services in Miami, Florida. We offer medical coding (ICD-10, CPT, HCPCS), provider credentialing (CAQH, EDI, ERA, EFT), and full revenue cycle management. AAPC-certified specialists. Call (786) 643-2099.',
-  keywords: 'Medical Billing Services Miami, Medical Coding Florida, Provider Credentialing Miami, Revenue Cycle Management, ICD-10 Coding, CPT Coding, HCPCS Coding, CAQH Enrollment, EDI Setup, Miami Medical Billing Company',
-  alternates: {
-    canonical: 'https://medicalbillingmb.com/services'
-  },
-  openGraph: {
-    title: 'Medical Billing Services Miami | MBMB',
-    description: 'Expert medical billing, medical coding, credentialing, and revenue cycle management services in Miami, Florida.',
-    url: 'https://medicalbillingmb.com/services',
-    siteName: 'Medical Billing Miami Beach (MBMB)',
-    locale: 'en_US',
-    type: 'website',
-  },
-  other: {
-    'ai:service': 'medical billing services, medical coding, credentialing, revenue cycle management',
-    'ai:location': 'Miami, Florida',
-    'ai:phone': '+1-786-643-2099',
-  }
-}

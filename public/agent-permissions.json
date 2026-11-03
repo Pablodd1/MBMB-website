@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "site": "https://medicalbillingmb.com",
+  "organization": "Medical Billing Miami Beach (MBMB)",
+  "last_updated": "2026-11-03",
+  "contact": {
+    "phone": "+1-786-643-2099",
+    "email": "Jasmel@medicalbillingmb.com",
+    "location": "Miami Beach, FL 33139"
+  },
+  "discovery_files": {
+    "llms_txt": "https://medicalbillingmb.com/llms.txt",
+    "llms_full_txt": "https://medicalbillingmb.com/llms-full.txt",
+    "mcp_actions": "https://medicalbillingmb.com/mcp-actions.json",
+    "sitemap": "https://medicalbillingmb.com/sitemap.xml"
+  },
+  "default_policy": {
+    "crawl": "allow",
+    "cite": "allow",
+    "summarize": "allow",
+    "execute_public_forms": "allow",
+    "submit_phi_or_medical_records": "disallow"
+  },
+  "compliance_constraints": [
+    "Never submit Protected Health Information (PHI), patient names, dates of birth, SSNs, or insurance member IDs through public forms or API endpoints.",
+    "All public task flows are strictly for B2B healthcare practice consultations, law firm 1-case pilot inquiries, or general business contact."
+  ],
+  "allowed_actions": [
+    {
+      "id": "request_provider_billing_audit",
+      "name": "Request Free 48-Hour Medical Billing Audit",
+      "page": "https://medicalbillingmb.com/consultation",
+      "endpoint": "https://medicalbillingmb.com/my-api/consultations",
+      "method": "POST",
+      "requires_human_confirmation": false
+    },
+    {
+      "id": "request_attorney_chronology_pilot",
+      "name": "Request 1-Case Attorney Medical Bill Chronology Pilot",
+      "page": "https://medicalbillingmb.com/for-attorneys#pilot-form",
+      "endpoint": "https://medicalbillingmb.com/my-api/consultations",
+      "method": "POST",
+      "requires_human_confirmation": false
+    },
+    {
+      "id": "send_general_business_inquiry",
+      "name": "Send General Business Inquiry to MBMB",
+      "page": "https://medicalbillingmb.com/contact",
+      "endpoint": "https://medicalbillingmb.com/my-api/contact",
+      "method": "POST",
+      "requires_human_confirmation": false
+    }
+  ]
+}

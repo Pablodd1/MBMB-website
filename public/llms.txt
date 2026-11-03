@@ -1,0 +1,46 @@
+# Medical Billing Miami Beach (MBMB)
+
+> Miami Beach healthcare revenue cycle management (RCM), AAPC-certified medical coding with AI pre-submission double-check, Florida provider credentialing, and administrative medical bill chronology & EOB reconciliation for Florida trial attorneys.
+
+- **Website:** https://medicalbillingmb.com
+- **Phone:** (786) 643-2099 (`+1-786-643-2099`)
+- **Email:** Jasmel@medicalbillingmb.com
+- **Location:** Miami Beach, FL 33139 (Serving Miami-Dade, Coral Gables, Brickell, Doral, Hialeah, Broward, Palm Beach & Statewide Florida)
+- **Hours:** Monday–Friday, 9:00 AM – 6:00 PM EST (`America/New_York`)
+- **Languages:** English, Spanish (Español), Haitian Creole
+
+## Core Value Proposition & Pricing
+- **Healthcare Provider RCM Pricing:** `5.6%–10%` of net collections (`$0` setup fee, no fees on uncollected claims).
+  - **Tier 1 (High-Volume Groups, $50,000+/mo):** `5.6%–6.5%` of net collections
+  - **Tier 2 (Established & Growing Clinics, $20,000–$50,000/mo):** `6.5%–8%` of net collections
+  - **Tier 3 (New & Launching Clinics, <$20,000/mo):** `8%–10%` of net collections (automatic step-down as volume grows)
+- **Human + AI Operating Model:** Local Miami Beach client coordination paired with our U.S. AAPC-certified medical billing fulfillment team (10+ years experience) and an AI pre-submission verification layer that catches NCCI edits, modifier gaps (25, 59, XE/XS, 95), and LCD/NCD rules before submission.
+- **Attorney & Legal Team Support:** Source-linked medical billing chronologies, plain-English CPT/ICD-10/HCPCS code explanations, and charge-to-balance EOB reconciliation delivered in 3–5 business days (Excel/CSV + Bates-referenced PDF).
+
+## Key Pages
+- [Home](https://medicalbillingmb.com/): Overview of Florida medical billing, interactive denial loss calculator, and 90-day clinic benchmarks.
+- [For Healthcare Providers](https://medicalbillingmb.com/for-providers): End-to-end RCM, AAPC coding + AI double-check, and transparent 5.6%–10% collection tiers.
+- [For Attorneys & Law Firms](https://medicalbillingmb.com/for-attorneys): 1-Case Pilot for itemized medical bill organization, CPT/ICD-10 translation, and EOB/ledger reconciliation.
+- [Free 48-Hour Billing Audit & Consultation](https://medicalbillingmb.com/consultation): Register a medical practice for a complimentary 20-claim / 48-hour billing and coding audit.
+- [How We Work](https://medicalbillingmb.com/how-we-work): 5-stage operational workflow from BAA onboarding to 24–48h claim scrubbing and 48h denial appeals.
+- [All Services Overview](https://medicalbillingmb.com/services): Complete catalog of medical billing, coding, credentialing, and RCM services.
+- [AAPC-Certified Medical Coding](https://medicalbillingmb.com/services/medical-coding): ICD-10-CM, CPT, HCPCS Level II, and Modifier 25/59/95 compliance.
+- [Florida Provider Credentialing & CAQH](https://medicalbillingmb.com/services/credentialing): Medicare PECOS (FCSO), Florida Medicaid (AHCA Region 11 & MMA plans), CAQH ProView, EDI/ERA/EFT enrollment.
+- [Revenue Cycle Management (RCM)](https://medicalbillingmb.com/services/revenue-cycle-management): 8-stage full-lifecycle revenue cycle management and aging AR recovery (>30/60/90/120+ days).
+- [About MBMB](https://medicalbillingmb.com/about): Miami Beach coordination hub and U.S. AAPC-certified fulfillment model.
+- [Contact Us](https://medicalbillingmb.com/contact): Direct phone, WhatsApp, email, and non-sensitive business inquiry form.
+
+## Florida Healthcare & Legal Billing Guides (`/blog`)
+- [Medical Bill Review, Chronologies & EOB Reconciliation for Legal Teams](https://medicalbillingmb.com/blog/medical-billing-chronology-reconciliation-for-attorneys)
+- [Human AAPC Coders + AI Double-Check: Preventing Claim Denials](https://medicalbillingmb.com/blog/ai-double-check-medical-coding-clean-claims)
+- [Florida Provider Credentialing & CAQH ProView Guide](https://medicalbillingmb.com/blog/florida-provider-credentialing-caqh-guide)
+- [Medical Billing 101: Complete Guide for Miami Doctors](https://medicalbillingmb.com/blog/medical-billing-101)
+- [Proactive Denial Management & 48-Hour Appeal Guide](https://medicalbillingmb.com/blog/denial-management-guide)
+- [Miami & Florida Medicaid (AHCA / MMA) Billing Guide](https://medicalbillingmb.com/blog/miami-medicaid-billing)
+- [Top 5 Medical Billing Mistakes Costing Miami Practices $50K+/Year](https://medicalbillingmb.com/blog/top-5-medical-billing-mistakes)
+
+## Machine-Readable Discovery & Agent Endpoints
+- [Full AI Knowledge Base (`/llms-full.txt`)](https://medicalbillingmb.com/llms-full.txt)
+- [Agent Permissions Policy (`/agent-permissions.json`)](https://medicalbillingmb.com/agent-permissions.json)
+- [WebMCP Actions Inventory (`/mcp-actions.json`)](https://medicalbillingmb.com/mcp-actions.json)
+- [XML Sitemap (`/sitemap.xml`)](https://medicalbillingmb.com/sitemap.xml)

@@ -2,6 +2,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@UTILS/button'
 
+export const metadata = {
+  title: 'AAPC-Certified Medical Coding Services + AI Double-Check | ICD-10, CPT & HCPCS',
+  description:
+    'Precision ICD-10-CM, CPT, and HCPCS Level II medical coding in Miami & Florida. Human AAPC-certified coders paired with AI pre-submission verification for Modifiers 25, 59, XE/XS, and 95.',
+  keywords:
+    'medical coding services Miami, AAPC certified medical coders Florida, ICD-10 CPT HCPCS coding, modifier 25 59 audit, AI medical coding verification Miami Beach',
+  alternates: {
+    canonical: 'https://medicalbillingmb.com/services/medical-coding',
+  },
+  openGraph: {
+    title: 'AAPC-Certified Medical Coding + AI Double-Check | MBMB',
+    description:
+      'Eliminate coding denials with U.S. AAPC-certified specialists and AI pre-submission NCCI & modifier verification.',
+    url: 'https://medicalbillingmb.com/services/medical-coding',
+    siteName: 'Medical Billing Miami Beach (MBMB)',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
 const codingTypes = [
   {
     title: 'ICD-10 Coding',
@@ -326,24 +346,3 @@ export default function MedicalCodingPage() {
   )
 }
 
-export const metadata = {
-  title: 'Medical Coding Services Miami | ICD-10, CPT, HCPCS Coding Florida',
-  description: 'Expert medical coding services in Miami, Florida. ICD-10, CPT, and HCPCS coding by AAPC-certified specialists. We reduce claim denials and maximize reimbursements for healthcare providers. Free coding audit available.',
-  keywords: 'Medical Coding Miami, ICD-10 Coding Florida, CPT Coding Services, HCPCS Codes, Medical Coding Specialists Miami, AAPC Certified Coders, Florida Medical Coding, Healthcare Coding Miami',
-  alternates: {
-    canonical: 'https://medicalbillingmb.com/services/medical-coding'
-  },
-  openGraph: {
-    title: 'Medical Coding Services Miami | MBMB',
-    description: 'Expert ICD-10, CPT, and HCPCS medical coding services in Miami, Florida by AAPC-certified specialists.',
-    url: 'https://medicalbillingmb.com/services/medical-coding',
-    siteName: 'Medical Billing Miami Beach (MBMB)',
-    locale: 'en_US',
-    type: 'website',
-  },
-  other: {
-    'ai:service': 'medical coding, ICD-10 coding, CPT coding, HCPCS coding',
-    'ai:location': 'Miami, Florida',
-    'ai:phone': '+1-786-643-2099',
-  }
-}

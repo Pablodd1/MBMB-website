@@ -1,0 +1,123 @@
+{
+  "schema_version": "2026-10",
+  "provider": {
+    "name": "Medical Billing Miami Beach (MBMB)",
+    "url": "https://medicalbillingmb.com",
+    "telephone": "+1-786-643-2099",
+    "email": "Jasmel@medicalbillingmb.com"
+  },
+  "tools": [
+    {
+      "name": "request_provider_billing_audit",
+      "description": "Register a healthcare practice or clinic for a free 48-hour medical billing and coding audit with Medical Billing Miami Beach (MBMB). Do not include patient PHI.",
+      "page_url": "https://medicalbillingmb.com/consultation",
+      "endpoint": "https://medicalbillingmb.com/my-api/consultations",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "required": ["fullName", "email", "practiceName"],
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Full name of the physician, clinic owner, or practice manager"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Work or practice email address"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Direct phone number"
+          },
+          "practiceName": {
+            "type": "string",
+            "description": "Medical practice name and primary specialty"
+          },
+          "message": {
+            "type": "string",
+            "description": "Current EHR system, approximate monthly claim volume, and billing goals (no PHI)"
+          }
+        }
+      }
+    },
+    {
+      "name": "request_attorney_chronology_pilot",
+      "description": "Request a 1-Case Administrative Medical Bill Chronology & EOB Reconciliation Pilot for a Florida personal injury or healthcare law firm. Do not include client PHI.",
+      "page_url": "https://medicalbillingmb.com/for-attorneys#pilot-form",
+      "endpoint": "https://medicalbillingmb.com/my-api/consultations",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "required": ["fullName", "firmName", "email"],
+        "properties": {
+          "inquiryType": {
+            "type": "string",
+            "enum": ["attorney-pilot"],
+            "default": "attorney-pilot"
+          },
+          "fullName": {
+            "type": "string",
+            "description": "Name of the attorney, partner, or paralegal"
+          },
+          "firmName": {
+            "type": "string",
+            "description": "Name of the law firm"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Law firm business email address"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Law firm phone number"
+          },
+          "serviceInterest": {
+            "type": "string",
+            "enum": [
+              "Itemized Bill & EOB Organization Pilot",
+              "Charges, Payments, Adjustments & Balance Reconciliation",
+              "Source-Linked Administrative Billing Questions",
+              "General Law Firm Workflow Discussion"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "Non-sensitive workflow notes (typical provider count per file, preferred format)"
+          }
+        }
+      }
+    },
+    {
+      "name": "send_general_business_inquiry",
+      "description": "Send a general business inquiry to Medical Billing Miami Beach (MBMB). Do not include patient PHI.",
+      "page_url": "https://medicalbillingmb.com/contact",
+      "endpoint": "https://medicalbillingmb.com/my-api/contact",
+      "method": "POST",
+      "inputSchema": {
+        "type": "object",
+        "required": ["fullName", "email", "practiceName"],
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Sender full name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender business email address"
+          },
+          "practiceName": {
+            "type": "string",
+            "description": "Practice, clinic, or law firm name"
+          },
+          "message": {
+            "type": "string",
+            "description": "Non-sensitive inquiry message"
+          }
+        }
+      }
+    }
+  ]
+}

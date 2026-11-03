@@ -97,7 +97,7 @@ export default function AttorneyPilotForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+    <form onSubmit={handleSubmit} toolname="request_attorney_chronology_pilot" tooldescription="Request a 1-Case Administrative Medical Bill Chronology & EOB Reconciliation Pilot for a Florida personal injury or healthcare law firm. Do not submit client PHI." className="space-y-4" noValidate>
       <div className="hidden" aria-hidden="true">
         <label htmlFor="attorney-website">Website</label>
         <input

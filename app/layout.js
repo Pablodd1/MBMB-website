@@ -13,7 +13,7 @@ const social = [
     label: "MBMB on WhatsApp"
   },
   {
-    href: "https://www.instagram.com/medicalbillingmiamibeach",
+    href: "https://www.instagram.com/medicalbillingmiami",
     icon: "instagram",
     label: "MBMB on Instagram"
   }

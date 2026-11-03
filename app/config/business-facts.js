@@ -38,7 +38,7 @@ export const BUSINESS_FACTS = {
       'Please do not include patient names, dates of birth, Social Security numbers, insurance member IDs, or other Protected Health Information (PHI) in public website forms or chat.',
   },
   socialAndProfiles: {
-    instagram: 'https://www.instagram.com/medicalbillingmiamibeach',
+    instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
     facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/medicalbillingmiamibeach',
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',
@@ -46,7 +46,7 @@ export const BUSINESS_FACTS = {
       process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://www.google.com/maps/search/?api=1&query=Medical+Billing+Miami+Beach+FL+33139',
   },
   socialAndDirectories: {
-    instagram: 'https://www.instagram.com/medicalbillingmiamibeach',
+    instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
     facebookPage: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/medicalbillingmiamibeach',
     linkedInCompany: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',

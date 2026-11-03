@@ -2,6 +2,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@UTILS/button'
 
+export const metadata = {
+  title: 'Healthcare Revenue Cycle Management (RCM) Services Florida | 5.6%–10% Collection Tiers',
+  description:
+    'Full-lifecycle Healthcare Revenue Cycle Management (RCM) in Miami and Florida. 24–48h clean claim submission, daily 835 ERA posting, 48-hour denial appeals, and aging AR recovery at 5.6%–10% of collections.',
+  keywords:
+    'healthcare revenue cycle management Florida, RCM medical billing Miami, denial management services, aging AR recovery medical practices, medical billing percentage rates Florida',
+  alternates: {
+    canonical: 'https://medicalbillingmb.com/services/revenue-cycle-management',
+  },
+  openGraph: {
+    title: 'Full-Cycle Healthcare Revenue Cycle Management (RCM) | MBMB',
+    description:
+      '8-stage Revenue Cycle Management for South Florida clinics: eligibility verification, AAPC coding + AI scrubbing, 835 ERA auto-posting, and 48h denial recovery.',
+    url: 'https://medicalbillingmb.com/services/revenue-cycle-management',
+    siteName: 'Medical Billing Miami Beach (MBMB)',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
 const rcmSteps = [
   {
     step: 1,
@@ -376,24 +396,3 @@ export default function RevenueCycleManagementPage() {
   )
 }
 
-export const metadata = {
-  title: 'Revenue Cycle Management Services Miami | Full RCM Solutions Florida',
-  description: 'Comprehensive revenue cycle management (RCM) services in Miami, Florida. Full-cycle coverage from patient registration to final payment. Increase revenue by 15-30%. AAPC-certified specialists. Free consultation.',
-  keywords: 'Revenue Cycle Management Miami, RCM Services Florida, Healthcare RCM, Medical Billing RCM, Revenue Cycle Optimization, Denial Management Miami, AR Follow-up Florida, Medical Billing Company Miami',
-  alternates: {
-    canonical: 'https://medicalbillingmb.com/services/revenue-cycle-management'
-  },
-  openGraph: {
-    title: 'Revenue Cycle Management Services Miami | MBMB',
-    description: 'Comprehensive revenue cycle management services in Miami, Florida. Increase revenue by 15-30% with our full-cycle RCM solutions.',
-    url: 'https://medicalbillingmb.com/services/revenue-cycle-management',
-    siteName: 'Medical Billing Miami Beach (MBMB)',
-    locale: 'en_US',
-    type: 'website',
-  },
-  other: {
-    'ai:service': 'revenue cycle management, RCM, medical billing, denial management, AR follow-up',
-    'ai:location': 'Miami, Florida',
-    'ai:phone': '+1-786-643-2099',
-  }
-}

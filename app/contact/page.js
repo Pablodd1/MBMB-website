@@ -115,7 +115,7 @@ const Contact = () => {
                             <p className="text-xs text-slate-400 mt-2">Mon-Fri: 9AM-6PM EST (Eastern Time — America/New_York)</p>
                         </div>
                         
-                        <form id='contact' onSubmit={handleSubmit} className={`grid grid-cols-1 md:grid-cols-2 gap-4 font-sans ${submitting ? 'opacity-45 cursor-wait grayscale' : ''}`}>
+                        <form id='contact' onSubmit={handleSubmit} toolname='send_general_business_inquiry' tooldescription='Send a general business inquiry to Medical Billing Miami Beach (MBMB). Do not submit patient PHI.' className={`grid grid-cols-1 md:grid-cols-2 gap-4 font-sans ${submitting ? 'opacity-45 cursor-wait grayscale' : ''}`}>
                             <div className="hidden" aria-hidden="true">
                                 <label htmlFor="website">Website</label>
                                 <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" value={query ? query.website : ''} onChange={handleChange} />

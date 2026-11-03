@@ -2,6 +2,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@UTILS/button'
 
+export const metadata = {
+  title: 'Florida Provider Credentialing & CAQH Enrollment Services | Medicare & Medicaid',
+  description:
+    'Fast-track Florida provider credentialing (60–120 days) for Medicare PECOS (FCSO), Florida Medicaid (AHCA & MMA plans), Florida Blue, and commercial networks. Complete CAQH ProView, EDI, ERA & EFT setup.',
+  keywords:
+    'provider credentialing Florida, medical credentialing Miami, CAQH ProView enrollment, Medicare PECOS Florida, AHCA Medicaid enrollment Miami Beach, insurance credentialing services',
+  alternates: {
+    canonical: 'https://medicalbillingmb.com/services/credentialing',
+  },
+  openGraph: {
+    title: 'Florida Provider Credentialing & CAQH Services | MBMB',
+    description:
+      'End-to-end Medicare PECOS, Florida Medicaid AHCA, CAQH ProView, and commercial insurance contracting for South Florida physicians and clinics.',
+    url: 'https://medicalbillingmb.com/services/credentialing',
+    siteName: 'Medical Billing Miami Beach (MBMB)',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
 const credentialingServices = [
   {
     title: 'CAQH Enrollment',
@@ -377,24 +397,3 @@ export default function CredentialingPage() {
   )
 }
 
-export const metadata = {
-  title: 'Provider Credentialing Services Miami | CAQH, EDI, ERA, EFT Setup Florida',
-  description: 'Expert provider credentialing services in Miami, Florida. CAQH enrollment, EDI setup, ERA configuration, and EFT arrangement. Process takes 60-120 days. Start billing insurance faster.',
-  keywords: 'Provider Credentialing Miami, CAQH Enrollment Florida, EDI Setup Miami, ERA Configuration, EFT Setup, Insurance Credentialing Miami, Provider Enrollment Florida, Medical Credentialing Services',
-  alternates: {
-    canonical: 'https://medicalbillingmb.com/services/credentialing'
-  },
-  openGraph: {
-    title: 'Provider Credentialing Services Miami | MBMB',
-    description: 'Expert provider credentialing services including CAQH enrollment, EDI setup, ERA configuration, and EFT arrangement in Miami, Florida.',
-    url: 'https://medicalbillingmb.com/services/credentialing',
-    siteName: 'Medical Billing Miami Beach (MBMB)',
-    locale: 'en_US',
-    type: 'website',
-  },
-  other: {
-    'ai:service': 'provider credentialing, CAQH enrollment, EDI setup, ERA configuration, EFT setup',
-    'ai:location': 'Miami, Florida',
-    'ai:phone': '+1-786-643-2099',
-  }
-}
