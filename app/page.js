@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Subscribe from "@UTILS/subscribe";
 import Button from "@UTILS/button";
 import SmartImage from "./components/SmartImage";
@@ -248,6 +248,47 @@ function FAQItem({ faq, index }) {
 }
 
 export default function Home() {
+  const [activeAudience, setActiveAudience] = useState('provider'); // 'provider' | 'attorney'
+  const [isSpanishVisitor, setIsSpanishVisitor] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const sp = new URLSearchParams(window.location.search);
+    const paramAudience = sp.get('audience') || '';
+    const utmCampaign = (sp.get('utm_campaign') || '').toLowerCase();
+    const storedAudience = localStorage.getItem('mbmb_audience') || '';
+
+    if (
+      paramAudience === 'attorney' ||
+      utmCampaign.includes('attorney') ||
+      utmCampaign.includes('legal') ||
+      utmCampaign.includes('chronology') ||
+      storedAudience === 'attorney'
+    ) {
+      setActiveAudience('attorney');
+    } else if (paramAudience === 'provider' || storedAudience === 'provider') {
+      setActiveAudience('provider');
+    }
+
+    if ((navigator.language || '').toLowerCase().startsWith('es') || sp.get('lang') === 'es') {
+      setIsSpanishVisitor(true);
+    }
+
+    const onContextUpdated = (e) => {
+      if (e.detail?.audience === 'attorney') setActiveAudience('attorney');
+      else if (e.detail?.audience === 'provider') setActiveAudience('provider');
+    };
+    window.addEventListener('mbmb:context-updated', onContextUpdated);
+    return () => window.removeEventListener('mbmb:context-updated', onContextUpdated);
+  }, []);
+
+  const selectAudience = (aud) => {
+    setActiveAudience(aud);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('mbmb_audience', aud);
+    }
+  };
+
   return (
     <div className="bg-white">
       <script
@@ -278,54 +319,139 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
+          {/* Dynamic Interactive Audience Switcher */}
+          <div className="inline-flex p-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-5">
+            <button
+              type="button"
+              onClick={() => selectAudience('provider')}
+              className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeAudience === 'provider'
+                  ? 'bg-[#0066CC] text-white shadow-md'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              🩺 For Physicians &amp; Clinics
+            </button>
+            <button
+              type="button"
+              onClick={() => selectAudience('attorney')}
+              className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeAudience === 'attorney'
+                  ? 'bg-pink text-white shadow-md'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              ⚖️ For Trial Attorneys &amp; Law Firms
+            </button>
+          </div>
+
+          {isSpanishVisitor && (
+            <div className="mb-4 text-xs sm:text-sm text-emerald-300 font-semibold">
+              🌎 Atención Directa en Miami Beach en Español e Inglés · Llámenos al <a href="tel:+17866432099" className="underline hover:text-white">(786) 643-2099</a>
+            </div>
+          )}
+
           <header>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-extrabold drop-shadow-lg leading-tight">
               Medical Billing Miami Beach
-              <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
-                98% Clean-Claim Rate · Recover 15–30% More Practice Revenue
-              </span>
+              {activeAudience === 'attorney' ? (
+                <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
+                  Source-Linked Medical Bill Chronologies &amp; EOB Reconciliation in 3–5 Days
+                </span>
+              ) : (
+                <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
+                  98% Clean-Claim Rate · Recover 15–30% More Practice Revenue
+                </span>
+              )}
             </h1>
           </header>
 
-          <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
-            The average South Florida medical practice loses <strong className="text-white">$127,000+ per year</strong> to preventable coding errors, under-paid claims, and unappealed denials. Our AAPC-certified specialists handle your entire billing lifecycle—you only pay when we collect.
-          </p>
+          {activeAudience === 'attorney' ? (
+            <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
+              Preparing a Florida Personal Injury demand package or mediation brief? Our AAPC-certified specialists organize fragmented <strong className="text-white">CMS-1500 / UB-04 bills, PIP logs, and EOBs</strong> into Bates-referenced chronologies and charge-to-balance tables.
+            </p>
+          ) : (
+            <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
+              The average South Florida medical practice loses <strong className="text-white">$127,000+ per year</strong> to preventable coding errors, under-paid claims, and unappealed denials. Our AAPC-certified specialists handle your entire billing lifecycle—you only pay when we collect.
+            </p>
+          )}
 
           {/* Key Value Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
-            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ 5.6%–10% Collection Pricing*
+          {activeAudience === 'attorney' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ 3–5 Day 1-Case Pilot Turnaround
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ Plain-English CPT &amp; ICD-10 Translation
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ Duplicate Charge &amp; EOB Reconciliation
+              </div>
             </div>
-            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ Human AAPC Review + AI Double-Check
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ 5.6%–10% Collection Pricing*
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ Human AAPC Review + AI Double-Check
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
+                ✓ 24–48 Hr Claim &amp; Denial Turnaround
+              </div>
             </div>
-            <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-              ✓ 24–48 Hr Claim &amp; Denial Turnaround
-            </div>
-          </div>
+          )}
 
           {/* Primary & Secondary CTAs */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
-            <Button
-              href="/consultation"
-              text="Request a Free Billing Consultation"
-              colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
-              className="w-full sm:w-auto"
-            />
-            <a
-              href="#calculator"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
-            >
-              Calculate Your Denial Loss ↓
-            </a>
-          </div>
+          {activeAudience === 'attorney' ? (
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+              <Button
+                href="/for-attorneys#pilot-form"
+                text="Start a 1-Case Attorney Pilot →"
+                colors="bg-pink text-white hover:opacity-95 text-base sm:text-lg px-8 py-4 shadow-xl shadow-pink/30 font-bold"
+                className="w-full sm:w-auto"
+              />
+              <Link
+                href="/for-attorneys"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
+              >
+                View Sample Chronology Deliverable →
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+              <Button
+                href="/consultation"
+                text="Request a Free Billing Consultation"
+                colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
+                className="w-full sm:w-auto"
+              />
+              <a
+                href="#calculator"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
+              >
+                Calculate Your Denial Loss ↓
+              </a>
+            </div>
+          )}
           <div className="mt-4">
-            <Link
-              href="/for-attorneys"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#00A8E8] hover:text-white transition-colors"
-            >
-              <span>⚖️ Personal Injury or Healthcare Law Firm? Explore our 1-Case Medical Bill Chronology &amp; Reconciliation Pilot →</span>
-            </Link>
+            {activeAudience === 'attorney' ? (
+              <button
+                type="button"
+                onClick={() => selectAudience('provider')}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#00A8E8] hover:text-white transition-colors cursor-pointer"
+              >
+                <span>🩺 Medical Practice or Clinic Owner? Switch to Healthcare Provider RCM (5.6%–10% of collections) →</span>
+              </button>
+            ) : (
+              <Link
+                href="/for-attorneys"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#00A8E8] hover:text-white transition-colors"
+              >
+                <span>⚖️ Personal Injury or Healthcare Law Firm? Explore our 1-Case Medical Bill Chronology &amp; Reconciliation Pilot →</span>
+              </Link>
+            )}
           </div>
 
           {/* Trust Credentials */}

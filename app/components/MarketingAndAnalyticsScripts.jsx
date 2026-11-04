@@ -3,29 +3,85 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 
-/**
- * Privacy-Safe Marketing, GA4 & Key Event Analytics (Section 8 Compliance)
- *
- * Connected GA4 Measurement IDs:
- * - G-K6JSWT8YWN (Primary Property reporting in Google Analytics)
- * - G-M1RHKRVS9M (Secondary MBMB Stream)
- *
- * Key Features:
- * 1. Restores active GA4 tracking while keeping HIPAA-safe privacy controls
- *    (anonymize_ip, no Google Signals, no Ad Personalization).
- * 2. Preserves safe marketing attribution parameters (utm_source, utm_medium,
- *    utm_campaign, utm_content, utm_term) so Brevo Email & Instagram campaigns
- *    track properly in GA4 without ever leaking form query strings or PHI.
- * 3. Automatically tracks GA4 Key Events recommended in your GA4 report:
- *    - generate_lead (Consultation, Contact & Attorney Pilot submissions)
- *    - book_appointment (Calendar booking widget completions)
- *    - click_phone_call (Clicks on (786) 643-2099)
- *    - click_email (Clicks on Jasmel@medicalbillingmb.com)
- *    - cta_click (Clicks on Request Consultation / For Providers / For Attorneys CTAs)
- *    - engaged_reader_30s & scroll_depth_50 (Accurately records engaged sessions & reduces false bounce rate)
- */
-
 const DEFAULT_GA_IDS = ['G-K6JSWT8YWN', 'G-M1RHKRVS9M'];
+
+function getVisitorContext() {
+  if (typeof window === 'undefined') return {};
+  const sp = new URLSearchParams(window.location.search);
+  const storedSource = sessionStorage.getItem('mbmb_utm_source') || '';
+  const storedCampaign = sessionStorage.getItem('mbmb_utm_campaign') || '';
+  const storedAudience = localStorage.getItem('mbmb_audience') || '';
+
+  const utm_source = sp.get('utm_source') || storedSource || (document.referrer ? new URL(document.referrer).hostname.replace('www.', '') : 'direct');
+  const utm_medium = sp.get('utm_medium') || '';
+  const utm_campaign = sp.get('utm_campaign') || storedCampaign || '';
+  const utm_content = sp.get('utm_content') || '';
+  const explicitAudience = sp.get('audience') || '';
+
+  if (sp.get('utm_source')) sessionStorage.setItem('mbmb_utm_source', sp.get('utm_source'));
+  if (sp.get('utm_campaign')) sessionStorage.setItem('mbmb_utm_campaign', sp.get('utm_campaign'));
+
+  const path = window.location.pathname;
+  const combined = `${path} ${utm_campaign} ${utm_content} ${explicitAudience} ${document.referrer}`.toLowerCase();
+  let audience = storedAudience || 'general';
+  if (
+    combined.includes('attorney') ||
+    combined.includes('law') ||
+    combined.includes('legal') ||
+    combined.includes('chronology')
+  ) {
+    audience = 'attorney';
+    localStorage.setItem('mbmb_audience', 'attorney');
+  } else if (
+    combined.includes('provider') ||
+    combined.includes('doctor') ||
+    combined.includes('clinic') ||
+    combined.includes('coding') ||
+    combined.includes('credentialing') ||
+    combined.includes('rcm') ||
+    combined.includes('medicaid') ||
+    combined.includes('denial')
+  ) {
+    audience = 'provider';
+    localStorage.setItem('mbmb_audience', 'provider');
+  }
+
+  return {
+    path,
+    utm_source,
+    utm_medium,
+    utm_campaign,
+    utm_content,
+    audience,
+    lang: navigator.language || 'en-US',
+    referrer: document.referrer || '',
+  };
+}
+
+export function sendFirstPartyTelemetry(eventName, extra = {}) {
+  if (typeof window === 'undefined') return;
+  try {
+    const ctx = getVisitorContext();
+    const payload = JSON.stringify({
+      event: eventName,
+      ...ctx,
+      ...extra,
+    });
+    if (navigator.sendBeacon) {
+      const blob = new Blob([payload], { type: 'application/json' });
+      navigator.sendBeacon('/my-api/telemetry', blob);
+    } else {
+      fetch('/my-api/telemetry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true,
+      }).catch(() => {});
+    }
+  } catch {
+    // Non-blocking telemetry
+  }
+}
 
 export function trackMBMBEvent(eventName, params = {}) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -34,6 +90,9 @@ export function trackMBMBEvent(eventName, params = {}) {
       send_to: DEFAULT_GA_IDS[0],
     });
   }
+  sendFirstPartyTelemetry(eventName, {
+    label: params.cta_text || params.event_label || params.form_location || '',
+  });
 }
 
 export default function MarketingAndAnalyticsScripts() {
@@ -46,10 +105,28 @@ export default function MarketingAndAnalyticsScripts() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // 1. Delegated click listener for high-value Key Events (phone, email, consultation CTAs)
+    // 0. Record First-Party Page View & Session Start
+    const isNewSession = !sessionStorage.getItem('mbmb_session_active');
+    if (isNewSession) {
+      sessionStorage.setItem('mbmb_session_active', '1');
+    }
+    sendFirstPartyTelemetry('page_view', { isNewSession });
+
+    // Notify dynamic UI components if audience changed
+    window.dispatchEvent(new CustomEvent('mbmb:context-updated', { detail: getVisitorContext() }));
+
+    // 1. Delegated click listener for high-value Key Events (phone, email, consultation CTAs, calculator)
     const handleDocumentClick = (e) => {
-      const anchor = e.target?.closest?.('a, button');
+      const anchor = e.target?.closest?.('a, button, input[type="range"]');
       if (!anchor) return;
+
+      if (anchor.tagName === 'INPUT' && anchor.type === 'range') {
+        trackMBMBEvent('calculator_interaction', {
+          event_category: 'engagement',
+          page_path: window.location.pathname,
+        });
+        return;
+      }
 
       const href = anchor.getAttribute('href') || '';
       const label = (anchor.innerText || anchor.getAttribute('aria-label') || '').trim().slice(0, 60);
@@ -68,9 +145,14 @@ export default function MarketingAndAnalyticsScripts() {
         });
       } else if (
         href.includes('/consultation') ||
-        href.includes('/for-attorneys#pilot-form') ||
+        href.includes('/for-attorneys') ||
         href.includes('/for-providers')
       ) {
+        if (href.includes('/for-attorneys')) {
+          localStorage.setItem('mbmb_audience', 'attorney');
+        } else if (href.includes('/for-providers')) {
+          localStorage.setItem('mbmb_audience', 'provider');
+        }
         trackMBMBEvent('cta_click', {
           event_category: 'conversion_intent',
           destination: href,
@@ -80,7 +162,7 @@ export default function MarketingAndAnalyticsScripts() {
       }
     };
 
-    // 2. Delegated form submission listener for GA4 "generate_lead" Key Event (never sends form field values/PHI)
+    // 2. Delegated form submission listener for GA4 + First-Party "generate_lead" Key Event
     const handleFormSubmit = (e) => {
       const form = e.target;
       if (!form || form.tagName !== 'FORM') return;
@@ -90,7 +172,7 @@ export default function MarketingAndAnalyticsScripts() {
       });
     };
 
-    // 3. 25-second engaged reader + 50% scroll depth signal (improves GA4 engagement time & bounce rate accuracy)
+    // 3. 25-second engaged reader + 50% scroll depth signal
     let scrolled50 = false;
     const handleScroll = () => {
       if (scrolled50) return;
@@ -126,7 +208,6 @@ export default function MarketingAndAnalyticsScripts() {
 
   return (
     <>
-      {/* Google Analytics 4 (Privacy-Safe + UTM Campaign Attribution Preserved) */}
       {primaryGaId && (
         <>
           <Script
@@ -167,7 +248,6 @@ export default function MarketingAndAnalyticsScripts() {
         </>
       )}
 
-      {/* Google Tag Manager (Optional) */}
       {gtmId && (
         <Script id="mbmb-gtm-init" strategy="afterInteractive">
           {`
@@ -180,7 +260,6 @@ export default function MarketingAndAnalyticsScripts() {
         </Script>
       )}
 
-      {/* Meta / Facebook Pixel (Restricted Mode: No Form-Body or Automatic Advanced Matching) */}
       {metaPixelId && (
         <Script id="mbmb-meta-pixel-init" strategy="afterInteractive">
           {`
