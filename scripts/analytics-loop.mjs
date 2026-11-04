@@ -3,8 +3,7 @@
  * Fetches live telemetry across:
  *   1. Website Behavioral Telemetry (https://medicalbillingmb.com/my-api/telemetry)
  *   2. Email Transactional / Drip Performance (Brevo SMTP 30-day & 7-day stats)
- *   3. Social Media Performance (Buffer GraphQL API / Channel Metrics)
- * Outputs a unified cross-channel report + actionable personalization adjustments.
+ *   3. Dynamic Site Personalization Rules
  */
 
 import fs from 'fs';
@@ -12,15 +11,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const envPath = path.resolve(__dirname, '../.env');
-
-// Load .env manually if present
-if (fs.existsSync(envPath)) {
-  const envContent = fs.readFileSync(envPath, 'utf8');
-  for (const line of envContent.split(/\r?\n/)) {
-    const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
-    if (match && !process.env[match[1]]) {
-      process.env[match[1]] = (match[2] || '').replace(/^['"]|['"]$/g, '');
+for (const envFile of ['../.env.local', '../.env']) {
+  const envPath = path.resolve(__dirname, envFile);
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf8');
+    for (const line of envContent.split(/\r?\n/)) {
+      const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+      if (match && !process.env[match[1]]) {
+        process.env[match[1]] = (match[2] || '').replace(/^['"]|['"]$/g, '');
+      }
     }
   }
 }
@@ -33,20 +32,15 @@ async function fetchWebsiteTelemetry() {
     const res = await fetch(`${SITE_URL}/my-api/telemetry`, {
       headers: { Accept: 'application/json' },
     });
-    if (!res.ok) {
-      return { ok: false, status: res.status };
-    }
-    const json = await res.json();
-    return json;
+    if (!res.ok) return { ok: false, status: res.status };
+    return await res.json();
   } catch (err) {
     return { ok: false, error: err.message };
   }
 }
 
 async function fetchBrevoEmailStats() {
-  if (!BREVO_API_KEY) {
-    return { ok: false, error: 'Missing BREVO_API_KEY in .env' };
-  }
+  if (!BREVO_API_KEY) return { ok: false, error: 'Missing BREVO_API_KEY in .env.local' };
   try {
     const [res30, res7] = await Promise.all([
       fetch('https://api.brevo.com/v3/smtp/statistics/aggregatedReport?days=30', {
@@ -56,9 +50,11 @@ async function fetchBrevoEmailStats() {
         headers: { 'api-key': BREVO_API_KEY, Accept: 'application/json' },
       }),
     ]);
-    const stats30 = res30.ok ? await res30.json() : null;
-    const stats7 = res7.ok ? await res7.json() : null;
-    return { ok: true, last30Days: stats30, last7Days: stats7 };
+    return {
+      ok: true,
+      last30Days: res30.ok ? await res30.json() : null,
+      last7Days: res7.ok ? await res7.json() : null,
+    };
   } catch (err) {
     return { ok: false, error: err.message };
   }
@@ -78,29 +74,18 @@ async function main() {
   // 1. WEBSITE BEHAVIORAL TELEMETRY
   console.log('1️⃣  WEBSITE REAL-TIME TELEMETRY & DYNAMIC PERSONALIZATION');
   console.log('----------------------------------------------------------------------');
-  if (web?.ok && web?.telemetry) {
-    const t = web.telemetry;
-    console.log(`  • Total Tracked Events:   ${t.total || 0}`);
-    console.log(`  • Last Event Timestamp:   ${t.updatedAt || 'N/A'}`);
-    console.log(`  • Audience Split:         Providers: ${t.audiences?.provider || 0} | Attorneys: ${t.audiences?.attorney || 0}`);
-    console.log(`  • Language Split:         English (EN): ${t.languages?.en || 0} | Español (ES): ${t.languages?.es || 0}`);
+  if (web?.ok && web?.totals) {
+    const t = web.totals;
+    console.log(`  • Last Event Timestamp:   ${web.updatedAt || 'N/A'}`);
+    console.log(`  • Page Views / Sessions:  ${t.pageViews || 0} page views | ${t.uniqueSessions || 0} unique sessions`);
+    console.log(`  • High-Intent Actions:    ${t.ctaClicks || 0} CTA clicks | ${t.phoneClicks || 0} phone | ${t.emailClicks || 0} email | ${t.leadSubmissions || 0} leads`);
+    console.log(`  • Engagement Depth:       ${t.scroll50 || 0} scrolled 50%+ | ${t.engaged25s || 0} 25s+ readers | ${t.calculatorUses || 0} ROI calc uses`);
+    console.log(`  • Audience Segments:      Providers: ${web.audienceSegments?.provider || 0} | Attorneys: ${web.audienceSegments?.attorney || 0} | General: ${web.audienceSegments?.general || 0}`);
+    console.log(`  • Language Split:         English (EN): ${web.languages?.en || 0} | Español (ES): ${web.languages?.es || 0}`);
 
-    const topPages = Object.entries(t.pages || {})
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 6);
     console.log('  • Top Visited Pages:');
-    if (topPages.length === 0) {
-      console.log('      (Waiting for incoming traffic beacons)');
-    } else {
-      for (const [pagePath, views] of topPages) {
-        console.log(`      - ${pagePath.padEnd(35)} ${views} views`);
-      }
-    }
-
-    const eventBreakdown = Object.entries(t.events || {}).sort((a, b) => b[1] - a[1]);
-    console.log('  • Conversion & Engagement Events:');
-    for (const [evt, count] of eventBreakdown) {
-      console.log(`      - ${evt.padEnd(35)} ${count}`);
+    for (const [pagePath, views] of (web.topPages || []).slice(0, 6)) {
+      console.log(`      - ${String(pagePath).padEnd(35)} ${views} views`);
     }
   } else {
     console.log(`  ⚠️ Website telemetry endpoint status: ${JSON.stringify(web)}`);
