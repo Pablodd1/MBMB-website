@@ -1,39 +1,13 @@
 import { NextResponse } from "next/server";
+import {
+  sendBrevoTransactional,
+  syncBrevoContact,
+  getAdminRecipients,
+} from "@UTILS/email";
 
 export const dynamic = 'force-dynamic';
 
-// Simple booking API that works without Google Calendar credentials
-// Stores bookings and sends confirmation emails via Brevo when configured
-
-const bookings = []; // In-memory storage (replace with DB in production)
-
-async function sendBrevoEmail(toEmail, subject, htmlContent) {
-  const BREVO_API_KEY = process.env.BREVO_API_KEY;
-  if (!BREVO_API_KEY) {
-    console.warn("BREVO_API_KEY not set, skipping email");
-    return { skipped: true };
-  }
-
-  try {
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": BREVO_API_KEY
-      },
-      body: JSON.stringify({
-        sender: { name: "Medical Billing Miami Beach", email: "Jasmel@medicalbillingmb.com" },
-        to: [{ email: toEmail }],
-        subject,
-        htmlContent
-      })
-    });
-    return response.ok ? { sent: true } : { error: await response.text() };
-  } catch (err) {
-    console.error("Brevo email failed:", err);
-    return { error: err.message };
-  }
-}
+const bookings = [];
 
 export async function POST(req) {
   try {
@@ -47,80 +21,96 @@ export async function POST(req) {
       );
     }
 
-    // Store the booking
+    const slotLabel = typeof selected_slot === 'string'
+      ? selected_slot
+      : `${selected_slot.dayName || selected_slot.date || ''} at ${selected_slot.time || ''}`.trim();
+
     const booking = {
       id: `mbmb-${Date.now()}`,
-      name,
-      email,
-      phone: phone || "",
-      practice: practice || "",
-      specialty: specialty || "",
-      challenge: challenge || "",
-      selected_slot,
-      meeting_type: meeting_type || "Free Billing Assessment",
+      name: name.trim(),
+      email: email.trim(),
+      phone: (phone || "").trim(),
+      practice: (practice || "").trim(),
+      specialty: (specialty || "").trim(),
+      challenge: (challenge || "").trim(),
+      selected_slot: slotLabel,
+      meeting_type: meeting_type || "15-Min Billing & Audit Call",
       createdAt: new Date().toISOString(),
       status: "confirmed"
     };
-    
-    bookings.push(booking);
-    console.log("New booking stored:", booking);
 
-    // Send confirmation email to customer
-    const customerSubject = `Confirmed: ${booking.meeting_type} with Medical Billing Miami Beach`;
+    bookings.push(booking);
+
+    // 1. Sync contact into Brevo CRM
+    await syncBrevoContact({
+      email: booking.email,
+      fullName: booking.name,
+      organization: booking.practice,
+      phone: booking.phone,
+      inquiryType: `Booked Call (${booking.selected_slot})`,
+    });
+
+    // 2. Send personal, authentic confirmation email to the doctor / practice manager / attorney
+    const customerSubject = `Confirmed: ${booking.selected_slot} — Jasmel (Medical Billing Miami Beach)`;
     const customerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #ec4899, #be185d); padding: 30px; text-align: center; color: white;">
-          <h1 style="margin: 0; font-size: 24px;">Medical Billing Miami Beach</h1>
-          <p style="margin: 10px 0 0; opacity: 0.9;">Your booking is confirmed!</p>
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 580px; margin: 0 auto; color: #0f172a; line-height: 1.6;">
+        <p style="font-size: 15px;">Hi ${booking.name.split(' ')[0]},</p>
+        <p style="font-size: 15px;">
+          I have you locked in for our <strong>${booking.meeting_type}</strong> on <strong>${booking.selected_slot} (EST)</strong>.
+        </p>
+        <div style="background: #f8fafc; border-left: 4px solid #0066CC; padding: 16px 20px; border-radius: 6px; margin: 20px 0; font-size: 14px;">
+          <div style="margin-bottom: 6px;"><strong>When:</strong> ${booking.selected_slot} (EST)</div>
+          ${booking.practice ? `<div style="margin-bottom: 6px;"><strong>Practice / Firm:</strong> ${booking.practice}</div>` : ''}
+          ${booking.phone ? `<div style="margin-bottom: 6px;"><strong>Phone We'll Call:</strong> ${booking.phone}</div>` : ''}
+          <div><strong>Direct Line:</strong> (786) 643-2099</div>
         </div>
-        <div style="padding: 30px; background: #f9fafb; border: 1px solid #e5e7eb;">
-          <h2 style="color: #111827; margin-top: 0;">Hi ${name},</h2>
-          <p style="color: #4b5563; line-height: 1.6;">
-            Thank you for booking a <strong>${booking.meeting_type}</strong> with us.
-          </p>
-          <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ec4899;">
-            <p style="margin: 0; color: #374151;"><strong>Date:</strong> ${selected_slot.dayName || selected_slot.date}</p>
-            <p style="margin: 8px 0 0; color: #374151;"><strong>Time:</strong> ${selected_slot.time}</p>
-            <p style="margin: 8px 0 0; color: #374151;"><strong>Booking ID:</strong> ${booking.id}</p>
-          </div>
-          <p style="color: #6b7280; font-size: 14px;">
-            We'll send you a reminder before the meeting.<br>
-            Questions? Call us at (786) 643-2099 or reply to this email.
-          </p>
-        </div>
-        <div style="padding: 20px; text-align: center; color: #9ca3af; font-size: 12px;">
-          <p>Medical Billing Miami Beach · Miami, FL</p>
-          <p><a href="https://medicalbillingmb.com" style="color: #ec4899;">medicalbillingmb.com</a></p>
-        </div>
+        <p style="font-size: 14px; color: #334155;">
+          <strong>No prep needed.</strong> If you want us to look at specific denied claims (CO-16, CO-50, CO-97), underpayments, or a Personal Injury billing file on the call, just reply to this email and let me know which payer or EHR you're dealing with.
+        </p>
+        <p style="font-size: 14px; color: #0f172a; margin-top: 24px;">
+          Talk soon,<br/>
+          <strong>Jasmel Acosta</strong><br/>
+          Medical Billing Miami Beach (MBMB)<br/>
+          Direct: <a href="tel:+17866432099" style="color: #0066CC; text-decoration: none;">(786) 643-2099</a> · <a href="https://medicalbillingmb.com" style="color: #0066CC; text-decoration: none;">medicalbillingmb.com</a>
+        </p>
       </div>
     `;
-    
-    const customerEmailResult = await sendBrevoEmail(email, customerSubject, customerHtml);
 
-    // Send notification to admin
-    const adminEmail = process.env.ADMIN_EMAIL || "jasmelacosta@gmail.com";
+    const customerEmailResult = await sendBrevoTransactional({
+      to: [{ email: booking.email, name: booking.name }],
+      subject: customerSubject,
+      htmlContent: customerHtml,
+      replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel Acosta — MBMB" },
+    });
+
+    // 3. Send instant alert to Jasmel
     const adminHtml = `
-      <p><strong>New Booking Received!</strong></p>
-      <p>Name: ${name}</p>
-      <p>Email: ${email}</p>
-      <p>Phone: ${phone || "N/A"}</p>
-      <p>Practice: ${practice || "N/A"}</p>
-      <p>Specialty: ${specialty || "N/A"}</p>
-      <p>Date: ${selected_slot.dayName || selected_slot.date}</p>
-      <p>Time: ${selected_slot.time}</p>
-      <p>Challenge: ${challenge || "N/A"}</p>
-      <p>Booking ID: ${booking.id}</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; border: 1px solid #cbd5e1; border-radius: 10px;">
+        <h2 style="margin-top: 0; color: #0a1628;">📅 New Call Booked on MBMB</h2>
+        <p><strong>When:</strong> ${booking.selected_slot} (EST)</p>
+        <p><strong>Type:</strong> ${booking.meeting_type}</p>
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> <a href="mailto:${booking.email}">${booking.email}</a></p>
+        <p><strong>Phone:</strong> <a href="tel:${booking.phone}">${booking.phone || "Not provided"}</a></p>
+        <p><strong>Practice / Law Firm:</strong> ${booking.practice || "Not provided"}</p>
+        <p><strong>Focus / Specialty:</strong> ${booking.specialty || booking.challenge || "General Billing / Audit"}</p>
+      </div>
     `;
-    
-    await sendBrevoEmail(adminEmail, `New MBMB Booking: ${name}`, adminHtml);
+
+    await sendBrevoTransactional({
+      to: getAdminRecipients(),
+      subject: `📅 Booked Call: ${booking.name} (${booking.practice || booking.selected_slot})`,
+      htmlContent: adminHtml,
+      replyTo: { email: booking.email, name: booking.name },
+    });
 
     return NextResponse.json({
       success: true,
       message: "Booking confirmed",
       bookingId: booking.id,
+      slot: booking.selected_slot,
       emailSent: customerEmailResult.sent || false
     });
-
   } catch (error) {
     console.error("Booking API error:", error);
     return NextResponse.json(
@@ -130,7 +120,6 @@ export async function POST(req) {
   }
 }
 
-// GET endpoint to retrieve bookings (admin use)
-export async function GET(req) {
+export async function GET() {
   return NextResponse.json({ bookings });
 }

@@ -8,8 +8,7 @@ import SmartImage from "./components/SmartImage";
 import RotatingLogo3D from "./components/RotatingLogo3D";
 import CPTICD10HeroBackground from "./components/CPTICD10HeroBackground";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
-import LeadMagnetPopup from "./components/lead-magnet-popup.jsx";
-import GoogleCalendarBooking from "./components/GoogleCalendarBooking";
+import InstantOfferBar from "./components/InstantOfferBar";
 import ScrollReveal from "./components/ScrollReveal";
 import AIFeatureCards from "./components/AIFeatureCards";
 import AIProcessFlow from "./components/AIProcessFlow";
@@ -356,11 +355,11 @@ export default function Home() {
               Medical Billing Miami Beach
               {activeAudience === 'attorney' ? (
                 <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
-                  Source-Linked Medical Bill Chronologies &amp; EOB Reconciliation in 3–5 Days
+                  Send 1 Messy Injury Billing File. Get a Bates-Linked Chronology &amp; EOB Audit in 72 Hours.
                 </span>
               ) : (
                 <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
-                  98% Clean-Claim Rate · Recover 15–30% More Practice Revenue
+                  Show Us 20 Denied Claims. We’ll Show You the Exact Money You’re Owed in 48 Hours—Free.
                 </span>
               )}
             </h1>
@@ -368,11 +367,11 @@ export default function Home() {
 
           {activeAudience === 'attorney' ? (
             <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
-              Preparing a Florida Personal Injury demand package or mediation brief? Our AAPC-certified specialists organize fragmented <strong className="text-white">CMS-1500 / UB-04 bills, PIP logs, and EOBs</strong> into Bates-referenced chronologies and charge-to-balance tables.
+              Stop having paralegals untangle hospital UB-04s, CMS-1500s, PIP logs, and EOB adjustments by hand. Our U.S. AAPC-certified coders translate every CPT/ICD-10 code into plain English, flag duplicate facility/physician charges, and hand you an editable <strong className="text-white">Excel + Bates-referenced PDF table</strong> ready for demand or mediation.
             </p>
           ) : (
             <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
-              The average South Florida medical practice loses <strong className="text-white">$127,000+ per year</strong> to preventable coding errors, under-paid claims, and unappealed denials. Our AAPC-certified specialists handle your entire billing lifecycle—you only pay when we collect.
+              Most Florida practices lose <strong className="text-white">12%–18% of their collections</strong> because billers write off CO-16, CO-50, and Modifier 25/59 rejections instead of fighting them. Our U.S. AAPC coders scrub and appeal every claim—and you only pay <strong className="text-white">5.6%–10% of what actually hits your bank account</strong>. $0 setup. Keep your current EHR.
             </p>
           )}
 
@@ -380,7 +379,7 @@ export default function Home() {
           {activeAudience === 'attorney' ? (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
               <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ 3–5 Day 1-Case Pilot Turnaround
+                ✓ 72-Hr 1-Case Pilot Turnaround
               </div>
               <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
                 ✓ Plain-English CPT &amp; ICD-10 Translation
@@ -392,13 +391,13 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
               <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ 5.6%–10% Collection Pricing*
+                ✓ 5.6%–10% of Collected Cash Only*
               </div>
               <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ Human AAPC Review + AI Double-Check
+                ✓ Free 48-Hr 20-Claim Proof Test
               </div>
               <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ 24–48 Hr Claim &amp; Denial Turnaround
+                ✓ $0 Setup · Keep Your Current EHR
               </div>
             </div>
           )}
@@ -408,7 +407,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
               <Button
                 href="/for-attorneys#pilot-form"
-                text="Start a 1-Case Attorney Pilot →"
+                text="Test Us on 1 Case File (72h) →"
                 colors="bg-pink text-white hover:opacity-95 text-base sm:text-lg px-8 py-4 shadow-xl shadow-pink/30 font-bold"
                 className="w-full sm:w-auto"
               />
@@ -416,14 +415,14 @@ export default function Home() {
                 href="/for-attorneys"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
               >
-                View Sample Chronology Deliverable →
+                See Sample Chronology Table →
               </Link>
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
               <Button
                 href="/consultation"
-                text="Request a Free Billing Consultation"
+                text="Claim Your Free 20-Claim Audit →"
                 colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
                 className="w-full sm:w-auto"
               />
@@ -435,6 +434,9 @@ export default function Home() {
               </a>
             </div>
           )}
+
+          {/* Minimalistic 1-Click Instant Offer Capture Bar */}
+          <InstantOfferBar audience={activeAudience} sourcePage="/" />
           <div className="mt-4">
             {activeAudience === 'attorney' ? (
               <button
@@ -982,12 +984,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FLOATING WIDGETS ===== */}
-      {/* Right: Direct Google Calendar Audit Booking */}
-      <GoogleCalendarBooking />
-
-      {/* Delayed 25s Florida Compliance Checklist Offer */}
-      <LeadMagnetPopup />
+      {/* Unified Receptionist & 15m Scheduler is mounted globally in layout.js */}
     </div>
   );
 }

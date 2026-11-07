@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import AttorneyPilotForm from './AttorneyPilotForm';
+import InstantOfferBar from '../components/InstantOfferBar';
 
 export const metadata = {
   title: 'Medical Billing Support for Attorneys & Law Firms | Bill Organization & Reconciliation',
@@ -40,7 +41,7 @@ const attorneyFaqs = [
   {
     question: 'What formats do we receive, and what is the typical turnaround?',
     answer:
-      'Deliverables are provided in both an editable Excel / CSV workbook (for sorting and filtering by provider, date, or payer) and a clean, Bates/page-referenced PDF summary table. Standard 1-case pilot files are typically completed within 3–5 business days.',
+      'Deliverables are provided in both an editable Excel / CSV workbook (for sorting and filtering by provider, date, or payer) and a clean, Bates/page-referenced PDF summary table. Standard 1-case pilot files are completed within 72 hours (3–5 business days).',
   },
 ];
 
@@ -113,11 +114,11 @@ export default function ForAttorneysPage() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
-              Medical billing clarity for your legal team
+              Send Us 1 Messy Injury Billing File. Get a Bates-Linked Chronology in 72 Hours.
             </h1>
 
             <p className="text-slate-200 text-lg md:text-xl leading-relaxed mb-10">
-              Need help making sense of itemized medical bills, CMS-1500/UB-04 claims, and EOBs? Our AAPC-certified billing specialists work alongside your team to organize billing records, translate CPT/ICD-10 codes into plain English, reconcile payments and adjustments, and flag administrative billing questions—so you can review the numbers with confidence.
+              Stop having paralegals untangle hospital UB-04s, CMS-1500s, PIP logs, and EOB adjustments by hand. Our U.S. AAPC-certified coders translate every CPT/ICD-10 code into plain English, flag duplicate facility/physician charges, and hand you an editable Excel + Bates-referenced PDF table ready for demand or mediation.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
@@ -125,13 +126,13 @@ export default function ForAttorneysPage() {
                 href="#pilot-form"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-base shadow-xl shadow-[#0066CC]/30 transition-all"
               >
-                Discuss a Pilot File
+                Start a 1-Case Pilot File →
               </a>
               <a
                 href="#pilot-workflow"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-white/25 hover:bg-white/10 text-white font-bold text-base transition-all"
               >
-                How Our Process Works
+                See Sample Chronology Table ↓
               </a>
             </div>
           </div>
@@ -148,11 +149,15 @@ export default function ForAttorneysPage() {
                   Source-Linked Chronologies &amp; EOB Reconciliation
                 </span>
                 <p className="text-xs text-slate-300 mt-1">
-                  Delivered in editable Excel/CSV &amp; Bates-referenced PDF tables (3–5 business day standard pilot turnaround).
+                  Delivered in editable Excel/CSV &amp; Bates-referenced PDF tables (72-hour 1-case pilot turnaround).
                 </p>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+          <InstantOfferBar audience="attorney" sourcePage="/for-attorneys" />
         </div>
       </section>
 
@@ -215,7 +220,7 @@ export default function ForAttorneysPage() {
                 </h3>
               </div>
               <span className="text-xs text-slate-400">
-                Sample administrative layout (redacted / non-clinical · 3–5 business day pilot turnaround)
+                Sample administrative layout (redacted / non-clinical · 72-hour pilot turnaround)
               </span>
             </div>
 

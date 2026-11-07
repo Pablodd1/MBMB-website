@@ -1,46 +1,120 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 
 const QUICK_PROMPTS = {
   en: [
-    { label: '💰 Pricing Tiers (5.6%–10%)', text: 'What are your medical billing pricing tiers and what is included?' },
-    { label: '🤖 Human + AI Double-Check', text: 'How do your AAPC human coders and AI work together to prevent claim denials?' },
-    { label: '⚖️ Forensic Billing for Attorneys', text: 'How does your medical billing chronology and EOB reconciliation support for attorneys work?' },
-    { label: '🏥 Credentialing & EHRs', text: 'Which Florida insurance payers do you credential with, and which EHR systems do you support?' }
+    { label: '💰 Pricing (5.6%–10%)', key: 'pricing', text: 'What are your exact billing rates and is there a setup fee?' },
+    { label: '🩺 Free 20-Claim Audit', key: 'audit', text: 'How does the free 48-hour 20-claim audit work?' },
+    { label: '⚖️ Attorney 1-Case Pilot', key: 'attorney', text: 'How does the 72-hour Personal Injury billing chronology pilot work?' },
+    { label: '🏥 Credentialing & EHRs', key: 'ehr', text: 'Do I keep my current EHR and how fast is Florida credentialing?' }
   ],
   es: [
-    { label: '💰 Tarifas (5.6%–10%)', text: '¿Cuáles son sus tarifas de facturación médica y qué incluyen?' },
-    { label: '🤖 Experiencia + Doble Check IA', text: '¿Cómo combinan codificadores humanos AAPC con Inteligencia Artificial?' },
-    { label: '⚖️ Para Abogados y Bufetes', text: '¿Cómo funciona la organización y conciliación de facturas médicas para abogados?' },
-    { label: '🏥 Credencialización y EHR', text: '¿Con qué aseguradoras de Florida trabajan y qué sistemas EHR soportan?' }
+    { label: '💰 Tarifas (5.6%–10%)', key: 'pricing_es', text: '¿Cuáles son sus tarifas exactas y hay costo de instalación?' },
+    { label: '🩺 Auditoría Gratis (20 Reclamos)', key: 'audit_es', text: '¿Cómo funciona la auditoría gratuita de 20 reclamos en 48 horas?' },
+    { label: '⚖️ Piloto para Abogados', key: 'attorney_es', text: '¿Cómo funciona la cronología y conciliación de facturas médicas para abogados?' },
+    { label: '🏥 Credencialización y EHR', key: 'ehr_es', text: '¿Puedo mantener mi EHR actual y qué aseguradoras manejan?' }
   ],
   ht: [
-    { label: '💰 Pri nou yo (5.6%–10%)', text: 'Ki pri sèvis faktirasyon medikal nou yo?' },
-    { label: '🏥 Kredansyalizasyon & AI', text: 'Kijan espesyalis AAPC nou yo ak AI travay ansanm?' }
+    { label: '💰 Pri (5.6%–10%)', key: 'pricing', text: 'Ki pri sèvis faktirasyon medikal nou yo?' },
+    { label: '🏥 Kredansyalizasyon & EHR', key: 'ehr', text: 'Ki jan nou travay ak sistèm EHR mwen an?' }
   ],
   ru: [
-    { label: '💰 Тарифы (5.6%–10%)', text: 'Какие у вас тарифы на медицинский биллинг и что входит?' },
-    { label: '🏥 Аккредитация и EHR', text: 'С какими страховыми и системами EHR вы работаете?' }
+    { label: '💰 Тарифы (5.6%–10%)', key: 'pricing', text: 'Какие у вас тарифы на медицинский биллинг?' },
+    { label: '🏥 Аккредитация и EHR', key: 'ehr', text: 'С какими страховыми и системами EHR вы работаете?' }
   ]
 };
+
+// Instant (<15ms), authentic human-written answers from a seasoned medical biller perspective
+function getInstantHumanReply(rawText, lang = 'en') {
+  const q = rawText.toLowerCase();
+
+  if (lang === 'es') {
+    if (q.includes('tarifa') || q.includes('precio') || q.includes('costo') || q.includes('5.6')) {
+      return 'Cobramos del 5.6% al 10% únicamente sobre lo que entra a su cuenta bancaria. $0 costo de instalación, sin mensualidades fijas. Si un reclamo no se cobra, usted no nos paga nada. ¿Desea agendar una llamada de 15 min en la pestaña "📅 Book 15m Call"?';
+    }
+    if (q.includes('auditor') || q.includes('20 reclamo') || q.includes('denegad')) {
+      return 'Envíenos 20 reclamos denegados o mal pagados (tras firmar acuerdo HIPAA BAA). En 48 horas nuestros codificadores certificados AAPC le muestran exactamente qué código CPT/modificador corregir y cuánto dinero puede recuperar—100% gratis.';
+    }
+    if (q.includes('abogad') || q.includes('cronolog') || q.includes('lesion')) {
+      return 'Envíenos 1 expediente de lesiones personales (CMS-1500, UB-04, EOBs, PIP). En 72 horas le entregamos una tabla en Excel + PDF referenciada por página (Bates) con códigos CPT en lenguaje claro, cargos duplicados marcados y saldos conciliados.';
+    }
+    if (q.includes('ehr') || q.includes('credencial')) {
+      return 'Usted mantiene su EHR actual (Athenahealth, eClinicalWorks, Kareo/Tebra, AdvancedMD, Epic, DrChrono). Trabajamos directo en su sistema. También gestionamos credencialización completa con Medicare (FCSO), Florida Medicaid (AHCA), Florida Blue, Simply y Sunshine.';
+    }
+  }
+
+  if (q.includes('pric') || q.includes('rate') || q.includes('cost') || q.includes('fee') || q.includes('5.6') || q.includes('how much')) {
+    return "Straight numbers: 5.6% to 10% of what actually hits your bank account. $0 setup fee, no monthly retainers, and we never charge on uncollected claims. Exact rate depends on your monthly claim volume and specialty. Tap '📅 Book 15m Call' above to get a written quote today.";
+  }
+
+  if (q.includes('audit') || q.includes('20-claim') || q.includes('20 claim') || q.includes('denial') || q.includes('denied') || q.includes('underpaid')) {
+    return "Here is our 48-hour proof test: Pick 20 denied or underpaid claims (CO-16, CO-50, CO-97, or Modifier 25/59 rejections). Once we sign your HIPAA BAA, our U.S. AAPC coders review them and hand you the exact CPT/modifier fix and recoverable dollar amount in 48 hours—free.";
+  }
+
+  if (q.includes('attorney') || q.includes('lawyer') || q.includes('law firm') || q.includes('chronology') || q.includes('pilot') || q.includes('personal injury') || q.includes('eob')) {
+    return "For trial attorneys: Send us 1 messy Personal Injury billing file (CMS-1500s, UB-04s, PIP logs, EOBs). In 72 hours, we return a Bates-linked chronology (editable Excel + PDF) with every CPT code in plain English, duplicate facility/physician charges flagged, and true net balances reconciled.";
+  }
+
+  if (q.includes('ehr') || q.includes('software') || q.includes('credential') || q.includes('caqh') || q.includes('medicare') || q.includes('medicaid')) {
+    return "You keep your current EHR—we work directly inside eClinicalWorks, Athenahealth, Kareo/Tebra, AdvancedMD, DrChrono, NextGen, and Epic. For credentialing, we handle CAQH, Medicare (FCSO), Florida Medicaid (AHCA), Florida Blue, Simply, Sunshine, UHC, Aetna, and Cigna end-to-end.";
+  }
+
+  if (q.includes('book') || q.includes('schedule') || q.includes('appointment') || q.includes('speak') || q.includes('call') || q.includes('jasmel')) {
+    return "You can lock in a 15-minute call with Jasmel right now—just tap the '📅 Book 15m Call' tab at the top of this window, or call us directly at (786) 643-2099.";
+  }
+
+  return null;
+}
+
+function getNextBusinessDays(count = 5) {
+  const days = [];
+  const cursor = new Date();
+  while (days.length < count) {
+    cursor.setDate(cursor.getDate() + 1);
+    const dow = cursor.getDay();
+    if (dow !== 0 && dow !== 6) {
+      const label = cursor.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      });
+      const iso = cursor.toISOString().split('T')[0];
+      days.push({ label, iso });
+    }
+  }
+  return days;
+}
+
+const TIME_SLOTS = ['10:00 AM', '11:30 AM', '2:00 PM', '4:00 PM'];
 
 export default function UnifiedReceptionist() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! 👋 I'm Jass, your MBMB AI Front Desk Receptionist. I can answer all your questions right here—whether about our 5.6%–10% billing tiers, our AAPC human coders + AI double-check workflow, Florida credentialing, EHR compatibility, or our medical billing chronology & reconciliation service for attorneys. What can I help you with today?"
+      content:
+        "Hi—how can we help your practice or firm today? Ask about our 5.6%–10% billing rates, our free 48-hour 20-claim audit, or book a 15-minute call right in this window."
     }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  // Voice output is ON automatically in 'call' (Web Voice Call) mode, and optional in 'chat' (Text Chat) mode
   const [voiceEnabledInChat, setVoiceEnabledInChat] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [language, setLanguage] = useState('en'); // en, es, ru, ht
-  const [activeMode, setActiveMode] = useState('chat'); // 'chat' (Text Chat) or 'call' (Web Voice Call with Jass)
+  const [language, setLanguage] = useState('en');
+  const [activeMode, setActiveMode] = useState('chat'); // 'chat' | 'schedule' | 'call'
+
+  // Inline Scheduler State
+  const businessDays = useMemo(() => getNextBusinessDays(5), []);
+  const [selectedDay, setSelectedDay] = useState(() => getNextBusinessDays(5)[0]?.label || '');
+  const [selectedTime, setSelectedTime] = useState('10:00 AM');
+  const [bookName, setBookName] = useState('');
+  const [bookEmail, setBookEmail] = useState('');
+  const [bookPhone, setBookPhone] = useState('');
+  const [bookOrg, setBookOrg] = useState('');
+  const [bookFocus, setBookFocus] = useState('20-Claim Free Audit (Provider)');
+  const [bookStatus, setBookStatus] = useState('idle'); // 'idle' | 'submitting' | 'confirmed' | 'error'
 
   const chatEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -70,8 +144,6 @@ export default function UnifiedReceptionist() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Hard stop any in-flight TTS request, HTMLAudioElement, and browser speechSynthesis
-  // Guarantees two voices can NEVER play at the same time.
   const stopAllAudio = useCallback(() => {
     ttsRequestIdRef.current += 1;
     if (ttsAbortRef.current) {
@@ -95,7 +167,6 @@ export default function UnifiedReceptionist() {
     setIsPlayingAudio(false);
   }, []);
 
-  // Focus management and Escape key handling
   useEffect(() => {
     if (!isOpen) {
       stopAllAudio();
@@ -107,7 +178,7 @@ export default function UnifiedReceptionist() {
       } else if (closeBtnRef.current) {
         closeBtnRef.current.focus();
       }
-    }, 60);
+    }, 50);
 
     const handleEsc = (e) => {
       if (e.key === 'Escape') {
@@ -123,7 +194,6 @@ export default function UnifiedReceptionist() {
     };
   }, [isOpen, activeMode, stopAllAudio]);
 
-  // Browser Web Speech fallback when cloud TTS is unavailable
   const speakBrowserFallback = useCallback((cleanText, reqId) => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     if (reqId !== ttsRequestIdRef.current) return;
@@ -132,8 +202,8 @@ export default function UnifiedReceptionist() {
       const utterance = new SpeechSynthesisUtterance(cleanText);
       const lang = languageRef.current;
       utterance.lang = lang === 'es' ? 'es-US' : lang === 'ru' ? 'ru-RU' : 'en-US';
-      utterance.rate = 1.02;
-      utterance.pitch = 1.05;
+      utterance.rate = 1.03;
+      utterance.pitch = 1.02;
       utterance.onstart = () => setIsPlayingAudio(true);
       utterance.onend = () => setIsPlayingAudio(false);
       utterance.onerror = () => setIsPlayingAudio(false);
@@ -150,19 +220,17 @@ export default function UnifiedReceptionist() {
     return new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
   };
 
-  // Speak text using Grok Voice 3.0 (/api/tts) with strict single-stream mutex
   const speakText = useCallback(async (text, forceSpeak = false) => {
     const shouldSpeak = forceSpeak || activeModeRef.current === 'call' || voiceEnabledInChatRef.current;
     if (!shouldSpeak) return;
 
-    // Immediately cancel any previous audio or in-flight TTS fetch before starting a new one
     stopAllAudio();
     const reqId = ttsRequestIdRef.current;
 
     const cleanText = text
       .replace(/\*\*\*/g, '')
       .replace(/\*/g, '')
-      .replace(/[•🎯💰📋🩺📞👋✅🤖⚖️🎙️💬🏥]/g, '')
+      .replace(/[•🎯💰📋🩺📞👋✅🤖⚖️🎙️💬🏥📅]/g, '')
       .trim();
     if (!cleanText) return;
 
@@ -225,7 +293,6 @@ export default function UnifiedReceptionist() {
     const msgText = (textOverride ?? input).trim();
     if (!msgText) return;
 
-    // Stop any currently playing voice immediately when user sends a new message
     stopAllAudio();
 
     const userMsg = { role: 'user', content: msgText };
@@ -233,8 +300,18 @@ export default function UnifiedReceptionist() {
     const next = [...baseMessages, userMsg];
     setMessages(next);
     setInput('');
-    setLoading(true);
 
+    // 1. Check instant (<15ms) local human-written response first
+    const instantReply = getInstantHumanReply(msgText, languageRef.current);
+    if (instantReply) {
+      const botMsg = { role: 'assistant', content: instantReply };
+      setMessages(prev => [...prev, botMsg]);
+      speakText(instantReply);
+      return;
+    }
+
+    // 2. Otherwise query /api/ai-chat
+    setLoading(true);
     try {
       const res = await fetch('/api/ai-chat', {
         method: 'POST',
@@ -242,7 +319,9 @@ export default function UnifiedReceptionist() {
         body: JSON.stringify({ messages: next, language: languageRef.current })
       });
       const data = await res.json();
-      let botResponse = data?.text || "I'm here to help! Ask me about our pricing tiers, AAPC coding + AI double-check, credentialing, or attorney billing chronologies.";
+      let botResponse =
+        data?.text ||
+        "We charge 5.6%–10% of actual collections ($0 setup). Tap '📅 Book 15m Call' above or call (786) 643-2099 to review your claims.";
       botResponse = botResponse.replace(/\*\*\*/g, '').replace(/\*/g, '').trim();
       const botMsg = { role: 'assistant', content: botResponse };
       setMessages(prev => [...prev, botMsg]);
@@ -252,7 +331,8 @@ export default function UnifiedReceptionist() {
         ...prev,
         {
           role: 'assistant',
-          content: "I'm right here! Please ask your question again, or let me know if you'd like me to connect you with our staff or book an appointment."
+          content:
+            "Tap '📅 Book 15m Call' above to pick a time with Jasmel, or call us directly at (786) 643-2099."
         }
       ]);
     } finally {
@@ -260,7 +340,6 @@ export default function UnifiedReceptionist() {
     }
   }, [input, messages, speakText, stopAllAudio]);
 
-  // Speech recognition setup
   useEffect(() => {
     if (typeof window !== 'undefined' && ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -297,12 +376,11 @@ export default function UnifiedReceptionist() {
     stopAllAudio();
     setActiveMode(newMode);
     if (newMode === 'call') {
-      // Speak a single concise greeting when entering Web Voice Call mode
       const greetings = {
-        en: "Hi! I'm Jass, your MBMB front desk voice receptionist. Tap the microphone below and ask me any question about our medical billing, coding, credentialing, or attorney support.",
-        es: "¡Hola! Soy Jass, tu recepcionista de voz de MBMB. Toca el micrófono abajo y hazme cualquier pregunta sobre facturación médica, codificación, credencialización o soporte para abogados.",
-        ht: "Bonjou! Mwen se Jass, resepsyonis vwa MBMB ou. Peze mikwofòn nan pou poze nenpòt kesyon ou genyen.",
-        ru: "Здравствуйте! Я Джасс, голосовой администратор MBMB. Нажмите на микрофон ниже и задайте любой вопрос."
+        en: "Hi, tap the microphone below and ask me about our 5.6% to 10% billing rates, our 20-claim free audit, or our attorney billing chronologies.",
+        es: "Hola, toca el micrófono abajo para preguntar sobre nuestras tarifas de facturación médica, la auditoría gratis de 20 reclamos, o soporte para abogados.",
+        ht: "Bonjou, peze mikwofòn nan pou poze nenpòt kesyon ou genyen.",
+        ru: "Здравствуйте! Нажмите на микрофон ниже и задайте любой вопрос."
       };
       speakText(greetings[language] || greetings.en, true);
     }
@@ -319,9 +397,7 @@ export default function UnifiedReceptionist() {
   };
 
   const toggleListening = () => {
-    // Always stop Jass's voice before listening to the user so they never talk over each other
     stopAllAudio();
-
     if (!recognitionRef.current) {
       alert('Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.');
       return;
@@ -346,119 +422,129 @@ export default function UnifiedReceptionist() {
     }
   };
 
+  const handleBookingSubmit = async (e) => {
+    e.preventDefault();
+    if (!bookName.trim() || !bookEmail.trim()) return;
+    setBookStatus('submitting');
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: bookName.trim(),
+          email: bookEmail.trim(),
+          phone: bookPhone.trim(),
+          practice: bookOrg.trim(),
+          specialty: bookFocus,
+          meeting_type: bookFocus,
+          selected_slot: {
+            dayName: selectedDay,
+            time: selectedTime
+          }
+        })
+      });
+      if (res.ok) {
+        setBookStatus('confirmed');
+      } else {
+        setBookStatus('error');
+      }
+    } catch {
+      setBookStatus('error');
+    }
+  };
+
   const prompts = QUICK_PROMPTS[language] || QUICK_PROMPTS.en;
 
   return (
     <>
-      {/* SINGLE UNIFIED FLOATING FRONT-DESK BUTTON (BOTTOM-LEFT) */}
+      {/* MINIMALISTIC FLOATING TRIGGER BUTTON (BOTTOM-LEFT) */}
       <div className="fixed bottom-5 left-5 z-50">
         <button
           ref={triggerBtnRef}
           onClick={toggleWidget}
-          className="bg-gradient-to-r from-[#0066CC] via-[#0088DD] to-[#00A8E8] text-white pl-3.5 pr-5 py-3 rounded-full shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-400/50 border border-white/20 transition-all duration-300 hover:scale-105 flex items-center gap-3 cursor-pointer"
-          aria-label={isOpen ? 'Close Jass AI Front Desk' : 'Open Jass AI Front Desk (Text Chat or Web Voice Call)'}
+          className="bg-[#0a1628] hover:bg-[#0f223d] text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-2xl border border-[#00A8E8]/50 transition-all duration-200 hover:scale-[1.03] flex items-center gap-2.5 cursor-pointer"
+          aria-label={isOpen ? 'Close Front Desk & Scheduler' : 'Open Front Desk & 15-Minute Call Scheduler'}
           aria-expanded={isOpen}
         >
-          <div className="relative">
-            <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center font-extrabold text-sm border border-white/30">
-              J
-            </div>
-            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0066CC]"></span>
-          </div>
-          <div className="text-left">
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-extrabold tracking-tight leading-none">Ask Jass</span>
-              <span className="text-[10px] bg-emerald-400/20 text-emerald-200 border border-emerald-300/30 px-1.5 py-0.5 rounded-full font-semibold">
-                AI FRONT DESK
-              </span>
-            </div>
-            <span className="text-[11px] text-cyan-100 block mt-0.5">Text Chat · Live Web Voice Call</span>
-          </div>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs sm:text-sm font-bold tracking-tight">
+            Ask or Book 15m Call
+          </span>
         </button>
       </div>
 
-      {/* UNIFIED FRONT-DESK PANEL - LEFT SIDE */}
+      {/* MINIMALISTIC PANEL */}
       {isOpen && (
         <div
           role="region"
-          aria-label="Jass MBMB AI Front Desk Panel"
-          className="fixed bottom-24 left-5 z-50 w-[395px] max-w-[calc(100vw-32px)] rounded-3xl overflow-hidden shadow-2xl border border-[#00A8E8]/40"
-          style={{ background: 'linear-gradient(145deg, #0a1628 0%, #0f1f38 55%, #0a1628 100%)' }}
+          aria-label="MBMB Direct Desk & Call Scheduler"
+          className="fixed bottom-20 left-5 z-50 w-[390px] max-w-[calc(100vw-32px)] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-[#0a1628]"
         >
-          {/* Header */}
-          <div
-            className="p-4 border-b border-cyan-500/20"
-            style={{ background: 'linear-gradient(90deg, rgba(0,102,204,0.28) 0%, rgba(0,168,232,0.18) 100%)' }}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0066CC] to-[#00A8E8] flex items-center justify-center shadow-lg border border-white/25">
-                    <span className="text-white font-extrabold text-lg">J</span>
-                  </div>
-                  <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 animate-pulse"></span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-sm leading-tight">Jass — AI Front Desk</h3>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="text-emerald-400 text-xs font-semibold">● Online 24/7</span>
-                    <span className="text-slate-400 text-[11px]">
-                      · {activeMode === 'chat' ? 'Text Chat Representative' : 'Live Web Voice Representative'}
-                    </span>
-                  </div>
-                </div>
-              </div>
+          {/* Minimalistic Top Bar: 3 Mode Tabs + Close Button (Zero Logo/Title Clutter) */}
+          <div className="p-2.5 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-1.5">
+            <div className="grid grid-cols-3 gap-1 flex-1">
               <button
-                ref={closeBtnRef}
-                onClick={() => {
-                  toggleWidget();
-                  setTimeout(() => triggerBtnRef.current?.focus(), 40);
-                }}
-                className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
-                aria-label="Close chat"
+                type="button"
+                onClick={() => switchMode('chat')}
+                className={`py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  activeMode === 'chat'
+                    ? 'bg-[#0066CC] text-white shadow-sm'
+                    : 'bg-slate-800/80 text-slate-300 hover:text-white'
+                }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                💬 Ask
+              </button>
+              <button
+                type="button"
+                onClick={() => switchMode('schedule')}
+                className={`py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  activeMode === 'schedule'
+                    ? 'bg-[#00A8E8] text-slate-950 shadow-sm'
+                    : 'bg-slate-800/80 text-cyan-300 hover:text-white'
+                }`}
+              >
+                📅 Book 15m Call
+              </button>
+              <button
+                type="button"
+                onClick={() => switchMode('call')}
+                className={`py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  activeMode === 'call'
+                    ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                    : 'bg-slate-800/80 text-emerald-300 hover:text-white'
+                }`}
+              >
+                🎙️ Voice
               </button>
             </div>
 
-            {/* 2 Primary Modes: Text Chat vs Live Web Voice Call */}
-            <div className="grid grid-cols-2 gap-2 mt-3.5">
-              <button
-                onClick={() => switchMode('chat')}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeMode === 'chat'
-                    ? 'bg-[#00A8E8] text-slate-950 shadow-md shadow-cyan-500/20'
-                    : 'bg-slate-800/70 text-slate-300 hover:text-white'
-                }`}
-              >
-                💬 Text Chat with Jass
-              </button>
-              <button
-                onClick={() => switchMode('call')}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
-                  activeMode === 'call'
-                    ? 'bg-emerald-500 text-slate-950 shadow-md'
-                    : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30'
-                }`}
-              >
-                🎙️ Voice Call on Website
-              </button>
-            </div>
+            <button
+              ref={closeBtnRef}
+              type="button"
+              onClick={() => {
+                toggleWidget();
+                setTimeout(() => triggerBtnRef.current?.focus(), 40);
+              }}
+              className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+              aria-label="Close window"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
 
-          {/* MODE 1: TEXT CHAT (Silent by default unless speaker icon toggled) */}
+          {/* MODE 1: FAST TEXT CHAT */}
           {activeMode === 'chat' && (
             <>
-              <div className="p-4 overflow-y-auto space-y-3" style={{ height: '280px' }}>
+              <div className="p-3.5 overflow-y-auto space-y-2.5" style={{ height: '275px' }}>
                 {messages.map((m, idx) => (
                   <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div
-                      className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[86%] px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] leading-relaxed whitespace-pre-line ${
                         m.role === 'assistant'
-                          ? 'bg-slate-800/90 text-slate-100 rounded-bl-sm border border-slate-700/70 shadow-sm'
-                          : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white rounded-br-sm font-medium shadow-md'
+                          ? 'bg-slate-800/95 text-slate-100 border border-slate-700/70'
+                          : 'bg-[#0066CC] text-white font-medium'
                       }`}
                     >
                       {m.content}
@@ -466,16 +552,15 @@ export default function UnifiedReceptionist() {
                   </div>
                 ))}
 
-                {/* Interactive Quick-Action Topic Pills */}
                 {!loading && (
                   <div className="pt-1">
-                    <p className="text-[11px] text-slate-400 mb-1.5 font-medium">Ask Jass any question:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {prompts.map((item, i) => (
                         <button
                           key={i}
+                          type="button"
                           onClick={() => sendMessage(item.text)}
-                          className="text-left text-[11px] bg-slate-800/90 hover:bg-[#0066CC]/40 text-cyan-200 border border-cyan-500/30 rounded-xl px-2.5 py-1.5 transition-all hover:border-cyan-400 cursor-pointer"
+                          className="text-left text-[11px] bg-slate-800/90 hover:bg-[#0066CC]/40 text-cyan-200 border border-cyan-500/30 rounded-lg px-2.5 py-1.5 transition-all hover:border-cyan-400 cursor-pointer"
                         >
                           {item.label}
                         </button>
@@ -486,179 +571,259 @@ export default function UnifiedReceptionist() {
 
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="bg-slate-800/80 border border-slate-700/50 px-4 py-3 rounded-2xl rounded-bl-none">
-                      <div className="flex gap-1.5 items-center">
-                        <span className="w-2 h-2 bg-[#00A8E8] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                        <span className="w-2 h-2 bg-[#00A8E8] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                        <span className="w-2 h-2 bg-[#00A8E8] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                        <span className="text-[11px] text-slate-400 ml-1">Jass is replying...</span>
-                      </div>
+                    <div className="bg-slate-800/80 border border-slate-700/50 px-3 py-2 rounded-xl text-xs text-slate-300">
+                      Typing...
                     </div>
                   </div>
                 )}
                 <div ref={chatEndRef} />
               </div>
 
-              {/* Language & Optional Voice Read-Aloud Controls */}
-              <div className="px-4 py-2 border-t border-slate-800 bg-slate-900/70 flex items-center justify-between">
-                <div className="flex items-center gap-1 bg-slate-800/80 rounded-lg p-0.5 border border-slate-700/60">
-                  <button onClick={() => setLanguage('en')} className={`text-[11px] font-semibold px-2 py-0.5 rounded cursor-pointer ${language === 'en' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'}`}>EN</button>
-                  <button onClick={() => setLanguage('es')} className={`text-[11px] font-semibold px-2 py-0.5 rounded cursor-pointer ${language === 'es' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'}`}>ES</button>
-                  <button onClick={() => setLanguage('ru')} className={`text-[11px] font-semibold px-2 py-0.5 rounded cursor-pointer ${language === 'ru' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'}`}>RU</button>
-                  <button onClick={() => setLanguage('ht')} className={`text-[11px] font-semibold px-2 py-0.5 rounded cursor-pointer ${language === 'ht' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'}`}>HT</button>
+              {/* Sub-bar: Language + Quick Schedule Jump + Audio Toggle */}
+              <div className="px-3.5 py-1.5 border-t border-slate-800 bg-slate-900/80 flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  {['en', 'es', 'ht', 'ru'].map((lng) => (
+                    <button
+                      key={lng}
+                      type="button"
+                      onClick={() => setLanguage(lng)}
+                      className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded cursor-pointer ${
+                        language === lng ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {lng}
+                    </button>
+                  ))}
                 </div>
 
                 <button
-                  onClick={() => sendMessage('I would like to speak with Jasmel or book an appointment.')}
-                  className="text-[11px] font-semibold text-slate-300 hover:text-[#00A8E8] transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => switchMode('schedule')}
+                  className="text-[11px] font-bold text-[#00A8E8] hover:text-white transition-colors cursor-pointer"
                 >
-                  Request Staff / Book
+                  📅 Pick a Time Slot →
                 </button>
 
                 <button
+                  type="button"
                   onClick={toggleVoiceInChat}
-                  className="text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center gap-1 text-[11px]"
-                  title={voiceEnabledInChat ? 'Mute voice read-aloud in text chat' : 'Read text replies aloud'}
-                  aria-label={voiceEnabledInChat ? 'Mute voice read-aloud' : 'Enable voice read-aloud'}
+                  className="text-slate-400 hover:text-white transition-colors cursor-pointer text-[11px]"
+                  title={voiceEnabledInChat ? 'Mute voice' : 'Read replies aloud'}
                 >
-                  {voiceEnabledInChat ? (
-                    <>
-                      <svg className="w-4 h-4 text-[#00A8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
-                      <span className="text-[#00A8E8] font-semibold">Voice ON</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
-                      <span>Text Only</span>
-                    </>
-                  )}
+                  {voiceEnabledInChat ? '🔊 On' : '🔇 Mute'}
                 </button>
               </div>
 
-              {/* Text Input */}
-              <div className="p-3 border-t border-cyan-500/20 bg-slate-950/90">
-                <div className="flex gap-2">
-                  <label htmlFor="jass-chat-input" className="sr-only">
-                    Ask Jass a question about MBMB services
-                  </label>
+              {/* Input */}
+              <div className="p-2.5 border-t border-slate-800 bg-slate-950">
+                <div className="flex gap-1.5">
                   <input
                     id="jass-chat-input"
                     ref={chatInputRef}
-                    className="flex-1 bg-white text-slate-900 border border-slate-300 text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/30 placeholder:text-slate-400 font-medium transition-all"
-                    placeholder={isListening ? 'Listening... speak now' : 'Type any question for Jass...'}
+                    className="flex-1 bg-white text-slate-900 border border-slate-300 text-xs sm:text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-[#00A8E8] placeholder:text-slate-400 font-medium"
+                    placeholder={isListening ? 'Listening...' : 'Ask about rates, denials, or pilot...'}
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={handleKey}
                   />
                   <button
-                    onClick={toggleListening}
-                    aria-label={isListening ? 'Stop voice dictation' : 'Dictate message'}
-                    className={`px-3 py-2.5 rounded-xl transition-all cursor-pointer ${
-                      isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700'
-                    }`}
-                    title={isListening ? 'Stop listening' : 'Dictate with microphone'}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
-                    </svg>
-                  </button>
-                  <button
+                    type="button"
                     onClick={() => sendMessage()}
                     disabled={loading || !input.trim()}
-                    aria-label="Send chat message"
-                    className="bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white px-4 py-2.5 rounded-xl font-bold hover:opacity-95 transition-all disabled:opacity-40 cursor-pointer"
+                    aria-label="Send message"
+                    className="bg-[#0066CC] hover:bg-[#00A8E8] text-white px-3.5 py-2 rounded-lg font-bold text-xs transition-all disabled:opacity-40 cursor-pointer"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
+                    Send
                   </button>
                 </div>
-                <p className="text-[10px] text-slate-400 mt-1.5 text-center">
-                  General business inquiries only — do not enter patient names, DOBs, or PHI.
-                </p>
               </div>
             </>
           )}
 
-          {/* MODE 2: LIVE WEB VOICE CALL WITH JASS (Right on the Website) */}
-          {activeMode === 'call' && (
-            <div className="p-4 flex flex-col justify-between" style={{ height: '360px' }}>
-              <div className="w-full bg-slate-900/90 border border-[#00A8E8]/40 rounded-2xl p-4 shadow-inner flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-2.5">
-                    <div className="flex items-center gap-2">
-                      <span className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : isPlayingAudio ? 'bg-[#00A8E8] animate-ping' : 'bg-emerald-400 animate-pulse'}`}></span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
-                        {isListening
-                          ? 'Listening to You...'
-                          : loading
-                          ? 'Jass is Thinking...'
-                          : isPlayingAudio
-                          ? 'Jass is Speaking...'
-                          : 'Web Voice Call Ready'}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {isPlayingAudio && (
+          {/* MODE 2: INLINE 15-MINUTE CALL / AUDIT SCHEDULER */}
+          {activeMode === 'schedule' && (
+            <div className="p-4 overflow-y-auto" style={{ maxHeight: '380px' }}>
+              {bookStatus === 'confirmed' ? (
+                <div className="bg-emerald-500/15 border border-emerald-400/40 rounded-xl p-4 text-center space-y-2 my-4">
+                  <div className="text-emerald-300 font-extrabold text-base">
+                    ✓ Locked In: {selectedDay} at {selectedTime} EST
+                  </div>
+                  <p className="text-slate-200 text-xs leading-relaxed">
+                    We just sent a calendar confirmation to <strong>{bookEmail}</strong>. Jasmel will call you at the scheduled time (or reach us anytime at <strong>(786) 643-2099</strong>).
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setBookStatus('idle')}
+                    className="mt-2 text-xs text-[#00A8E8] underline cursor-pointer"
+                  >
+                    Book another time
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleBookingSubmit} className="space-y-3 text-left">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
+                      1. Select Day &amp; Time (EST)
+                    </label>
+                    <div className="grid grid-cols-5 gap-1 mb-1.5">
+                      {businessDays.map((d) => (
                         <button
-                          onClick={stopAllAudio}
-                          className="text-[11px] font-bold text-rose-300 hover:text-white bg-rose-500/20 border border-rose-500/40 px-2 py-0.5 rounded-md cursor-pointer"
+                          key={d.iso}
+                          type="button"
+                          onClick={() => setSelectedDay(d.label)}
+                          className={`py-1.5 px-1 rounded text-[10px] font-bold text-center transition-all cursor-pointer border ${
+                            selectedDay === d.label
+                              ? 'bg-[#00A8E8] text-slate-950 border-[#00A8E8]'
+                              : 'bg-slate-900 text-slate-300 border-slate-700 hover:border-slate-500'
+                          }`}
                         >
-                          ⏹ Mute
+                          {d.label}
                         </button>
-                      )}
-                      <div className="flex items-center gap-0.5 bg-slate-800/80 rounded-md p-0.5 border border-slate-700/60">
-                        <button onClick={() => setLanguage('en')} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded cursor-pointer ${language === 'en' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400'}`}>EN</button>
-                        <button onClick={() => setLanguage('es')} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded cursor-pointer ${language === 'es' ? 'bg-[#00A8E8] text-slate-950' : 'text-slate-400'}`}>ES</button>
-                      </div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {TIME_SLOTS.map((slot) => (
+                        <button
+                          key={slot}
+                          type="button"
+                          onClick={() => setSelectedTime(slot)}
+                          className={`py-1.5 px-2 rounded text-[11px] font-bold transition-all cursor-pointer border ${
+                            selectedTime === slot
+                              ? 'bg-[#0066CC] text-white border-[#00A8E8]'
+                              : 'bg-slate-900 text-slate-300 border-slate-700 hover:border-slate-500'
+                          }`}
+                        >
+                          {slot}
+                        </button>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Live Voice Transcript Box */}
-                  <div className="text-slate-200 text-xs leading-relaxed bg-slate-950/70 p-3 rounded-xl border border-slate-800 max-h-[145px] overflow-y-auto text-left whitespace-pre-line">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
+                      2. Focus
+                    </label>
+                    <select
+                      value={bookFocus}
+                      onChange={(e) => setBookFocus(e.target.value)}
+                      className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-2.5 py-2 text-xs font-medium focus:outline-none focus:border-[#00A8E8]"
+                    >
+                      <option value="20-Claim Free Audit (Provider)">🩺 Free 48-Hr 20-Claim Audit (Provider)</option>
+                      <option value="Full Practice Billing Quote (5.6%–10%)">💰 Full Billing Quote (5.6%–10% of Collections)</option>
+                      <option value="Attorney 1-Case Chronology Pilot">⚖️ Attorney 1-Case Billing Chronology Pilot</option>
+                      <option value="Florida Payer Credentialing">🏥 Florida Payer Credentialing</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      required
+                      placeholder="Your Name *"
+                      value={bookName}
+                      onChange={(e) => setBookName(e.target.value)}
+                      className="bg-white text-slate-900 rounded-lg px-2.5 py-2 text-xs font-medium border border-slate-300 focus:outline-none"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Direct Phone *"
+                      required
+                      value={bookPhone}
+                      onChange={(e) => setBookPhone(e.target.value)}
+                      className="bg-white text-slate-900 rounded-lg px-2.5 py-2 text-xs font-medium border border-slate-300 focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="email"
+                      required
+                      placeholder="Work Email *"
+                      value={bookEmail}
+                      onChange={(e) => setBookEmail(e.target.value)}
+                      className="bg-white text-slate-900 rounded-lg px-2.5 py-2 text-xs font-medium border border-slate-300 focus:outline-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Practice or Firm Name"
+                      value={bookOrg}
+                      onChange={(e) => setBookOrg(e.target.value)}
+                      className="bg-white text-slate-900 rounded-lg px-2.5 py-2 text-xs font-medium border border-slate-300 focus:outline-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={bookStatus === 'submitting'}
+                    className="w-full bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-xs py-2.5 rounded-lg shadow-lg transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    {bookStatus === 'submitting'
+                      ? 'Confirming Slot...'
+                      : `Confirm ${selectedDay} at ${selectedTime} EST →`}
+                  </button>
+
+                  {bookStatus === 'error' && (
+                    <p className="text-rose-400 text-[11px] text-center">
+                      Could not book—please call (786) 643-2099 directly.
+                    </p>
+                  )}
+                </form>
+              )}
+            </div>
+          )}
+
+          {/* MODE 3: VOICE CALL */}
+          {activeMode === 'call' && (
+            <div className="p-4 flex flex-col justify-between" style={{ height: '310px' }}>
+              <div className="w-full bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-[#00A8E8]">
+                      {isListening
+                        ? '● Listening...'
+                        : loading
+                        ? '● Thinking...'
+                        : isPlayingAudio
+                        ? '● Speaking...'
+                        : '● Voice Ready'}
+                    </span>
+                    {isPlayingAudio && (
+                      <button
+                        type="button"
+                        onClick={stopAllAudio}
+                        className="text-[11px] font-bold text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded cursor-pointer"
+                      >
+                        ⏹ Stop
+                      </button>
+                    )}
+                  </div>
+                  <div className="text-slate-200 text-xs leading-relaxed bg-slate-950/80 p-3 rounded-lg border border-slate-800 max-h-[125px] overflow-y-auto">
                     {messages[messages.length - 1]?.content}
                   </div>
                 </div>
 
-                {/* Primary Web Voice Call Mic Button */}
-                <div className="mt-3">
-                  <button
-                    onClick={toggleListening}
-                    className={`w-full py-3.5 px-4 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg ${
-                      isListening
-                        ? 'bg-red-500 text-white animate-pulse shadow-red-500/30'
-                        : 'bg-gradient-to-r from-[#0066CC] to-[#00A8E8] text-white hover:opacity-95 shadow-cyan-500/25'
-                    }`}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 10v2a7 7 0 01-14 0v-2" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19v4M8 23h8" />
-                    </svg>
-                    {isListening ? 'Tap When Done Speaking' : '🎙️ Tap & Speak to Jass on Website'}
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  className={`w-full py-3 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    isListening
+                      ? 'bg-red-500 text-white animate-pulse'
+                      : 'bg-[#0066CC] hover:bg-[#00A8E8] text-white'
+                  }`}
+                >
+                  {isListening ? 'Tap When Done Speaking' : '🎙️ Tap & Speak'}
+                </button>
               </div>
 
-              {/* Optional Discreet Links Only If Visitor Explicitly Wants to Book or Request Staff */}
-              <div className="pt-2.5 flex items-center justify-between text-[11px] text-slate-400 px-1">
-                <span>Jass answers all questions live on this call.</span>
-                <Link
-                  href="/consultation"
-                  onClick={() => {
-                    stopAllAudio();
-                    setIsOpen(false);
-                  }}
-                  className="text-cyan-300 hover:text-white font-semibold underline underline-offset-2"
+              <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Direct Line: (786) 643-2099</span>
+                <button
+                  type="button"
+                  onClick={() => switchMode('schedule')}
+                  className="text-cyan-300 hover:text-white font-semibold underline cursor-pointer"
                 >
-                  Book Appointment
-                </Link>
+                  Book 15m Call
+                </button>
               </div>
             </div>
           )}

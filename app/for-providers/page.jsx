@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { BUSINESS_FACTS } from '../config/business-facts';
+import InstantOfferBar from '../components/InstantOfferBar';
 
 export const metadata = {
   title: 'For Healthcare Providers | End-to-End Revenue Cycle Management Miami',
@@ -139,29 +140,29 @@ export default function ForProvidersPage() {
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
-              End-to-End Revenue Cycle Management Built for{' '}
+              Show Us 20 Denied Claims.{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8E8] to-cyan-300">
-                98%+ Clean Claims
+                We’ll Show You What You’re Owed in 48 Hours.
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-200 leading-relaxed mb-8">
-              Medical Billing Miami Beach (MBMB) coordinates responsive local account management with an experienced U.S. AAPC-certified fulfillment team—combining meticulous human coding review with an AI pre-submission double-check so your practice collects more with fewer denials.
+              Stop letting your billing company write off CO-16, CO-50, and Modifier 25/59 rejections. Our U.S. AAPC-certified coders scrub and appeal every claim inside your existing EHR—and you only pay <strong>5.6%–10% of what actually hits your bank account</strong>. $0 setup fee.
             </p>
 
             {/* Quick KPI Strip */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-xl">
               <div className="bg-[#0a1628]/90 border border-[#00A8E8]/30 rounded-xl p-3.5 text-center">
                 <div className="text-xl sm:text-2xl font-extrabold text-[#00A8E8]">5.6%–10%</div>
-                <div className="text-[11px] sm:text-xs text-slate-300">Of Net Collections</div>
+                <div className="text-[11px] sm:text-xs text-slate-300">Of Collected Cash</div>
               </div>
               <div className="bg-[#0a1628]/90 border border-emerald-400/30 rounded-xl p-3.5 text-center">
                 <div className="text-xl sm:text-2xl font-extrabold text-emerald-400">$0 Fee</div>
-                <div className="text-[11px] sm:text-xs text-slate-300">Standard Setup</div>
+                <div className="text-[11px] sm:text-xs text-slate-300">Setup &amp; Onboarding</div>
               </div>
               <div className="bg-[#0a1628]/90 border border-[#00A8E8]/30 rounded-xl p-3.5 text-center">
-                <div className="text-xl sm:text-2xl font-extrabold text-white">24–48h</div>
-                <div className="text-[11px] sm:text-xs text-slate-300">Claim Turnaround</div>
+                <div className="text-xl sm:text-2xl font-extrabold text-white">48 Hrs</div>
+                <div className="text-[11px] sm:text-xs text-slate-300">Free 20-Claim Audit</div>
               </div>
             </div>
 
@@ -170,7 +171,7 @@ export default function ForProvidersPage() {
                 href="/consultation"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0066CC] to-[#00A8E8] hover:opacity-95 text-white font-bold px-7 py-4 rounded-xl shadow-lg shadow-[#0066CC]/30 transition"
               >
-                <span>Request a Free Revenue Audit</span>
+                <span>Claim Your Free 20-Claim Audit</span>
                 <span aria-hidden="true">→</span>
               </Link>
               <a
@@ -230,6 +231,10 @@ export default function ForProvidersPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 mt-6">
+          <InstantOfferBar audience="provider" sourcePage="/for-providers" />
         </div>
       </section>
 
@@ -411,6 +416,10 @@ export default function ForProvidersPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 mt-6">
+          <InstantOfferBar audience="provider" sourcePage="/for-providers" />
         </div>
       </section>
 
