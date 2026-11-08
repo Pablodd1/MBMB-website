@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Subscribe from "@UTILS/subscribe";
 import Button from "@UTILS/button";
 import SmartImage from "./components/SmartImage";
-import RotatingLogo3D from "./components/RotatingLogo3D";
+import DynamicPaintLogo3D from "./components/DynamicPaintLogo3D";
 import CPTICD10HeroBackground from "./components/CPTICD10HeroBackground";
 import RevenueCalculator from "./components/revenue-calculator.jsx";
 import InstantOfferBar from "./components/InstantOfferBar";
@@ -295,149 +295,156 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[82vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden py-16">
+      {/* ===== HERO SECTION (SPLIT: OFFER ON LEFT, DYNAMIC 3D PAINT LOGO & LETTERS ON RIGHT) ===== */}
+      <section className="relative min-h-[84vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden py-14 lg:py-20">
         {/* Executive Ambient Aurora & Glassmorphic Claim Cards background */}
         <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
           <CPTICD10HeroBackground />
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" style={{ zIndex: 1 }} />
         </div>
 
-        {/* 3D Rotating Logo */}
-        <div className="relative z-10 mb-4">
-          <RotatingLogo3D size={125} />
-        </div>
+        <article className="w-11/12 max-w-7xl mx-auto px-4 sm:px-6 py-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* LEFT COLUMN: Audience Switcher, Offer Headline & Primary CTAs */}
+            <div className="lg:col-span-7 text-center lg:text-left">
+              <ScrollReveal direction="up" distance={20} duration={500}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 backdrop-blur-sm mb-5">
+                  <span className="w-2 h-2 rounded-full bg-[#00A8E8] animate-pulse" />
+                  <span className="text-[#00A8E8] text-xs sm:text-sm font-bold tracking-wide uppercase">
+                    Miami-Dade &amp; South Florida Revenue Cycle Specialists
+                  </span>
+                </div>
+              </ScrollReveal>
 
-        <article className="w-11/12 max-w-4xl mx-auto px-4 sm:px-6 py-4 text-center relative z-10">
-          <ScrollReveal direction="up" distance={20} duration={500}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 backdrop-blur-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#00A8E8] animate-pulse" />
-              <span className="text-[#00A8E8] text-xs sm:text-sm font-bold tracking-wide uppercase">
-                Miami-Dade &amp; South Florida Revenue Cycle Specialists
-              </span>
-            </div>
-          </ScrollReveal>
+              {/* Dynamic Interactive Audience Switcher */}
+              <div className="mb-5">
+                <div className="inline-flex p-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md">
+                  <button
+                    type="button"
+                    onClick={() => selectAudience('provider')}
+                    className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      activeAudience === 'provider'
+                        ? 'bg-[#0066CC] text-white shadow-md'
+                        : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    🩺 For Physicians &amp; Clinics
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => selectAudience('attorney')}
+                    className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      activeAudience === 'attorney'
+                        ? 'bg-pink text-white shadow-md'
+                        : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    ⚖️ For Trial Attorneys &amp; Law Firms
+                  </button>
+                </div>
+              </div>
 
-          {/* Dynamic Interactive Audience Switcher */}
-          <div className="inline-flex p-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-5">
-            <button
-              type="button"
-              onClick={() => selectAudience('provider')}
-              className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeAudience === 'provider'
-                  ? 'bg-[#0066CC] text-white shadow-md'
-                  : 'text-slate-300 hover:text-white'
-              }`}
-            >
-              🩺 For Physicians &amp; Clinics
-            </button>
-            <button
-              type="button"
-              onClick={() => selectAudience('attorney')}
-              className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeAudience === 'attorney'
-                  ? 'bg-pink text-white shadow-md'
-                  : 'text-slate-300 hover:text-white'
-              }`}
-            >
-              ⚖️ For Trial Attorneys &amp; Law Firms
-            </button>
-          </div>
-
-          {isSpanishVisitor && (
-            <div className="mb-4 text-xs sm:text-sm text-emerald-300 font-semibold">
-              🌎 Atención Directa en Miami Beach en Español e Inglés · Llámenos al <a href="tel:+17866432099" className="underline hover:text-white">(786) 643-2099</a>
-            </div>
-          )}
-
-          <header>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center font-extrabold drop-shadow-lg leading-tight">
-              Medical Billing Miami Beach
-              {activeAudience === 'attorney' ? (
-                <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
-                  Send 1 Messy Injury Billing File. Get a Bates-Linked Chronology &amp; EOB Audit in 72 Hours.
-                </span>
-              ) : (
-                <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-3 font-bold">
-                  Show Us 20 Denied Claims. We’ll Show You the Exact Money You’re Owed in 48 Hours—Free.
-                </span>
+              {isSpanishVisitor && (
+                <div className="mb-4 text-xs sm:text-sm text-emerald-300 font-semibold">
+                  🌎 Atención Directa en Miami Beach en Español e Inglés · Llámenos al <a href="tel:+17866432099" className="underline hover:text-white">(786) 643-2099</a>
+                </div>
               )}
-            </h1>
-          </header>
 
-          {activeAudience === 'attorney' ? (
-            <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
-              Stop having paralegals untangle hospital UB-04s, CMS-1500s, PIP logs, and EOB adjustments by hand. Our U.S. AAPC-certified coders translate every CPT/ICD-10 code into plain English, flag duplicate facility/physician charges, and hand you an editable <strong className="text-white">Excel + Bates-referenced PDF table</strong> ready for demand or mediation.
-            </p>
-          ) : (
-            <p className="text-slate-200 mt-6 text-base md:text-lg max-w-2xl mx-auto text-center leading-relaxed">
-              Most Florida practices lose <strong className="text-white">12%–18% of their collections</strong> because billers write off CO-16, CO-50, and Modifier 25/59 rejections instead of fighting them. Our U.S. AAPC coders scrub and appeal every claim—and you only pay <strong className="text-white">5.6%–10% of what actually hits your bank account</strong>. $0 setup. Keep your current EHR.
-            </p>
-          )}
+              <header>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-tight">
+                  Medical Billing Miami Beach
+                  {activeAudience === 'attorney' ? (
+                    <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-2.5 font-bold">
+                      Send 1 Messy Injury Billing File. Get a Bates-Linked Chronology &amp; EOB Audit in 72 Hours.
+                    </span>
+                  ) : (
+                    <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-2.5 font-bold">
+                      Show Us 20 Denied Claims. We’ll Show You the Exact Money You’re Owed in 48 Hours—Free.
+                    </span>
+                  )}
+                </h1>
+              </header>
 
-          {/* Key Value Pillars */}
-          {activeAudience === 'attorney' ? (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ 72-Hr 1-Case Pilot Turnaround
-              </div>
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ Plain-English CPT &amp; ICD-10 Translation
-              </div>
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ Duplicate Charge &amp; EOB Reconciliation
-              </div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto my-8 text-sm font-semibold text-white">
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ 5.6%–10% of Collected Cash Only*
-              </div>
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ Free 48-Hr 20-Claim Proof Test
-              </div>
-              <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-4 backdrop-blur-sm">
-                ✓ $0 Setup · Keep Your Current EHR
-              </div>
-            </div>
-          )}
+              {activeAudience === 'attorney' ? (
+                <p className="text-slate-200 mt-5 text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  Stop having paralegals untangle hospital UB-04s, CMS-1500s, PIP logs, and EOB adjustments by hand. Our U.S. AAPC-certified coders translate every CPT/ICD-10 code into plain English, flag duplicate facility/physician charges, and hand you an editable <strong className="text-white">Excel + Bates-referenced PDF table</strong> ready for demand or mediation.
+                </p>
+              ) : (
+                <p className="text-slate-200 mt-5 text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  Most Florida practices lose <strong className="text-white">12%–18% of their collections</strong> because billers write off CO-16, CO-50, and Modifier 25/59 rejections instead of fighting them. Our U.S. AAPC coders scrub and appeal every claim—and you only pay <strong className="text-white">5.6%–10% of what actually hits your bank account</strong>. $0 setup. Keep your current EHR.
+                </p>
+              )}
 
-          {/* Primary & Secondary CTAs */}
-          {activeAudience === 'attorney' ? (
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
-              <Button
-                href="/for-attorneys#pilot-form"
-                text="Test Us on 1 Case File (72h) →"
-                colors="bg-pink text-white hover:opacity-95 text-base sm:text-lg px-8 py-4 shadow-xl shadow-pink/30 font-bold"
-                className="w-full sm:w-auto"
-              />
-              <Link
-                href="/for-attorneys"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
-              >
-                See Sample Chronology Table →
-              </Link>
+              {/* Key Value Pillars */}
+              {activeAudience === 'attorney' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 max-w-2xl mx-auto lg:mx-0 my-6 text-xs sm:text-sm font-semibold text-white">
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ 72-Hr 1-Case Pilot Turnaround
+                  </div>
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ Plain-English CPT &amp; ICD-10
+                  </div>
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ Duplicate &amp; EOB Reconciliation
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 max-w-2xl mx-auto lg:mx-0 my-6 text-xs sm:text-sm font-semibold text-white">
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ 5.6%–10% Collected Cash Only*
+                  </div>
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ Free 48-Hr 20-Claim Proof Test
+                  </div>
+                  <div className="bg-white/10 border border-white/15 rounded-xl py-2.5 px-3.5 backdrop-blur-sm">
+                    ✓ $0 Setup · Keep Your EHR
+                  </div>
+                </div>
+              )}
+
+              {/* Primary & Secondary CTAs */}
+              {activeAudience === 'attorney' ? (
+                <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-5">
+                  <Button
+                    href="/for-attorneys#pilot-form"
+                    text="Test Us on 1 Case File (72h) →"
+                    colors="bg-pink text-white hover:opacity-95 text-base sm:text-lg px-8 py-4 shadow-xl shadow-pink/30 font-bold"
+                    className="w-full sm:w-auto"
+                  />
+                  <Link
+                    href="/for-attorneys"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
+                  >
+                    See Sample Chronology Table →
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-5">
+                  <Button
+                    href="/consultation"
+                    text="Claim Your Free 20-Claim Audit →"
+                    colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
+                    className="w-full sm:w-auto"
+                  />
+                  <a
+                    href="#calculator"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
+                  >
+                    Calculate Your Denial Loss ↓
+                  </a>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
-              <Button
-                href="/consultation"
-                text="Claim Your Free 20-Claim Audit →"
-                colors="bg-[#0066CC] text-white hover:bg-[#00A8E8] text-base sm:text-lg px-8 py-4 shadow-xl shadow-[#0066CC]/40 font-bold"
-                className="w-full sm:w-auto"
-              />
-              <a
-                href="#calculator"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-lg border-2 border-white/30 text-white hover:bg-white/10 font-bold text-base transition-all"
-              >
-                Calculate Your Denial Loss ↓
-              </a>
+
+            {/* RIGHT COLUMN: Dynamic 3D Paint Style MBMB Logo + Extruded Letters on the Right */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center">
+              <DynamicPaintLogo3D />
             </div>
-          )}
+          </div>
 
           {/* Minimalistic 1-Click Instant Offer Capture Bar */}
           <InstantOfferBar audience={activeAudience} sourcePage="/" />
-          <div className="mt-4">
+          <div className="mt-5 text-center">
             {activeAudience === 'attorney' ? (
               <button
                 type="button"
@@ -457,14 +464,14 @@ export default function Home() {
           </div>
 
           {/* Trust Credentials */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mt-8">
+          <div className="flex flex-wrap justify-center items-center gap-3 mt-6">
             {['U.S. AAPC-Certified Coders', 'HIPAA-Aligned Workflows', 'Human + AI Double-Check', 'Miami Beach Account Hub', 'EN / ES / HT Support'].map((badge) => (
               <span key={badge} className="text-slate-300 font-medium border border-white/15 px-3 py-1 rounded-full bg-white/5 text-xs">
                 {badge}
               </span>
             ))}
           </div>
-          <p className="text-[11px] text-slate-400 mt-4 max-w-xl mx-auto">
+          <p className="text-[11px] text-slate-400 mt-3 max-w-xl mx-auto text-center">
             *Final pricing is confirmed in a written proposal based on monthly claim volume, specialty mix, and required services.
           </p>
         </article>
