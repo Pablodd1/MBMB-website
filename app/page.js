@@ -296,7 +296,7 @@ export default function Home() {
       />
 
       {/* ===== HERO SECTION (SPLIT: OFFER ON LEFT, DYNAMIC 3D PAINT LOGO & LETTERS ON RIGHT) ===== */}
-      <section className="relative min-h-[84vh] flex flex-col justify-center items-center bg-[#030508] overflow-hidden py-14 lg:py-20">
+      <section className="relative flex flex-col justify-center items-center bg-[#030508] overflow-hidden pt-10 pb-16 lg:pt-14 lg:pb-20">
         {/* Executive Ambient Aurora & Glassmorphic Claim Cards background */}
         <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
           <CPTICD10HeroBackground />

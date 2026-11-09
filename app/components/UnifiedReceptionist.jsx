@@ -457,8 +457,8 @@ export default function UnifiedReceptionist() {
 
   return (
     <>
-      {/* MINIMALISTIC FLOATING TRIGGER BUTTON (BOTTOM-LEFT) */}
-      <div className="fixed bottom-5 left-5 z-50">
+      {/* MINIMALISTIC FLOATING TRIGGER BUTTON (BOTTOM-RIGHT) */}
+      <div className="fixed bottom-5 right-5 z-50">
         <button
           ref={triggerBtnRef}
           onClick={toggleWidget}
@@ -478,7 +478,7 @@ export default function UnifiedReceptionist() {
         <div
           role="region"
           aria-label="MBMB Direct Desk & Call Scheduler"
-          className="fixed bottom-20 left-5 z-50 w-[390px] max-w-[calc(100vw-32px)] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-[#0a1628]"
+          className="fixed bottom-20 right-5 z-50 w-[390px] max-w-[calc(100vw-32px)] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-[#0a1628]"
         >
           {/* Minimalistic Top Bar: 3 Mode Tabs + Close Button (Zero Logo/Title Clutter) */}
           <div className="p-2.5 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-1.5">
