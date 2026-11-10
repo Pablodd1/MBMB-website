@@ -94,8 +94,11 @@ export async function sendBrevoTransactional({
   to,
   subject,
   htmlContent,
+  textContent,
   replyTo,
-  senderName = "Jasmel — Medical Billing Miami Beach",
+  scheduledAt,
+  tags,
+  senderName = "Jasmel Acosta",
   senderEmail = process.env.BREVO_SENDER_EMAIL || "jasmel@medicalbillingmb.com",
 }) {
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
@@ -109,8 +112,11 @@ export async function sendBrevoTransactional({
       sender: { name: senderName, email: senderEmail },
       to: Array.isArray(to) ? to : [{ email: to }],
       subject,
-      htmlContent,
+      ...(htmlContent ? { htmlContent } : {}),
+      ...(textContent ? { textContent } : {}),
       ...(replyTo ? { replyTo } : {}),
+      ...(scheduledAt ? { scheduledAt } : {}),
+      ...(Array.isArray(tags) && tags.length > 0 ? { tags } : {}),
     };
 
     const res = await fetch(BREVO_API_URL, {
@@ -150,6 +156,7 @@ export async function syncBrevoContact({
   try {
     const [firstName, ...rest] = fullName.trim().split(" ");
     const lastName = rest.join(" ");
+    const isoDate = new Date().toISOString().slice(0, 10);
 
     const res = await fetch(BREVO_CONTACTS_URL, {
       method: "POST",
@@ -161,12 +168,13 @@ export async function syncBrevoContact({
       body: JSON.stringify({
         email,
         updateEnabled: true,
+        listIds: [21],
         attributes: {
-          FIRSTNAME: firstName || fullName,
-          LASTNAME: lastName || "",
-          COMPANY: organization || "",
-          SMS: phone || "",
-          SOURCE: `MBMB Website (${inquiryType})`,
+          ...(firstName || fullName ? { FIRSTNAME: firstName || fullName } : {}),
+          ...(lastName ? { LASTNAME: lastName } : {}),
+          ...(organization ? { COMPANY: organization } : {}),
+          ...(phone ? { SMS: phone } : {}),
+          SOURCE: `MBMB Website (${inquiryType}) | ${isoDate}`,
         },
       }),
     });
@@ -176,6 +184,103 @@ export async function syncBrevoContact({
     console.warn("Brevo contact sync warning:", error.message);
     return { synced: false };
   }
+}
+
+export async function scheduleDay3FollowUpEmail({
+  email,
+  fullName = "",
+  orgName = "",
+  isAttorney = false,
+}) {
+  if (!email) return { sent: false };
+  const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  // Schedule 70 hours in the future (inside Brevo's 72-hour native SMTP scheduledAt window)
+  const scheduledAt = new Date(Date.now() + 70 * 60 * 60 * 1000).toISOString();
+
+  const subject = isAttorney
+    ? orgName
+      ? `Quick follow-up — ${orgName} medical bill chronology pilot`
+      : "Quick follow-up — 1-case billing chronology pilot"
+    : orgName
+      ? `Quick follow-up — 20 denied claims test for ${orgName}`
+      : "Quick follow-up — 20 denied claims test";
+
+  const textContent = isAttorney
+    ? `${greeting}
+
+Checking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, just reply with the approximate page count and we'll send our encrypted upload link + NDA/BAA to turn it around in 72 hours.
+
+Want to talk through a case for 10 minutes first? Call me directly at (786) 643-2099 or grab a slot at https://medicalbillingmb.com/for-attorneys
+
+Best,
+Jasmel Acosta
+Medical Billing Miami Beach
+(786) 643-2099`
+    : `${greeting}
+
+Checking in quickly on the 20-Claim Free Audit instructions I sent over a couple days ago. If you have 20 recent CO-16, CO-50, CO-97, or Modifier 25/59 rejections sitting in your EHR, reply with which EHR you use and I'll send over our standard HIPAA BAA so our U.S. AAPC coders can show you the exact collectable dollar amount in 48 hours.
+
+Or if a quick 10-minute call is easier, grab a time at https://medicalbillingmb.com/consultation or call me directly at (786) 643-2099.
+
+Best,
+Jasmel Acosta
+Medical Billing Miami Beach
+(786) 643-2099`;
+
+  return sendBrevoTransactional({
+    to: [{ email, ...(fullName ? { name: fullName } : {}) }],
+    subject,
+    textContent,
+    scheduledAt,
+    tags: ["mbmb-day3-followup"],
+    replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel Acosta" },
+  });
+}
+
+export function buildDay7CaseStudyEmail({
+  fullName = "",
+  orgName = "",
+  isAttorney = false,
+}) {
+  const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+
+  if (isAttorney) {
+    return {
+      subject: "Last note — catching duplicate CPT charges before mediation",
+      textContent: `${greeting}
+
+One quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a -26/-TC split, or leaving PIP/contractual EOB adjustments unreconciled.
+
+Our U.S. AAPC coders catch those before your demand goes out and hand you an editable Excel + Bates-linked PDF table in 72 hours.
+
+Whenever a messy medical bill file lands on your desk, just reply here or call me at (786) 643-2099.
+
+Best,
+Jasmel Acosta
+Medical Billing Miami Beach
+https://medicalbillingmb.com/for-attorneys`,
+    };
+  }
+
+  return {
+    subject: orgName
+      ? `90-day Miami Beach benchmark for ${orgName} (18% to 2.4% denials)`
+      : "Last note — how a 4-provider Miami practice cut denials from 18% to 2.4%",
+    textContent: `${greeting}
+
+One quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an 18.0% claim denial rate from modifier and bundling rejections. Working directly inside their existing EHR ($0 migration cost), our U.S. AAPC coders + AI pre-submission check dropped their denial rate to 2.4% and added +$142,000 in annualized net collections within 90 days.
+
+Remember—we only charge 5.6%–10% of what actually hits your bank account, and our 48-hour 20-claim proof test is completely free.
+
+Whenever you're ready to test us on 20 denied claims, just reply to this email or call me at (786) 643-2099.
+
+Best,
+Jasmel Acosta
+Medical Billing Miami Beach
+https://medicalbillingmb.com/for-providers`,
+  };
 }
 
 export function buildProspectConfirmationEmail({

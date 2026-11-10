@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   sendBrevoTransactional,
   syncBrevoContact,
+  scheduleDay3FollowUpEmail,
   getAdminRecipients,
 } from "@UTILS/email";
 
@@ -108,7 +109,14 @@ export async function POST(req) {
       to: [{ email }],
       subject,
       htmlContent,
+      tags: ["mbmb-day0-instant-offer"],
       replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel Acosta — MBMB" },
+    });
+
+    // 2b. Queue Day-3 personal plain-text check-in inside Brevo SMTP (+70 hours)
+    await scheduleDay3FollowUpEmail({
+      email,
+      isAttorney,
     });
 
     // 3. Alert Jasmel

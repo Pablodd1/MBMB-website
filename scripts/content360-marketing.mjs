@@ -33,17 +33,19 @@ if (!CONTENT360_API_KEY) {
   process.exit(1);
 }
 
-// Active Authorized MBMB Accounts in Content360:
+// All 3 Active Authorized MBMB Accounts in Content360:
+// 219359 = Instagram Direct: @medicalbillingmiami
 // 143488 = Facebook Page: Miami Beach Medical Billing (@MiamiBeachmb)
 // 143486 = Google Business Profile: Medical Billing Miami Beach
-const MBMB_ACTIVE_ACCOUNT_IDS = [143488, 143486];
+const MBMB_ALL_ACCOUNT_IDS = [219359, 143488, 143486];
 
 const WEEKLY_STYLE2_POSTS = [
   {
     key: 'week2-nov10',
-    title: 'Week 2 (Publish Now): 48-Hour Denial Recovery Scorecard + 20-Claim Free Proof Test',
+    title: 'Week 2 (Publish Today): 48-Hour Denial Recovery Scorecard + 20-Claim Free Proof Test',
     schedule: 'now',
     scheduledAt: null,
+    mediaId: 2895055,
     imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week2-denial-recovery.jpg',
     altText: '48-Hour Denial Recovery Scorecard — Medical Billing Miami Beach',
     ctaUrl: 'https://medicalbillingmb.com/for-providers?utm_source=content360&utm_medium=social&utm_campaign=weekly_style2_w2',
@@ -65,9 +67,11 @@ https://medicalbillingmb.com/for-providers?utm_source=content360&utm_medium=soci
   },
   {
     key: 'week3-nov16',
+    uuid: 'f66149a1-5756-4e27-a754-4bfecc02d9ce',
     title: 'Week 3 (Nov 16): Florida Trial Attorney Billing & Chronology Scorecard (1-Case Pilot)',
     schedule: 'scheduled',
     scheduledAt: '2026-11-16 10:00',
+    mediaId: 2895056,
     imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week3-attorney-chronology.jpg',
     altText: 'Florida Trial Attorney Medical Billing Chronology & EOB Reconciliation Scorecard',
     ctaUrl: 'https://medicalbillingmb.com/for-attorneys?utm_source=content360&utm_medium=social&utm_campaign=weekly_style2_w3',
@@ -89,9 +93,11 @@ https://medicalbillingmb.com/for-attorneys?utm_source=content360&utm_medium=soci
   },
   {
     key: 'week4-nov23',
+    uuid: 'c49d1d16-f5cc-4955-9ee6-85b370071b97',
     title: 'Week 4 (Nov 23): Florida Payer Credentialing Scorecard (Medicare PECOS, AHCA & Commercial)',
     schedule: 'scheduled',
     scheduledAt: '2026-11-23 10:00',
+    mediaId: 2895057,
     imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week4-credentialing-scorecard.jpg',
     altText: 'Florida Provider Credentialing Scorecard — Medicare PECOS, AHCA Medicaid & Commercial Payers',
     ctaUrl: 'https://medicalbillingmb.com/services/credentialing?utm_source=content360&utm_medium=social&utm_campaign=weekly_style2_w4',
@@ -110,9 +116,11 @@ https://medicalbillingmb.com/services/credentialing?utm_source=content360&utm_me
   },
   {
     key: 'week5-nov30',
+    uuid: '87afcb68-f3f8-4a38-8d25-eba8f370e246',
     title: 'Week 5 (Nov 30): Transparent Collection Tiers Scorecard (5.6%–10% | $0 Setup Fee)',
     schedule: 'scheduled',
     scheduledAt: '2026-11-30 10:00',
+    mediaId: 2895059,
     imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week5-transparent-pricing.jpg',
     altText: 'Transparent Medical Billing Collection Tiers — 5.6% to 10% with $0 Setup Fee',
     ctaUrl: 'https://medicalbillingmb.com/consultation?utm_source=content360&utm_medium=social&utm_campaign=weekly_style2_w5',
@@ -134,9 +142,11 @@ https://medicalbillingmb.com/consultation?utm_source=content360&utm_medium=socia
   },
   {
     key: 'week6-dec07',
+    uuid: '25579388-f975-483d-a54c-14ffce14b991',
     title: 'Week 6 (Dec 7): 90-Day Miami Practice Benchmark Scorecard (18.0% to 2.4% Denial Rate)',
     schedule: 'scheduled',
     scheduledAt: '2026-12-07 10:00',
+    mediaId: 2895060,
     imageUrl: 'https://medicalbillingmb.com/raster/social/style2-week1-90day-benchmark.jpg',
     altText: '90-Day Miami Practice Benchmark — 18.0% to 2.4% Denial Rate',
     ctaUrl: 'https://medicalbillingmb.com/for-providers?utm_source=content360&utm_medium=social&utm_campaign=weekly_style2_w6',
@@ -192,13 +202,19 @@ async function content360MCP(toolName, args = {}) {
   return { raw: json, data: parsed, isError: json?.result?.isError || false };
 }
 
+async function fetchRawPost(uuid) {
+  const r = await fetch(`https://app.content360.io/os/api/${CONTENT360_WORKSPACE}/posts/${uuid}`, {
+    headers: {
+      Authorization: `Bearer ${CONTENT360_API_KEY}`,
+      Accept: 'application/json',
+    },
+  });
+  return r.json();
+}
+
 async function main() {
   const args = process.argv.slice(2);
-  const mode = args.includes('--repair-and-fix')
-    ? 'repair-and-fix'
-    : args.includes('--sync-mbmb')
-      ? 'sync-mbmb'
-      : 'status';
+  const mode = args.includes('--activate-all') ? 'activate-all' : 'status';
 
   console.log(`\n=== Content360 MCP Status (Workspace: ${CONTENT360_WORKSPACE}) ===`);
   const accountsRes = await content360MCP('list-accounts-tool');
@@ -206,74 +222,70 @@ async function main() {
   console.log(`\nConnected Social Accounts (${accounts.length}):`);
   for (const acc of accounts) {
     console.log(
-      `- [ID: ${acc.id}] ${acc.provider.toUpperCase()} | ${acc.name} (${acc.username ? '@' + acc.username : 'Business Profile'}) | Authorized: ${acc.authorized ? '✅ YES' : '⚠️ NO (Reconnect in Content360 UI)'}`
+      `- [ID: ${acc.id}] ${acc.provider.toUpperCase()} | ${acc.name} (${acc.username ? '@' + acc.username : 'Business Profile'}) | Authorized: ${acc.authorized ? '✅ YES' : '⚠️ NO'}`
     );
   }
 
-  const postsRes = await content360MCP('list-posts-tool');
-  const posts = postsRes.data?.posts || [];
-  console.log(`\nExisting Posts in Content360 (${posts.length}):`);
-  for (const p of posts) {
-    const body = p.content || '';
-    const firstLine = body.split('\n')[0].slice(0, 75);
-    const accNames = (p.accounts || []).map((a) => `${a.name}(${a.provider})`).join(', ') || 'No accounts assigned';
-    console.log(
-      `- [${p.status.toUpperCase()}] UUID: ${p.uuid} | Scheduled: ${p.scheduled_at || 'None'} | Media: ${p.media_count} | Accounts: [${accNames}] | "${firstLine}"`
-    );
-  }
+  if (mode === 'activate-all') {
+    // 1. Publish Today's Week 2 Scorecard NOW to newly connected Instagram (@medicalbillingmiami, 219359) + Google Business (143486)
+    // (Facebook 143488 already published Week 2 live at https://facebook.com/120489827650831_1065615623159996)
+    const w2 = WEEKLY_STYLE2_POSTS[0];
+    console.log(`\n=== 1. Publishing Today's Week 2 Scorecard NOW to Instagram (219359) & Google Business (143486) ===`);
+    const draftRes = await content360MCP('create-post-tool', {
+      account_ids: [219359, 143486],
+      schedule: 'draft',
+      content: w2.body,
+    });
+    const w2Uuid = draftRes.data?.post?.uuid;
+    if (w2Uuid) {
+      const rawW2 = await fetchRawPost(w2Uuid);
+      const nativeOptions = rawW2.versions?.[0]?.options || {};
+      await content360MCP('update-post-version-tool', {
+        uuid: w2Uuid,
+        account_id: 0,
+        content: [
+          {
+            body: w2.body,
+            media: [w2.mediaId],
+            url: w2.ctaUrl,
+          },
+        ],
+        options: nativeOptions,
+      });
+      const pubRes = await content360MCP('schedule-post-tool', {
+        uuid: w2Uuid,
+        post_now: true,
+      });
+      console.log(`  PUBLISHED NOW -> UUID: ${w2Uuid} | Result:`, JSON.stringify(pubRes.data));
+    }
 
-  if (mode === 'repair-and-fix') {
-    console.log(`\n=== 1. Attaching Uploaded Style 2 Media & Full Untruncated Copy to Scheduled Posts ===`);
-    const scheduledMappings = [
-      {
-        uuid: 'bd7ce5fc-28e7-4601-b1b8-d70ec63ae861',
-        mediaId: 2895055,
-        spec: WEEKLY_STYLE2_POSTS[0],
-      },
-      {
-        uuid: 'f66149a1-5756-4e27-a754-4bfecc02d9ce',
-        mediaId: 2895056,
-        spec: WEEKLY_STYLE2_POSTS[1],
-      },
-      {
-        uuid: 'c49d1d16-f5cc-4955-9ee6-85b370071b97',
-        mediaId: 2895057,
-        spec: WEEKLY_STYLE2_POSTS[2],
-      },
-      {
-        uuid: '87afcb68-f3f8-4a38-8d25-eba8f370e246',
-        mediaId: 2895059,
-        spec: WEEKLY_STYLE2_POSTS[3],
-      },
-      {
-        uuid: '25579388-f975-483d-a54c-14ffce14b991',
-        mediaId: 2895060,
-        spec: WEEKLY_STYLE2_POSTS[4],
-      },
-    ];
-
-    for (const m of scheduledMappings) {
+    // 2. Attach Instagram (219359) + Facebook (143488) + Google Business (143486) to all 4 upcoming Monday scheduled posts
+    console.log(`\n=== 2. Attaching Instagram (@medicalbillingmiami, 219359) + FB (143488) + GBP (143486) to All 4 Scheduled Monday Posts ===`);
+    for (const item of WEEKLY_STYLE2_POSTS.slice(1)) {
+      const rawPost = await fetchRawPost(item.uuid);
+      const nativeOptions = rawPost.versions?.[0]?.options || {};
       const upd = await content360MCP('update-post-tool', {
-        uuid: m.uuid,
-        account_ids: MBMB_ACTIVE_ACCOUNT_IDS,
+        uuid: item.uuid,
+        account_ids: MBMB_ALL_ACCOUNT_IDS,
         versions: [
           {
             account_id: 0,
-            is_original: true,
             content: [
               {
-                body: m.spec.body,
-                media: [m.mediaId],
-                url: m.spec.ctaUrl,
+                body: item.body,
+                media: [item.mediaId],
+                url: item.ctaUrl,
               },
             ],
+            options: nativeOptions,
           },
         ],
       });
-      console.log(`  UPDATED ${m.spec.key} (${m.uuid}) with Media ID ${m.mediaId} ->`, JSON.stringify(upd.data));
+      console.log(`  SYNCED ${item.key} (${item.uuid}) -> Accounts: [IG 219359, FB 143488, GBP 143486] | Error: ${upd.isError}`);
     }
 
-    console.log(`\n=== 2. Fixing 7 Legacy Drafts from May (Broken Links & Stripped Dollar Amounts + Assigning Accounts) ===`);
+    // 3. Also update all 7 reserve drafts to include Instagram (219359) + FB (143488) + GBP (143486)
+    console.log(`\n=== 3. Updating 7 Repaired Reserve Drafts to Target [IG 219359, FB 143488, GBP 143486] ===`);
     const draftUuids = [
       'e58aa22c-13c2-49b4-ac37-6f73dffb0da4',
       '6f881d19-504d-4c6f-a0ee-2b9bb34d953b',
@@ -283,38 +295,25 @@ async function main() {
       '898f09f9-133b-4a71-bdd4-94fece963ca4',
       'b60c3abb-20fe-478b-9b71-d53f0ff55d4c',
     ];
-
     for (const uuid of draftUuids) {
-      const fullPostRes = await content360MCP('get-post-tool', { uuid });
-      const postObj = fullPostRes.data?.post;
-      if (!postObj) continue;
-      const origContent = postObj.versions?.[0]?.content?.[0] || {};
-      const existingMediaIds = (origContent.media || []).map((x) => Number(x.id));
-      let fixedBody = origContent.body || '';
-      fixedBody = fixedBody
-        .replace(/https:\/\/booking\.medicalbillingmb\.com/g, 'https://medicalbillingmb.com/consultation')
-        .replace(/\b0K\+ monthly recovery/g, '$40K+ monthly recovery')
-        .replace(/Average recovery: 5K-5K in 90 days/g, 'Average recovery: $25K-$75K in 90 days');
-
       const upd = await content360MCP('update-post-tool', {
         uuid,
-        account_ids: MBMB_ACTIVE_ACCOUNT_IDS,
-        versions: [
-          {
-            account_id: 0,
-            is_original: true,
-            content: [
-              {
-                body: fixedBody,
-                media: existingMediaIds,
-                url: 'https://medicalbillingmb.com/consultation',
-              },
-            ],
-          },
-        ],
+        account_ids: MBMB_ALL_ACCOUNT_IDS,
       });
-      console.log(`  FIXED Legacy Draft ${uuid} (Media IDs: [${existingMediaIds.join(',')}]) ->`, JSON.stringify(upd.data));
+      console.log(`  UPDATED Draft ${uuid} -> [IG 219359, FB 143488, GBP 143486] | Error: ${upd.isError}`);
     }
+  }
+
+  const postsRes = await content360MCP('list-posts-tool');
+  const posts = postsRes.data?.posts || [];
+  console.log(`\n=== Current Posts in Content360 (${posts.length}) ===`);
+  for (const p of posts) {
+    const body = p.content || '';
+    const firstLine = body.split('\n')[0].slice(0, 68);
+    const accNames = (p.accounts || []).map((a) => a.provider).join(', ') || 'None';
+    console.log(
+      `- [${p.status.toUpperCase()}] ${p.uuid} | Due: ${p.scheduled_at || 'Draft'} | Media: ${p.media_count} | [${accNames}] | "${firstLine}"`
+    );
   }
 }
 

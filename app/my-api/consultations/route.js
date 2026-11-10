@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   sendBrevoTransactional,
   syncBrevoContact,
+  scheduleDay3FollowUpEmail,
   buildProspectConfirmationEmail,
   getAdminRecipients,
   isBotOrSpamSubmission,
@@ -82,13 +83,21 @@ export async function POST(req) {
       replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel — MBMB" },
     });
 
-    // 3. Upsert Contact into Brevo CRM
+    // 3. Upsert Contact into Brevo CRM (also enrolls into Day-7 case-study cron via List #21)
     await syncBrevoContact({
       email: query.email,
       fullName: query.fullName,
       organization: orgName,
       phone: query.phone || "",
       inquiryType: isAttorneyPilot ? "Attorney Pilot" : "Provider Consultation",
+    });
+
+    // 4. Queue Day-3 personal plain-text check-in inside Brevo SMTP (+70 hours)
+    await scheduleDay3FollowUpEmail({
+      email: query.email,
+      fullName: query.fullName,
+      orgName,
+      isAttorney: isAttorneyPilot,
     });
 
     return NextResponse.json(
