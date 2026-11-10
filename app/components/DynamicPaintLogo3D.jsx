@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const BRUSH_STROKES = Array.from({ length: 44 }, (_, i) => ({
   angle: (i / 44) * Math.PI * 2,
@@ -9,21 +9,11 @@ const BRUSH_STROKES = Array.from({ length: 44 }, (_, i) => ({
   layer: (i % 6) / 6,
 }));
 
-const PALETTES = {
-  impasto: ['#0052A3', '#0066CC', '#00A8E8', '#22d3ee', '#10b981', '#ffffff'],
-  ribbon: ['#3b0764', '#1d4ed8', '#0284c7', '#06b6d4', '#67e8f9', '#ffffff'],
-  neon: ['#be185d', '#ec4899', '#0066CC', '#00A8E8', '#34d399', '#ffffff'],
-};
+const PALETTE = ['#0052A3', '#0066CC', '#00A8E8', '#22d3ee', '#10b981', '#ffffff'];
 
 export default function DynamicPaintLogo3D() {
   const canvasRef = useRef(null);
   const wrapperRef = useRef(null);
-  const [paintMode, setPaintMode] = useState('impasto');
-  const paintModeRef = useRef('impasto');
-
-  useEffect(() => {
-    paintModeRef.current = paintMode;
-  }, [paintMode]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -140,7 +130,7 @@ export default function DynamicPaintLogo3D() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const p = scrollProgress;
-      const pal = PALETTES[paintModeRef.current] || PALETTES.impasto;
+      const pal = PALETTE;
 
       // 1. Dynamic 3D Paint Brush Dabs in Background
       if (p > 0.04) {
@@ -285,28 +275,6 @@ export default function DynamicPaintLogo3D() {
           height={350}
           className="w-full h-full object-contain pointer-events-none"
         />
-      </div>
-
-      {/* Minimalistic 3D Paint Style Switcher Pill under the right-side logo */}
-      <div className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 backdrop-blur-md px-2.5 py-1 rounded-full mt-1">
-        {[
-          { id: 'impasto', label: '🎨 3D Impasto' },
-          { id: 'ribbon', label: '🌊 Liquid Acrylic' },
-          { id: 'neon', label: '✨ Neon Brush' },
-        ].map((mode) => (
-          <button
-            key={mode.id}
-            type="button"
-            onClick={() => setPaintMode(mode.id)}
-            className={`px-2.5 py-1 rounded-full text-[11px] font-bold transition cursor-pointer ${
-              paintMode === mode.id
-                ? 'bg-[#0066CC] text-white shadow-sm'
-                : 'text-slate-300 hover:text-white'
-            }`}
-          >
-            {mode.label}
-          </button>
-        ))}
       </div>
     </div>
   );
