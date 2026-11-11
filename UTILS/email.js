@@ -186,6 +186,61 @@ export async function syncBrevoContact({
   }
 }
 
+export function buildFiveOptionConnectHubHtml({
+  audience = "provider",
+  email = "",
+} = {}) {
+  const safeAudience = audience === "attorney" ? "attorney" : "provider";
+  const emailParam = email ? `&amp;email=${encodeURIComponent(email)}` : "";
+  return `
+    <div style="margin:18px 0;background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px 14px 18px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:12px;">
+        Skip the back-and-forth — pick whichever is easiest for you:
+      </div>
+
+      <!-- ROW 1: Phone Call Pair -->
+      <div style="font-size:0;line-height:0;">
+        <div style="display:inline-block;vertical-align:top;width:220px;max-width:100%;margin:4px;box-sizing:border-box;">
+          <a href="https://medicalbillingmb.com/call-me?mode=call&amp;audience=${safeAudience}${emailParam}" style="display:block;background-color:#0066CC;border:1.5px solid #0066CC;border-radius:10px;padding:11px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+            <span style="display:block;font-size:14px;font-weight:800;color:#ffffff;line-height:1.25;">&#128222; You Call Me &rarr;</span>
+            <span style="display:block;font-size:11px;font-weight:500;color:#dbeafe;line-height:1.3;margin-top:3px;">Drop your name &amp; number</span>
+          </a>
+        </div>
+        <div style="display:inline-block;vertical-align:top;width:220px;max-width:100%;margin:4px;box-sizing:border-box;">
+          <a href="tel:+17866432099" style="display:block;background-color:#0a1628;border:1.5px solid #0a1628;border-radius:10px;padding:11px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+            <span style="display:block;font-size:14px;font-weight:800;color:#ffffff;line-height:1.25;">&#128242; I’ll Call You</span>
+            <span style="display:block;font-size:11px;font-weight:600;color:#38bdf8;line-height:1.3;margin-top:3px;">Tap to dial (786) 643-2099</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ROW 2: SMS / Text Pair -->
+      <div style="font-size:0;line-height:0;">
+        <div style="display:inline-block;vertical-align:top;width:220px;max-width:100%;margin:4px;box-sizing:border-box;">
+          <a href="https://medicalbillingmb.com/call-me?mode=text&amp;audience=${safeAudience}${emailParam}" style="display:block;background-color:#ffffff;border:1.5px solid #0066CC;border-radius:10px;padding:10px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+            <span style="display:block;font-size:14px;font-weight:800;color:#0066CC;line-height:1.25;">&#128172; You Text Me &rarr;</span>
+            <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:3px;">Leave your cell for a quick text</span>
+          </a>
+        </div>
+        <div style="display:inline-block;vertical-align:top;width:220px;max-width:100%;margin:4px;box-sizing:border-box;">
+          <a href="https://medicalbillingmb.com/call-me?mode=open-sms&amp;audience=${safeAudience}${emailParam}" style="display:block;background-color:#ffffff;border:1.5px solid #0f172a;border-radius:10px;padding:10px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+            <span style="display:block;font-size:14px;font-weight:800;color:#0f172a;line-height:1.25;">&#9993;&#65039; I’ll Text You</span>
+            <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:3px;">Text (786) 643-2099 right now</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ROW 3: 5th Option — Slim Full-Span Virtual Consultation Bar -->
+      <div style="display:inline-block;width:448px;max-width:100%;margin:6px auto 0;box-sizing:border-box;">
+        <a href="https://medicalbillingmb.com/call-me?mode=virtual&amp;audience=${safeAudience}${emailParam}" style="display:block;background-color:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:10px 14px;text-decoration:none;text-align:center;box-sizing:border-box;">
+          <span style="display:block;font-size:13px;font-weight:800;color:#0369a1;line-height:1.3;">&#128467;&#65039; Make an Appointment — Free 15-Min Virtual Consultation &rarr;</span>
+          <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:2px;">Pick a day &amp; time on your calendar · Video or Phone</span>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 export async function scheduleDay3FollowUpEmail({
   email,
   fullName = "",
@@ -195,8 +250,11 @@ export async function scheduleDay3FollowUpEmail({
   if (!email) return { sent: false };
   const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
-  // Schedule 70 hours in the future (inside Brevo's 72-hour native SMTP scheduledAt window)
   const scheduledAt = new Date(Date.now() + 70 * 60 * 60 * 1000).toISOString();
+  const hubHtml = buildFiveOptionConnectHubHtml({
+    audience: isAttorney ? "attorney" : "provider",
+    email,
+  });
 
   const subject = isAttorney
     ? orgName
@@ -206,31 +264,30 @@ export async function scheduleDay3FollowUpEmail({
       ? `Quick follow-up — 20 denied claims test for ${orgName}`
       : "Quick follow-up — 20 denied claims test";
 
+  const htmlContent = isAttorney
+    ? `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
+        <p>${greeting}</p>
+        <p>Checking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, we can turn it around in <strong>72 hours</strong>.</p>
+        ${hubHtml}
+        <p>Or simply reply with the approximate page count and I’ll send over our encrypted upload link + NDA/BAA right away.</p>
+        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach<br/>(786) 643-2099</p>
+      </div>`
+    : `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
+        <p>${greeting}</p>
+        <p>Checking in quickly on the <strong>20-Claim Free Audit</strong> note I sent over a couple days ago. If you have 20 recent CO-16, CO-50, CO-97, or Modifier 25/59 rejections sitting in your EHR, our U.S. AAPC coders will show you the exact collectable dollar amount in <strong>48 hours—free</strong>.</p>
+        ${hubHtml}
+        <p>Or just reply with which EHR you use and I’ll send over our standard HIPAA BAA to get started.</p>
+        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach<br/>(786) 643-2099</p>
+      </div>`;
+
   const textContent = isAttorney
-    ? `${greeting}
-
-Checking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, just reply with the approximate page count and we'll send our encrypted upload link + NDA/BAA to turn it around in 72 hours.
-
-Want to talk through a case for 10 minutes first? Call me directly at (786) 643-2099 or grab a slot at https://medicalbillingmb.com/for-attorneys
-
-Best,
-Jasmel Acosta
-Medical Billing Miami Beach
-(786) 643-2099`
-    : `${greeting}
-
-Checking in quickly on the 20-Claim Free Audit instructions I sent over a couple days ago. If you have 20 recent CO-16, CO-50, CO-97, or Modifier 25/59 rejections sitting in your EHR, reply with which EHR you use and I'll send over our standard HIPAA BAA so our U.S. AAPC coders can show you the exact collectable dollar amount in 48 hours.
-
-Or if a quick 10-minute call is easier, grab a time at https://medicalbillingmb.com/consultation or call me directly at (786) 643-2099.
-
-Best,
-Jasmel Acosta
-Medical Billing Miami Beach
-(786) 643-2099`;
+    ? `${greeting}\n\nChecking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, reply with the approximate page count or connect directly at https://medicalbillingmb.com/call-me?audience=attorney or (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`
+    : `${greeting}\n\nChecking in quickly on the 20-Claim Free Audit instructions I sent over a couple days ago. If you have 20 recent CO-16, CO-50, or Modifier 25/59 rejections in your EHR, reply with your EHR or connect directly at https://medicalbillingmb.com/call-me?audience=provider or (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`;
 
   return sendBrevoTransactional({
     to: [{ email, ...(fullName ? { name: fullName } : {}) }],
     subject,
+    htmlContent,
     textContent,
     scheduledAt,
     tags: ["mbmb-day3-followup"],
@@ -241,26 +298,27 @@ Medical Billing Miami Beach
 export function buildDay7CaseStudyEmail({
   fullName = "",
   orgName = "",
+  email = "",
   isAttorney = false,
 }) {
   const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  const hubHtml = buildFiveOptionConnectHubHtml({
+    audience: isAttorney ? "attorney" : "provider",
+    email,
+  });
 
   if (isAttorney) {
     return {
       subject: "Last note — catching duplicate CPT charges before mediation",
-      textContent: `${greeting}
-
-One quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a -26/-TC split, or leaving PIP/contractual EOB adjustments unreconciled.
-
-Our U.S. AAPC coders catch those before your demand goes out and hand you an editable Excel + Bates-linked PDF table in 72 hours.
-
-Whenever a messy medical bill file lands on your desk, just reply here or call me at (786) 643-2099.
-
-Best,
-Jasmel Acosta
-Medical Billing Miami Beach
-https://medicalbillingmb.com/for-attorneys`,
+      htmlContent: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
+        <p>${greeting}</p>
+        <p>One quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a <code>-26/-TC</code> split, or leaving PIP/contractual EOB adjustments unreconciled.</p>
+        ${hubHtml}
+        <p>Our U.S. AAPC coders catch those before your demand goes out and hand you an editable Excel + Bates-linked PDF table in 72 hours. Whenever a messy file lands on your desk, tap any option above or reply here.</p>
+        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
+      </div>`,
+      textContent: `${greeting}\n\nOne quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a -26/-TC split, or leaving PIP/contractual EOB adjustments unreconciled.\n\nConnect anytime at https://medicalbillingmb.com/call-me?audience=attorney or call/text (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`,
     };
   }
 
@@ -268,97 +326,51 @@ https://medicalbillingmb.com/for-attorneys`,
     subject: orgName
       ? `90-day Miami Beach benchmark for ${orgName} (18% to 2.4% denials)`
       : "Last note — how a 4-provider Miami practice cut denials from 18% to 2.4%",
-    textContent: `${greeting}
-
-One quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an 18.0% claim denial rate from modifier and bundling rejections. Working directly inside their existing EHR ($0 migration cost), our U.S. AAPC coders + AI pre-submission check dropped their denial rate to 2.4% and added +$142,000 in annualized net collections within 90 days.
-
-Remember—we only charge 5.6%–10% of what actually hits your bank account, and our 48-hour 20-claim proof test is completely free.
-
-Whenever you're ready to test us on 20 denied claims, just reply to this email or call me at (786) 643-2099.
-
-Best,
-Jasmel Acosta
-Medical Billing Miami Beach
-https://medicalbillingmb.com/for-providers`,
+    htmlContent: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
+      <p>${greeting}</p>
+      <p>One quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an <strong>18.0% claim denial rate</strong> from modifier and bundling rejections. Working directly inside their existing EHR ($0 migration cost), our U.S. AAPC coders + AI pre-submission check dropped their denial rate to <strong>2.4%</strong> and added <strong>+$142,000</strong> in annualized net collections within 90 days.</p>
+      ${hubHtml}
+      <p>Remember—we only charge <strong>5.6%–10% of what actually hits your bank account</strong>, and our 48-hour 20-claim proof test is completely free.</p>
+      <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
+    </div>`,
+    textContent: `${greeting}\n\nOne quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an 18.0% claim denial rate. Working inside their existing EHR, our U.S. AAPC coders dropped denials to 2.4% (+$142,000 annualized net collections in 90 days).\n\nConnect anytime at https://medicalbillingmb.com/call-me?audience=provider or call/text (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`,
   };
 }
 
 export function buildProspectConfirmationEmail({
   fullName,
   orgName,
+  email = "",
   inquiryType = "provider-consultation",
 }) {
   const isAttorney = inquiryType === "attorney-pilot";
+  const hubHtml = buildFiveOptionConnectHubHtml({
+    audience: isAttorney ? "attorney" : "provider",
+    email,
+  });
 
   if (isAttorney) {
     return {
       subject:
-        "MBMB Legal Billing-Support Pilot — Inquiry Received | Medical Billing Miami Beach",
+        "Got your note — Legal Billing Chronology Pilot | Jasmel (MBMB)",
       htmlContent: `
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>MBMB Legal Billing-Support Pilot</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;padding:32px 16px;">
+<head><meta charset="UTF-8" /><title>MBMB Legal Billing Pilot</title></head>
+<body style="margin:0;padding:0;background-color:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#0f172a;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc;padding:26px 12px;">
     <tr>
       <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
-          <!-- Header -->
+        <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background-color:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;border-top:4px solid #0066CC;">
           <tr>
-            <td style="background-color:#0a1628;padding:28px 32px;border-bottom:3px solid #00A8E8;">
-              <div style="font-size:12px;font-weight:bold;letter-spacing:1.5px;color:#00A8E8;text-transform:uppercase;">
-                Medical Billing Miami Beach (MBMB)
-              </div>
-              <h1 style="margin:8px 0 0;font-size:22px;color:#ffffff;">
-                Medical Billing Clarity for Your Legal Team
-              </h1>
-            </td>
-          </tr>
-          <!-- Body -->
-          <tr>
-            <td style="padding:32px;">
-              <p style="margin:0 0 16px;font-size:16px;line-height:1.6;">
-                Hi <strong>${fullName}</strong>,
+            <td style="padding:24px 28px;font-size:15px;line-height:1.65;color:#1e293b;">
+              <p style="margin:0 0 14px;">Hi <strong>${fullName}</strong>,</p>
+              <p style="margin:0 0 14px;">Got your inquiry for <strong>${orgName || "your legal team"}</strong>. Our U.S. AAPC-certified coders prepare source-linked medical billing chronologies, plain-English CPT/ICD-10 translations, and EOB duplicate/balance reconciliations in <strong>72 hours</strong>.</p>
+              ${hubHtml}
+              <p style="margin:0 0 14px;font-size:13px;color:#475569;background-color:#fffbeb;border:1px solid #fde68a;padding:10px 14px;border-radius:8px;">
+                <strong>Privacy Reminder:</strong> Please do not attach unencrypted PHI to email—we will establish an NDA/BAA and encrypted upload link first.
               </p>
-              <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#334155;">
-                Thank you for contacting <strong>Medical Billing Miami Beach (MBMB)</strong> regarding our Administrative Medical Billing Organization &amp; Reconciliation Pilot for <strong>${orgName || "your legal team"}</strong>.
-              </p>
-              <div style="background-color:#f8fafc;border-left:4px solid #0066CC;padding:18px 20px;border-radius:8px;margin:20px 0;">
-                <p style="margin:0 0 10px;font-size:14px;font-weight:bold;color:#0f172a;">
-                  What We Prepare on a Scoped One-File Pilot:
-                </p>
-                <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.7;color:#334155;">
-                  <li><strong>Source-Linked Medical Billing Chronology:</strong> Itemized bills and EOBs organized by date of service, provider, code, and exact page reference.</li>
-                  <li><strong>Plain-English Code Explanations:</strong> Clear translations of CPT, ICD-10, HCPCS codes, and modifiers.</li>
-                  <li><strong>Charge-to-Balance Reconciliation Table:</strong> Billed charges, contractual adjustments, payments, and stated open balances—flagging duplicate lines or missing date ranges.</li>
-                </ul>
-              </div>
-              <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#475569;background-color:#fffbeb;border:1px solid #fde68a;padding:12px 16px;border-radius:8px;">
-                <strong>Privacy &amp; Scope Reminder:</strong> Please do not reply to this email with unencrypted Protected Health Information (PHI) or confidential case files. We will coordinate an agreed secure transfer method during our call. Our support is administrative and focused on organizing and summarizing billing records (not legal advice, expert testimony, or opinions on medical necessity).
-              </p>
-              <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#334155;">
-                Jasmel from our Miami Beach coordination desk will reach out within <strong>1 business day</strong>. To speak immediately, call us at <a href="tel:+17866432099" style="color:#0066CC;font-weight:bold;text-decoration:none;">(786) 643-2099</a>.
-              </p>
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="background-color:#0066CC;border-radius:10px;padding:12px 24px;">
-                    <a href="https://medicalbillingmb.com/for-attorneys" style="color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;display:inline-block;">
-                      Review Pilot Workflow on Website →
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#0f172a;padding:20px 32px;color:#94a3b8;font-size:12px;line-height:1.6;">
-              <strong style="color:#ffffff;">Medical Billing Miami Beach (MBMB)</strong><br/>
-              Miami Beach, FL 33139 · (786) 643-2099 · <a href="mailto:Jasmel@medicalbillingmb.com" style="color:#00A8E8;text-decoration:none;">Jasmel@medicalbillingmb.com</a><br/>
-              Mon–Fri: 9:00 AM – 6:00 PM EST (America/New_York)
+              <p style="margin:18px 0 0;font-size:14px;color:#0f172a;">Talk soon,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
             </td>
           </tr>
         </table>
@@ -372,72 +384,25 @@ export function buildProspectConfirmationEmail({
 
   return {
     subject:
-      "Your MBMB Revenue Cycle Consultation Request — Medical Billing Miami Beach",
+      "Got your note — Free 48-Hr Billing Audit | Jasmel (MBMB)",
     htmlContent: `
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>MBMB Provider Consultation</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9;padding:32px 16px;">
+<head><meta charset="UTF-8" /><title>MBMB Provider Audit</title></head>
+<body style="margin:0;padding:0;background-color:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#0f172a;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc;padding:26px 12px;">
     <tr>
       <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
-          <!-- Header -->
+        <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background-color:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;border-top:4px solid #0066CC;">
           <tr>
-            <td style="background-color:#0a1628;padding:28px 32px;border-bottom:3px solid #00A8E8;">
-              <div style="font-size:12px;font-weight:bold;letter-spacing:1.5px;color:#00A8E8;text-transform:uppercase;">
-                Medical Billing Miami Beach (MBMB)
-              </div>
-              <h1 style="margin:8px 0 0;font-size:22px;color:#ffffff;">
-                Human AAPC-Certified Expertise + AI Double-Check
-              </h1>
-            </td>
-          </tr>
-          <!-- Body -->
-          <tr>
-            <td style="padding:32px;">
-              <p style="margin:0 0 16px;font-size:16px;line-height:1.6;">
-                Hi <strong>${fullName}</strong>,
+            <td style="padding:24px 28px;font-size:15px;line-height:1.65;color:#1e293b;">
+              <p style="margin:0 0 14px;">Hi <strong>${fullName}</strong>,</p>
+              <p style="margin:0 0 14px;">Got your inquiry for <strong>${orgName || "your practice"}</strong>. Our U.S. AAPC-certified coders + AI pre-submission check work directly inside your existing EHR ($0 setup, <strong>5.6%–10% of collected cash only</strong>).</p>
+              ${hubHtml}
+              <p style="margin:0 0 14px;font-size:13px;color:#475569;background-color:#fffbeb;border:1px solid #fde68a;padding:10px 14px;border-radius:8px;">
+                <strong>HIPAA Reminder:</strong> Please do not send patient names or PHI via unencrypted email—all protected records are exchanged only after our BAA is signed.
               </p>
-              <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#334155;">
-                Thank you for contacting <strong>Medical Billing Miami Beach (MBMB)</strong> regarding revenue cycle management, medical coding, or credentialing for <strong>${orgName || "your practice"}</strong>.
-              </p>
-              <div style="background-color:#f8fafc;border-left:4px solid #0066CC;padding:18px 20px;border-radius:8px;margin:20px 0;">
-                <p style="margin:0 0 10px;font-size:14px;font-weight:bold;color:#0f172a;">
-                  How We Support Your Practice:
-                </p>
-                <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.7;color:#334155;">
-                  <li><strong>Human Review + AI Double-Check:</strong> Experienced U.S. AAPC-certified coders verify chart documentation first, followed by an AI pre-submission check for modifiers, NCCI edits, and LCD/NCD rules.</li>
-                  <li><strong>Aligned Collection Pricing (5.6%–10%):</strong> $0 setup fee for standard EHR onboarding. Final rate is confirmed in a written proposal based on monthly claim volume and specialty mix.</li>
-                  <li><strong>24–48 Hour Turnaround:</strong> Daily EDI claim submission, ERA payment posting, and proactive denial appeals.</li>
-                </ul>
-              </div>
-              <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#475569;background-color:#fffbeb;border:1px solid #fde68a;padding:12px 16px;border-radius:8px;">
-                <strong>HIPAA &amp; Privacy Reminder:</strong> Please do not send patient names, dates of birth, or Protected Health Information (PHI) via unencrypted email. All protected records are exchanged only after a Business Associate Agreement (BAA) and encrypted channel are established.
-              </p>
-              <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#334155;">
-                Jasmel from our Miami Beach coordination desk will contact you within <strong>1 business day</strong>. Want to talk right now? Call us directly at <a href="tel:+17866432099" style="color:#0066CC;font-weight:bold;text-decoration:none;">(786) 643-2099</a>.
-              </p>
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="background-color:#0066CC;border-radius:10px;padding:12px 24px;">
-                    <a href="https://medicalbillingmb.com/for-providers" style="color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;display:inline-block;">
-                      Explore Provider Services &amp; Pricing Tiers →
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#0f172a;padding:20px 32px;color:#94a3b8;font-size:12px;line-height:1.6;">
-              <strong style="color:#ffffff;">Medical Billing Miami Beach (MBMB)</strong><br/>
-              Miami Beach, FL 33139 · (786) 643-2099 · <a href="mailto:Jasmel@medicalbillingmb.com" style="color:#00A8E8;text-decoration:none;">Jasmel@medicalbillingmb.com</a><br/>
-              Mon–Fri: 9:00 AM – 6:00 PM EST (America/New_York)
+              <p style="margin:18px 0 0;font-size:14px;color:#0f172a;">Talk soon,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
             </td>
           </tr>
         </table>

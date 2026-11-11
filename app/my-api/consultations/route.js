@@ -73,6 +73,7 @@ export async function POST(req) {
     const confirmation = buildProspectConfirmationEmail({
       fullName: query.fullName,
       orgName,
+      email: query.email,
       inquiryType: isAttorneyPilot ? "attorney-pilot" : "provider-consultation",
     });
 

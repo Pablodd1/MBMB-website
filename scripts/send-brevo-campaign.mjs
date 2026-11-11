@@ -37,10 +37,10 @@ if (!BREVO_API_KEY) {
 const args = process.argv.slice(2);
 const campaignArg = (args.find((a) => a.startsWith('--type='))?.split('=')[1] || 'both').toLowerCase();
 const listIdArg = args.find((a) => a.startsWith('--list='))?.split('=')[1] || process.env.BREVO_LIST_ID;
-const dryRun = args.includes('--dry-run');
-const isTwoButton = args.includes('--two-button');
-const isFollowUp = args.includes('--followup') || (!args.includes('--initial') && !isTwoButton);
-const checkOnly = args.includes('--status');
+const sendLive = args.includes('--send');
+const dryRun = !sendLive || args.includes('--dry-run');
+const isFollowUp = args.includes('--followup');
+const checkOnly = args.includes('--status') || args.includes('--check');
 const resumePaused = args.includes('--resume');
 
 async function brevoRequest(endpoint, options = {}) {
@@ -225,61 +225,41 @@ async function main() {
   const campaignsToRun = [];
 
   if (campaignArg === 'attorney' || campaignArg === 'both') {
-    if (isTwoButton) {
+    if (isFollowUp) {
       campaignsToRun.push({
-        name: `MBMB Attorney Direct Call Choice (You Call Me / I'll Call You) - ${today}`,
-        subject: 'Quick question — 1 messy Personal Injury billing file (72-hr test)',
+        name: `MBMB Attorney 5-Option Connect Follow-Up: Duplicate CPT Detection - ${today}`,
+        subject: 'Quick note — catching duplicate CPT charges before mediation (72-hr chronology)',
         previewText:
-          'Skip the email back-and-forth: tap "You Call Me" to drop your number or "I\'ll Call You" to ring (786) 643-2099.',
-        templateFile: 'brevo-attorney-two-button-call.html',
-      });
-    } else if (isFollowUp) {
-      campaignsToRun.push({
-        name: `MBMB Attorney Follow-Up #2: Case Roll-Up & Duplicate Detection (EN/ES) - ${today}`,
-        subject:
-          'Following Up: Before Your Next Demand or Mediation — Source-Linked Medical Bill Chronologies (Excel + PDF)',
-        previewText:
-          'See how our U.S. AAPC-certified coders catch duplicate lines and reconcile CMS-1500/UB-04 & EOB ledgers in 3–5 days.',
+          'Call, text, or book a free 15-min virtual consultation: source-linked Excel + Bates PDF chronologies.',
         templateFile: 'brevo-attorney-followup-en-es.html',
       });
     } else {
       campaignsToRun.push({
-        name: `MBMB Attorney Forensic & Chronology Pilot (EN/ES) - ${today}`,
-        subject:
-          'Complimentary 1-Case Pilot: Medical Billing Chronologies & Forensic EOB Reconciliation | Piloto Gratuito',
+        name: `MBMB Attorney 5-Option Connect Hub (Call / Text / Virtual) - ${today}`,
+        subject: 'Quick question — 1 messy Personal Injury billing file (72-hr test)',
         previewText:
-          'AAPC-certified coders + AI double-check for Florida PI, Med-Mal, and Healthcare attorneys (English & Español).',
-        templateFile: 'brevo-attorney-pilot-en-es.html',
+          'Pick whichever is easiest: You Call Me, I\'ll Call You, You Text Me, I\'ll Text You, or Free 15-Min Virtual Appt.',
+        templateFile: 'brevo-attorney-two-button-call.html',
       });
     }
   }
 
   if (campaignArg === 'provider' || campaignArg === 'both') {
-    if (isTwoButton) {
+    if (isFollowUp) {
       campaignsToRun.push({
-        name: `MBMB Provider Direct Call Choice (You Call Me / I'll Call You) - ${today}`,
-        subject: 'Quick question — 20 denied claims test (48 hours, free)',
+        name: `MBMB Provider 5-Option Connect Follow-Up: 90-Day Benchmark (18% to 2.4% Denials) - ${today}`,
+        subject: '90-day Miami Beach benchmark — cutting claim denials from 18% to 2.4%',
         previewText:
-          'Skip the email back-and-forth: tap "You Call Me" to drop your number or "I\'ll Call You" to ring (786) 643-2099.',
-        templateFile: 'brevo-provider-two-button-call.html',
-      });
-    } else if (isFollowUp) {
-      campaignsToRun.push({
-        name: `MBMB Provider Follow-Up #2: 3 Quiet Revenue Leaks & 90-Day Benchmark (EN/ES) - ${today}`,
-        subject:
-          'Following Up: The 3 Quiet Billing Leaks Costing South Florida Clinics 12%–18% (+ 90-Day Case Study)',
-        previewText:
-          'How a 4-provider Miami Beach practice cut denials from 18% to 2.4% (+27% collections) inside their existing EHR.',
+          'Call, text, or book a free 15-min virtual consultation: free 48-hour 20-claim proof test ($0 setup).',
         templateFile: 'brevo-provider-followup-en-es.html',
       });
     } else {
       campaignsToRun.push({
-        name: `MBMB Healthcare Provider Audit & AI Double-Check (EN/ES) - ${today}`,
-        subject:
-          'Human AAPC Coders + AI Pre-Submission Scrubbing: Complimentary 20-Claim Audit | Auditoría Gratuita',
+        name: `MBMB Provider 5-Option Connect Hub (Call / Text / Virtual) - ${today}`,
+        subject: 'Quick question — 20 denied claims test (48 hours, free)',
         previewText:
-          'Catch CPT/ICD-10, modifier, and NCCI bundling errors before claims go out (English & Español).',
-        templateFile: 'brevo-provider-audit-en-es.html',
+          'Pick whichever is easiest: You Call Me, I\'ll Call You, You Text Me, I\'ll Text You, or Free 15-Min Virtual Appt.',
+        templateFile: 'brevo-provider-two-button-call.html',
       });
     }
   }

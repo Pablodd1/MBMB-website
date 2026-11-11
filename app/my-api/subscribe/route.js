@@ -3,6 +3,7 @@ import {
   sendBrevoTransactional,
   syncBrevoContact,
   scheduleDay3FollowUpEmail,
+  buildFiveOptionConnectHubHtml,
   getAdminRecipients,
 } from "@UTILS/email";
 
@@ -72,8 +73,9 @@ export async function POST(req) {
               </tr>
             </tbody>
           </table>
+          ${buildFiveOptionConnectHubHtml({ audience: "attorney", email })}
           <p><strong>Want to test us on 1 messy case file?</strong><br/>
-          Just reply to this email with the approximate page count (do not attach PHI yet—we'll send a secure encrypted upload link and sign your NDA/BAA first).</p>
+          Tap any option above—or reply to this email with the approximate page count (do not attach PHI yet—we'll send a secure encrypted upload link and sign your NDA/BAA first).</p>
           <p style="margin-top: 22px;">
             Best,<br/>
             <strong>Jasmel Acosta</strong><br/>
@@ -91,11 +93,12 @@ export async function POST(req) {
             <li style="margin-bottom: 8px;"><strong>We sign your HIPAA BAA</strong> and either review via temporary read-only EHR access or a secure encrypted EOB upload.</li>
             <li style="margin-bottom: 8px;"><strong>Within 48 hours</strong>, our U.S. AAPC-certified coders hand you a line-by-line sheet showing the exact CPT/ICD-10/modifier fix and the exact dollar amount still collectable.</li>
           </ol>
+          ${buildFiveOptionConnectHubHtml({ audience: "provider", email })}
           <div style="background: #f8fafc; border-left: 4px solid #0066CC; padding: 14px 18px; border-radius: 6px; margin: 18px 0;">
             <strong>If you hire us afterwards:</strong> You pay <strong>5.6%–10% of what actually hits your bank account</strong>. $0 setup fee. No long-term lock-in. Keep your current EHR.
           </div>
           <p><strong>Want to run the 20-claim test this week?</strong><br/>
-          Just reply to this email with your specialty and which EHR you use, or call me directly at <a href="tel:+17866432099" style="color: #0066CC; font-weight: bold;">(786) 643-2099</a>.</p>
+          Tap any option above or reply with your specialty and which EHR you use.</p>
           <p style="margin-top: 22px;">
             Best,<br/>
             <strong>Jasmel Acosta</strong><br/>

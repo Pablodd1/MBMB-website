@@ -64,10 +64,11 @@ export async function GET(req) {
         const fullName = [c.attributes?.FIRSTNAME, c.attributes?.LASTNAME].filter(Boolean).join(" ");
         const orgName = c.attributes?.COMPANY || "";
 
-        const note = buildDay7CaseStudyEmail({ fullName, orgName, isAttorney });
+        const note = buildDay7CaseStudyEmail({ fullName, orgName, email, isAttorney });
         const sendRes = await sendBrevoTransactional({
           to: [{ email, ...(fullName ? { name: fullName } : {}) }],
           subject: note.subject,
+          htmlContent: note.htmlContent,
           textContent: note.textContent,
           tags: ["mbmb-day7-casestudy"],
           replyTo: { email: "Jasmel@medicalbillingmb.com", name: "Jasmel Acosta" },
