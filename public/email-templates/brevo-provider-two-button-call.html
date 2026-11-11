@@ -4,16 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>20 Denied Claims — Quick Question from Jasmel (MBMB)</title>
+  <style>
+    @media only screen and (max-width: 520px) {
+      .mbmb-pad { padding-left: 18px !important; padding-right: 18px !important; }
+      .mbmb-col { display: block !important; width: 100% !important; max-width: 100% !important; margin: 5px 0 !important; }
+      .mbmb-wide { display: block !important; width: 100% !important; max-width: 100% !important; margin: 6px 0 0 !important; }
+    }
+  </style>
 </head>
 <body style="margin:0;padding:0;background-color:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8fafc;padding:28px 12px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8fafc;padding:26px 10px;">
     <tr>
       <td align="center">
         <table width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background-color:#ffffff;border:1px solid #e2e8f0;border-top:4px solid #0066CC;border-radius:14px;overflow:hidden;">
 
           <!-- Minimalistic Brand Strip (No Heavy Stock Photo Banner) -->
           <tr>
-            <td style="padding:22px 28px 10px;">
+            <td class="mbmb-pad" style="padding:22px 28px 10px;">
               <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td width="38" valign="middle">
@@ -32,7 +39,7 @@
 
           <!-- Top Half of Human Note -->
           <tr>
-            <td style="padding:12px 28px 8px;font-size:15px;line-height:1.65;color:#1e293b;">
+            <td class="mbmb-pad" style="padding:12px 28px 8px;font-size:15px;line-height:1.65;color:#1e293b;">
               <p style="margin:0 0 14px;">
                 Hi {{ contact.FIRSTNAME | default:"there" }},
               </p>
@@ -45,46 +52,84 @@
             </td>
           </tr>
 
-          <!-- CENTERPIECE: Minimalistic Two-Button Call Choice -->
+          <!-- CENTERPIECE: Minimalistic 5-Option Connect Hub (2x2 Call/Text + 1 Slim Virtual Bar) -->
           <tr>
-            <td style="padding:4px 28px 18px;">
+            <td class="mbmb-pad" style="padding:4px 28px 18px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;">
                 <tr>
-                  <td style="padding:18px 20px;text-align:center;">
-                    <div style="font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:14px;">
-                      Skip the back-and-forth emails — pick whichever is easier:
+                  <td style="padding:16px 16px 18px;text-align:center;">
+                    <div style="font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:12px;">
+                      Skip the back-and-forth — pick whichever is easiest for you:
                     </div>
 
-                    <!-- Two Buttons Side-by-Side (Wraps Cleanly on Mobile) -->
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td align="center">
-                          <!--[if mso]><table cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right:10px;"><![endif]-->
-                          <div style="display:inline-block;vertical-align:top;margin:5px;min-width:215px;">
-                            <a href="https://medicalbillingmb.com/call-me?audience=provider&amp;email={{ contact.EMAIL }}" style="display:block;background-color:#0066CC;border:2px solid #0066CC;border-radius:10px;padding:12px 20px;text-decoration:none;text-align:center;">
-                              <span style="display:block;font-size:15px;font-weight:800;color:#ffffff;line-height:1.2;">
-                                You Call Me &rarr;
-                              </span>
-                              <span style="display:block;font-size:11px;font-weight:500;color:#dbeafe;margin-top:3px;">
-                                Drop your name &amp; direct number
-                              </span>
-                            </a>
-                          </div>
-                          <!--[if mso]></td><td><![endif]-->
-                          <div style="display:inline-block;vertical-align:top;margin:5px;min-width:215px;">
-                            <a href="tel:+17866432099" style="display:block;background-color:#0a1628;border:2px solid #0a1628;border-radius:10px;padding:12px 20px;text-decoration:none;text-align:center;">
-                              <span style="display:block;font-size:15px;font-weight:800;color:#ffffff;line-height:1.2;">
-                                &#128222; I’ll Call You
-                              </span>
-                              <span style="display:block;font-size:11px;font-weight:600;color:#38bdf8;margin-top:3px;">
-                                Tap to dial (786) 643-2099
-                              </span>
-                            </a>
-                          </div>
-                          <!--[if mso]></td></tr></table><![endif]-->
-                        </td>
-                      </tr>
-                    </table>
+                    <!-- ROW 1: Phone Call Pair (Solid Brand Blue + Deep Navy) -->
+                    <div style="font-size:0;line-height:0;">
+                      <!--[if mso]><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="220" style="padding:4px;"><![endif]-->
+                      <div class="mbmb-col" style="display:inline-block;vertical-align:top;width:220px;margin:4px;box-sizing:border-box;">
+                        <a href="https://medicalbillingmb.com/call-me?mode=call&amp;audience=provider&amp;email={{ contact.EMAIL }}" style="display:block;background-color:#0066CC;border:1.5px solid #0066CC;border-radius:10px;padding:11px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+                          <span style="display:block;font-size:14px;font-weight:800;color:#ffffff;line-height:1.25;">
+                            &#128222; You Call Me &rarr;
+                          </span>
+                          <span style="display:block;font-size:11px;font-weight:500;color:#dbeafe;line-height:1.3;margin-top:3px;">
+                            Drop your name &amp; number
+                          </span>
+                        </a>
+                      </div>
+                      <!--[if mso]></td><td width="220" style="padding:4px;"><![endif]-->
+                      <div class="mbmb-col" style="display:inline-block;vertical-align:top;width:220px;margin:4px;box-sizing:border-box;">
+                        <a href="tel:+17866432099" style="display:block;background-color:#0a1628;border:1.5px solid #0a1628;border-radius:10px;padding:11px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+                          <span style="display:block;font-size:14px;font-weight:800;color:#ffffff;line-height:1.25;">
+                            &#128242; I’ll Call You
+                          </span>
+                          <span style="display:block;font-size:11px;font-weight:600;color:#38bdf8;line-height:1.3;margin-top:3px;">
+                            Tap to dial (786) 643-2099
+                          </span>
+                        </a>
+                      </div>
+                      <!--[if mso]></td></tr></table><![endif]-->
+                    </div>
+
+                    <!-- ROW 2: SMS / Text Pair (Crisp White Outlined — Lighter Visual Weight) -->
+                    <div style="font-size:0;line-height:0;">
+                      <!--[if mso]><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="220" style="padding:4px;"><![endif]-->
+                      <div class="mbmb-col" style="display:inline-block;vertical-align:top;width:220px;margin:4px;box-sizing:border-box;">
+                        <a href="https://medicalbillingmb.com/call-me?mode=text&amp;audience=provider&amp;email={{ contact.EMAIL }}" style="display:block;background-color:#ffffff;border:1.5px solid #0066CC;border-radius:10px;padding:10px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+                          <span style="display:block;font-size:14px;font-weight:800;color:#0066CC;line-height:1.25;">
+                            &#128172; You Text Me &rarr;
+                          </span>
+                          <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:3px;">
+                            Leave your cell for a quick text
+                          </span>
+                        </a>
+                      </div>
+                      <!--[if mso]></td><td width="220" style="padding:4px;"><![endif]-->
+                      <div class="mbmb-col" style="display:inline-block;vertical-align:top;width:220px;margin:4px;box-sizing:border-box;">
+                        <a href="https://medicalbillingmb.com/call-me?mode=open-sms&amp;audience=provider&amp;email={{ contact.EMAIL }}" style="display:block;background-color:#ffffff;border:1.5px solid #0f172a;border-radius:10px;padding:10px 12px;text-decoration:none;text-align:center;box-sizing:border-box;">
+                          <span style="display:block;font-size:14px;font-weight:800;color:#0f172a;line-height:1.25;">
+                            &#9993;&#65039; I’ll Text You
+                          </span>
+                          <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:3px;">
+                            Text (786) 643-2099 right now
+                          </span>
+                        </a>
+                      </div>
+                      <!--[if mso]></td></tr></table><![endif]-->
+                    </div>
+
+                    <!-- ROW 3: 5th Option — Slim Full-Span Virtual Consultation Bar -->
+                    <!--[if mso]><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="448" style="padding-top:6px;"><![endif]-->
+                    <div class="mbmb-wide" style="display:inline-block;width:448px;max-width:100%;margin:6px auto 0;box-sizing:border-box;">
+                      <a href="https://medicalbillingmb.com/call-me?mode=virtual&amp;audience=provider&amp;email={{ contact.EMAIL }}" style="display:block;background-color:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:10px 14px;text-decoration:none;text-align:center;box-sizing:border-box;">
+                        <span style="display:block;font-size:13px;font-weight:800;color:#0369a1;line-height:1.3;">
+                          &#128467;&#65039; Make an Appointment — Free 15-Min Virtual Consultation &rarr;
+                        </span>
+                        <span style="display:block;font-size:11px;font-weight:500;color:#475569;line-height:1.3;margin-top:2px;">
+                          Pick a day &amp; time on your calendar · Video or Phone
+                        </span>
+                      </a>
+                    </div>
+                    <!--[if mso]></td></tr></table><![endif]-->
+
                   </td>
                 </tr>
               </table>
@@ -93,15 +138,15 @@
 
           <!-- Bottom Half of Human Note -->
           <tr>
-            <td style="padding:2px 28px 24px;font-size:15px;line-height:1.65;color:#1e293b;">
+            <td class="mbmb-pad" style="padding:2px 28px 24px;font-size:15px;line-height:1.65;color:#1e293b;">
               <p style="margin:0 0 14px;">
-                If you ever decide to work with us after seeing the numbers, you only pay <strong>5.6%–10% of what actually hits your bank account</strong>. $0 setup fee, no lock-in, and zero EHR migration—we plug straight into eClinicalWorks, Athenahealth, Tebra, Epic, AdvancedMD, and 25+ EHRs.
+                If you like what we find, our ongoing billing is straightforward: <strong>5.6%–10% of collected cash only</strong>, <strong>$0 setup</strong>, and you keep your current EHR. If not, keep our recovery sheet free.
               </p>
               <p style="margin:0 0 18px;font-size:13px;color:#475569;font-style:italic;">
-                Hablamos Español aquí mismo en Miami Beach — toque cualquiera de los dos botones arriba y hablamos en 2 minutos.
+                Hablamos Español aquí mismo en Miami Beach — atención directa conmigo, sin centros de llamadas.
               </p>
               <p style="margin:0;font-size:14px;line-height:1.55;color:#0f172a;">
-                Best,<br/>
+                Talk soon,<br/>
                 <strong>Jasmel Acosta</strong><br/>
                 Medical Billing Miami Beach (MBMB)<br/>
                 <a href="tel:+17866432099" style="color:#0066CC;text-decoration:none;font-weight:600;">(786) 643-2099</a> · <a href="https://medicalbillingmb.com/for-providers" style="color:#0066CC;text-decoration:none;">medicalbillingmb.com</a>
@@ -111,7 +156,7 @@
 
           <!-- Minimalistic Unsubscribe Footer -->
           <tr>
-            <td style="background-color:#f8fafc;border-top:1px solid #e2e8f0;padding:14px 28px;font-size:11px;color:#64748b;line-height:1.5;">
+            <td class="mbmb-pad" style="background-color:#f8fafc;border-top:1px solid #e2e8f0;padding:14px 28px;font-size:11px;color:#64748b;line-height:1.5;">
               Medical Billing Miami Beach · Miami Beach, FL 33139 · <a href="{{ unsubscribe }}" style="color:#64748b;text-decoration:underline;">Unsubscribe</a>
             </td>
           </tr>
