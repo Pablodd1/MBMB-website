@@ -38,7 +38,8 @@ const args = process.argv.slice(2);
 const campaignArg = (args.find((a) => a.startsWith('--type='))?.split('=')[1] || 'both').toLowerCase();
 const listIdArg = args.find((a) => a.startsWith('--list='))?.split('=')[1] || process.env.BREVO_LIST_ID;
 const dryRun = args.includes('--dry-run');
-const isFollowUp = args.includes('--followup') || !args.includes('--initial');
+const isTwoButton = args.includes('--two-button');
+const isFollowUp = args.includes('--followup') || (!args.includes('--initial') && !isTwoButton);
 const checkOnly = args.includes('--status');
 const resumePaused = args.includes('--resume');
 
@@ -224,7 +225,15 @@ async function main() {
   const campaignsToRun = [];
 
   if (campaignArg === 'attorney' || campaignArg === 'both') {
-    if (isFollowUp) {
+    if (isTwoButton) {
+      campaignsToRun.push({
+        name: `MBMB Attorney Direct Call Choice (You Call Me / I'll Call You) - ${today}`,
+        subject: 'Quick question — 1 messy Personal Injury billing file (72-hr test)',
+        previewText:
+          'Skip the email back-and-forth: tap "You Call Me" to drop your number or "I\'ll Call You" to ring (786) 643-2099.',
+        templateFile: 'brevo-attorney-two-button-call.html',
+      });
+    } else if (isFollowUp) {
       campaignsToRun.push({
         name: `MBMB Attorney Follow-Up #2: Case Roll-Up & Duplicate Detection (EN/ES) - ${today}`,
         subject:
@@ -246,7 +255,15 @@ async function main() {
   }
 
   if (campaignArg === 'provider' || campaignArg === 'both') {
-    if (isFollowUp) {
+    if (isTwoButton) {
+      campaignsToRun.push({
+        name: `MBMB Provider Direct Call Choice (You Call Me / I'll Call You) - ${today}`,
+        subject: 'Quick question — 20 denied claims test (48 hours, free)',
+        previewText:
+          'Skip the email back-and-forth: tap "You Call Me" to drop your number or "I\'ll Call You" to ring (786) 643-2099.',
+        templateFile: 'brevo-provider-two-button-call.html',
+      });
+    } else if (isFollowUp) {
       campaignsToRun.push({
         name: `MBMB Provider Follow-Up #2: 3 Quiet Revenue Leaks & 90-Day Benchmark (EN/ES) - ${today}`,
         subject:
