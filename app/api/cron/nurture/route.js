@@ -5,14 +5,20 @@ import {
 } from "@UTILS/email";
 
 export const dynamic = "force-dynamic";
+const EMAIL_CAMPAIGNS_PAUSED = process.env.EMAIL_CAMPAIGNS_PAUSED !== "false";
 
 /**
  * Daily Automated Day-7 Nurture Follow-Up Cron (runs at 9:30 AM EST via vercel.json)
- * Scans Brevo List #21 (website Instant-Offer & Consultation leads) for contacts whose
- * SOURCE attribute matches "MBMB Website (...) | YYYY-MM-DD" between 6 and 10 days ago
- * and who haven't received the Day-7 case-study note yet (no "| D7Sent" marker).
+ * Currently paused per admin request until EMAIL_CAMPAIGNS_PAUSED is set to "false".
  */
 export async function GET(req) {
+  if (EMAIL_CAMPAIGNS_PAUSED) {
+    return NextResponse.json({
+      ok: true,
+      paused: true,
+      message: "Email nurture campaigns are paused until further notice.",
+    });
+  }
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
   if (!BREVO_API_KEY) {
     return NextResponse.json({ ok: false, error: "Missing BREVO_API_KEY" }, { status: 500 });

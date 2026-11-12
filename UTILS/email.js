@@ -247,6 +247,9 @@ export async function scheduleDay3FollowUpEmail({
   orgName = "",
   isAttorney = false,
 }) {
+  if (process.env.EMAIL_CAMPAIGNS_PAUSED !== "false") {
+    return { sent: false, paused: true };
+  }
   if (!email) return { sent: false };
   const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
