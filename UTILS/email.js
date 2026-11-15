@@ -254,38 +254,37 @@ export async function scheduleDay3FollowUpEmail({
   const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
   const scheduledAt = new Date(Date.now() + 70 * 60 * 60 * 1000).toISOString();
-  const hubHtml = buildFiveOptionConnectHubHtml({
-    audience: isAttorney ? "attorney" : "provider",
-    email,
-  });
+  const connectUrl = `https://medicalbillingmb.com/call-me?audience=${
+    isAttorney ? "attorney" : "provider"
+  }&email=${encodeURIComponent(email)}`;
 
+  // YC Rule 15: Casual, lowercase subject line like a colleague wrote it
   const subject = isAttorney
     ? orgName
-      ? `Quick follow-up — ${orgName} medical bill chronology pilot`
-      : "Quick follow-up — 1-case billing chronology pilot"
+      ? `re: ${orgName.toLowerCase()} medical bill chronology`
+      : "re: sample medical bill chronology"
     : orgName
-      ? `Quick follow-up — 20 denied claims test for ${orgName}`
-      : "Quick follow-up — 20 denied claims test";
+      ? `re: 20 denied claims (${orgName.toLowerCase()})`
+      : "re: 20 denied claims?";
 
+  // YC Rules 1, 2, 6, 16, 18: 2-3 plain sentences, zero chrome, standalone ask right before sign-off
   const htmlContent = isAttorney
-    ? `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
-        <p>${greeting}</p>
-        <p>Checking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, we can turn it around in <strong>72 hours</strong>.</p>
-        ${hubHtml}
-        <p>Or simply reply with the approximate page count and I’ll send over our encrypted upload link + NDA/BAA right away.</p>
-        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach<br/>(786) 643-2099</p>
+    ? `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
+        <p style="margin:0 0 14px;">${greeting}</p>
+        <p style="margin:0 0 14px;">Floating this back up in case your team has a Personal Injury demand or mediation packet coming up—we sign your NDA/BAA first and turn messy UB-04s, CMS-1500s, and EOBs into an editable Excel + Bates-linked PDF chronology in 72 hours.</p>
+        <p style="margin:0 0 16px;">Want to reply with an approximate page count so I can send over our encrypted upload link?</p>
+        <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
       </div>`
-    : `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
-        <p>${greeting}</p>
-        <p>Checking in quickly on the <strong>20-Claim Free Audit</strong> note I sent over a couple days ago. If you have 20 recent CO-16, CO-50, CO-97, or Modifier 25/59 rejections sitting in your EHR, our U.S. AAPC coders will show you the exact collectable dollar amount in <strong>48 hours—free</strong>.</p>
-        ${hubHtml}
-        <p>Or just reply with which EHR you use and I’ll send over our standard HIPAA BAA to get started.</p>
-        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach<br/>(786) 643-2099</p>
+    : `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
+        <p style="margin:0 0 14px;">${greeting}</p>
+        <p style="margin:0 0 14px;">Floating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to show the exact collectable dollar amount in 48 hours, free.</p>
+        <p style="margin:0 0 16px;">Want to reply with which EHR you use so we can run the 20-claim test?</p>
+        <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
       </div>`;
 
   const textContent = isAttorney
-    ? `${greeting}\n\nChecking in quickly on the sample Bates-linked chronology table I sent over a couple days ago. If your team has an active Personal Injury or litigation demand file with messy hospital UB-04s, CMS-1500s, and EOBs, reply with the approximate page count or connect directly at https://medicalbillingmb.com/call-me?audience=attorney or (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`
-    : `${greeting}\n\nChecking in quickly on the 20-Claim Free Audit instructions I sent over a couple days ago. If you have 20 recent CO-16, CO-50, or Modifier 25/59 rejections in your EHR, reply with your EHR or connect directly at https://medicalbillingmb.com/call-me?audience=provider or (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`;
+    ? `${greeting}\n\nFloating this back up in case your team has a Personal Injury demand or mediation packet coming up—we sign your NDA/BAA first and turn messy UB-04s, CMS-1500s, and EOBs into an editable Excel + Bates-linked PDF chronology in 72 hours.\n\nWant to reply with an approximate page count so I can send over our encrypted upload link?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`
+    : `${greeting}\n\nFloating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to show the exact collectable dollar amount in 48 hours, free.\n\nWant to reply with which EHR you use so we can run the 20-claim test?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`;
 
   return sendBrevoTransactional({
     to: [{ email, ...(fullName ? { name: fullName } : {}) }],
@@ -306,37 +305,34 @@ export function buildDay7CaseStudyEmail({
 }) {
   const firstName = String(fullName || "").trim().split(/\s+/)[0] || "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
-  const hubHtml = buildFiveOptionConnectHubHtml({
-    audience: isAttorney ? "attorney" : "provider",
-    email,
-  });
+  const connectUrl = `https://medicalbillingmb.com/call-me?audience=${
+    isAttorney ? "attorney" : "provider"
+  }${email ? `&email=${encodeURIComponent(email)}` : ""}`;
 
   if (isAttorney) {
     return {
-      subject: "Last note — catching duplicate CPT charges before mediation",
-      htmlContent: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
-        <p>${greeting}</p>
-        <p>One quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a <code>-26/-TC</code> split, or leaving PIP/contractual EOB adjustments unreconciled.</p>
-        ${hubHtml}
-        <p>Our U.S. AAPC coders catch those before your demand goes out and hand you an editable Excel + Bates-linked PDF table in 72 hours. Whenever a messy file lands on your desk, tap any option above or reply here.</p>
-        <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
+      subject: "duplicate cpt 72148 charges",
+      htmlContent: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
+        <p style="margin:0 0 14px;">${greeting}</p>
+        <p style="margin:0 0 14px;">Last quick note—on a recent South Florida PI file, an imaging center billed a global lumbar MRI (CPT 72148, $1,850) twice without a -26/-TC split, and catching it before mediation kept opposing counsel from poking holes in the demand.</p>
+        <p style="margin:0 0 16px;">Open to trying us on 1 messy medical bill packet next time one lands on your desk?</p>
+        <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
       </div>`,
-      textContent: `${greeting}\n\nOne quick real-world example before I close your file: on Personal Injury billing packets we audit in South Florida, one of the most common defense attacks is an imaging center or hospital billing a global CPT code twice without a -26/-TC split, or leaving PIP/contractual EOB adjustments unreconciled.\n\nConnect anytime at https://medicalbillingmb.com/call-me?audience=attorney or call/text (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`,
+      textContent: `${greeting}\n\nLast quick note—on a recent South Florida PI file, an imaging center billed a global lumbar MRI (CPT 72148, $1,850) twice without a -26/-TC split, and catching it before mediation kept opposing counsel from poking holes in the demand.\n\nOpen to trying us on 1 messy medical bill packet next time one lands on your desk?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`,
     };
   }
 
   return {
     subject: orgName
-      ? `90-day Miami Beach benchmark for ${orgName} (18% to 2.4% denials)`
-      : "Last note — how a 4-provider Miami practice cut denials from 18% to 2.4%",
-    htmlContent: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b;font-size:15px;line-height:1.65;">
-      <p>${greeting}</p>
-      <p>One quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an <strong>18.0% claim denial rate</strong> from modifier and bundling rejections. Working directly inside their existing EHR ($0 migration cost), our U.S. AAPC coders + AI pre-submission check dropped their denial rate to <strong>2.4%</strong> and added <strong>+$142,000</strong> in annualized net collections within 90 days.</p>
-      ${hubHtml}
-      <p>Remember—we only charge <strong>5.6%–10% of what actually hits your bank account</strong>, and our 48-hour 20-claim proof test is completely free.</p>
-      <p style="margin-top:18px;font-size:14px;color:#0f172a;">Best,<br/><strong>Jasmel Acosta</strong><br/>Medical Billing Miami Beach · (786) 643-2099</p>
+      ? `18% to 2.4% denials (${orgName.toLowerCase()})`
+      : "18% to 2.4% denials in 90 days",
+    htmlContent: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
+      <p style="margin:0 0 14px;">${greeting}</p>
+      <p style="margin:0 0 14px;">Last quick note before I close my file: a 4-provider Miami Beach clinic came to us with an 18% denial rate, and working inside their existing EHR ($0 setup) our U.S. AAPC coders dropped denials to 2.4% (+$142k/yr net collected) in 90 days.</p>
+      <p style="margin:0 0 16px;">Whenever you want to test us on 20 denied claims for free, want me to send over our 1-page BAA?</p>
+      <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
     </div>`,
-    textContent: `${greeting}\n\nOne quick benchmark before I close my notes: a 4-provider Miami Beach practice came to us with an 18.0% claim denial rate. Working inside their existing EHR, our U.S. AAPC coders dropped denials to 2.4% (+$142,000 annualized net collections in 90 days).\n\nConnect anytime at https://medicalbillingmb.com/call-me?audience=provider or call/text (786) 643-2099.\n\nBest,\nJasmel Acosta\nMedical Billing Miami Beach`,
+    textContent: `${greeting}\n\nLast quick note before I close my file: a 4-provider Miami Beach clinic came to us with an 18% denial rate, and working inside their existing EHR ($0 setup) our U.S. AAPC coders dropped denials to 2.4% (+$142k/yr net collected) in 90 days.\n\nWhenever you want to test us on 20 denied claims for free, want me to send over our 1-page BAA?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`,
   };
 }
 

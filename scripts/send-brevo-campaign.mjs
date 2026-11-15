@@ -133,7 +133,7 @@ async function resolveSender() {
     );
   }
   return {
-    name: process.env.BREVO_SENDER_NAME || 'Jasmel — Medical Billing Miami Beach (MBMB)',
+    name: process.env.BREVO_SENDER_NAME || 'Jasmel Acosta',
     email: match.email,
   };
 }
@@ -227,19 +227,19 @@ async function main() {
   if (campaignArg === 'attorney' || campaignArg === 'both') {
     if (isFollowUp) {
       campaignsToRun.push({
-        name: `MBMB Attorney 5-Option Connect Follow-Up: Duplicate CPT Detection - ${today}`,
-        subject: 'Quick note — catching duplicate CPT charges before mediation (72-hr chronology)',
+        name: `YC Attorney Follow-Up #1 — "re: quick question on your pi medical bills" - ${today}`,
+        subject: 're: quick question on your pi medical bills',
         previewText:
-          'Call, text, or book a free 15-min virtual consultation: source-linked Excel + Bates PDF chronologies.',
-        templateFile: 'brevo-attorney-followup-en-es.html',
+          'Quick bump in case your team has a demand or mediation packet coming up this month...',
+        templateFile: 'yc-attorney-followup-1.html',
       });
     } else {
       campaignsToRun.push({
-        name: `MBMB Attorney 5-Option Connect Hub (Call / Text / Virtual) - ${today}`,
-        subject: 'Quick question — 1 messy Personal Injury billing file (72-hr test)',
+        name: `YC Attorney Cold #1 — "quick question on your pi medical bills" - ${today}`,
+        subject: 'quick question on your pi medical bills',
         previewText:
-          'Pick whichever is easiest: You Call Me, I\'ll Call You, You Text Me, I\'ll Text You, or Free 15-Min Virtual Appt.',
-        templateFile: 'brevo-attorney-two-button-call.html',
+          'My team of U.S. AAPC-certified medical coders here in Miami Beach turns messy PI billing packets into Bates-linked chronologies...',
+        templateFile: 'yc-attorney-cold-1.html',
       });
     }
   }
@@ -247,19 +247,19 @@ async function main() {
   if (campaignArg === 'provider' || campaignArg === 'both') {
     if (isFollowUp) {
       campaignsToRun.push({
-        name: `MBMB Provider 5-Option Connect Follow-Up: 90-Day Benchmark (18% to 2.4% Denials) - ${today}`,
-        subject: '90-day Miami Beach benchmark — cutting claim denials from 18% to 2.4%',
+        name: `YC Provider Follow-Up #1 — "re: 20 denied claims?" - ${today}`,
+        subject: 're: 20 denied claims?',
         previewText:
-          'Call, text, or book a free 15-min virtual consultation: free 48-hour 20-claim proof test ($0 setup).',
-        templateFile: 'brevo-provider-followup-en-es.html',
+          'Floating this back up in case it got buried between patients — 48-hour line-by-line recovery dollar sheet...',
+        templateFile: 'yc-provider-followup-1.html',
       });
     } else {
       campaignsToRun.push({
-        name: `MBMB Provider 5-Option Connect Hub (Call / Text / Virtual) - ${today}`,
-        subject: 'Quick question — 20 denied claims test (48 hours, free)',
+        name: `YC Provider Cold #1 — "20 denied claims?" - ${today}`,
+        subject: '20 denied claims?',
         previewText:
-          'Pick whichever is easiest: You Call Me, I\'ll Call You, You Text Me, I\'ll Text You, or Free 15-Min Virtual Appt.',
-        templateFile: 'brevo-provider-two-button-call.html',
+          'My team of U.S. AAPC-certified coders here in Miami Beach handles medical billing inside your current EHR...',
+        templateFile: 'yc-provider-cold-1.html',
       });
     }
   }
