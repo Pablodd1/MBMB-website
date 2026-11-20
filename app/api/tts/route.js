@@ -17,7 +17,7 @@ const GOOGLE_VOICE_CONFIG = {
 
 export async function POST(request) {
   try {
-    const { text, language = 'en' } = await request.json();
+    const { text, language = 'en', voice } = await request.json();
 
     if (!text || text.trim().length === 0) {
       return NextResponse.json({ error: 'No text provided' }, { status: 400 });
@@ -32,7 +32,10 @@ export async function POST(request) {
     // 1. Primary (Option B): xAI Grok Voice 3.0 Standalone TTS (`https://api.x.ai/v1/tts`, voice_id `ara` — $15/1M chars, ~90ms TTFA)
     if (XAI_API_KEY) {
       try {
-        const grokVoice = process.env.GROK_VOICE || 'ara';
+        const allowedGrokVoices = new Set(['ara', 'eve', 'una', 'rex', 'leo', 'sal']);
+        const grokVoice = allowedGrokVoices.has(String(voice || '').toLowerCase())
+          ? String(voice).toLowerCase()
+          : (process.env.GROK_VOICE || 'ara');
         const grokRes = await fetch('https://api.x.ai/v1/tts', {
           method: 'POST',
           headers: {
