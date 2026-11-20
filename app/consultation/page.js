@@ -6,7 +6,6 @@ import { useState } from 'react';
 const Alert = dynamic(() => import('@UTILS/alert'));
 const className = "w-full px-4 py-3 bg-white text-slate-900 placeholder:text-slate-400 border border-slate-300 rounded-xl focus:outline-none focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/30 shadow-sm font-medium transition-all"
 
-let isValid = true;
 const Consultation = () => {
     const [submitting, setSubmitting] = useState(false)
     const [alert, setAlert] = useState({});
@@ -82,7 +81,8 @@ const Consultation = () => {
                     email: '',
                     phone: '',
                     practiceName: '',
-                    message: ''
+                    message: '',
+                    website: ''
                 });
                 setFormErrors({
                     fullName: '',
@@ -92,7 +92,7 @@ const Consultation = () => {
             } else {
                 setAlert({ message: data.error || 'Something went wrong. Please try again or call (786) 643-2099.', type: 'alert' });
             }
-        } catch (error) {
+        } catch {
             setAlert({ message: 'Connection error. Please call (786) 643-2099 to register.', type: 'alert' });
         }
         finally {
@@ -116,6 +116,7 @@ const Consultation = () => {
                             className='object-cover h-full rounded-2xl mx-auto shadow-lg border border-white/10'
                             width={700}
                             height={450}
+                            priority
                         />
                         <div className="mt-4 bg-slate-950/90 backdrop-blur-md border border-cyan-500/30 rounded-xl p-4 text-white">
                             <p className="text-sm font-semibold text-cyan-300 text-center">✅ No obligation · ✅ No setup fees · ✅ Results in 48 hours</p>

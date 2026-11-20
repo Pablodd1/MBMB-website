@@ -50,6 +50,12 @@ export const metadata = {
   },
   alternates: {
     canonical: 'https://medicalbillingmb.com',
+    languages: {
+      'en-US': 'https://medicalbillingmb.com',
+      'es-US': 'https://medicalbillingmb.com/?lang=es',
+      'ht-HT': 'https://medicalbillingmb.com/?lang=ht',
+      'x-default': 'https://medicalbillingmb.com',
+    },
   },
   openGraph: {
     title: 'Medical Billing Miami Beach | MBMB - Medical Coding, RCM & Legal Bill Support',

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
-const DEFAULT_GA_IDS = ['G-K6JSWT8YWN', 'G-M1RHKRVS9M'];
+const DEFAULT_GA_IDS = ['G-K6JSWT8YWN'];
 
 function getVisitorContext() {
   if (typeof window === 'undefined') return {};
