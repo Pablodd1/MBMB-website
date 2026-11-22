@@ -22,9 +22,9 @@ export const metadata = {
 
 const deliverables = [
   {
-    title: 'Scrutiny Before the Scrutiny™ (8-Point Pre-Submission Review)',
+    title: 'Pre-Submission Scrubbing (Human AAPC Coders + AI Scrutiny)',
     description:
-      'Before any claim leaves your practice, we review the full clinical note, ICD-10, CPT/E&M levels, Modifier 25/59 & NCCI edits, Florida FCSO LCD/NCD medical necessity, and Medicare Advantage/Medicaid/QMB routing—backed by U.S. AAPC-certified coder sign-off.',
+      'Every superbill and clinical note is reviewed by U.S. AAPC-certified coders and supported by our optional 8-Point Pre-Submission Scrutiny check for ICD-10/CPT alignment, NCCI bundling, modifiers, and Florida LCD/NCD compliance before submission.',
     badge: '01',
     image: '/raster/authentic/providers-workflow-scrubbing.jpg',
   },

@@ -82,6 +82,12 @@ export default function sitemap() {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/blog/scrutiny-before-the-scrutiny-pre-submission-review`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/medical-billing-chronology-reconciliation-for-attorneys`,
       lastModified: now,
       changeFrequency: 'monthly',

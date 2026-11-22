@@ -32,6 +32,7 @@
 - [Contact Us](https://medicalbillingmb.com/contact): Direct phone, WhatsApp, email, and non-sensitive business inquiry form.
 
 ## Florida Healthcare & Legal Billing Guides (`/blog`)
+- [Scrutiny Before the Scrutiny: How Pre-Submission Review Assists Local Medical Billing](https://medicalbillingmb.com/blog/scrutiny-before-the-scrutiny-pre-submission-review)
 - [Medical Bill Review, Chronologies & EOB Reconciliation for Legal Teams](https://medicalbillingmb.com/blog/medical-billing-chronology-reconciliation-for-attorneys)
 - [Human AAPC Coders + AI Double-Check: Preventing Claim Denials](https://medicalbillingmb.com/blog/ai-double-check-medical-coding-clean-claims)
 - [Florida Provider Credentialing & CAQH ProView Guide](https://medicalbillingmb.com/blog/florida-provider-credentialing-caqh-guide)

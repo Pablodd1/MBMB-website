@@ -12,6 +12,15 @@ export const metadata = {
 
 const posts = [
   {
+    slug: 'scrutiny-before-the-scrutiny-pre-submission-review',
+    title: 'Scrutiny Before the Scrutiny: How Pre-Submission Review Makes Local Medical Billing Faster & Cleaner',
+    description:
+      'How an assistive 8-point pre-submission clinical note and coding review helps Miami Beach medical billing teams prevent denials, boost productivity, and protect practices from payer audits.',
+    image: '/raster/social/style2-week7-scrutiny-before-scrutiny.jpg',
+    date: 'November 22, 2026',
+    tag: 'Billing Efficiency · Add-On',
+  },
+  {
     slug: 'medical-billing-chronology-reconciliation-for-attorneys',
     title: 'Medical Bill Review, Chronologies & EOB Reconciliation for Legal Teams (2026 Guide)',
     description:
@@ -82,7 +91,7 @@ export default function BlogIndex() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] bg-white/10 px-3 py-1 rounded-full mb-3">
-            MBMB Knowledge Hub · 7 Comprehensive Guides
+            MBMB Knowledge Hub · 8 Comprehensive Guides
           </span>
           <h1 className="text-3xl md:text-5xl font-bold mb-4">
             Medical Billing, AI Verification &amp; Legal Bill Review Insights
