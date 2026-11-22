@@ -25,6 +25,14 @@ export const metadata = {
 
 const services = [
   {
+    title: 'Scrutiny Before the Scrutiny™ (Pre-Submission Review)',
+    description: 'Our proprietary 8-Point Pre-Submission Clinical & Billing Review audits your complete medical note, ICD-10 diagnoses, CPT/E&M levels, modifiers, medical necessity, and Florida payer compliance BEFORE claims ever leave your practice—stopping denials and audit risk upfront.',
+    icon: '/svg/coding.svg',
+    features: ['Full Clinical Note vs. Code Alignment', 'ICD-10 & CPT MDM Verification', 'Florida FCSO LCD/NCD & Modifier Guard', 'Performed vs. Ordered Service Check', 'Medicare Advantage & QMB Protection', 'U.S. AAPC Coder Final Sign-Off'],
+    href: '/services/pre-submission-scrutiny',
+    image: '/raster/authentic/providers-workflow-scrubbing.jpg'
+  },
+  {
     title: 'Medical Billing',
     description: 'Expert medical billing services for healthcare providers across Miami and South Florida. Our AAPC-certified specialists handle claims submission, denial management, payment posting, and revenue optimization so you can focus on patient care.',
     icon: '/svg/billing.svg',

@@ -40,6 +40,12 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/services/pre-submission-scrutiny`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/services/medical-coding`,
       lastModified: now,
       changeFrequency: 'monthly',

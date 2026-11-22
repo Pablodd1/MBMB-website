@@ -71,6 +71,13 @@ const faqSchema = {
 
 const services = [
   {
+    title: "Scrutiny Before the Scrutiny™",
+    description: "Our proprietary 8-Point Pre-Submission Clinical & Billing Review audits the full medical note, ICD-10, CPT, modifiers, medical necessity, and payer rules BEFORE claims ever reach insurance payers.",
+    features: ["Full clinical note vs. ICD-10 & CPT MDM check", "Florida FCSO LCD/NCD & Modifier 25/59 guard", "Medicare Advantage, Medicaid & QMB routing shield", "U.S. AAPC-certified coder final sign-off"],
+    href: "/services/pre-submission-scrutiny",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
     title: "Revenue Cycle Management (RCM)",
     description: "End-to-end revenue cycle optimization from patient intake to final payment posting. We identify revenue leak points and eliminate them.",
     features: ["AI claim scrubbing & same-day submission", "ERA payment posting & reconciliation", "Aging AR recovery (>30/60/90 days)", "Custom monthly financial analytics"],
@@ -583,6 +590,55 @@ export default function Home() {
       {/* ===== INLINE INTERACTIVE ROI & DENIAL CALCULATOR ===== */}
       <section className="w-full py-20 bg-slate-50 px-4">
         <RevenueCalculator inline={true} />
+      </section>
+
+      {/* ===== SCRUTINY BEFORE THE SCRUTINY™ FLAGSHIP SPOTLIGHT ===== */}
+      <section className="w-full py-16 bg-gradient-to-r from-[#040914] via-[#091b36] to-[#040914] border-y border-[#00A8E8]/25 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="rounded-3xl bg-white/[0.04] border border-[#00A8E8]/35 p-7 sm:p-10 grid lg:grid-cols-12 gap-8 items-center shadow-2xl">
+            <div className="lg:col-span-8">
+              <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-300 bg-emerald-500/15 border border-emerald-400/30 px-3.5 py-1 rounded-full mb-4">
+                🛡️ New Flagship Protection · Included With MBMB
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                Scrutiny Before the Scrutiny™
+                <span className="block text-[#00A8E8] text-xl sm:text-2xl mt-2 font-bold">
+                  Payers Scrutinize Your Claims to Deny Them. We Scrutinize Every Note &amp; Code First.
+                </span>
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
+                Before a single claim leaves your practice, our proprietary <strong className="text-white">8-Point Pre-Submission Review</strong> + <strong className="text-white">U.S. AAPC-certified coders</strong> audit your complete clinical note, ICD-10 diagnoses, CPT/E&amp;M levels, Modifier 25/59 rules, Florida LCD/NCD medical necessity, and payer routing—catching what’s missing so denials never happen.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/services/pre-submission-scrutiny"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white font-extrabold text-sm transition"
+                >
+                  See How 8-Point Pre-Submission Scrutiny Works →
+                </Link>
+                <Link
+                  href="/call-me?audience=provider"
+                  className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm transition"
+                >
+                  Test Free on 20 Claims
+                </Link>
+              </div>
+            </div>
+            <div className="lg:col-span-4 grid grid-cols-2 gap-3">
+              {[
+                { k: 'Note ↔ Code', v: 'Full SOAP & MDM Audit' },
+                { k: 'ICD-10 & CPT', v: 'Zero Downcoding or Gaps' },
+                { k: 'Modifiers', v: 'NCCI, MUE & LCD Verified' },
+                { k: 'Payer Shield', v: 'MA, Medicaid & QMB Safe' },
+              ].map((b) => (
+                <div key={b.k} className="rounded-2xl bg-[#040914]/80 border border-white/10 p-4">
+                  <div className="text-sm font-black text-[#00A8E8]">{b.k}</div>
+                  <div className="text-xs text-slate-300 mt-1 font-medium">{b.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ===== COMPLETE BILLING SERVICES (SINGLE UNIFIED SECTION) ===== */}

@@ -24,6 +24,7 @@
 - [Free 48-Hour Billing Audit & Consultation](https://medicalbillingmb.com/consultation): Register a medical practice for a complimentary 20-claim / 48-hour billing and coding audit.
 - [How We Work](https://medicalbillingmb.com/how-we-work): 5-stage operational workflow from BAA onboarding to 24–48h claim scrubbing and 48h denial appeals.
 - [All Services Overview](https://medicalbillingmb.com/services): Complete catalog of medical billing, coding, credentialing, and RCM services.
+- [Scrutiny Before the Scrutiny™ (Pre-Submission Clinical & Coding Review)](https://medicalbillingmb.com/services/pre-submission-scrutiny): Proprietary 8-point pre-submission review auditing full medical notes, ICD-10, CPT/E&M levels, modifiers, Florida LCD/NCD medical necessity, payer routing, and AAPC coder sign-off before claims ever reach payers.
 - [AAPC-Certified Medical Coding](https://medicalbillingmb.com/services/medical-coding): ICD-10-CM, CPT, HCPCS Level II, and Modifier 25/59/95 compliance.
 - [Florida Provider Credentialing & CAQH](https://medicalbillingmb.com/services/credentialing): Medicare PECOS (FCSO), Florida Medicaid (AHCA Region 11 & MMA plans), CAQH ProView, EDI/ERA/EFT enrollment.
 - [Revenue Cycle Management (RCM)](https://medicalbillingmb.com/services/revenue-cycle-management): 8-stage full-lifecycle revenue cycle management and aging AR recovery (>30/60/90/120+ days).
