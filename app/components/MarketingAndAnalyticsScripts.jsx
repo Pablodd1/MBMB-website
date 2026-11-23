@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
-const DEFAULT_GA_IDS = ['G-K6JSWT8YWN', 'G-M1RHKRVS9M'];
+const DEFAULT_GA_IDS = ['G-K6JSWT8YWN'];
 
 function getVisitorContext() {
   if (typeof window === 'undefined') return {};
@@ -101,6 +101,9 @@ export default function MarketingAndAnalyticsScripts() {
   const primaryGaId = gaIds[0];
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim();
+  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim() || 'https://us.i.posthog.com';
+  const validPosthogKey = posthogKey && /^phc_[A-Za-z0-9_]+$/.test(posthogKey) ? posthogKey : null;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -271,9 +274,28 @@ export default function MarketingAndAnalyticsScripts() {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('set', 'autoConfig', false, '${metaPixelId}');
             fbq('dataProcessingOptions', ['LDU'], 0, 0);
             fbq('init', '${metaPixelId}');
             fbq('track', 'PageView');
+          `}
+        </Script>
+      )}
+
+      {validPosthogKey && (
+        <Script id="mbmb-posthog-init" strategy="afterInteractive">
+          {`
+            (function(){
+              var clinicalPaths = /^\\/(agreement-sign-up|billing-details|business-details|my-api)/i;
+              if (clinicalPaths.test(window.location.pathname)) return;
+              !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures onFeatureFlags onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+              posthog.init(${JSON.stringify(validPosthogKey)}, {
+                api_host: ${JSON.stringify(posthogHost)},
+                person_profiles: 'identified_only',
+                session_recording: { maskAllInputs: true, maskTextSelector: '*' },
+                autocapture: false
+              });
+            })();
           `}
         </Script>
       )}

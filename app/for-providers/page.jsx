@@ -6,6 +6,7 @@ import InstantOfferBar from '../components/InstantOfferBar';
 import MiamiSpecialtyServicesSection from '../components/MiamiSpecialtyServicesSection';
 import PricingComparisonBlock from '../components/PricingComparisonBlock';
 import ReelsShowcase from '../components/ReelsShowcase';
+import ProviderAuditForm from './ProviderAuditForm';
 
 export const metadata = {
   title: 'For Healthcare Providers | End-to-End Revenue Cycle Management Miami',
@@ -170,13 +171,13 @@ export default function ForProvidersPage() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/consultation"
+              <a
+                href="#provider-audit-form"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0066CC] to-[#00A8E8] hover:opacity-95 text-white font-bold px-7 py-4 rounded-xl shadow-lg shadow-[#0066CC]/30 transition"
               >
                 <span>Claim Your Free 20-Claim Audit</span>
                 <span aria-hidden="true">→</span>
-              </Link>
+              </a>
               <a
                 href={`tel:${BUSINESS_FACTS.contact.phoneTel}`}
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-6 py-4 rounded-xl transition"
@@ -215,6 +216,7 @@ export default function ForProvidersPage() {
                   width={320}
                   height={200}
                   className="w-full h-28 object-cover"
+                  priority
                 />
                 <div className="p-2.5 text-center text-xs font-semibold text-slate-200">
                   CPT / ICD-10 / HCPCS Audit
@@ -223,10 +225,11 @@ export default function ForProvidersPage() {
               <div className="rounded-xl overflow-hidden border border-white/15 bg-[#0a1628] shadow-lg">
                 <Image
                   src="/raster/authentic/providers-rcm-analytics.jpg"
-                  alt="Healthcare Revenue Cycle Management Analytics"
+                  alt="Daily ERA Posting and Healthcare A/R Recovery Workstation"
                   width={320}
                   height={200}
                   className="w-full h-28 object-cover"
+                  priority
                 />
                 <div className="p-2.5 text-center text-xs font-semibold text-slate-200">
                   Daily ERA &amp; A/R Recovery
@@ -238,6 +241,22 @@ export default function ForProvidersPage() {
 
         <div className="max-w-7xl mx-auto relative z-10 mt-6">
           <InstantOfferBar audience="provider" sourcePage="/for-providers" />
+        </div>
+
+        {/* Inline Full Practice Audit Form on /for-providers (Reduces Friction & Bounce) */}
+        <div id="provider-audit-form" className="scroll-mt-24 max-w-4xl mx-auto relative z-10 mt-10 bg-[#0a1628]/95 border border-[#00A8E8]/35 rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div className="mb-6">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#00A8E8] mb-1">
+              100% Free · No Obligation · No Setup Fees
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              Claim Your Free 48-Hour 20-Claim Audit Right Here
+            </h2>
+            <p className="text-sm text-slate-300 mt-1">
+              Skip extra steps—request your audit directly on this page and our Miami Beach coordination team will contact you within 1 business day.
+            </p>
+          </div>
+          <ProviderAuditForm />
         </div>
       </section>
 
