@@ -12,6 +12,42 @@ export const metadata = {
 
 const posts = [
   {
+    slug: 'co-16-co-50-co-97-denial-codes-florida-guide',
+    title: 'CO-16, CO-50 & CO-97 Denial Codes: Florida Medical Billing Fix Guide (2026)',
+    description:
+      'Step-by-step AAPC playbook to resolve CO-16 missing info, CO-50 medical necessity, and CO-97 NCCI bundling denials quickly across Florida payers.',
+    image: '/raster/authentic/blog-denial-medicaid-mistakes.jpg',
+    date: 'November 22, 2026',
+    tag: 'CARC Denial Recovery',
+  },
+  {
+    slug: 'co-45-underpayment-contract-allowables-florida',
+    title: 'CO-45 Adjustments: How Silent Payer Underpayments Slip Through Auto-Posting',
+    description:
+      'Why auto-posting CO-45 adjustments without verifying contracted allowables silently costs South Florida clinics thousands every month.',
+    image: '/raster/authentic/blog-medical-billing-101.jpg',
+    date: 'November 22, 2026',
+    tag: 'Underpayment Recovery',
+  },
+  {
+    slug: 'co-197-prior-authorization-denial-appeals-miami',
+    title: 'CO-197 Prior Authorization Denials in Miami: Prevention & Appeal Guide',
+    description:
+      'How South Florida orthopedic, cardiology, imaging, and ABA practices overturn valid CO-197 denials and close front-end authorization leaks.',
+    image: '/raster/authentic/blog-florida-credentialing.jpg',
+    date: 'November 22, 2026',
+    tag: 'Prior Authorization',
+  },
+  {
+    slug: 'florida-medicaid-2026-fee-schedule-billing-guide',
+    title: 'Florida Medicaid 2026 Fee Schedule & Managed Care Billing Checklist',
+    description:
+      'Essential billing, monthly MMA plan verification, VFC vaccine, and timely-filing rules for Florida AHCA Medicaid and Miami-Dade managed care plans.',
+    image: '/raster/authentic/blog-medicaid-miami.jpg',
+    date: 'November 22, 2026',
+    tag: 'Florida Medicaid',
+  },
+  {
     slug: 'scrutiny-before-the-scrutiny-pre-submission-review',
     title: 'Scrutiny Before the Scrutiny: How Pre-Submission Review Makes Local Medical Billing Faster & Cleaner',
     description:

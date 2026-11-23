@@ -1,6 +1,38 @@
+import { LOCATIONS, SPECIALTIES, EHRS } from './data/seo-hubs';
+
 export default function sitemap() {
   const baseUrl = 'https://medicalbillingmb.com';
   const now = new Date();
+
+  const locationEntries = [
+    { url: `${baseUrl}/locations`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    ...LOCATIONS.map((l) => ({
+      url: `${baseUrl}/locations/${l.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    })),
+  ];
+
+  const specialtyEntries = [
+    { url: `${baseUrl}/specialties`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    ...SPECIALTIES.map((s) => ({
+      url: `${baseUrl}/specialties/${s.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    })),
+  ];
+
+  const ehrEntries = [
+    { url: `${baseUrl}/ehr`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    ...EHRS.map((e) => ({
+      url: `${baseUrl}/ehr/${e.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })),
+  ];
 
   return [
     {
@@ -9,6 +41,15 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 1.0,
     },
+    {
+      url: `${baseUrl}/client-portal`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    ...locationEntries,
+    ...specialtyEntries,
+    ...ehrEntries,
     {
       url: `${baseUrl}/for-providers`,
       lastModified: now,
@@ -80,6 +121,30 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/co-16-co-50-co-97-denial-codes-florida-guide`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/co-45-underpayment-contract-allowables-florida`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/co-197-prior-authorization-denial-appeals-miami`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/florida-medicaid-2026-fee-schedule-billing-guide`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/blog/scrutiny-before-the-scrutiny-pre-submission-review`,

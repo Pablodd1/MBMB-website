@@ -12,6 +12,9 @@ import InstantOfferBar from "./components/InstantOfferBar";
 import ScrollReveal from "./components/ScrollReveal";
 import AIFeatureCards from "./components/AIFeatureCards";
 import AIProcessFlow from "./components/AIProcessFlow";
+import ReelsShowcase from "./components/ReelsShowcase";
+import PricingComparisonBlock from "./components/PricingComparisonBlock";
+import MiamiSpecialtyServicesSection from "./components/MiamiSpecialtyServicesSection";
 
 const faqs = [
   {
@@ -836,6 +839,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== SPECIALIZED SOUTH FLORIDA MODULES, PRICING COMPARISON & BILINGUAL REELS ===== */}
+      <MiamiSpecialtyServicesSection />
+      <PricingComparisonBlock />
+      <ReelsShowcase />
+
       {/* ===== BLOG INSIGHTS SECTION ===== */}
       <section className="bg-slate-900 text-white py-20">
         <div className="max-w-6xl mx-auto px-4">
@@ -896,7 +904,7 @@ export default function Home() {
             </ScrollReveal>
           </div>
           <div className="text-center mt-10">
-            <Button href="/blog" text="View All 7 Florida Billing & Legal Guides" colors="bg-white text-slate-900 hover:bg-[#00A8E8] hover:text-white font-bold px-6 py-3" />
+            <Button href="/blog" text="View All Florida Billing & Legal Guides" colors="bg-white text-slate-900 hover:bg-[#00A8E8] hover:text-white font-bold px-6 py-3" />
           </div>
         </div>
       </section>

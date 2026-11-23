@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SmartImage from '../components/SmartImage'
 import Button from '@UTILS/button'
+import MiamiSpecialtyServicesSection from '../components/MiamiSpecialtyServicesSection'
+import PricingComparisonBlock from '../components/PricingComparisonBlock'
 
 export const metadata = {
   title: 'Medical Billing, Coding, Credentialing & RCM Services Overview',
@@ -248,6 +250,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <MiamiSpecialtyServicesSection />
+      <PricingComparisonBlock />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-pink2 to-pink2/80 text-white">

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { BUSINESS_FACTS } from '../config/business-facts';
 import InstantOfferBar from '../components/InstantOfferBar';
+import MiamiSpecialtyServicesSection from '../components/MiamiSpecialtyServicesSection';
+import PricingComparisonBlock from '../components/PricingComparisonBlock';
+import ReelsShowcase from '../components/ReelsShowcase';
 
 export const metadata = {
   title: 'For Healthcare Providers | End-to-End Revenue Cycle Management Miami',
@@ -422,6 +425,10 @@ export default function ForProvidersPage() {
           <InstantOfferBar audience="provider" sourcePage="/for-providers" />
         </div>
       </section>
+
+      <MiamiSpecialtyServicesSection />
+      <PricingComparisonBlock />
+      <ReelsShowcase compact />
 
       {/* FAQ Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-white/10">

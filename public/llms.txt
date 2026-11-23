@@ -28,10 +28,18 @@
 - [AAPC-Certified Medical Coding](https://medicalbillingmb.com/services/medical-coding): ICD-10-CM, CPT, HCPCS Level II, and Modifier 25/59/95 compliance.
 - [Florida Provider Credentialing & CAQH](https://medicalbillingmb.com/services/credentialing): Medicare PECOS (FCSO), Florida Medicaid (AHCA Region 11 & MMA plans), CAQH ProView, EDI/ERA/EFT enrollment.
 - [Revenue Cycle Management (RCM)](https://medicalbillingmb.com/services/revenue-cycle-management): 8-stage full-lifecycle revenue cycle management and aging AR recovery (>30/60/90/120+ days).
+- [Client Portal & Secure HIPAA Transfer](https://medicalbillingmb.com/client-portal): EHR reporting access, BAA execution, and encrypted document upload instructions.
+- [South Florida Service Areas (10 Cities)](https://medicalbillingmb.com/locations): Dedicated pages for Coral Gables, Brickell & Downtown Miami, Aventura, Doral, Kendall, Hialeah, Fort Lauderdale, Boca Raton, Pinecrest, and West Palm Beach.
+- [Medical Billing Specialties (12+ Verticals)](https://medicalbillingmb.com/specialties): ABA Therapy, Behavioral Health & Psychiatry, Cardiology, Orthopedics & Pain Management, Dermatology & MedSpa, Urgent Care, Pediatrics, Primary Care, Home Health & Hospice (PDGM), ASC, OB/GYN, and Physical Therapy.
+- [Supported EHR Platforms (8+ Systems)](https://medicalbillingmb.com/ehr): Native billing inside eClinicalWorks, Athenahealth, Tebra (Kareo), AdvancedMD, DrChrono, NextGen, SimplePractice, and ModMed with $0 setup fee.
 - [About MBMB](https://medicalbillingmb.com/about): Miami Beach coordination hub and U.S. AAPC-certified fulfillment model.
 - [Contact Us](https://medicalbillingmb.com/contact): Direct phone, WhatsApp, email, and non-sensitive business inquiry form.
 
 ## Florida Healthcare & Legal Billing Guides (`/blog`)
+- [CO-16, CO-50 & CO-97 Denial Codes: Florida Fix Guide (2026)](https://medicalbillingmb.com/blog/co-16-co-50-co-97-denial-codes-florida-guide)
+- [CO-45 Adjustments & Silent Payer Underpayments in Florida](https://medicalbillingmb.com/blog/co-45-underpayment-contract-allowables-florida)
+- [CO-197 Prior Authorization Denials in Miami: Prevention & Appeals](https://medicalbillingmb.com/blog/co-197-prior-authorization-denial-appeals-miami)
+- [Florida Medicaid 2026 Fee Schedule & Managed Care Billing Guide](https://medicalbillingmb.com/blog/florida-medicaid-2026-fee-schedule-billing-guide)
 - [Scrutiny Before the Scrutiny: How Pre-Submission Review Assists Local Medical Billing](https://medicalbillingmb.com/blog/scrutiny-before-the-scrutiny-pre-submission-review)
 - [Medical Bill Review, Chronologies & EOB Reconciliation for Legal Teams](https://medicalbillingmb.com/blog/medical-billing-chronology-reconciliation-for-attorneys)
 - [Human AAPC Coders + AI Double-Check: Preventing Claim Denials](https://medicalbillingmb.com/blog/ai-double-check-medical-coding-clean-claims)
