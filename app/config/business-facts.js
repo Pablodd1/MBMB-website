@@ -43,7 +43,7 @@ export const BUSINESS_FACTS = {
   socialAndProfiles: {
     instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
-    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/medicalbillingmiamibeach',
+    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/MiamiBeachmb',
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',
     googleBusinessProfile:
       process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://www.google.com/maps/search/?api=1&query=Medical+Billing+Miami+Beach+FL+33139',
@@ -51,7 +51,7 @@ export const BUSINESS_FACTS = {
   socialAndDirectories: {
     instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
-    facebookPage: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/medicalbillingmiamibeach',
+    facebookPage: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/MiamiBeachmb',
     linkedInCompany: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',
     googleBusinessProfile:
       process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://www.google.com/maps/search/?api=1&query=Medical+Billing+Miami+Beach+FL+33139',
