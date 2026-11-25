@@ -210,7 +210,7 @@ export default function ForAttorneysPage() {
 
           {/* Illustrative Deliverable Preview Table */}
           <div className="mt-14 bg-slate-900 text-white rounded-2xl p-6 md:p-8 border border-slate-800 shadow-lg">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
                   Illustrative Output Format (Delivered in Editable Excel/CSV &amp; PDF)
@@ -219,9 +219,18 @@ export default function ForAttorneysPage() {
                   Source-Linked Billing Chronology &amp; Reconciliation Table
                 </h3>
               </div>
-              <span className="text-xs text-slate-400">
-                Sample administrative layout (redacted / non-clinical · 72-hour pilot turnaround)
-              </span>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="/samples/mbmb-attorney-chronology-sample.csv"
+                  download="mbmb-attorney-chronology-sample.csv"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white text-xs font-bold transition shadow"
+                >
+                  ⬇ Download Sample Excel / CSV
+                </a>
+                <span className="text-xs text-slate-400">
+                  Redacted sample · 72-hr pilot
+                </span>
+              </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -327,6 +336,47 @@ export default function ForAttorneysPage() {
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Embedded 50-Second Legal Briefing Video */}
+          <div className="mt-10 bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-xs grid md:grid-cols-12 gap-6 items-center">
+            <div className="md:col-span-5">
+              <div className="rounded-xl overflow-hidden bg-black aspect-[9/12] max-h-96 mx-auto border border-slate-200 shadow-md">
+                <video
+                  src="/reels/MBMB_Reel_5_Attorney_PI_Chronologies_EN.mp4"
+                  controls
+                  preload="metadata"
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0066CC] bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">
+                50-Second Attorney Pilot Walkthrough
+              </span>
+              <h3 className="text-2xl font-bold text-slate-900 mt-3 mb-3">
+                See How We Turn 300+ Mixed Billing Pages Into a Mediation-Ready Table
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-5">
+                Instead of paying paralegals for hours of manual spreadsheet entry across hospital UB-04s, CMS-1500s, PIP logs, and EOBs, test us with one messy Personal Injury file. We flag duplicate charges, translate codes into plain English, and link every row back to the source page.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#pilot-form"
+                  className="px-5 py-2.5 rounded-xl bg-[#0066CC] hover:bg-[#00A8E8] text-white text-xs sm:text-sm font-bold transition"
+                >
+                  Send 1 Pilot File →
+                </a>
+                <a
+                  href="/samples/mbmb-attorney-chronology-sample.csv"
+                  download="mbmb-attorney-chronology-sample.csv"
+                  className="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-800 hover:bg-slate-100 text-xs sm:text-sm font-semibold transition"
+                >
+                  Download CSV Sample ↓
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Important Note on Responsibilities */}

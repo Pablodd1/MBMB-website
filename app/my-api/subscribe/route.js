@@ -19,6 +19,7 @@ export async function POST(req) {
     }
 
     const isAttorney = offerType.includes("attorney");
+    const isChecklist = offerType.includes("checklist");
 
     // 1. Sync into Brevo CRM
     await syncBrevoContact({
@@ -26,15 +27,49 @@ export async function POST(req) {
       fullName: "",
       organization: "",
       phone: "",
-      inquiryType: isAttorney ? "Attorney Sample Chronology Request" : "20-Claim Free Audit Request",
+      inquiryType: isAttorney
+        ? "Attorney Sample Chronology Request"
+        : isChecklist
+        ? "2026 Florida Compliance Checklist"
+        : "20-Claim Free Audit Request",
     });
 
     // 2. Send immediate, authentic human-written email with the requested deliverable
     const subject = isAttorney
       ? "Redacted Sample Medical Bill Chronology + 72-Hr Pilot Info — Jasmel (MBMB)"
+      : isChecklist
+      ? "Your 2026 Florida Billing & Telehealth Compliance Checklist — Jasmel (MBMB)"
       : "Your 20-Claim Free Audit & 2026 Rate Sheet — Jasmel (MBMB)";
 
-    const htmlContent = isAttorney
+    const checklistHtml = `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 580px; margin: 0 auto; color: #0f172a; line-height: 1.6; font-size: 14px;">
+          <p>Hi there,</p>
+          <p>Here is direct access to your <strong>2026 Florida Medical Billing &amp; Telehealth Compliance Checklist</strong>:</p>
+          <div style="margin: 18px 0; text-align: center;">
+            <a href="https://medicalbillingmb.com/resources/florida-compliance-checklist" style="display: inline-block; background: #0066CC; color: #ffffff; font-weight: bold; text-decoration: none; padding: 12px 24px; border-radius: 10px;">
+              Open &amp; Save PDF: 2026 Florida Checklist &rarr;
+            </a>
+          </div>
+          <p><strong>Inside the 13-point audit checklist:</strong></p>
+          <ul style="padding-left: 20px; color: #1e293b;">
+            <li style="margin-bottom: 6px;"><strong>Telehealth Coding:</strong> POS 10 vs. POS 02 + payer-specific Modifier 95 / GT / 93 rules</li>
+            <li style="margin-bottom: 6px;"><strong>Clinical Note Scrubbing:</strong> Ordering vs. performed separation, Modifier 25/59/XE checks &amp; AMA MDM alignment</li>
+            <li style="margin-bottom: 6px;"><strong>Florida Payer Rules:</strong> FCSO Medicare vs. Medicare Advantage routing, AHCA MMA plans &amp; CO-45 underpayment variance checks</li>
+            <li style="margin-bottom: 6px;"><strong>HIPAA &amp; CAQH Guardrails:</strong> BAA execution, 120-day CAQH re-attestations &amp; 48-hour denial triage</li>
+          </ul>
+          ${buildFiveOptionConnectHubHtml({ audience: "provider", email })}
+          <p style="margin-top: 22px;">
+            Best,<br/>
+            <strong>Jasmel Acosta</strong><br/>
+            Medical Billing Miami Beach (MBMB)<br/>
+            Direct: <a href="tel:+17866432099" style="color: #0066CC;">(786) 643-2099</a> · <a href="https://medicalbillingmb.com/for-providers" style="color: #0066CC;">medicalbillingmb.com/for-providers</a>
+          </p>
+        </div>
+      `;
+
+    const htmlContent = isChecklist
+      ? checklistHtml
+      : isAttorney
       ? `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a; line-height: 1.6; font-size: 14px;">
           <p>Hi there,</p>
@@ -91,7 +126,7 @@ export async function POST(req) {
           <ol style="padding-left: 20px; color: #1e293b;">
             <li style="margin-bottom: 8px;"><strong>Pick 20 recent denied or underpaid claims</strong> (CO-16, CO-50, CO-97, Modifier 25/59 rejections, or aging 60+ day AR).</li>
             <li style="margin-bottom: 8px;"><strong>We sign your HIPAA BAA</strong> and either review via temporary read-only EHR access or a secure encrypted EOB upload.</li>
-            <li style="margin-bottom: 8px;"><strong>Within 48 hours</strong>, our U.S. AAPC-certified coders hand you a line-by-line sheet showing the exact CPT/ICD-10/modifier fix and the exact dollar amount still collectable.</li>
+            <li style="margin-bottom: 8px;"><strong>Within 48 hours</strong>, our U.S. AAPC-certified fulfillment team hands you a line-by-line sheet showing CPT/ICD-10/modifier fixes and your estimated recoverable dollars.</li>
           </ol>
           ${buildFiveOptionConnectHubHtml({ audience: "provider", email })}
           <div style="background: #f8fafc; border-left: 4px solid #0066CC; padding: 14px 18px; border-radius: 6px; margin: 18px 0;">
@@ -125,12 +160,12 @@ export async function POST(req) {
     // 3. Alert Jasmel
     await sendBrevoTransactional({
       to: getAdminRecipients(),
-      subject: `🔥 Instant Offer Lead (${isAttorney ? "Attorney Chronology" : "20-Claim Audit"}): ${email}`,
+      subject: `🔥 Instant Offer Lead (${isAttorney ? "Attorney Chronology" : isChecklist ? "2026 Compliance Checklist" : "20-Claim Audit"}): ${email}`,
       htmlContent: `
         <div style="font-family: Arial, sans-serif; padding: 16px;">
           <h3 style="margin-top: 0;">New Instant Offer Lead Captured</h3>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-          <p><strong>Offer Requested:</strong> ${isAttorney ? "Attorney Redacted Sample Chronology" : "Provider 20-Claim Free Audit"}</p>
+          <p><strong>Offer Requested:</strong> ${isAttorney ? "Attorney Redacted Sample Chronology" : isChecklist ? "2026 Florida Compliance Checklist" : "Provider 20-Claim Free Audit"}</p>
           <p><strong>Page:</strong> ${sourcePage}</p>
         </div>
       `,

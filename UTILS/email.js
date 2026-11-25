@@ -98,6 +98,7 @@ export async function sendBrevoTransactional({
   replyTo,
   scheduledAt,
   tags,
+  attachment,
   senderName = "Jasmel Acosta",
   senderEmail = process.env.BREVO_SENDER_EMAIL || "jasmel@medicalbillingmb.com",
 }) {
@@ -117,6 +118,7 @@ export async function sendBrevoTransactional({
       ...(replyTo ? { replyTo } : {}),
       ...(scheduledAt ? { scheduledAt } : {}),
       ...(Array.isArray(tags) && tags.length > 0 ? { tags } : {}),
+      ...(Array.isArray(attachment) && attachment.length > 0 ? { attachment } : {}),
     };
 
     const res = await fetch(BREVO_API_URL, {
@@ -277,14 +279,14 @@ export async function scheduleDay3FollowUpEmail({
       </div>`
     : `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
         <p style="margin:0 0 14px;">${greeting}</p>
-        <p style="margin:0 0 14px;">Floating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to show the exact collectable dollar amount in 48 hours, free.</p>
+        <p style="margin:0 0 14px;">Floating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to estimate your recoverable dollars in 48 hours, free.</p>
         <p style="margin:0 0 16px;">Want to reply with which EHR you use so we can run the 20-claim test?</p>
         <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
       </div>`;
 
   const textContent = isAttorney
     ? `${greeting}\n\nFloating this back up in case your team has a Personal Injury demand or mediation packet coming up—we sign your NDA/BAA first and turn messy UB-04s, CMS-1500s, and EOBs into an editable Excel + Bates-linked PDF chronology in 72 hours.\n\nWant to reply with an approximate page count so I can send over our encrypted upload link?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`
-    : `${greeting}\n\nFloating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to show the exact collectable dollar amount in 48 hours, free.\n\nWant to reply with which EHR you use so we can run the 20-claim test?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`;
+    : `${greeting}\n\nFloating this back up in case it got buried between patients—we sign your HIPAA BAA first and audit 20 recent CO-16, CO-50, or Modifier 25/59 rejections inside your current EHR to estimate your recoverable dollars in 48 hours, free.\n\nWant to reply with which EHR you use so we can run the 20-claim test?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`;
 
   return sendBrevoTransactional({
     to: [{ email, ...(fullName ? { name: fullName } : {}) }],
@@ -324,15 +326,15 @@ export function buildDay7CaseStudyEmail({
 
   return {
     subject: orgName
-      ? `18% to 2.4% denials (${orgName.toLowerCase()})`
-      : "18% to 2.4% denials in 90 days",
+      ? `20 denied claims scenario (${orgName.toLowerCase()})`
+      : "targeting 98% clean claims (+30% recovery scenario)",
     htmlContent: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.58;color:#222222;max-width:580px;">
       <p style="margin:0 0 14px;">${greeting}</p>
-      <p style="margin:0 0 14px;">Last quick note before I close my file: a 4-provider Miami Beach clinic came to us with an 18% denial rate, and working inside their existing EHR ($0 setup) our U.S. AAPC coders dropped denials to 2.4% (+$142k/yr net collected) in 90 days.</p>
-      <p style="margin:0 0 16px;">Whenever you want to test us on 20 denied claims for free, want me to send over our 1-page BAA?</p>
+      <p style="margin:0 0 14px;">Last quick note before I close my file: in an illustrative 4-provider South Florida clinic scenario, tightening NCCI/modifier scrubbing inside the existing EHR ($0 setup) targets a 98% clean-claim rate and up to 30% revenue recovery.</p>
+      <p style="margin:0 0 16px;">Whenever you want to test our U.S. AAPC-certified fulfillment team on 20 denied claims for free, want me to send over our 1-page BAA?</p>
       <p style="margin:0;">– Jasmel<br/><span style="color:#555555;font-size:13px;">Jasmel Acosta · Medical Billing Miami Beach<br/>(786) 643-2099 · <a href="${connectUrl}" style="color:#1155cc;">call, text, or grab 15m</a></span></p>
     </div>`,
-    textContent: `${greeting}\n\nLast quick note before I close my file: a 4-provider Miami Beach clinic came to us with an 18% denial rate, and working inside their existing EHR ($0 setup) our U.S. AAPC coders dropped denials to 2.4% (+$142k/yr net collected) in 90 days.\n\nWhenever you want to test us on 20 denied claims for free, want me to send over our 1-page BAA?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`,
+    textContent: `${greeting}\n\nLast quick note before I close my file: in an illustrative 4-provider South Florida clinic scenario, tightening NCCI/modifier scrubbing inside the existing EHR ($0 setup) targets a 98% clean-claim rate and up to 30% revenue recovery.\n\nWhenever you want to test our U.S. AAPC-certified fulfillment team on 20 denied claims for free, want me to send over our 1-page BAA?\n\n– Jasmel\nJasmel Acosta · Medical Billing Miami Beach\n(786) 643-2099 · ${connectUrl}`,
   };
 }
 

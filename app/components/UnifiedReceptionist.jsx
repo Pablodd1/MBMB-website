@@ -49,7 +49,7 @@ function getInstantHumanReply(rawText, lang = 'en') {
   }
 
   if (q.includes('audit') || q.includes('20-claim') || q.includes('20 claim') || q.includes('denial') || q.includes('denied') || q.includes('underpaid')) {
-    return "Here is our 48-hour proof test: Pick 20 denied or underpaid claims (CO-16, CO-50, CO-97, or Modifier 25/59 rejections). Once we sign your HIPAA BAA, our U.S. AAPC coders review them and hand you the exact CPT/modifier fix and recoverable dollar amount in 48 hours—free.";
+    return "Here is our 48-hour proof test: Pick 20 denied or underpaid claims (CO-16, CO-50, CO-97, or Modifier 25/59 rejections). Once we sign your HIPAA BAA, our U.S. AAPC-certified fulfillment team reviews them and returns CPT/modifier fixes and estimated recoverable dollars in 48 hours—free.";
   }
 
   if (q.includes('attorney') || q.includes('lawyer') || q.includes('law firm') || q.includes('chronology') || q.includes('pilot') || q.includes('personal injury') || q.includes('eob')) {
@@ -115,6 +115,7 @@ export default function UnifiedReceptionist() {
   const [bookOrg, setBookOrg] = useState('');
   const [bookFocus, setBookFocus] = useState('20-Claim Free Audit (Provider)');
   const [bookStatus, setBookStatus] = useState('idle'); // 'idle' | 'submitting' | 'confirmed' | 'error'
+  const [bookCalendarUrl, setBookCalendarUrl] = useState('');
 
   const chatEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -426,6 +427,7 @@ export default function UnifiedReceptionist() {
     e.preventDefault();
     if (!bookName.trim() || !bookEmail.trim()) return;
     setBookStatus('submitting');
+    const selectedDayObj = businessDays.find((d) => d.label === selectedDay);
     try {
       const res = await fetch('/api/book', {
         method: 'POST',
@@ -438,12 +440,15 @@ export default function UnifiedReceptionist() {
           specialty: bookFocus,
           meeting_type: bookFocus,
           selected_slot: {
+            date: selectedDayObj?.iso || '',
             dayName: selectedDay,
             time: selectedTime
           }
         })
       });
       if (res.ok) {
+        const data = await res.json();
+        setBookCalendarUrl(data.googleCalendarUrl || '');
         setBookStatus('confirmed');
       } else {
         setBookStatus('error');
@@ -649,8 +654,18 @@ export default function UnifiedReceptionist() {
                     ✓ Locked In: {selectedDay} at {selectedTime} EST
                   </div>
                   <p className="text-slate-200 text-xs leading-relaxed">
-                    We just sent a calendar confirmation to <strong>{bookEmail}</strong>. Jasmel will call you at the scheduled time (or reach us anytime at <strong>(786) 643-2099</strong>).
+                    We sent a calendar invite (.ics) and confirmation to <strong>{bookEmail}</strong>. Jasmel will call you at the scheduled time (or reach us anytime at <strong>(786) 643-2099</strong>).
                   </p>
+                  {bookCalendarUrl && (
+                    <a
+                      href={bookCalendarUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-1 px-4 py-2 rounded-lg bg-[#0066CC] hover:bg-[#00A8E8] text-white font-bold text-xs transition"
+                    >
+                      📅 Add to Google Calendar
+                    </a>
+                  )}
                   <button
                     type="button"
                     onClick={() => setBookStatus('idle')}

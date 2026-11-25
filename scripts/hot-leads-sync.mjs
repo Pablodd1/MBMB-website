@@ -40,7 +40,7 @@ https://medicalbillingmb.com/for-attorneys`,
     subject: orgName ? `20 denied claims test for ${orgName}` : 'Quick question — 20 denied claims test',
     textContent: `${greeting}
 
-Saw you visited Medical Billing Miami Beach recently. Instead of a sales pitch, if you have 20 denied or underpaid claims sitting in your EHR right now, our U.S. AAPC coders will audit them in 48 hours and show you the exact CPT/modifier fix and what you're owed—free.
+Saw you visited Medical Billing Miami Beach recently. Instead of a sales pitch, if you have 20 denied or underpaid claims sitting in your EHR right now, our U.S. AAPC-certified fulfillment team will audit them in 48 hours and estimate the recoverable dollars—free.
 
 Are you open to a quick 10-minute call this week, or should I send over the 1-page instructions?
 

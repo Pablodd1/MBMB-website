@@ -446,6 +446,59 @@ export default function ForProvidersPage() {
       </section>
 
       <MiamiSpecialtyServicesSection />
+
+      {/* Low-Friction Modular Entry Wedges */}
+      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-[#0a1628] border-y border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-3">
+              Zero-Disruption Starting Options
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Three Risk-Free Ways to Start Without Firing Your Current Staff
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-2xl bg-white/[0.04] border border-white/15 p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-bold uppercase text-[#00A8E8] mb-2">Option 01 · Free Proof</div>
+                <h3 className="text-lg font-bold text-white mb-2">20-Claim 48-Hour Audit</h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  Send 20 denied or underpaid claims after BAA signing. See exact CPT/modifier gaps and estimated recoverable dollars before signing any RCM agreement.
+                </p>
+              </div>
+              <Link href="/consultation" className="text-sm font-bold text-[#00A8E8] hover:underline">
+                Start Free 20-Claim Test →
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-white/[0.04] border border-[#00A8E8]/40 p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-bold uppercase text-emerald-300 mb-2">Option 02 · Contingency Recovery</div>
+                <h3 className="text-lg font-bold text-white mb-2">Legacy &gt;90-Day Dead A/R Sweep</h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  Keep your in-house biller for day-to-day claims. Hand us only the &gt;90-day denied or written-off A/R bucket your team lacks bandwidth to appeal.
+                </p>
+              </div>
+              <Link href="/consultation" className="text-sm font-bold text-emerald-300 hover:underline">
+                Scope Aging A/R Sweep →
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-white/[0.04] border border-white/15 p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-bold uppercase text-amber-300 mb-2">Option 03 · Pre-Claim Guard</div>
+                <h3 className="text-lg font-bold text-white mb-2">Scrutiny Before the Scrutiny™</h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  Add our 8-Point pre-submission chart, ICD-10, CPT, and Modifier 25/59 check before claims touch Florida Blue, Medicare, or AHCA Medicaid.
+                </p>
+              </div>
+              <Link href="/services/pre-submission-scrutiny" className="text-sm font-bold text-amber-300 hover:underline">
+                Explore Pre-Claim Scrutiny →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <PricingComparisonBlock />
       <ReelsShowcase compact />
 

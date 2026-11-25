@@ -74,6 +74,12 @@ export default function ClientPortalPage() {
               >
                 Request BAA &amp; Encrypted Upload Link →
               </Link>
+              <Link
+                href="/resources/florida-compliance-checklist"
+                className="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-slate-100 transition"
+              >
+                2026 Compliance Checklist
+              </Link>
             </div>
           </div>
         </div>

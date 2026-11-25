@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { trackMBMBEvent } from './MarketingAndAnalyticsScripts';
 
 const REELS = [
   {
@@ -11,6 +12,14 @@ const REELS = [
     title: 'Where Miami Clinics Quietly Lose 12%–18% of Collected Revenue',
     duration: '0:45',
     src: '/reels/MBMB_Reel_1_Revenue_Leakage_EN.mp4',
+  },
+  {
+    id: 'coding-error-en',
+    lang: 'en',
+    badge: 'Modifier & NCCI Fixes',
+    title: 'How Single CPT/Modifier Coding Errors Drain Practice Cash Flow',
+    duration: '0:45',
+    src: '/reels/MBMB_Reel_2_Coding_Error_Story_EN.mp4',
   },
   {
     id: 'scrutiny-en',
@@ -24,7 +33,7 @@ const REELS = [
     id: 'audit-15m-en',
     lang: 'en',
     badge: 'Free 20-Claim Audit',
-    title: 'How Our 48-Hour 20-Claim Proof Test Shows Exact Recoverable Dollars',
+    title: 'How Our 48-Hour 20-Claim Proof Test Shows Estimated Recoverable Dollars',
     duration: '0:45',
     src: '/reels/MBMB_Reel_4_The_15_Minute_Audit_EN.mp4',
   },
@@ -35,6 +44,14 @@ const REELS = [
     title: 'Why Single-Person In-House Billing Falls Behind on Appeals & Denials',
     duration: '0:45',
     src: '/reels/MBMB_Reel_3_Why_InHouse_Billing_Fails_EN.mp4',
+  },
+  {
+    id: 'attorney-pi-en',
+    lang: 'attorneys',
+    badge: 'For Trial Attorneys',
+    title: '72-Hour Personal Injury Medical Billing Chronology & EOB Reconciliation',
+    duration: '0:50',
+    src: '/reels/MBMB_Reel_5_Attorney_PI_Chronologies_EN.mp4',
   },
   {
     id: 'fuga-es',
@@ -90,7 +107,7 @@ export default function ReelsShowcase({ compact = false }) {
             </p>
           </div>
 
-          <div className="inline-flex rounded-xl bg-white/5 border border-white/15 p-1 self-start md:self-auto">
+          <div className="inline-flex flex-wrap rounded-xl bg-white/5 border border-white/15 p-1 self-start md:self-auto gap-1">
             <button
               type="button"
               onClick={() => setLang('en')}
@@ -109,6 +126,15 @@ export default function ReelsShowcase({ compact = false }) {
             >
               En Español
             </button>
+            <button
+              type="button"
+              onClick={() => setLang('attorneys')}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition ${
+                lang === 'attorneys' ? 'bg-[#0066CC] text-white shadow' : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              ⚖️ For Attorneys
+            </button>
           </div>
         </div>
 
@@ -124,6 +150,7 @@ export default function ReelsShowcase({ compact = false }) {
                   controls
                   preload="metadata"
                   playsInline
+                  onPlay={() => trackMBMBEvent('video_play', { reel_id: reel.id, lang: reel.lang })}
                   className="w-full h-full object-cover"
                 />
               </div>

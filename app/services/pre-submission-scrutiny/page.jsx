@@ -96,7 +96,7 @@ const faqs = [
   {
     question: 'Can we test Scrutiny Before the Scrutiny on our own claims first?',
     answer:
-      'Yes. Pull 20 recent charts or denied claims and we will run a complimentary 48-hour Pre-Submission Scrutiny Test—handing you a line-by-line breakdown of missing documentation, coding fixes, and exact recoverable dollars with zero obligation.',
+      'Yes. Pull 20 recent charts or denied claims and we will run a complimentary 48-hour Pre-Submission Scrutiny Test—handing you a line-by-line breakdown of missing documentation, coding fixes, and estimated recoverable dollars with zero obligation.',
   },
 ];
 
@@ -197,7 +197,7 @@ export default function PreSubmissionScrutinyPage() {
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
             {[
               { stat: '8-Point', label: 'Clinical & Payer Pre-Check' },
-              { stat: '98.4%', label: 'Clean First-Pass Claim Target' },
+              { stat: '98%', label: 'Clean-Claim Target' },
               { stat: '48 Hrs', label: 'Free 20-Claim Proof Turnaround' },
               { stat: '$0 Setup', label: 'Keep Your Current EHR' },
             ].map((k) => (
@@ -287,6 +287,32 @@ export default function PreSubmissionScrutinyPage() {
         </div>
       </section>
 
+      {/* ILLUSTRATIVE BEFORE/AFTER CHART CATCH EXAMPLE */}
+      <section className="py-12 px-4 bg-[#060f20] border-b border-white/10">
+        <div className="max-w-5xl mx-auto rounded-2xl border border-[#00A8E8]/30 bg-white/[0.03] p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#00A8E8]">
+              Illustrative Pre-Submission Catch Example
+            </span>
+            <span className="text-xs text-slate-400">Multi-Complaint Outpatient Visit + In-Office Procedure</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5 text-sm">
+            <div className="rounded-xl bg-rose-950/30 border border-rose-500/30 p-5">
+              <div className="text-xs font-bold uppercase text-rose-300 mb-2">Draft Claim Before MBMB Scrutiny</div>
+              <p className="text-slate-200 leading-relaxed">
+                Superbill queued <code className="text-rose-200 font-bold">99213</code> + <code className="text-rose-200 font-bold">20610</code> without Modifier <code className="text-rose-200 font-bold">-25</code>, billed a sent-out MRI order in-office, and pointed both lines to a single generic Dx. High risk of instant NCCI CO-97 denial and undercoded E/M value.
+              </p>
+            </div>
+            <div className="rounded-xl bg-emerald-950/30 border border-emerald-500/35 p-5">
+              <div className="text-xs font-bold uppercase text-emerald-300 mb-2">After AAPC + Scrutiny Sign-Off</div>
+              <p className="text-slate-100 leading-relaxed">
+                Verified Moderate MDM note supports <code className="text-emerald-200 font-bold">99214-25</code> + <code className="text-emerald-200 font-bold">20610</code>, removed ordered-only external imaging line for compliance, and mapped distinct ICD-10 pointers in Box 24E before payer submission.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQS + FINAL CTA */}
       <section className="py-16 sm:py-20 px-4 bg-[#071124]">
         <div className="max-w-4xl mx-auto">
@@ -310,7 +336,7 @@ export default function PreSubmissionScrutinyPage() {
               Test Our Pre-Submission Scrutiny on 20 Claims — Free.
             </h2>
             <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto">
-              We sign your HIPAA BAA first, review 20 recent charts or denied claims in 48 hours, and show you every missing documentation link, modifier fix, and recoverable dollar—zero obligation.
+              We sign your HIPAA BAA first, review 20 recent charts or denied claims in 48 hours, and show you missing documentation links, modifier fixes, and estimated recoverable dollars—zero obligation.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3.5">
               <Link

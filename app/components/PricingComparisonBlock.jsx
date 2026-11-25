@@ -79,7 +79,7 @@ export default function PricingComparisonBlock() {
 
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-50 border border-slate-200 rounded-2xl p-5">
           <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
-            <strong className="text-slate-900">Keep your current EHR &amp; test us risk-free:</strong> Send 20 denied or underpaid claims after BAA execution—our AAPC-certified coders return exact CPT/modifier fixes and recoverable dollars in 48 hours at $0 cost.
+            <strong className="text-slate-900">Keep your current EHR &amp; test us risk-free:</strong> Send 20 denied or underpaid claims after BAA execution—our U.S. AAPC-certified fulfillment team estimates CPT/modifier fixes and recoverable dollars in 48 hours at $0 cost.
           </p>
           <Link
             href="/consultation"

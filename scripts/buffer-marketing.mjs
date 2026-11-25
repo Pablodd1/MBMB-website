@@ -49,9 +49,9 @@ const CAMPAIGN_POSTS = [
     text: `⚖️ Preparing a Personal Injury Demand Package or Mediation Brief in Florida?\n\nUntangling fragmented CMS-1500/UB-04 statements, hospital facility ledgers, and EOB adjustments takes hours away from core legal strategy—and unflagged duplicate charges can undermine your special damages summary at mediation.\n\nMBMB’s U.S. AAPC-certified coders + AI verification deliver litigation-ready administrative billing packages in 3–5 business days:\n✅ Source-Linked Medical Billing Chronologies (cited to the exact PDF & page number)\n✅ Plain-English CPT, ICD-10 & Modifier Explanations (-25, -59, -26/TC)\n✅ Charge-to-Balance Reconciliation (separating Total Billed, Adjustments, Paid, Flagged Duplicates & Net Open Balance in Excel + PDF)\n\n👉 Test us on 1 active case file (Request a Sample Deliverable or 1-Case Pilot):\n🔗 https://medicalbillingmb.com/for-attorneys?utm_source=buffer&utm_medium=social&utm_campaign=attorney_pilot\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#PersonalInjuryLaw #FloridaTrialLawyers #MedicalMalpractice #LegalOperations #ParalegalLife #MiamiLawFirms #MedicalChronology`,
   },
   {
-    title: 'Post 3: 90-Day Miami Beach Case Study (18% to 2.4% Denial Rate)',
+    title: 'Post 3: Illustrative 90-Day Practice Scenario (18% to 2.4% Denial Target)',
     imageUrl: 'https://medicalbillingmb.com/raster/authentic/providers-rcm-analytics.jpg',
-    text: `📈 Real 90-Day Benchmark: How a 4-Provider Miami Beach Practice Cut Denials from 18.0% to 2.4%\n\nBefore partnering with MBMB:\n❌ 18% claim denial rate from modifier & bundling rejections\n❌ Denied CO/OA claims aging past 60 days without clinical appeals\n❌ $127K+ in annual preventable revenue leakage\n\nWithin 90 days with MBMB (working directly inside their existing EHR):\n✅ Denial rate dropped to 2.4% (98%+ first-pass clean claims)\n✅ +27% net collections increase (+$142,000 annualized)\n✅ $0 software migration cost\n\nSee how much collectable revenue your clinic is leaving on the table:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=case_study_90d\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#HealthcareFinance #MedicalPractice #MiamiDoctors #DenialManagement #CleanClaims #MedicalBillingMiami #RCM`,
+    text: `📈 Illustrative South Florida Scenario: Closing an 18% Denial Gap (98% Clean-Claim Target)\n\nTypical multi-provider leak patterns we audit:\n❌ 18% claim denial rate from modifier & bundling rejections\n❌ Denied CO/OA claims aging past 60 days without clinical appeals\n❌ Preventable annual revenue leakage\n\nWith MBMB inside your existing EHR ($0 setup fee):\n✅ Targeting a 98% first-pass clean-claim rate (2.4% residual denial benchmark)\n✅ Target: up to 30% revenue recovery based on illustrative scenarios\n✅ U.S. AAPC-certified fulfillment team + AI double-check\n\nSee how much collectable revenue your clinic could recover:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=case_study_90d\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#HealthcareFinance #MedicalPractice #MiamiDoctors #DenialManagement #CleanClaims #MedicalBillingMiami #RCM`,
   },
   {
     title: 'Post 4: Florida Provider Credentialing, CAQH ProView & Medicaid MMA Enrollment',
@@ -61,7 +61,7 @@ const CAMPAIGN_POSTS = [
   {
     title: 'Post 5: Transparent Percentage-of-Collections Pricing ($0 Setup Fee)',
     imageUrl: 'https://medicalbillingmb.com/raster/authentic/providers-audit-consultation.jpg',
-    text: `💡 Aligned Incentives: We Only Succeed When Your Practice Collects.\n\nNo setup fees. No software migration. We plug directly into eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, DrChrono, NextGen, and 25+ EHRs.\n\nOur Transparent Monthly Collection Tiers:\n• $50,000+/mo Volume → 5.6%\n• $40,000–$50,000/mo → 6.5%\n• $20,000–$40,000/mo → 7.5%\n• Under $20,000/mo (New & Launching Clinics) → 10.0%\n\n🇪🇸 Hablamos Español — Atención directa en Miami Beach con respaldo de codificadores certificados por la AAPC en EE. UU.\n\n👉 Book your 15-minute practice consultation:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=transparent_pricing\n📞 (786) 643-2099\n\n#MedicalBillingServices #TransparentPricing #SouthFloridaHealthcare #PrivatePractice #DoctorLife #MiamiBeach`,
+    text: `💡 Aligned Incentives: We Only Succeed When Your Practice Collects.\n\nNo setup fees. No software migration. We plug directly into eClinicalWorks, Athenahealth, Tebra/Kareo, Epic, AdvancedMD, DrChrono, NextGen, and 25+ EHRs.\n\nOur Transparent Monthly Collection Tiers:\n• High-Volume ($50,000+/mo) → 5.6%–6.5%\n• Growth & Specialty ($20,000–$50,000/mo) → 6.5%–8%\n• Starter & Launching (<$20,000/mo) → 8%–10%\n\n🇪🇸 Hablamos Español — Atención directa en Miami Beach con respaldo de codificadores certificados por la AAPC en EE. UU.\n\n👉 Book your 15-minute practice consultation:\n🔗 https://medicalbillingmb.com/consultation?utm_source=buffer&utm_medium=social&utm_campaign=transparent_pricing\n📞 (786) 643-2099\n\n#MedicalBillingServices #TransparentPricing #SouthFloridaHealthcare #PrivatePractice #DoctorLife #MiamiBeach`,
   },
 ];
 
@@ -69,7 +69,7 @@ const WAVE2_POSTS = [
   {
     title: 'Post 6: Modifier 25, 59 & XE/XS — Stopping Surgical & E/M Unbundling Rejections',
     imageUrl: 'https://medicalbillingmb.com/raster/authentic/providers-coding-specialist.jpg',
-    text: `🔍 Are Modifier 25, 59, or XE/XS Rejections Quietly Draining Your Specialty Practice?\n\nIn Cardiology, Orthopedics, Pain Management, and Dermatology, NCCI bundling edits and missing modifiers are the #1 trigger for preventable First Coast Medicare (FCSO) and commercial claim denials.\n\nAt Medical Billing Miami Beach (MBMB):\n✅ U.S. AAPC-certified coders verify your operative & clinical chart notes first\n✅ Our AI secondary check flags NCCI unbundling conflicts and LCD/NCD medical-necessity gaps before transmission\n✅ 98%+ first-pass clean claim rate inside your existing EHR\n\n👉 Request a complimentary 20-claim coding & modifier benchmark:\n🔗 https://medicalbillingmb.com/services/medical-coding?utm_source=buffer&utm_medium=social&utm_campaign=coding_modifiers\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalCoding #CPT #ICD10 #AAPCCertified #Orthopedics #Cardiology #MiamiPhysicians #RevenueCycle`,
+    text: `🔍 Are Modifier 25, 59, or XE/XS Rejections Quietly Draining Your Specialty Practice?\n\nIn Cardiology, Orthopedics, Pain Management, and Dermatology, NCCI bundling edits and missing modifiers are the #1 trigger for preventable First Coast Medicare (FCSO) and commercial claim denials.\n\nAt Medical Billing Miami Beach (MBMB):\n✅ U.S. AAPC-certified coders verify your operative & clinical chart notes first\n✅ Our AI secondary check flags NCCI unbundling conflicts and LCD/NCD medical-necessity gaps before transmission\n✅ 98% clean-claim target inside your existing EHR\n\n👉 Request a complimentary 20-claim coding & modifier benchmark:\n🔗 https://medicalbillingmb.com/services/medical-coding?utm_source=buffer&utm_medium=social&utm_campaign=coding_modifiers\n📞 (786) 643-2099 | ✉️ Jasmel@medicalbillingmb.com\n\n#MedicalCoding #CPT #ICD10 #AAPCCertified #Orthopedics #Cardiology #MiamiPhysicians #RevenueCycle`,
   },
   {
     title: 'Post 7: 48-Hour Denial Management & Clinical Appeals (Zero Unchecked Write-Offs)',
@@ -303,9 +303,43 @@ async function main() {
       console.log(`  DELETED Old Scheduled Post ${oldPost.id} (${oldPost.dueAt}) -> ${delText.slice(0, 80)}`);
     }
 
-    console.log(`\n=== Scheduling 5 Weekly "Style 2" Executive Scorecard Posts (Once a Week: IG & LinkedIn) ===`);
+    console.log(`\n=== Scheduling 5 Weekly "Style 2" Executive Scorecard Posts (Once a Week: IG, LinkedIn & Google Business) ===`);
+    const activeChannels = channels.filter((c) => !c.isDisconnected);
     for (const item of WEEKLY_STYLE2_POSTS) {
-      for (const [service, channelId] of Object.entries(CHANNELS)) {
+      for (const ch of activeChannels) {
+        const service = ch.service.toLowerCase();
+        const channelId = ch.id;
+        // Skip Week 1 if dueAt is already in the past
+        if (new Date(item.dueAt).getTime() <= Date.now()) {
+          // For newly added Google Business channel, publish Week 1 immediately (shareNow)
+          if (service === 'google' || service === 'googlebusiness') {
+            const nowRes = await bufferMCP('tools/call', {
+              name: 'create_post',
+              arguments: {
+                channelId,
+                schedulingType: 'automatic',
+                mode: 'shareNow',
+                text: item.text,
+                assets: [{ image: { url: item.imageUrl, thumbnailUrl: item.imageUrl } }],
+                metadata: {
+                  google: {
+                    type: 'whats_new',
+                    detailsWhatsNew: {
+                      button: 'learn_more',
+                      link: 'https://medicalbillingmb.com/for-providers?utm_source=buffer&utm_medium=google_business&utm_campaign=weekly_style2_w1',
+                    },
+                  },
+                },
+              },
+            });
+            console.log(`  PUBLISHED NOW [GOOGLE BUSINESS] ${item.title} ->`, JSON.stringify(nowRes?.result?.content?.[0]?.text || nowRes));
+          }
+          continue;
+        }
+
+        const linkMatch = item.text.match(/https:\/\/medicalbillingmb\.com[^\s]+/);
+        const ctaLink = linkMatch ? linkMatch[0] : 'https://medicalbillingmb.com/consultation';
+
         const createRes = await bufferMCP('tools/call', {
           name: 'create_post',
           arguments: {
@@ -324,7 +358,19 @@ async function main() {
                     },
                   },
                 }
-              : {}),
+              : service === 'google' || service === 'googlebusiness'
+                ? {
+                    metadata: {
+                      google: {
+                        type: 'whats_new',
+                        detailsWhatsNew: {
+                          button: 'learn_more',
+                          link: ctaLink,
+                        },
+                      },
+                    },
+                  }
+                : {}),
           },
         });
         const contentText = createRes?.result?.content?.[0]?.text || '';

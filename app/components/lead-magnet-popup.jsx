@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { trackMBMBEvent } from './MarketingAndAnalyticsScripts';
 
 export default function LeadMagnetPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,17 +27,19 @@ export default function LeadMagnetPopup() {
       await fetch('/my-api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          offerType: 'compliance-checklist',
+          sourcePage: typeof window !== 'undefined' ? window.location.pathname : '/',
+        }),
       });
+      trackMBMBEvent('lead_magnet_submit', { offer_type: 'compliance-checklist' });
     } catch (_) {
       // Fallback silently so user still gets confirmation
     } finally {
       setLoading(false);
       setSubmitted(true);
       localStorage.setItem('mbmb_lead_magnet_seen', 'true');
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 3000);
     }
   };
 
@@ -84,7 +88,14 @@ export default function LeadMagnetPopup() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-1">Checklist Sent!</h3>
-              <p className="text-slate-600 text-sm">Check your inbox for the 2026 Florida Billing &amp; Telehealth Checklist.</p>
+              <p className="text-slate-600 text-sm mb-4">We emailed a copy to your inbox—or open the full 13-point checklist right now:</p>
+              <Link
+                href="/resources/florida-compliance-checklist"
+                onClick={() => setIsOpen(false)}
+                className="inline-block w-full py-2.5 px-4 bg-[#0066CC] hover:bg-[#1A3A5F] text-white font-bold text-sm rounded-lg transition"
+              >
+                Open 2026 Checklist &amp; Save PDF →
+              </Link>
             </div>
           ) : (
             <>
