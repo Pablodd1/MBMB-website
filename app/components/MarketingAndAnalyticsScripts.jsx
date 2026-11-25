@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { useEffect } from 'react';
 
 const DEFAULT_GA_IDS = ['G-K6JSWT8YWN'];
+const DEFAULT_GTM_ID = 'GTM-TC3963TB';
 
 function getVisitorContext() {
   if (typeof window === 'undefined') return {};
@@ -99,7 +100,7 @@ export default function MarketingAndAnalyticsScripts() {
   const envGaId = process.env.NEXT_PUBLIC_GA_ID;
   const gaIds = Array.from(new Set([envGaId, ...DEFAULT_GA_IDS].filter(Boolean)));
   const primaryGaId = gaIds[0];
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID;
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim();
   const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim() || 'https://us.i.posthog.com';
