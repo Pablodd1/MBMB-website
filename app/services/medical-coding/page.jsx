@@ -174,8 +174,8 @@ export default function MedicalCodingPage() {
                 className="rounded-2xl shadow-2xl shadow-pink2/20"
               />
               <div className="absolute -bottom-6 -right-6 bg-pink2 text-white px-6 py-4 rounded-xl shadow-xl">
-                <p className="text-3xl font-bold">95%+</p>
-                <p className="text-sm">Clean Claim Rate</p>
+                <p className="text-3xl font-bold">98%</p>
+                <p className="text-sm">Clean-Claim Target</p>
               </div>
             </div>
           </div>
@@ -259,16 +259,16 @@ export default function MedicalCodingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl md:text-5xl font-bold mb-2">95%+</p>
-              <p className="text-sm opacity-90">Clean Claim Rate</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2">98%</p>
+              <p className="text-sm opacity-90">Clean-Claim Target</p>
             </div>
             <div>
               <p className="text-4xl md:text-5xl font-bold mb-2">70K+</p>
               <p className="text-sm opacity-90">ICD-10 Codes</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold mb-2">30%+</p>
-              <p className="text-sm opacity-90">Revenue Increase</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2">Up to 30%</p>
+              <p className="text-sm opacity-90">Target Recovery (Illustrative)</p>
             </div>
             <div>
               <p className="text-4xl md:text-5xl font-bold mb-2">24hr</p>

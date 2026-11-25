@@ -131,11 +131,11 @@ const Consultation = () => {
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
                                 <p className="text-xl font-extrabold text-[#00A8E8]">98%</p>
-                                <p className="text-[11px] text-slate-300">Clean Claim Target</p>
+                                <p className="text-[11px] text-slate-300">Clean-Claim Target</p>
                             </div>
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
-                                <p className="text-xl font-extrabold text-emerald-400">15–30%</p>
-                                <p className="text-[11px] text-slate-300">Est. Revenue Lift</p>
+                                <p className="text-xl font-extrabold text-emerald-400">Up to 30%</p>
+                                <p className="text-[11px] text-slate-300">Target Recovery (Illustrative)</p>
                             </div>
                             <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3 text-center">
                                 <p className="text-xl font-extrabold text-[#00A8E8]">48h</p>

@@ -211,7 +211,7 @@ export default function Top5BillingMistakes() {
                   { title: 'Real-time claim scrubbing', desc: 'Catches errors before submission' },
                   { title: 'Proactive denial management', desc: 'Works accounts receivable daily' },
                   { title: 'Detailed KPI dashboards', desc: 'Always know your financial health' },
-                  { title: '98% clean claim rate', desc: 'Prevention is better than correction' }
+                  { title: '98% clean-claim target', desc: 'Prevention is better than correction' }
                 ].map((item, i) => (
                   <div key={i} className="bg-green-50 border border-green-200 rounded-xl p-4">
                     <h4 className="font-bold text-gray-900">{item.title}</h4>

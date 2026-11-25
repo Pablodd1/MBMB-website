@@ -146,12 +146,12 @@ export default function ForProvidersPage() {
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
               Show Us 20 Denied Claims.{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8E8] to-cyan-300">
-                We’ll Show You What You’re Owed in 48 Hours.
+                We’ll Estimate What You’re Owed in 48 Hours.
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-200 leading-relaxed mb-8">
-              Stop letting your billing company write off CO-16, CO-50, and Modifier 25/59 rejections. Our U.S. AAPC-certified coders scrub and appeal every claim inside your existing EHR—and you only pay <strong>5.6%–10% of what actually hits your bank account</strong>. $0 setup fee.
+              Stop letting your billing company write off CO-16, CO-50, and Modifier 25/59 rejections. Our U.S. AAPC-certified fulfillment team scrubs and appeals claims on your behalf inside your existing EHR—and you only pay <strong>5.6%–10% of what actually hits your bank account</strong>. $0 setup fee.
             </p>
 
             {/* Quick KPI Strip */}

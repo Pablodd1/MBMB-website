@@ -10,7 +10,7 @@ const MBMB_KNOWLEDGE = {
   ],
   services: {
     'medical billing': 'We provide full-cycle medical billing services including claim submission, payment posting, denial management, and accounts receivable follow-up. Our fee is 5.6% to 10% of collected revenue only.',
-    'medical coding': 'Our AAPC-certified coders handle ICD-10, CPT, and HCPCS coding with 98% accuracy. We ensure maximum reimbursement and compliance.',
+    'medical coding': 'Our U.S. AAPC-certified fulfillment team handles ICD-10, CPT, and HCPCS coding and our AI engine verifies CPT/ICD-10 codes and modifiers before submission, targeting a 98% clean-claim rate.',
     'credentialing': 'Provider credentialing takes 60 to 120 days. We handle CAQH enrollment, EDI setup, ERA, EFT, and all payer applications.',
     'revenue cycle': 'Our revenue cycle management includes eligibility verification, prior authorizations, claim scrubbing, and aggressive denial appeals.',
     'consultation': 'We offer a free billing audit and consultation. Would you like me to schedule one for you?'
@@ -19,14 +19,14 @@ const MBMB_KNOWLEDGE = {
   specialties: 'We serve all major specialties including family medicine, internal medicine, pediatrics, cardiology, dermatology, orthopedics, OB-GYN, psychiatry, and urgent care.',
   contact: 'You can reach us at 786-643-2099, email Jasmel at medicalbillingmb dot com, or WhatsApp the same number.',
   location: 'We are based in Miami Beach, Florida, serving healthcare providers across Miami-Dade, Broward, and all of South Florida.',
-  compliance: 'We are fully HIPAA and HITECH compliant. We sign Business Associate Agreements with all clients and use encrypted data transmission.',
-  hours: 'Our office hours are Monday through Saturday, 4 PM to 6 PM Eastern Time.',
+  compliance: 'MBMB uses HIPAA-aligned workflows, encrypted transmission, and role-based access, and signs a BAA with each practice before handling PHI.',
+  hours: 'Continuous AI monitoring; human support is available Mon–Fri, 9:00 AM–6:00 PM EST.',
   commonQuestions: {
     'how long': 'Credentialing takes 60 to 120 days. Claims are typically paid within 14 to 30 days.',
-    'denial rate': 'Our clients see denial rates drop from industry average of 15% down to just 2%.',
+    'denial rate': 'Our workflow targets a 98% clean-claim rate (a 2% residual denial benchmark) compared to the ~15% industry average.',
     'ehr': 'We integrate with Epic, Cerner, Athenahealth, eClinicalWorks, and most major EHR systems.',
     'florida medicaid': 'Yes, we have extensive experience with Florida Medicaid billing requirements and regulations.',
-    'hipaa': 'Absolutely. We are fully HIPAA compliant with encrypted data, secure servers, and BAAs with all clients.',
+    'hipaa': 'Yes. MBMB uses HIPAA-aligned workflows, encrypted transmission, and role-based access, and signs a BAA with each practice before handling PHI.',
     'get started': 'Getting started is easy. Schedule a free consultation and we will analyze your billing process. Onboarding takes 1 to 2 weeks.',
     'cost': 'Our fee is 5.6% to 10% of collected revenue. No setup fees, no hidden costs. Performance-based only.'
   }

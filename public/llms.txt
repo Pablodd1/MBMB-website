@@ -14,7 +14,7 @@
   - **Tier 1 (High-Volume Groups, $50,000+/mo):** `5.6%–6.5%` of net collections
   - **Tier 2 (Established & Growing Clinics, $20,000–$50,000/mo):** `6.5%–8%` of net collections
   - **Tier 3 (New & Launching Clinics, <$20,000/mo):** `8%–10%` of net collections (automatic step-down as volume grows)
-- **Human + AI Operating Model:** Local Miami Beach client coordination paired with our U.S. AAPC-certified medical billing fulfillment team (10+ years experience) and an AI pre-submission verification layer that catches NCCI edits, modifier gaps (25, 59, XE/XS, 95), and LCD/NCD rules before submission.
+- **Human + AI Operating Model:** Founded in 2023 by Jasmel Acosta, Founder & CEO of AI Dynamics and owner of Medical Billing Miami Beach; he built the AI Medical Scribe. MBMB coordinates client relationships locally in Miami Beach, while our U.S. AAPC-certified fulfillment partner (bringing 10+ years of specialized U.S. medical billing experience) performs coding and billing alongside an AI pre-submission verification layer targeting a 98% clean-claim rate.
 - **Attorney & Legal Team Support:** Source-linked medical billing chronologies, plain-English CPT/ICD-10/HCPCS code explanations, and charge-to-balance EOB reconciliation delivered in 3–5 business days (Excel/CSV + Bates-referenced PDF).
 
 ## Key Pages
@@ -30,7 +30,7 @@
 - [Revenue Cycle Management (RCM)](https://medicalbillingmb.com/services/revenue-cycle-management): 8-stage full-lifecycle revenue cycle management and aging AR recovery (>30/60/90/120+ days).
 - [Client Portal & Secure HIPAA Transfer](https://medicalbillingmb.com/client-portal): EHR reporting access, BAA execution, and encrypted document upload instructions.
 - [South Florida Service Areas (10 Cities)](https://medicalbillingmb.com/locations): Dedicated pages for Coral Gables, Brickell & Downtown Miami, Aventura, Doral, Kendall, Hialeah, Fort Lauderdale, Boca Raton, Pinecrest, and West Palm Beach.
-- [Medical Billing Specialties (12+ Verticals)](https://medicalbillingmb.com/specialties): ABA Therapy, Behavioral Health & Psychiatry, Cardiology, Orthopedics & Pain Management, Dermatology & MedSpa, Urgent Care, Pediatrics, Primary Care, Home Health & Hospice (PDGM), ASC, OB/GYN, and Physical Therapy.
+- [Medical Billing Specialties (18+ Verticals)](https://medicalbillingmb.com/specialties): ABA Therapy, Behavioral Health & Psychiatry, Cardiology, Orthopedics & Pain Management, Dermatology & MedSpa, Urgent Care, Pediatrics, Primary Care, Home Health & Hospice (PDGM), ASC, OB/GYN, Physical Therapy, and additional Florida clinical specialties.
 - [Supported EHR Platforms (8+ Systems)](https://medicalbillingmb.com/ehr): Native billing inside eClinicalWorks, Athenahealth, Tebra (Kareo), AdvancedMD, DrChrono, NextGen, SimplePractice, and ModMed with $0 setup fee.
 - [About MBMB](https://medicalbillingmb.com/about): Miami Beach coordination hub and U.S. AAPC-certified fulfillment model.
 - [Contact Us](https://medicalbillingmb.com/contact): Direct phone, WhatsApp, email, and non-sensitive business inquiry form.

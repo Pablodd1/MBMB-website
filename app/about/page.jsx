@@ -76,6 +76,12 @@ export default function AboutPage() {
               {BUSINESS_FACTS.operatingModel.summary}
             </p>
             <p className="text-gray-300 leading-relaxed">
+              {BUSINESS_FACTS.operatingModel.aboutModelSentence}
+            </p>
+            <p className="text-gray-300 leading-relaxed">
+              {BUSINESS_FACTS.founderLine}
+            </p>
+            <p className="text-gray-300 leading-relaxed">
               {BUSINESS_FACTS.operatingModel.aiVerificationStatement}
             </p>
 

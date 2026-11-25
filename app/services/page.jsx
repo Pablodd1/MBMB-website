@@ -122,7 +122,7 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <span className="px-4 py-2 bg-white/10 rounded-full border border-white/20 text-sm">AAPC Certified</span>
-              <span className="px-4 py-2 bg-white/10 rounded-full border border-white/20 text-sm">HIPAA Compliant</span>
+              <span className="px-4 py-2 bg-white/10 rounded-full border border-white/20 text-sm">HIPAA-Aligned Workflows</span>
               <span className="px-4 py-2 bg-white/10 rounded-full border border-white/20 text-sm">Florida Specialists</span>
             </div>
             <Button href="/consultation" text="Get Free Billing Audit" colors="bg-pink2 text-white hover:bg-pink2/80 text-lg px-8 py-4" />
@@ -188,7 +188,7 @@ export default function ServicesPage() {
               Why Choose <span className="text-[#00A8E8]">MBMB</span> for Your Medical Billing?
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-              Backed by 10+ years of specialized U.S. medical billing fulfillment experience serving Florida practices, we are Miami&apos;s trusted partner in healthcare revenue cycle management. Our AAPC-certified specialists combine Florida payer expertise with AI-powered claim scrubbing to deliver a 98% clean claim rate.
+              Our U.S. fulfillment partner brings 10+ years of specialized medical billing experience serving Florida practices. MBMB was founded in 2023 to coordinate Florida payer expertise and AI-powered claim scrubbing toward a 98% clean-claim target.
             </p>
           </div>
 
@@ -198,7 +198,7 @@ export default function ServicesPage() {
               <div className="w-16 h-16 bg-[#0066CC]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl text-[#00A8E8]">✓</span>
               </div>
-              <h4 className="font-semibold text-xl mb-2">98% Clean Claim Rate</h4>
+              <h4 className="font-semibold text-xl mb-2">98% Clean-Claim Target</h4>
               <p className="text-gray-400 text-sm">Our rigorous coding and pre-submission scrubbing ensure minimal claim denials</p>
             </div>
 
@@ -214,8 +214,8 @@ export default function ServicesPage() {
               <div className="w-16 h-16 bg-[#0066CC]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🤖</span>
               </div>
-              <h4 className="font-semibold text-xl mb-2">24/7 AI &amp; Dedicated Support</h4>
-              <p className="text-gray-400 text-sm">Multilingual support (English, Spanish, Creole) and real-time reporting dashboards</p>
+              <h4 className="font-semibold text-xl mb-2">Continuous AI &amp; Human Support</h4>
+              <p className="text-gray-400 text-sm">Continuous AI monitoring; human support Mon–Fri, 9:00 AM–6:00 PM EST (English, Spanish, Creole)</p>
             </div>
           </div>
 

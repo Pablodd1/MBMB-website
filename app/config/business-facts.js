@@ -8,6 +8,9 @@ export const BUSINESS_FACTS = {
   companyName: 'Medical Billing Miami Beach',
   brandName: 'Medical Billing Miami Beach',
   shortName: 'MBMB',
+  foundedYear: 2023,
+  founderLine:
+    'Founded in 2023 by Jasmel Acosta, Founder & CEO of AI Dynamics and owner of Medical Billing Miami Beach; he built the AI Medical Scribe.',
   legalNotice:
     'Medical Billing Miami Beach (MBMB) provides administrative medical billing, coding, credentialing coordination, and non-clinical medical bill organization services. MBMB does not provide legal advice, expert witness testimony, or clinical medical necessity determinations.',
   contact: {
@@ -118,7 +121,9 @@ export const BUSINESS_FACTS = {
   },
   operatingModel: {
     summary:
-      'Medical Billing Miami Beach (MBMB) serves as your accountable client relationship and coordination hub in Miami Beach, working alongside our experienced U.S.-based certified medical billing and coding fulfillment team and our AI pre-submission verification layer.',
+      'Founded in 2023, Medical Billing Miami Beach (MBMB) serves as your accountable client relationship and coordination hub in Miami Beach, while our U.S.-based AAPC-certified fulfillment partner (bringing 10+ years of specialized U.S. billing experience) executes medical coding and billing alongside our AI pre-submission verification layer.',
+    aboutModelSentence:
+      'Operating Model: Medical Billing Miami Beach (MBMB) coordinates client relationships, onboarding, and local South Florida support, while our U.S. AAPC-certified fulfillment partner performs day-to-day medical coding and billing.',
     humanPlusAiStatement:
       'Every claim is reviewed by experienced medical billing and AAPC-certified coding professionals who read the clinical documentation and payer guidelines, then confirmed by our AI pre-submission verification check for modifiers, NCCI edits, and LCD/NCD rules.',
     aiVerificationStatement:

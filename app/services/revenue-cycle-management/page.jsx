@@ -76,7 +76,7 @@ const rcmSteps = [
 const benefits = [
   {
     title: 'Increased Revenue',
-    description: 'Our RCM services typically increase practice revenue by 15-30% through reduced denials and improved clean claim rates.',
+    description: 'Targets up to 15–30% revenue recovery based on illustrative scenarios through reduced denials and clean-claim workflows.',
     icon: '/svg/revenue.svg'
   },
   {
@@ -182,7 +182,7 @@ export default function RevenueCycleManagementPage() {
               
               <div className="flex flex-wrap gap-3 mb-8">
                 <span className="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/20">Full Cycle Coverage</span>
-                <span className="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/20">15-30% Revenue Increase</span>
+                <span className="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/20">Target: Up to 30% Recovery (Illustrative)</span>
                 <span className="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/20">Real-Time Dashboards</span>
               </div>
               
@@ -198,8 +198,8 @@ export default function RevenueCycleManagementPage() {
                 className="rounded-2xl shadow-2xl shadow-pink2/20"
               />
               <div className="absolute -bottom-6 -right-6 bg-pink2 text-white px-6 py-4 rounded-xl shadow-xl">
-                <p className="text-3xl font-bold">15-30%</p>
-                <p className="text-sm">Revenue Increase</p>
+                <p className="text-3xl font-bold">Up to 30%</p>
+                <p className="text-sm">Target Recovery (Illustrative)</p>
               </div>
             </div>
           </div>
@@ -284,20 +284,20 @@ export default function RevenueCycleManagementPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl md:text-5xl font-bold mb-2">95%+</p>
-              <p className="text-sm opacity-90">Clean Claim Rate</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2">98%</p>
+              <p className="text-sm opacity-90">Clean-Claim Target</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold mb-2">15-30%</p>
-              <p className="text-sm opacity-90">Revenue Increase</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2">Up to 30%</p>
+              <p className="text-sm opacity-90">Target Recovery (Illustrative)</p>
             </div>
             <div>
               <p className="text-4xl md:text-5xl font-bold mb-2">14 Days</p>
               <p className="text-sm opacity-90">Avg. Days to Payment</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold mb-2">24/7</p>
-              <p className="text-sm opacity-90">AI Assistant</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2">Mon–Fri</p>
+              <p className="text-sm opacity-90">Continuous AI + 9–6 EST Support</p>
             </div>
           </div>
         </div>
@@ -312,7 +312,7 @@ export default function RevenueCycleManagementPage() {
                 Why Choose <span className="text-pink2">MBMB</span> for RCM?
               </h2>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                Backed by 15+ years of combined team and U.S. certified fulfillment partner experience, Medical Billing Miami Beach is the accountable RCM partner for healthcare providers across South Florida. Our specialists read every chart and pair human coding review with AI pre-submission verification.
+                Our U.S. fulfillment partner brings 10+ years of specialized medical billing experience serving Florida practices. MBMB was founded in 2023 to coordinate accountable RCM, human AAPC coding review, and AI pre-submission verification for providers across South Florida.
               </p>
               
               <div className="space-y-6">
@@ -352,12 +352,12 @@ export default function RevenueCycleManagementPage() {
               <h3 className="text-2xl font-bold mb-6 text-center">Ready to Optimize Your Revenue?</h3>
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Clean Claim Rate Target</span>
-                  <span className="text-green-400 font-semibold">95%–98%</span>
+                  <span className="text-gray-300">Clean-Claim Target</span>
+                  <span className="text-green-400 font-semibold">98%</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
-                  <span className="text-gray-300">Estimated Revenue Lift</span>
-                  <span className="text-white font-semibold">15–30% (Illustrative)</span>
+                  <span className="text-gray-300">Target Recovery (Illustrative)</span>
+                  <span className="text-white font-semibold">Up to 30%</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-700">
                   <span className="text-gray-300">Performance Pricing</span>

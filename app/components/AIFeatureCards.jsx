@@ -12,7 +12,7 @@ import ScrollReveal from './ScrollReveal';
 const features = [
   {
     title: 'Human Review + AI Double-Check',
-    description: 'Our experienced AAPC-certified specialists read every clinical note first, and our AI engine double-checks every CPT/ICD-10 code and modifier to confirm 100% accuracy before submission.',
+    description: 'Our experienced AAPC-certified specialists read every clinical note first, and our AI engine double-checks every CPT/ICD-10 code and modifier to verify CPT/ICD-10 codes and modifiers before submission, targeting a 98% clean-claim rate.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -36,12 +36,12 @@ const features = [
       </svg>
     ),
     accent: '#00A8E8',
-    stat: '98%+',
-    statLabel: 'Clean Claim Rate',
+    stat: '98%',
+    statLabel: 'Clean-Claim Target',
   },
   {
-    title: '24/7 Revenue & A/R Intelligence',
-    description: 'Continuous AI monitoring paired with dedicated human A/R specialists who aggressively follow up on underpaid or aging claims so not a single dollar is left behind.',
+    title: 'Continuous AI Monitoring & Human Support',
+    description: 'Continuous AI monitoring; human support Mon–Fri, 9:00 AM–6:00 PM EST, with dedicated A/R follow-up on underpaid or aging claims.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 3v18h18" />
@@ -52,8 +52,8 @@ const features = [
       </svg>
     ),
     accent: '#00c8b1',
-    stat: '+30%',
-    statLabel: 'Revenue Recovery',
+    stat: 'Up to 30%',
+    statLabel: 'Target Recovery (Illustrative)',
   },
 ];
 

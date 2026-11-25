@@ -17,19 +17,19 @@ COMPLETE MBMB KNOWLEDGE BASE (USE THIS TO ANSWER ANY QUESTION):
 1. WHO WE ARE & OPERATING MODEL:
 - Company Name: Medical Billing Miami Beach (MBMB)
 - Location: Miami Beach, FL 33139 (Serving Miami-Dade, Coral Gables, Brickell, Doral, Hialeah, Broward, Palm Beach, all of Florida, and U.S. practices nationwide)
-- Operating Model: Miami Beach client coordination hub paired with our experienced U.S. AAPC-certified medical billing fulfillment team (10+ years of specialized U.S. healthcare billing experience).
+- Founded & Leadership: Founded in 2023 by Jasmel Acosta, Founder & CEO of AI Dynamics and owner of Medical Billing Miami Beach; he built the AI Medical Scribe.
+- Operating Model: MBMB coordinates local Miami Beach client relationships and onboarding, while our U.S. AAPC-certified fulfillment partner (bringing 10+ years of specialized U.S. healthcare billing experience) performs medical coding and billing.
 
 2. OUR "HUMAN EXPERIENCE + AI DOUBLE-CHECK" WORKFLOW:
 - Step 1 (Human Expertise): Seasoned AAPC-certified medical coders and billing specialists read clinical documentation, operative/chart notes, and payer policy requirements.
-- Step 2 (AI Pre-Submission Double-Check): Before any claim is transmitted, our AI verification layer scrubs every CPT, ICD-10-CM, and HCPCS code, NCCI bundling edit, LCD/NCD medical necessity rule, and modifier (25, 59, XE/XS/XP/XU, 95, GT, 26/TC) to catch errors, prevent denials, and identify missed billable services.
+- Step 2 (AI Pre-Submission Double-Check): Before any claim is transmitted, our AI verification layer scrubs CPT, ICD-10-CM, and HCPCS codes, NCCI bundling edits, LCD/NCD medical necessity rules, and modifiers (25, 59, XE/XS/XP/XU, 95, GT, 26/TC), targeting a 98% clean-claim rate and catching missed billable services.
 - Step 3 (24–48h Submission & ERA/EOB Reconciliation): Electronic 837P/837I submission within 24–48 hours, automated 835 ERA posting, line-item contractual adjustment verification, and aggressive 30/60/90/120+ day A/R follow-up and appeals.
-- Key Benchmarks: 98%+ First-Pass Clean Claim Rate (vs ~85% industry average), up to 95% reduction in preventable front-end denials, and 15%–30% average collections improvement in the first 90 days.
+- Key Targets (Illustrative Scenarios): 98% clean-claim target (vs ~85% industry average) and target up to 30% revenue recovery based on illustrative scenarios.
 
 3. TRANSPARENT PERFORMANCE-BASED PRICING FOR HEALTHCARE PROVIDERS ($0 SETUP FEE):
-- Practices collecting $50,000+ / month: 5.6% of net collections
-- Practices collecting $40,000–$50,000 / month: 6.5% of net collections
-- Practices collecting $20,000–$40,000 / month: 7.5% of net collections
-- New or startup practices (<$20,000 / month): 10% of net collections
+- Tier 1 — High-Volume Practices ($50,000+ / month in collections): 5.6%–6.5% of net collections
+- Tier 2 — Established & Growing Clinics ($20,000–$50,000 / month in collections): 6.5%–8% of net collections
+- Tier 3 — New & Launching Clinics (Under $20,000 / month): 8%–10% of net collections (automatic step-down as volume grows)
 - $0 setup fees, $0 software switching costs. You only pay a percentage of what we actually collect for you. Exact pricing is confirmed in writing based on specialty, claim volume, and scope.
 
 4. EHR / EMR & PRACTICE MANAGEMENT COMPATIBILITY:
@@ -53,8 +53,9 @@ COMPLETE MBMB KNOWLEDGE BASE (USE THIS TO ANSWER ANY QUESTION):
 
 8. ONBOARDING & HIPAA COMPLIANCE:
 - Onboarding takes 5–10 business days with zero disruption to cash flow.
-- 100% HIPAA-aligned workflows with signed Business Associate Agreements (BAAs). Never enter patient names, DOBs, or PHI in public chat.
+- MBMB uses HIPAA-aligned workflows, encrypted transmission, and role-based access, and signs a BAA with each practice before handling PHI. Never enter patient names, DOBs, or PHI in public chat.
 - Contact / Booking Info (ONLY share when the user asks for staff/Jasmel, phone/contact info, or to book an appointment/audit):
+  - Support Model: Continuous AI monitoring; human support Mon–Fri, 9:00 AM–6:00 PM EST
   - Phone: (786) 643-2099 (Mon–Fri, 9:00 AM – 6:00 PM EST)
   - Email: Jasmel@medicalbillingmb.com
   - Provider Consultation / Free 48h Audit: /consultation
@@ -155,11 +156,11 @@ function generateSmartLocalResponse(userText = '', language = 'en') {
   }
 
   if (q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('rate') || q.includes('fee') || q.includes('how much') || q.includes('%') || q.includes('tier')) {
-    return "Our healthcare provider pricing is 100% performance-based with $0 setup fees — you only pay a percentage of net collections:\n\n• 5.6% — Practices collecting $50,000+ / month\n• 6.5% — Practices collecting $40,000–$50,000 / month\n• 7.5% — Practices collecting $20,000–$40,000 / month\n• 10% — New & startup practices (<$20,000 / month)\n\nThis covers end-to-end AAPC-certified coding review, AI pre-submission claim scrubbing, 24–48h claim submission, ERA payment posting, and denial recovery. What medical specialty is your practice, and what is your approximate monthly volume?";
+    return "Our healthcare provider pricing is performance-based with $0 setup fees — you only pay a percentage of net collections:\n\n• 5.6%–6.5% — High-volume practices collecting $50,000+ / month\n• 6.5%–8% — Established & growing clinics collecting $20,000–$50,000 / month\n• 8%–10% — New & startup practices (under $20,000 / month)\n\nThis covers end-to-end AAPC-certified fulfillment coding review, AI pre-submission claim scrubbing, 24–48h claim submission, ERA payment posting, and denial recovery. What medical specialty is your practice, and what is your approximate monthly volume?";
   }
 
   if (q.includes('ai') || q.includes('denial') || q.includes('clean') || q.includes('how do you work') || q.includes('workflow') || q.includes('code') || q.includes('coding')) {
-    return "We use a two-layer 'Human Experience + AI Double-Check' workflow:\n\n1. Human AAPC-Certified Review: Our experienced medical coders read your clinical notes, operative reports, and payer guidelines.\n2. AI Pre-Submission Scrubbing: Before any claim is sent out, our AI engine double-checks every CPT, ICD-10-CM, and HCPCS code, NCCI bundling edit, and modifier (25, 59, 95) to catch denial triggers and undercoding.\n\nThis keeps our first-pass clean claim rate above 98%. Which EHR system does your practice currently use?";
+    return "We use a two-layer 'Human Experience + AI Double-Check' workflow:\n\n1. Human AAPC-Certified Fulfillment Review: Our U.S. fulfillment partner's experienced medical coders read your clinical notes, operative reports, and payer guidelines.\n2. AI Pre-Submission Scrubbing: Before any claim is sent out, our AI engine verifies CPT, ICD-10-CM, and HCPCS codes, NCCI bundling edits, and modifiers (25, 59, 95) before submission, targeting a 98% clean-claim rate.\n\nWhich EHR system does your practice currently use?";
   }
 
   if (q.includes('credential') || q.includes('caqh') || q.includes('enroll') || q.includes('insurance') || q.includes('medicare') || q.includes('medicaid')) {

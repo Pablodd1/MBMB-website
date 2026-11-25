@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "Why should I outsource my medical billing to MBMB?",
-    answer: "Outsourcing reduces administrative overhead, cuts claim denials from the 15%+ industry average down to 2%, ensures compliance with 2026 coding standards, and increases net collections by 15–30%. We specialize in Florida's healthcare market and local payer rules."
+    answer: "Outsourcing reduces administrative overhead, targets a 98% clean-claim rate (2% residual denial benchmark), aligns with 2026 coding standards, and targets up to 30% revenue recovery based on illustrative scenarios. Actual results vary by specialty, payer mix, and documentation."
   },
   {
     question: "What is your pricing structure?",
@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     question: "Are you HIPAA compliant?",
-    answer: "Yes. MBMB is 100% HIPAA and HITECH compliant with encrypted data transmission, role-based access controls, and signed Business Associate Agreements (BAAs) with every healthcare practice."
+    answer: "Yes. MBMB uses HIPAA-aligned workflows, encrypted transmission, and role-based access, and signs a BAA with each practice before handling PHI."
   },
   {
     question: "What makes MBMB different from national billing companies?",
@@ -195,13 +195,13 @@ const ehrSystems = [
 
 const partners = [
   {
-    name: "AI Medical Scriber",
-    desc: "HIPAA-Compliant Voice-to-SOAP Clinical Notes",
+    name: "AI Medical Scribe",
+    desc: "HIPAA-Aligned Voice-to-SOAP Clinical Documentation",
     href: "https://aimedicalscriber.com/",
     badge: "Clinical AI"
   },
   {
-    name: "AI Dynamics Pro",
+    name: "AI Dynamics",
     desc: "Medical Front-Desk & Workflow Automation",
     href: "https://aidynamic.pro/",
     badge: "Automation"
@@ -362,7 +362,7 @@ export default function Home() {
                     </span>
                   ) : (
                     <span className="block text-[#00A8E8] text-2xl sm:text-3xl md:text-4xl mt-2.5 font-bold">
-                      Show Us 20 Denied Claims. We’ll Show You the Exact Money You’re Owed in 48 Hours—Free.
+                      Show us 20 denied claims. We’ll estimate the recoverable dollars in 48 hours — free.
                     </span>
                   )}
                 </h1>
@@ -374,7 +374,7 @@ export default function Home() {
                 </p>
               ) : (
                 <p className="text-slate-200 mt-5 text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Most Florida practices lose <strong className="text-white">12%–18% of their collections</strong> because billers write off CO-16, CO-50, and Modifier 25/59 rejections instead of fighting them. Our U.S. AAPC coders scrub and appeal every claim—and you only pay <strong className="text-white">5.6%–10% of what actually hits your bank account</strong>. $0 setup. Keep your current EHR.
+                  Most Florida practices lose <strong className="text-white">12%–18% of their collections</strong> because billers write off CO-16, CO-50, and Modifier 25/59 rejections instead of fighting them. Our U.S. AAPC-certified fulfillment team scrubs and appeals claims on your behalf—and you only pay <strong className="text-white">5.6%–10% of what actually hits your bank account</strong>. $0 setup. Keep your current EHR.
                 </p>
               )}
 
@@ -481,7 +481,7 @@ export default function Home() {
             {[
               { number: "5.6%–10%", label: "Collection-Based Fee", desc: "Proposal-scoped · $0 setup fee" },
               { number: "24–48 Hr", label: "Claim & Denial Triage", desc: "Clean submission & appeal workflow" },
-              { number: "10+ Yrs", label: "Fulfillment Experience", desc: "U.S. AAPC-certified billing team" },
+              { number: "10+ Yrs", label: "Partner Fulfillment", desc: "U.S. AAPC-certified partner · MBMB est. 2023" },
               { number: "Dual-Check", label: "Human + AI Scrubbing", desc: "Certified coders + AI rule audit" }
             ].map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 100} direction="up" distance={20}>
@@ -600,7 +600,7 @@ export default function Home() {
                 Complete Medical Billing, Coding &amp; Credentialing Services
               </h2>
               <p className="text-slate-300 max-w-2xl mx-auto text-base">
-                Everything your Miami practice needs to eliminate denials, accelerate reimbursements, and stay 100% compliant.
+                Everything your Miami practice needs to reduce denials, accelerate reimbursements, and stay aligned with payer rules and HIPAA standards.
               </p>
             </div>
           </ScrollReveal>
@@ -754,9 +754,10 @@ export default function Home() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
                     <div>
                       <span className="text-xs font-bold uppercase tracking-wider text-[#0066CC]">
-                        {case_.specialtyTag} · Illustrative Scenario
+                        {case_.specialtyTag} · Illustrative practice (not a client)
                       </span>
                       <h3 className="text-xl font-bold text-slate-900 mt-0.5">{case_.practice}</h3>
+                      <p className="text-[11px] font-semibold text-slate-500">Illustrative practice (not a client)</p>
                     </div>
                     <span className="inline-block self-start md:self-auto bg-emerald-50 text-emerald-700 border border-emerald-200 px-4 py-1.5 rounded-full text-sm font-extrabold">
                       {case_.metricBadge}
@@ -967,6 +968,9 @@ export default function Home() {
             </h2>
             <p className="text-slate-500 text-sm mt-1">
               Integrated clinical documentation, front-desk automation, and compliance partners in South Florida
+            </p>
+            <p className="text-slate-600 text-xs sm:text-sm font-medium mt-2 max-w-3xl mx-auto">
+              Founded in 2023 by Jasmel Acosta, Founder &amp; CEO of AI Dynamics and owner of Medical Billing Miami Beach; he built the AI Medical Scribe.
             </p>
           </div>
         </ScrollReveal>

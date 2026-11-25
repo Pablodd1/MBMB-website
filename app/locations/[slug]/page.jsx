@@ -142,7 +142,7 @@ export default async function LocationDetailPage({ params }) {
 
         <div className="flex flex-wrap gap-3 text-xs font-semibold">
           <Link href="/specialties" className="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-[#0066CC] text-slate-700">
-            Browse 12+ Specialties →
+            Browse 18+ Specialties →
           </Link>
           <Link href="/ehr" className="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-[#0066CC] text-slate-700">
             Supported EHR Platforms →

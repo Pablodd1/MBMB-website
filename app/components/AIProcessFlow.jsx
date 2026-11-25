@@ -193,7 +193,7 @@ export default function AIProcessFlow() {
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
             {[
               { value: '24h', label: 'Claim Submission' },
-              { value: '98%', label: 'Clean Claim Target' },
+              { value: '98%', label: 'Clean-Claim Target' },
               { value: '2-Step', label: 'Human + AI Verification' },
               { value: '48h', label: 'Denial Appeal Window' },
             ].map((stat) => (

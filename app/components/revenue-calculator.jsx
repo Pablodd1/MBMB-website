@@ -66,7 +66,7 @@ export default function RevenueCalculator({ inline = false }) {
             </div>
             <div className="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-center shrink-0">
               <div className="text-xs text-slate-300 uppercase tracking-wider">
-                Est. Annual Impact ({feeBasis === 'recovered' ? 'Incremental Basis' : 'Full-RCM Net'})
+                Est. Incremental Recovery Net ({feeBasis === 'recovered' ? 'Denial-Recovery Basis' : 'Full-RCM % Modeled'})
               </div>
               <div className="text-2xl md:text-3xl font-extrabold text-[#00A8E8]">
                 {results.yearlyNetGain >= 0 ? '+' : '-'}${Math.abs(results.yearlyNetGain).toLocaleString()}/yr
@@ -137,12 +137,11 @@ export default function RevenueCalculator({ inline = false }) {
               <span className="text-sm font-bold text-slate-800 block mb-2">
                 3. Select Illustrative MBMB Collection Tier (5.6%–10%)
               </span>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {[
-                  { rate: 5.6, name: '$50K+/mo Tier', desc: 'High-Volume RCM' },
-                  { rate: 6.5, name: '$40K–$50K/mo', desc: 'Established Clinic' },
-                  { rate: 7.5, name: '$20K–$40K/mo', desc: 'Growing Practice' },
-                  { rate: 10, name: 'New / Startup', desc: 'Under $20K/mo' },
+                  { rate: 5.6, rateLabel: '5.6%–6.5%', name: '$50K+/mo', desc: 'High-Volume RCM' },
+                  { rate: 7.0, rateLabel: '6.5%–8%', name: '$20K–$50K/mo', desc: 'Growth & Specialty' },
+                  { rate: 9.0, rateLabel: '8%–10%', name: 'Under $20K/mo', desc: 'Starter & Launching' },
                 ].map((tier) => (
                   <button
                     key={tier.rate}
@@ -154,7 +153,7 @@ export default function RevenueCalculator({ inline = false }) {
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-[#0066CC]/50'
                     }`}
                   >
-                    <div className="text-base font-extrabold">{tier.rate}%</div>
+                    <div className="text-base font-extrabold">{tier.rateLabel}</div>
                     <div className="text-xs font-semibold mt-0.5">{tier.name}</div>
                     <div className={`text-[11px] mt-0.5 ${mbmbRate === tier.rate ? 'text-[#00A8E8]' : 'text-slate-500'}`}>
                       {tier.desc}

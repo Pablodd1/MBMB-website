@@ -367,7 +367,7 @@ export default function RootLayout({ children }) {
                   <li><Link href="/services/medical-coding" className="text-slate-300 hover:text-[#00A8E8] transition-colors">ICD-10 &amp; CPT Medical Coding</Link></li>
                   <li><Link href="/services/credentialing" className="text-slate-300 hover:text-[#00A8E8] transition-colors">Provider Credentialing (CAQH)</Link></li>
                   <li><Link href="/services/revenue-cycle-management" className="text-slate-300 hover:text-[#00A8E8] transition-colors">Revenue Cycle Management (RCM)</Link></li>
-                  <li><Link href="/specialties" className="text-slate-300 hover:text-[#00A8E8] transition-colors">Medical Specialties (12+)</Link></li>
+                  <li><Link href="/specialties" className="text-slate-300 hover:text-[#00A8E8] transition-colors">Medical Specialties (18+)</Link></li>
                   <li><Link href="/locations" className="text-slate-300 hover:text-[#00A8E8] transition-colors">South Florida Service Areas</Link></li>
                   <li><Link href="/ehr" className="text-slate-300 hover:text-[#00A8E8] transition-colors">EHR Billing Compatibility</Link></li>
                   <li><Link href="/client-portal" className="text-slate-300 hover:text-[#00A8E8] transition-colors">Client Portal &amp; Secure Transfer</Link></li>

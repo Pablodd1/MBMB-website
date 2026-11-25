@@ -3,7 +3,7 @@ import { SPECIALTIES } from '../data/seo-hubs';
 import { BUSINESS_FACTS } from '../config/business-facts';
 
 export const metadata = {
-  title: 'Medical Billing Specialties in Miami & Florida | 12+ Clinical Verticals',
+  title: 'Medical Billing Specialties in Miami & Florida | 18+ Clinical Verticals',
   description:
     'Specialty-trained U.S. AAPC medical billing and coding for ABA Therapy, Behavioral Health, Cardiology, Orthopedics, Dermatology, Urgent Care, Pediatrics, Primary Care, Home Health, ASC, OB/GYN, and Physical Therapy.',
   alternates: { canonical: 'https://medicalbillingmb.com/specialties' },

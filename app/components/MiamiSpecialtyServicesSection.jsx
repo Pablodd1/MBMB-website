@@ -54,7 +54,7 @@ export default function MiamiSpecialtyServicesSection() {
               href="/specialties"
               className="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs font-bold hover:border-[#0066CC] hover:text-[#0066CC] transition"
             >
-              Explore 12+ Specialties →
+              Explore 18+ Specialties →
             </Link>
             <Link
               href="/locations"
