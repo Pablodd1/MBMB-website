@@ -48,7 +48,7 @@ export const metadata = {
   creator: 'Medical Billing Miami Beach',
   publisher: 'Medical Billing Miami Beach',
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'lLGRWorpYURsmgMRVOz-K2CP1IMNhWPu1y-xb_RueEU',
     other: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION
       ? { 'facebook-domain-verification': [process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION] }
       : undefined,
