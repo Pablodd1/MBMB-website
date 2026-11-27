@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 const DEFAULT_GA_IDS = ['G-K6JSWT8YWN'];
 const DEFAULT_GTM_ID = 'GTM-TC3963TB';
+const DEFAULT_META_PIXEL_ID = '1126039681428794';
 
 function getVisitorContext() {
   if (typeof window === 'undefined') return {};
@@ -91,6 +92,13 @@ export function trackMBMBEvent(eventName, params = {}) {
       send_to: DEFAULT_GA_IDS[0],
     });
   }
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    if (eventName === 'generate_lead' || eventName === 'lead_magnet_submit' || eventName === 'calendar_booking_confirmed') {
+      window.fbq('track', 'Lead');
+    } else if (eventName === 'click_phone_call' || eventName === 'click_email') {
+      window.fbq('track', 'Contact');
+    }
+  }
   sendFirstPartyTelemetry(eventName, {
     label: params.cta_text || params.event_label || params.form_location || '',
   });
@@ -101,7 +109,7 @@ export default function MarketingAndAnalyticsScripts() {
   const gaIds = Array.from(new Set([envGaId, ...DEFAULT_GA_IDS].filter(Boolean)));
   const primaryGaId = gaIds[0];
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID;
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || DEFAULT_META_PIXEL_ID;
   const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim();
   const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim() || 'https://us.i.posthog.com';
   const validPosthogKey = posthogKey && /^phc_[A-Za-z0-9_]+$/.test(posthogKey) ? posthogKey : null;
@@ -267,18 +275,22 @@ export default function MarketingAndAnalyticsScripts() {
       {metaPixelId && (
         <Script id="mbmb-meta-pixel-init" strategy="afterInteractive">
           {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('set', 'autoConfig', false, '${metaPixelId}');
-            fbq('dataProcessingOptions', ['LDU'], 0, 0);
-            fbq('init', '${metaPixelId}');
-            fbq('track', 'PageView');
+            (function(){
+              var clinicalPaths = /^\\/(agreement-sign-up|billing-details|business-details|my-api)/i;
+              if (clinicalPaths.test(window.location.pathname)) return;
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('set', 'autoConfig', false, '${metaPixelId}');
+              fbq('dataProcessingOptions', ['LDU'], 0, 0);
+              fbq('init', '${metaPixelId}');
+              fbq('track', 'PageView');
+            })();
           `}
         </Script>
       )}

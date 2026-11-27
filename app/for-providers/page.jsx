@@ -139,8 +139,19 @@ export default function ForProvidersPage() {
 
         <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A8E8]/15 border border-[#00A8E8]/40 text-[#00A8E8] text-xs uppercase tracking-widest font-bold mb-6">
-              <span>For Healthcare Providers &amp; Medical Practices</span>
+            <div className="flex flex-wrap items-center gap-2.5 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A8E8]/15 border border-[#00A8E8]/40 text-[#00A8E8] text-xs uppercase tracking-widest font-bold">
+                <span>For Healthcare Providers &amp; Medical Practices</span>
+              </div>
+              <a
+                href={BUSINESS_FACTS.googleReviews.shareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-amber-400/40 text-xs font-bold text-white transition"
+              >
+                <span className="text-amber-400" aria-hidden="true">★★★★★</span>
+                <span>{BUSINESS_FACTS.googleReviews.ratingValue} ({BUSINESS_FACTS.googleReviews.reviewCount} Google Reviews)</span>
+              </a>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">

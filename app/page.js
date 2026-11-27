@@ -353,6 +353,18 @@ export default function Home() {
                 </div>
               )}
 
+              <div className="mb-3 flex justify-center lg:justify-start">
+                <a
+                  href="https://share.google/PIL9NcqtqdMLfygm6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-amber-400/40 text-xs sm:text-sm font-bold text-white backdrop-blur-sm transition"
+                >
+                  <span className="text-amber-400 tracking-tight" aria-hidden="true">★★★★★</span>
+                  <span>4.9 on Google · 10 Verified Reviews</span>
+                </a>
+              </div>
+
               <header>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-tight">
                   Medical Billing Miami Beach

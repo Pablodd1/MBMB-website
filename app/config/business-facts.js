@@ -40,21 +40,31 @@ export const BUSINESS_FACTS = {
     phiWarningShort:
       'Please do not include patient names, dates of birth, Social Security numbers, insurance member IDs, or other Protected Health Information (PHI) in public website forms or chat.',
   },
+  googleReviews: {
+    ratingValue: '4.9',
+    reviewCount: 10,
+    shareUrl: 'https://share.google/PIL9NcqtqdMLfygm6',
+    reviewUrl: 'https://g.page/r/CZqLBwVDebFbEBM/review',
+  },
   socialAndProfiles: {
     instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
     facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/MiamiBeachmb',
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',
+    youtube: 'https://www.youtube.com/@MiamiBeachMB',
     googleBusinessProfile:
-      process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://www.google.com/maps/search/?api=1&query=Medical+Billing+Miami+Beach+FL+33139',
+      process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://share.google/PIL9NcqtqdMLfygm6',
+    googleReviewUrl: 'https://g.page/r/CZqLBwVDebFbEBM/review',
   },
   socialAndDirectories: {
     instagram: 'https://www.instagram.com/medicalbillingmiami',
     whatsapp: 'https://api.whatsapp.com/send?phone=17866432099',
     facebookPage: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/MiamiBeachmb',
     linkedInCompany: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/medical-billing-miami-beach',
+    youtubeChannel: 'https://www.youtube.com/@MiamiBeachMB',
     googleBusinessProfile:
-      process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://www.google.com/maps/search/?api=1&query=Medical+Billing+Miami+Beach+FL+33139',
+      process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_URL || 'https://share.google/PIL9NcqtqdMLfygm6',
+    googleReviewUrl: 'https://g.page/r/CZqLBwVDebFbEBM/review',
   },
   pricing: {
     headlineRange: '5.6%–10% of Net Collections',

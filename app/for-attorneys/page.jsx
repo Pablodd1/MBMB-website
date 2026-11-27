@@ -106,11 +106,22 @@ export default function ForAttorneysPage() {
       <section className="bg-gradient-to-br from-[#0a1628] via-[#102340] to-[#0a1628] text-white py-20 lg:py-24 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#00A8E8]" />
-              <span className="text-[#00A8E8] text-xs sm:text-sm font-bold uppercase tracking-wider">
-                U.S. AAPC-Certified Coders + AI Verification · 1-Case Law Firm Pilot
-              </span>
+            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-2.5 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00A8E8]/40 bg-[#00A8E8]/10">
+                <span className="w-2 h-2 rounded-full bg-[#00A8E8]" />
+                <span className="text-[#00A8E8] text-xs sm:text-sm font-bold uppercase tracking-wider">
+                  U.S. AAPC-Certified Coders + AI Verification · 1-Case Law Firm Pilot
+                </span>
+              </div>
+              <a
+                href="https://share.google/PIL9NcqtqdMLfygm6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-amber-400/40 text-xs font-bold text-white transition"
+              >
+                <span className="text-amber-400" aria-hidden="true">★★★★★</span>
+                <span>4.9 on Google (10 Reviews)</span>
+              </a>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">

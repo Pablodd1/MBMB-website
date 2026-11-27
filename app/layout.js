@@ -29,6 +29,11 @@ const social = [
     label: "MBMB on Facebook"
   },
   {
+    href: BUSINESS_FACTS.socialAndDirectories.youtubeChannel,
+    icon: "youtube",
+    label: "MBMB on YouTube"
+  },
+  {
     href: BUSINESS_FACTS.socialAndDirectories.googleBusinessProfile,
     icon: "google",
     label: "MBMB on Google Maps"
@@ -103,6 +108,7 @@ export default function RootLayout({ children }) {
     BUSINESS_FACTS.socialAndDirectories.whatsapp,
     BUSINESS_FACTS.socialAndDirectories.facebookPage,
     BUSINESS_FACTS.socialAndDirectories.linkedInCompany,
+    BUSINESS_FACTS.socialAndDirectories.youtubeChannel,
     BUSINESS_FACTS.socialAndDirectories.googleBusinessProfile,
   ].filter(Boolean);
 
@@ -152,6 +158,13 @@ export default function RootLayout({ children }) {
           ]
         },
         sameAs: sameAsLinks,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: BUSINESS_FACTS.googleReviews.ratingValue,
+          reviewCount: String(BUSINESS_FACTS.googleReviews.reviewCount),
+          bestRating: '5',
+          worstRating: '1',
+        },
         priceRange: '5.6% - 10% of collections',
         currenciesAccepted: 'USD',
         paymentAccepted: 'Credit Card, ACH Transfer, Check',
@@ -331,7 +344,16 @@ export default function RootLayout({ children }) {
         <footer className="bg-[#060d18] text-white w-full pt-16 pb-10 border-t border-white/10" itemScope itemType="https://schema.org/WPFooter">
           {/* Trust Badges Bar */}
           <div className="w-full border-b border-white/10 pb-8 mb-10">
-            <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-6 md:gap-12">
+            <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-6 md:gap-10">
+              <a
+                href={BUSINESS_FACTS.googleReviews.shareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-white font-semibold bg-white/5 hover:bg-white/10 border border-amber-400/35 px-3.5 py-1.5 rounded-full transition"
+              >
+                <span className="text-amber-400 tracking-tight" aria-hidden="true">★★★★★</span>
+                <span>{BUSINESS_FACTS.googleReviews.ratingValue} on Google ({BUSINESS_FACTS.googleReviews.reviewCount} Reviews)</span>
+              </a>
               <div className="flex items-center gap-2 text-sm text-slate-300 font-medium">
                 <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 <span>HIPAA-Aligned Workflows</span>
@@ -399,6 +421,9 @@ export default function RootLayout({ children }) {
                     <span className="block text-xs text-slate-400 mt-1">Serving Miami-Dade, Coral Gables, Brickell, Doral, Hialeah &amp; Broward</span>
                   </div>
                   <div>🕐 <span itemProp="openingHours" content="Mo-Fr 09:00-18:00">Mon–Fri: 9:00 AM – 6:00 PM EST</span></div>
+                  <div>
+                    ⭐ <a href={BUSINESS_FACTS.googleReviews.reviewUrl} target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:text-white font-semibold transition-colors">Rated {BUSINESS_FACTS.googleReviews.ratingValue} ★ on Google · Leave a Review →</a>
+                  </div>
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap gap-3 text-xs text-slate-400">
                   <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
@@ -421,6 +446,10 @@ export default function RootLayout({ children }) {
                           {x.icon === 'facebook' ? (
                             <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                               <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                            </svg>
+                          ) : x.icon === 'youtube' ? (
+                            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                             </svg>
                           ) : x.icon === 'google' ? (
                             <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
